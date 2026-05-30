@@ -1,17 +1,40 @@
 # Ether
 
-Token-driven color themes for **VS Code** and **Cursor**, generated from a plain JavaScript build pipeline.
+Token-driven dark color themes for **VS Code** and **Cursor**, built from palette files and shipped as a single extension.
+
+**Repository:** [github.com/Priyaank/ether-theme](https://github.com/Priyaank/ether-theme)  
+**Publisher:** [Priyaank](https://marketplace.visualstudio.com/manage) on the VS Code Marketplace
 
 ## Themes
 
-| Theme | Type | Status |
-|-------|------|--------|
-| Ether Aurora | Dark | Included |
-| Ether Ember | Dark | Included |
-| Ether Obsidian | Dark | Included |
-| Ether Vesper | Dark | Included |
+| Theme | Accent | Character |
+|-------|--------|-----------|
+| **Ether Aurora** | Electric teal | Deep space navy — arctic greens, solar ambers, glacial syntax |
+| **Ether Ember** | Molten amber | Charcoal workshop — warm copper control flow, gold types |
+| **Ether Obsidian** | Burnished gold | Pure monochrome obsidian — ivory text, minimal chromatic noise |
+| **Ether Vesper** | Rose | Violet-black twilight — dusk lavender text, romantic contrast |
 
 Select a theme via **Preferences: Color Theme** (`Ctrl+K Ctrl+T`).
+
+## Install
+
+**From the Marketplace (after publish):** search **Ether** in Extensions.
+
+**From source / VSIX:**
+
+```bash
+git clone https://github.com/Priyaank/ether-theme.git
+cd ether-theme
+npm install
+npm run build
+```
+
+Press **F5** to preview in an Extension Development Host, or:
+
+```bash
+npm run package
+code --install-extension releases/ether-theme-0.1.0.vsix
+```
 
 ## Development
 
@@ -30,133 +53,80 @@ npm run build
 ### Preview (F5)
 
 1. Open this folder as the workspace root.
-2. Press **F5** (or Run → Start Debugging).
-3. In the Extension Development Host, open **Preferences: Color Theme** and choose any **Ether** theme.
+2. Press **F5** (Run → Start Debugging).
+3. In the Extension Development Host, open **Preferences: Color Theme** and pick any Ether theme.
 
-Optional: run `npm run watch` in a terminal to rebuild when anything under `src/` changes, then **Developer: Reload Window** in the dev host.
+Run `npm run watch` to rebuild when `src/` changes, then **Developer: Reload Window** in the dev host.
 
-### Troubleshooting (stale TypeScript errors)
-
-This repo is **JavaScript-only** — there are no `.ts` files or `tsconfig.json`. If the Problems panel still shows errors for deleted paths like `src/rules/*.ts` or `scripts/validate-themes.ts`:
-
-1. Close any open tabs for those ghost files.
-2. Run **Developer: Reload Window** (`Ctrl+Shift+P`).
-3. Confirm workspace settings keep TypeScript validation disabled (see `.vscode/settings.json`).
-
-IntelliSense for source and tests comes from `jsconfig.json`.
-
-If F5 fails with **`npm is not recognized`**, Node was likely installed while Cursor was already open. Either reload the window (**Developer: Reload Window**) or run the **build** task directly — it uses `node src/build.js` and adds Node to PATH for tasks.
-
-## Adding a theme
-
-1. Create `src/palettes/my-theme.js` exporting `{ id, label, type, uiTheme, ui, syntax }`.
-2. Run `npm run build`.
-
-Palettes are auto-discovered — no registry edit needed. Workbench keys and syntax rules are shared.
-
-## Removing a theme
-
-1. Delete `src/palettes/my-theme.js`.
-2. Run `npm run build`.
-
-Build automatically removes the matching `themes/my-theme.color-theme.json` and drops it from `package.json` → `contributes.themes`. Reload the Extension Development Host to update the theme picker.
-
-## Workbench color layers
-
-The generator emits two workbench layers:
-
-| Layer | Count | Source |
-|-------|-------|--------|
-| **Core** | 141 keys | `src/workbench/core-catalog.js` + `derive-core.js` |
-| **Extension** | 68 keys | `src/workbench/extension-catalog.js` + `derive-extensions.js` |
-
-## Cursor agent / Composer panel
-
-| What | Workbench key | Palette token |
-|------|---------------|---------------|
-| Code editor + agent frame | `editor.background` | `surfaceEditor` (Cursor shares one token — cannot split) |
-| Chat / inline chat chrome | `chat.*`, `inlineChat.*` | `surfaceAgent` (defaults to `surfacePanel`) |
-| Chat links | `textLink.foreground` | `accent` |
-| Empty editor groups | `editorGroup.emptyBackground` | `surfacePanel` |
-
-```javascript
-ui: {
-  surfacePanel: "#191C22",   // sidebar, empty editor groups
-  surfaceAgent: "#191C22",   // chat bubbles / inline chat
-  surfaceEditor: "#1E2127",  // code canvas (+ agent frame — Cursor limitation)
-}
-```
-
-The detached **Agents Window** may ignore custom themes and use Cursor built-in palettes.
-
-## Scripts
+### Scripts
 
 | Script | Description |
 |--------|-------------|
 | `npm run build` | Generate theme JSON, remove orphaned themes, sync `package.json` |
 | `npm run watch` | Rebuild when `src/**` changes |
-| `npm run validate` | Same as build (validation is inline) |
 | `npm run check` | Lint, test, and validate |
 | `npm run package` | Create VSIX in `releases/` |
-| `npm run publish:openvsx` | Publish VSIX to [Open VSX](https://open-vsx.org/) |
-| `npm run publish:marketplace` | Publish to VS Code Marketplace |
-| `npm run publish:all` | Package and publish to both registries |
+| `npm run package:install` | Package and install locally |
+| `npm run release` | Full check + package |
+| `npm run publish:local` | Publish using tokens from `.env` |
+| `npm run publish:all` | Publish when `VSCE_PAT` / `OVSX_PAT` are already in the environment |
+
+## Adding or removing a theme
+
+**Add:** create `src/palettes/my-theme.js` exporting `{ id, label, type, uiTheme, ui, syntax }`, then `npm run build`. Palettes are auto-discovered — no manual registry edit.
+
+**Remove:** delete the palette file and run `npm run build`. The matching `themes/*.color-theme.json` and `package.json` entry are removed automatically.
+
+Each palette defines separate `ui` and `syntax` token objects. Workbench keys and syntax rules are shared across all themes.
+
+## Workbench color layers
+
+| Layer | Count | Source |
+|-------|-------|--------|
+| **Core** | 141 | `src/workbench/core-catalog.js` + `derive-core.js` |
+| **Extension** | 68 | `src/workbench/extension-catalog.js` + `derive-extensions.js` |
+
+### Cursor agent / Composer panel
+
+| Region | Workbench key | Palette token |
+|--------|---------------|---------------|
+| Code editor + agent frame | `editor.background` | `surfaceEditor` (Cursor shares one token) |
+| Chat / inline chat chrome | `chat.*`, `inlineChat.*` | `surfaceAgent` (defaults to `surfacePanel`) |
+| Chat links | `textLink.foreground` | `accent` |
+| Empty editor groups | `editorGroup.emptyBackground` | `surfacePanel` |
+
+The detached **Agents Window** may ignore custom themes.
 
 ## Publishing
 
-### 1. Publisher
+Publisher ID in `package.json` is **Priyaank**.
 
-`publisher` in `package.json` is set to **Priyaank** (your VS Code Marketplace publisher ID).
+### First-time setup
 
-### Publish with tokens (no login)
+1. Push the repo to GitHub: [github.com/Priyaank/ether-theme](https://github.com/Priyaank/ether-theme)
+2. Create tokens:
+   - **VSCE_PAT** — [Azure DevOps](https://dev.azure.com/_users/settings/tokens) with **Marketplace → Manage**
+   - **OVSX_PAT** — [Open VSX](https://open-vsx.org/user-settings/tokens)
+3. Copy `.env.example` → `.env` and paste both tokens (never commit `.env`)
 
-`vsce login` / `ovsx login` are optional. Both tools read PATs from environment variables:
-
-| Variable | Used for |
-|----------|----------|
-| `VSCE_PAT` | VS Code Marketplace (`vsce publish`) |
-| `OVSX_PAT` | Open VSX / Cursor (`ovsx publish`) |
-
-**Local:** copy `.env.example` → `.env`, paste your tokens, then:
+### Publish locally
 
 ```bash
 npm run publish:local
 ```
 
-**CI / shell with env already set:** `npm run publish:all` (reads `VSCE_PAT` / `OVSX_PAT` from the environment).
+This runs `npm run package`, then publishes to Open VSX and the VS Code Marketplace. `vsce login` / `ovsx login` are optional when PATs are set.
 
-**GitHub Actions:** add repository secrets `VSCE_PAT` and `OVSX_PAT`, then push a version tag (`v0.1.0`) — CI publishes automatically.
+### Publish via GitHub Actions
 
-Create tokens:
-
-- **VSCE_PAT** — [Azure DevOps PAT](https://dev.azure.com) with **Marketplace → Manage**
-- **OVSX_PAT** — [Open VSX token](https://open-vsx.org/user-settings/tokens)
-
-### Manual login (optional)
+Add repository secrets `VSCE_PAT` and `OVSX_PAT`, then:
 
 ```bash
-npx vsce login Priyaank
-npx ovsx login
+git tag v0.1.0
+git push origin v0.1.0
 ```
 
-### VS Code Marketplace
-
-1. Create a publisher at [marketplace.visualstudio.com/manage](https://marketplace.visualstudio.com/manage)
-2. Set `VSCE_PAT` (see above) or run `npx vsce login Priyaank`
-3. Publish: `npm run publish:marketplace`
-
-### Open VSX
-
-1. Create a PAT at [open-vsx.org/user-settings/tokens](https://open-vsx.org/user-settings/tokens)
-2. Set `OVSX_PAT` (see above) or run `npx ovsx login`
-3. Publish: `npm run publish:openvsx`
-
-### Local VSIX install
-
-```bash
-npm run package
-code --install-extension releases/ether-theme-0.1.0.vsix
-```
+CI runs checks, packages the VSIX, and publishes to both registries.
 
 ## Architecture
 
@@ -170,13 +140,18 @@ src/
     derive-core.js                 → palette ui → core workbench colors
     derive-extensions.js           → palette ui → extension workbench colors
     constants.js                   → re-exports catalogs + syntax rule count
-  syntax/rules.js                  → tokenColor rules
+  syntax/rules.js                  → 36 tokenColor rules
   utils/color.js                   → chroma helpers + validation
   palettes/*.js                    → per-theme ui + syntax palettes (auto-loaded)
 themes/*.color-theme.json          → generated output (shipped in VSIX)
+tests/generator.test.js            → vitest suite
 ```
 
-UI and syntax palettes live in separate objects inside each palette file and never share base token imports.
+## Troubleshooting
+
+**Stale TypeScript errors:** this repo is JavaScript-only. Reload the window and close ghost tabs for deleted `.ts` paths. See `jsconfig.json` and `.vscode/settings.json`.
+
+**F5 fails with `npm is not recognized`:** reload Cursor after installing Node, or run the **build** task (uses `node src/build.js` directly).
 
 ## License
 
