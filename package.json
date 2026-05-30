@@ -1,0 +1,91 @@
+{
+  "name": "ether-theme",
+  "displayName": "Ether",
+  "description": "Token-driven color themes for VS Code and Cursor.",
+  "publisher": "Priyaank",
+  "version": "0.1.0",
+  "icon": "icon.png",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Priyaank/ether-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Priyaank/ether-theme/issues"
+  },
+  "homepage": "https://github.com/Priyaank/ether-theme#readme",
+  "keywords": [
+    "theme",
+    "color-theme",
+    "dark",
+    "ether"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Ether Aurora",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-aurora.color-theme.json"
+      },
+      {
+        "label": "Ether Ember",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-ember.color-theme.json"
+      },
+      {
+        "label": "Ether Obsidian",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-obsidian.color-theme.json"
+      },
+      {
+        "label": "Ether Vesper",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-vesper.color-theme.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node src/build.js",
+    "watch": "node --watch --watch-path=src src/build.js",
+    "dev": "npm run watch",
+    "clean": "rimraf themes/*.color-theme.json releases/*.vsix",
+    "validate": "node src/build.js",
+    "validate:package": "vsce ls --tree",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "check": "npm run lint && npm run test && npm run validate",
+    "vscode:prepublish": "npm run build",
+    "package": "vsce package --out releases/",
+    "package:install": "npm run package && code --install-extension releases/ether-theme-0.1.0.vsix",
+    "publish:marketplace": "vsce publish",
+    "publish:marketplace:patch": "vsce publish patch",
+    "publish:openvsx": "ovsx publish releases/*.vsix",
+    "publish:all": "npm run package && npm run publish:openvsx && npm run publish:marketplace",
+    "publish:local": "dotenv -e .env -- npm run publish:all",
+    "release": "npm run check && npm run package"
+  },
+  "vsce": {
+    "yarn": false,
+    "dependencies": false
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "globals": "^16.2.0",
+    "@vscode/vsce": "^3.3.2",
+    "chroma-js": "^3.1.2",
+    "dotenv-cli": "^8.0.0",
+    "eslint": "^9.27.0",
+    "ovsx": "^0.10.2",
+    "rimraf": "^6.0.1",
+    "vitest": "^3.1.4"
+  }
+}

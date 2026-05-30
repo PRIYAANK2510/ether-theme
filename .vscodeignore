@@ -1,0 +1,11 @@
+src/**
+tests/**
+.github/**
+releases/**
+.vscode/**
+jsconfig.json
+vitest.config.js
+eslint.config.js
+.gitignore
+.npmrc
+node_modules/**

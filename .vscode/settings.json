@@ -1,0 +1,13 @@
+{
+  "typescript.validate.enable": false,
+  "typescript.tsserver.enable": false,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "javascript.validate.enable": true,
+  "terminal.integrated.env.windows": {
+    "PATH": "${env:PATH};${env:ProgramFiles}\\nodejs;${env:APPDATA}\\npm"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+releases/
+*.vsix
+.env
+.DS_Store
+Thumbs.db
