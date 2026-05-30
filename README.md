@@ -1,18 +1,34 @@
 # Ether
 
-Token-driven dark color themes for **VS Code** and **Cursor**, built from palette files and shipped as a single extension.
+Token-driven dark and light color themes for **VS Code** and **Cursor**, built from palette files and shipped as a single extension.
 
 **Repository:** [github.com/PRIYAANK2510/ether-theme](https://github.com/PRIYAANK2510/ether-theme)  
 **Publisher:** [Priyaank](https://marketplace.visualstudio.com/manage) on the VS Code Marketplace
 
 ## Themes
 
-| Theme | Accent | Character |
-|-------|--------|-----------|
-| **Ether Aurora** | Electric teal | Deep space navy — arctic greens, solar ambers, glacial syntax |
-| **Ether Ember** | Molten amber | Charcoal workshop — warm copper control flow, gold types |
-| **Ether Obsidian** | Burnished gold | Pure monochrome obsidian — ivory text, minimal chromatic noise |
-| **Ether Vesper** | Rose | Violet-black twilight — dusk lavender text, romantic contrast |
+| Theme | Type | Accent | Character |
+|-------|------|--------|-----------|
+| **Ether Abyss** | Dark | Bioluminescent cyan | Abyssal deep sea — void black-blue, glowing aquatic syntax |
+| **Ether Aurora** | Dark | Electric teal | Deep space navy — arctic greens, solar ambers, glacial syntax |
+| **Ether Brass** | Dark | Antique brass | Walnut workshop — copper browns, burnished gold control flow |
+| **Ether Carbon** | Dark | Silver white | Neutral graphite — monochrome UI, crisp contrast, minimal color |
+| **Ether Crimson** | Dark | Scarlet | Deep wine black — warm reds, ember syntax, dramatic contrast |
+| **Ether Eclipse** | Dark | Hot coral | Total eclipse void — salmon accents on pure black |
+| **Ether Ember** | Dark | Molten amber | Charcoal workshop — warm copper control flow, gold types |
+| **Ether Forest** | Dark | Sage green | Moss-black canopy — earthy greens, natural calm, soft highlights |
+| **Ether Haze** | Dark | Soft mint | Smoky blue-gray fog — muted desaturated calm, gentle contrast |
+| **Ether Jade** | Dark | Vivid emerald | Imperial jade jewel — rich green-black, luminous syntax |
+| **Ether Linen** | Light | Rust terracotta | Warm cream paper — ink navy text, editorial readability |
+| **Ether Midnight** | Dark | Periwinkle | Classic Ether dark — balanced blue-violet surfaces, familiar feel |
+| **Ether Nebula** | Dark | Orchid purple | Cosmic violet haze — nebula magentas, starlight syntax |
+| **Ether Obsidian** | Dark | Burnished gold | Pure monochrome obsidian — ivory text, minimal chromatic noise |
+| **Ether Pearl** | Light | Cobalt blue | Cool pearl white — slate text, crisp professional clarity |
+| **Ether Plasma** | Dark | Chartreuse | Fusion reactor — electric lime on void black, high energy |
+| **Ether Sangria** | Dark | Dusty peach | Wine cellar burgundy — deep maroon surfaces, warm peach accent |
+| **Ether Slate** | Dark | Steel blue | Cool industrial gray — muted blues, professional restraint |
+| **Ether Terra** | Dark | Terracotta clay | Red earth sienna — desert clay tones, warm organic warmth |
+| **Ether Vesper** | Dark | Rose | Violet-black twilight — dusk lavender text, romantic contrast |
 
 Select a theme via **Preferences: Color Theme** (`Ctrl+K Ctrl+T`).
 

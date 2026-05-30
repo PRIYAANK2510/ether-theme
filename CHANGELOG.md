@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2026-05-30
+
+### Added
+
+- **16 new themes** — collection expanded from 4 to 20 distinct palettes
+- **Dark:** Ether Abyss, Brass, Carbon, Crimson, Eclipse, Forest, Haze, Jade, Midnight, Nebula, Plasma, Sangria, Slate, Terra
+- **Light:** Ether Linen (warm cream), Ether Pearl (cool pearl white) — first light variants in the extension
+- Build-time WCAG contrast validation for critical palette token pairs (`fgPrimary`, `fgMuted`, `syntax.default`, `syntax.comment`, `fgOnAccent`)
+- Contrast test coverage in the Vitest suite
+
+### Changed
+
+- Rebuilt all palette base tokens for stronger, more readable contrast (AAA body text at 7:1, AA muted UI at 4.5:1)
+- Brightened `fgMuted` and `syntax.comment` across every existing dark theme
+- README theme table updated with type (Light/Dark), accent, and character for all 20 themes
+
 ## [0.1.1] - 2026-05-30
 
 ### Fixed
@@ -32,5 +48,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PAT-based publishing via `VSCE_PAT` / `OVSX_PAT` (local `.env` or GitHub Secrets)
 - F5 Extension Development Host workflow for VS Code and Cursor
 
+[0.1.2]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.2
 [0.1.1]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.1
 [0.1.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.0

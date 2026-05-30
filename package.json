@@ -31,9 +31,34 @@
   "contributes": {
     "themes": [
       {
+        "label": "Ether Abyss",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-abyss.color-theme.json"
+      },
+      {
         "label": "Ether Aurora",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-aurora.color-theme.json"
+      },
+      {
+        "label": "Ether Brass",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-brass.color-theme.json"
+      },
+      {
+        "label": "Ether Carbon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-carbon.color-theme.json"
+      },
+      {
+        "label": "Ether Crimson",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-crimson.color-theme.json"
+      },
+      {
+        "label": "Ether Eclipse",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-eclipse.color-theme.json"
       },
       {
         "label": "Ether Ember",
@@ -41,9 +66,64 @@
         "path": "./themes/ether-ember.color-theme.json"
       },
       {
+        "label": "Ether Forest",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-forest.color-theme.json"
+      },
+      {
+        "label": "Ether Haze",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-haze.color-theme.json"
+      },
+      {
+        "label": "Ether Jade",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-jade.color-theme.json"
+      },
+      {
+        "label": "Ether Linen",
+        "uiTheme": "vs",
+        "path": "./themes/ether-linen.color-theme.json"
+      },
+      {
+        "label": "Ether Midnight",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-midnight.color-theme.json"
+      },
+      {
+        "label": "Ether Nebula",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-nebula.color-theme.json"
+      },
+      {
         "label": "Ether Obsidian",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-obsidian.color-theme.json"
+      },
+      {
+        "label": "Ether Pearl",
+        "uiTheme": "vs",
+        "path": "./themes/ether-pearl.color-theme.json"
+      },
+      {
+        "label": "Ether Plasma",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-plasma.color-theme.json"
+      },
+      {
+        "label": "Ether Sangria",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-sangria.color-theme.json"
+      },
+      {
+        "label": "Ether Slate",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-slate.color-theme.json"
+      },
+      {
+        "label": "Ether Terra",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-terra.color-theme.json"
       },
       {
         "label": "Ether Vesper",

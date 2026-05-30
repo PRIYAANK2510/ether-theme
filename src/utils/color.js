@@ -48,6 +48,53 @@ export function isValidColor(color) {
   return chroma.valid(color);
 }
 
+/** WCAG contrast targets for palette base tokens (checked at build time). */
+export const PALETTE_CONTRAST_TARGETS = {
+  fgPrimary: 7,
+  fgMuted: 4.5,
+  syntaxDefault: 7,
+  syntaxComment: 3,
+  fgOnAccent: 4.5,
+};
+
+export function contrastRatio(foreground, background) {
+  return chroma.contrast(foreground, background);
+}
+
+export function validatePaletteContrast(palette) {
+  const editor = palette.ui.surfaceEditor;
+  const checks = [
+    ["ui.fgPrimary", palette.ui.fgPrimary, editor, PALETTE_CONTRAST_TARGETS.fgPrimary],
+    ["ui.fgMuted", palette.ui.fgMuted, editor, PALETTE_CONTRAST_TARGETS.fgMuted],
+    ["syntax.default", palette.syntax.default, editor, PALETTE_CONTRAST_TARGETS.syntaxDefault],
+    ["syntax.comment", palette.syntax.comment, editor, PALETTE_CONTRAST_TARGETS.syntaxComment],
+    [
+      "ui.fgOnAccent",
+      palette.ui.fgOnAccent,
+      palette.ui.accent,
+      PALETTE_CONTRAST_TARGETS.fgOnAccent,
+    ],
+  ];
+
+  const failures = [];
+  for (const [path, foreground, background, minimum] of checks) {
+    const ratio = contrastRatio(foreground, background);
+    if (ratio < minimum) {
+      failures.push(
+        `${path}: ${ratio.toFixed(2)}:1 (minimum ${minimum}:1)`,
+      );
+    }
+  }
+
+  if (failures.length > 0) {
+    throw new Error(
+      `Contrast failures in palette "${palette.id}":\n  ${failures.join("\n  ")}`,
+    );
+  }
+
+  return palette;
+}
+
 export function validatePalette(palette) {
   for (const [key, value] of Object.entries(palette.ui)) {
     if (!value || !isValidColor(value)) {
@@ -60,6 +107,8 @@ export function validatePalette(palette) {
       throw new Error(`Invalid syntax base token "${key}": ${value}`);
     }
   }
+
+  validatePaletteContrast(palette);
 
   return palette;
 }

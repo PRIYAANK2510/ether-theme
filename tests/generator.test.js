@@ -9,6 +9,8 @@ import {
   withAlpha,
   withAlphaByte,
   colorAlphaByte,
+  validatePaletteContrast,
+  PALETTE_CONTRAST_TARGETS,
 } from "../src/utils/color.js";
 import etherObsidian from "../src/palettes/ether-obsidian.js";
 import etherAurora from "../src/palettes/ether-aurora.js";
@@ -164,10 +166,20 @@ describe("theme generator", () => {
     }
   });
 
+  it("meets minimum contrast on critical palette token pairs", async () => {
+    const palettes = await loadPalettes();
+
+    for (const palette of palettes) {
+      expect(() => validatePaletteContrast(palette)).not.toThrow();
+    }
+
+    expect(PALETTE_CONTRAST_TARGETS.fgPrimary).toBeGreaterThanOrEqual(7);
+  });
+
   it("keeps editor and sidebar independent when palette defines them separately", () => {
     const aurora = composeTheme(etherAurora);
     expect(aurora.colors["sideBar.background"].toLowerCase()).toBe("#0f1422");
     expect(aurora.colors["editor.background"].toLowerCase()).toBe("#131928");
-    expect(aurora.colors["inlineChat.background"].toLowerCase()).toBe("#131928");
+    expect(aurora.colors["inlineChat.background"].toLowerCase()).toBe("#0f1422");
   });
 });

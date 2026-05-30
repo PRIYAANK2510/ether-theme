@@ -1,103 +1,76 @@
-// ══════════════════════════════════════════════════════════════════════════════
-// Ether Ember
-//
-// A blacksmith's workshop at dusk. Dark charcoal, molten amber-orange.
-// Warm and powerful — copper for control, gold for names, sky blue as
-// the one cool counterpoint that makes the heat feel hotter.
-// ══════════════════════════════════════════════════════════════════════════════
 export default {
     id: "ether-ember",
     label: "Ether Ember",
     type: "dark",
     uiTheme: "vs-dark",
-   
+
     ui: {
-      // ── Accent (molten ember orange) ───────────────────────────────────────
-      accent:       "#E07830",
-      accentHover:  "#F09050",
-   
-      // ── Surfaces (dark warm charcoal) ──────────────────────────────────────
-      surfaceBorder:        "#0D0A08",
-      surfaceShell:         "#12100A",
-      surfacePanel:         "#17130D",
-      surfaceAgent:         "#1D1813",
-      surfaceEditor:        "#1D1813",
-      surfaceLineHighlight: "#251E17",
-      surfaceInput:         "#151210",
-      surfaceHover:         "#221A13",
-      surfacePeek:          "#12100A",
-      surfaceWidget:        "#151108",
-      surfaceNotification:  "#1C1610",
-      surfaceListFocus:     "#201C18",
-   
-      // ── Text ───────────────────────────────────────────────────────────────
-      fgPrimary:    "#F5EEE0",
-      fgMuted:      "#524230",
-      fgActivity:   "#9A8870",
-      fgOnAccent:   "#0D0A08",
-      fgOnButton:   "#0D0A08",
-      fgListFocus:  "#FFF8EC",
-   
-      // ── Depth ──────────────────────────────────────────────────────────────
-      shadow: "#060402",
-   
-      // ── Semantic ───────────────────────────────────────────────────────────
-      error:     "#E06858",
-      warning:   "#D09040",
-      findMatch: "#E07830",
-   
-      // ── Git gutter ─────────────────────────────────────────────────────────
-      gitAdded:    "#78B880",
-      gitModified: "#78A8E0",
-      gitDeleted:  "#E06858",
-   
-      // ── In-editor structure ────────────────────────────────────────────────
-      scrollbar:         "#302418",
-      indentGuide:       "#221A10",
-      indentGuideActive: "#382A18",
-      ruler:             "#342010",
-      cursor:            "#F5EEE0",
-   
-      // ── Inputs & DnD ───────────────────────────────────────────────────────
-      dropdownBorder:         "#302418",
-      dropTarget:             "#281E10",
-      editorGroupDrop:        "#382810",
-      inputValidationError:   "#882018",
-      inputValidationInfo:    "#284478",
-      inputValidationWarning: "#784010",
-   
-      // ── Diff & merge ───────────────────────────────────────────────────────
-      diffInserted: "#78B880",
-      diffRemoved:  "#E06858",
-      mergeCurrent: "#E07830",
-   
-      // ── Terminal ANSI ──────────────────────────────────────────────────────
-      terminalRed:           "#E06858",
-      terminalGreen:         "#78B880",
-      terminalYellow:        "#D09040",
-      terminalBlue:          "#78A8E0",
-      terminalMagenta:       "#B880D0",
-      terminalCyan:          "#50C0B8",
-      terminalBrightRed:     "#F08878",
-      terminalBrightGreen:   "#98D098",
-      terminalBrightYellow:  "#E8B060",
-      terminalBrightBlue:    "#98C8F8",
-      terminalBrightMagenta: "#D0A0E8",
-      terminalBrightCyan:    "#78D8D0",
+        accent: "#F07830",
+        accentHover: "#FF9048",
+        surfaceBorder: "#0E0A08",
+        surfaceShell: "#14100C",
+        surfacePanel: "#1A1510",
+        surfaceAgent: "#1A1510",
+        surfaceEditor: "#201A14",
+        surfaceLineHighlight: "#2A2218",
+        surfaceInput: "#181410",
+        surfaceHover: "#242018",
+        surfacePeek: "#14100C",
+        surfaceWidget: "#161210",
+        surfaceNotification: "#1E1814",
+        surfaceListFocus: "#2A2018",
+        fgPrimary: "#F5E8DC",
+        fgMuted: "#A89078",
+        fgActivity: "#9A8070",
+        fgOnAccent: "#0E0A08",
+        fgOnButton: "#0E0A08",
+        fgListFocus: "#FFF0E4",
+        shadow: "#080604",
+        error: "#F05858",
+        warning: "#E8A030",
+        findMatch: "#F0C048",
+        gitAdded: "#78B868",
+        gitModified: "#68A8E8",
+        gitDeleted: "#F05858",
+        scrollbar: "#3A3028",
+        indentGuide: "#241C14",
+        indentGuideActive: "#403028",
+        ruler: "#483020",
+        cursor: "#F5E8DC",
+        dropdownBorder: "#3A3028",
+        dropTarget: "#2A2018",
+        editorGroupDrop: "#403830",
+        inputValidationError: "#902020",
+        inputValidationInfo: "#284870",
+        inputValidationWarning: "#885018",
+        diffInserted: "#78B868",
+        diffRemoved: "#F05858",
+        mergeCurrent: "#F07830",
+        terminalRed: "#F05858",
+        terminalGreen: "#78B868",
+        terminalYellow: "#F0C048",
+        terminalBlue: "#68A8E8",
+        terminalMagenta: "#C878D8",
+        terminalCyan: "#48C8C0",
+        terminalBrightRed: "#FF7878",
+        terminalBrightGreen: "#98D888",
+        terminalBrightYellow: "#FFD868",
+        terminalBrightBlue: "#88C0FF",
+        terminalBrightMagenta: "#E0A0F0",
+        terminalBrightCyan: "#68E8E0",
     },
-   
+
     syntax: {
-      default:  "#F5EEE0",
-      comment:  "#4A3C28",
-      string:   "#98C878",
-      number:   "#E07830",
-      cyan:     "#50C0B8",
-      keyword:  "#D08050",
-      variable: "#F0B860",
-      function: "#78C8F8",
-      type:     "#DEAE5C",
-      red:      "#E07868",
-      pink:     "#D87898",
+        default: "#F5E8DC",
+        comment: "#886858",
+        string: "#98C878",
+        number: "#F0A848",
+        cyan: "#48C8C0",
+        keyword: "#E87848",
+        variable: "#F09858",
+        function: "#78C0F0",
+        type: "#F0C048",
+        red: "#F06868",
+        pink: "#F08898",
     },
-  };
-   
+};
