@@ -23,4 +23,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PAT-based publishing via `VSCE_PAT` / `OVSX_PAT` (local `.env` or GitHub Secrets)
 - F5 Extension Development Host workflow for VS Code and Cursor
 
-[0.1.0]: https://github.com/Priyaank/ether-theme/releases/tag/v0.1.0
+[0.1.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.0

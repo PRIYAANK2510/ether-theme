@@ -2,7 +2,7 @@
 
 Token-driven dark color themes for **VS Code** and **Cursor**, built from palette files and shipped as a single extension.
 
-**Repository:** [github.com/Priyaank/ether-theme](https://github.com/Priyaank/ether-theme)  
+**Repository:** [github.com/PRIYAANK2510/ether-theme](https://github.com/PRIYAANK2510/ether-theme)  
 **Publisher:** [Priyaank](https://marketplace.visualstudio.com/manage) on the VS Code Marketplace
 
 ## Themes
@@ -25,7 +25,7 @@ The GitHub repo must exist before `git push` works. Pick **one** method:
 1. Sign in to GitHub: click **Accounts** (bottom-left) → **Sign in to GitHub**
 2. Open **Source Control** → **Publish Branch**
 3. Name the repo **`ether-theme`**, choose **Public**
-4. Cursor creates `github.com/Priyaank/ether-theme` and pushes `main`
+4. Cursor creates `github.com/PRIYAANK2510/ether-theme` and pushes `main`
 
 If **Publish Branch** is missing or fails, the project may still have a broken `origin` remote. Remove it and try again:
 
@@ -46,7 +46,7 @@ npm run setup:github
 
 1. [Create ether-theme on GitHub](https://github.com/new?name=ether-theme) — **do not** add README or license
 2. ```bash
-   git remote add origin https://github.com/Priyaank/ether-theme.git
+   git remote add origin https://github.com/PRIYAANK2510/ether-theme.git
    git push -u origin main
    ```
 
@@ -57,7 +57,7 @@ npm run setup:github
 **From source / VSIX:**
 
 ```bash
-git clone https://github.com/Priyaank/ether-theme.git
+git clone https://github.com/PRIYAANK2510/ether-theme.git
 cd ether-theme
 npm install
 npm run build
@@ -137,7 +137,7 @@ Publisher ID in `package.json` is **Priyaank**.
 
 ### First-time setup
 
-1. Push the repo to GitHub: [github.com/Priyaank/ether-theme](https://github.com/Priyaank/ether-theme)
+1. Push the repo to GitHub: [github.com/PRIYAANK2510/ether-theme](https://github.com/PRIYAANK2510/ether-theme)
 2. Create tokens:
    - **VSCE_PAT** — [Azure DevOps](https://dev.azure.com/_users/settings/tokens) with **Marketplace → Manage**
    - **OVSX_PAT** — [Open VSX](https://open-vsx.org/user-settings/tokens)

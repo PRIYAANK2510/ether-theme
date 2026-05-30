@@ -15,12 +15,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Priyaank/ether-theme.git"
+    "url": "https://github.com/PRIYAANK2510/ether-theme.git"
   },
   "bugs": {
-    "url": "https://github.com/Priyaank/ether-theme/issues"
+    "url": "https://github.com/PRIYAANK2510/ether-theme/issues"
   },
-  "homepage": "https://github.com/Priyaank/ether-theme#readme",
+  "homepage": "https://github.com/PRIYAANK2510/ether-theme#readme",
   "keywords": [
     "theme",
     "color-theme",
@@ -72,7 +72,7 @@
     "publish:all": "npm run package && npm run publish:openvsx && npm run publish:marketplace",
     "publish:local": "dotenv -e .env -- npm run publish:all",
     "release": "npm run check && npm run package",
-    "setup:github": "gh repo create Priyaank/ether-theme --public --source=. --remote=origin --push --description \"Token-driven color themes for VS Code and Cursor.\""
+    "setup:github": "gh repo create PRIYAANK2510/ether-theme --public --source=. --remote=origin --push --description \"Token-driven color themes for VS Code and Cursor.\""
   },
   "vsce": {
     "yarn": false,
