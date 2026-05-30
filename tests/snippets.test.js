@@ -1,10 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import {
-  composeSnippetFiles,
-  loadSnippetCatalog,
-} from "../src/snippets/generator.js";
+import { composeSnippetFiles } from "../src/snippets/generator.js";
+import { loadSnippetCatalog } from "../src/snippets/catalog/index.js";
 import {
   buildSnippetContributions,
   MIN_SNIPPET_COUNT,

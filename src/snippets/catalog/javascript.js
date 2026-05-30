@@ -1,4 +1,4 @@
-/** @type {import('../generator.js').SnippetDefinition[]} */
+/** @type {import('../validate.js').SnippetDefinition[]} */
 export default [
   {
     key: "js-function",
@@ -59,25 +59,11 @@ export default [
     body: "import ${1:module} from \"${2:module}\";",
   },
   {
-    key: "js-import-named",
-    prefix: "imd",
-    description: "JavaScript named import",
-    languages: ["javascript"],
-    body: "import { ${1:member} } from \"${2:module}\";",
-  },
-  {
     key: "js-import-dynamic",
     prefix: "imdyn",
     description: "JavaScript dynamic import",
     languages: ["javascript"],
     body: "const ${1:module} = await import(\"${2:module}\");",
-  },
-  {
-    key: "js-export-default",
-    prefix: "exd",
-    description: "JavaScript export default",
-    languages: ["javascript"],
-    body: "export default ${1:value};",
   },
   {
     key: "js-export-named",
@@ -195,17 +181,6 @@ export default [
     description: "JavaScript console.error",
     languages: ["javascript"],
     body: "console.error(${1:value});",
-  },
-  {
-    key: "js-promise",
-    prefix: "prom",
-    description: "JavaScript Promise",
-    languages: ["javascript"],
-    body: [
-      "new Promise((resolve, reject) => {",
-      "  $0",
-      "});",
-    ],
   },
   {
     key: "js-class",

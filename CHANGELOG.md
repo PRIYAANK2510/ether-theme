@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-05-30
+
+### Added
+
+- **392 web development snippets** — integrates **175 ES7+ React/Redux/React-Native** patterns alongside the existing Ether catalog (components, hooks, imports, Redux, PropTypes, React Native, tests, console helpers, and more)
+- Unified snippet catalog under `src/snippets/catalog/` with a single manifest (`index.js`), shared `SnippetDefinition` types in `validate.js`, and `npm run snippets:sync` to refresh extension-backed modules
+
+### Changed
+
+- Snippet build pipeline simplified: one loader, one validation path, flat catalog modules (removed `ether/` / `es7/` split, vendor JSON, and duplicate import tooling)
+- Generated `.code-snippets` artifacts rebuilt from the merged catalog
+
 ## [0.2.0] - 2026-05-30
 
 ### Added
@@ -85,6 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PAT-based publishing via `VSCE_PAT` / `OVSX_PAT` (local `.env` or GitHub Secrets)
 - F5 Extension Development Host workflow for VS Code and Cursor
 
+[0.2.1]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.1
 [0.2.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.0
 [0.1.5]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.5
 [0.1.4]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.4

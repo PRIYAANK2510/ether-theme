@@ -1,4 +1,4 @@
-/** @type {import('../generator.js').SnippetDefinition[]} */
+/** @type {import('../validate.js').SnippetDefinition[]} */
 export default [
   {
     key: "react-use-state",

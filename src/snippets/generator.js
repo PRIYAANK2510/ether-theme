@@ -1,11 +1,7 @@
-import {
-  readFileSync,
-  writeFileSync,
-  mkdirSync,
-  readdirSync,
-} from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
+import { loadSnippetCatalog } from "./catalog/index.js";
 import {
   buildSnippetContributions,
   MIN_SNIPPET_COUNT,
@@ -18,22 +14,7 @@ import {
 
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const snippetsDir = join(rootDir, "snippets");
-const catalogDir = join(dirname(fileURLToPath(import.meta.url)), "catalog");
 const packageJsonPath = join(rootDir, "package.json");
-
-export async function loadSnippetCatalog() {
-  const files = readdirSync(catalogDir)
-    .filter((file) => file.endsWith(".js"))
-    .sort();
-
-  const catalog = [];
-  for (const file of files) {
-    const module = await import(pathToFileURL(join(catalogDir, file)).href);
-    catalog.push(...module.default);
-  }
-
-  return catalog;
-}
 
 function resolveSnippetForLanguage(snippet, language) {
   const variant = snippet.variants?.[language] ?? {};
@@ -41,7 +22,6 @@ function resolveSnippetForLanguage(snippet, language) {
     prefix: variant.prefix ?? snippet.prefix,
     description: variant.description ?? snippet.description,
     body: variant.body ?? snippet.body,
-    scope: variant.scope ?? snippet.scope,
   };
 }
 
@@ -64,7 +44,6 @@ export function composeSnippetFiles(catalog) {
         prefix: resolved.prefix,
         body: resolved.body,
         description: resolved.description,
-        ...(resolved.scope ? { scope: resolved.scope } : {}),
       };
     }
   }

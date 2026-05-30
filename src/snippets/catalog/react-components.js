@@ -1,39 +1,5 @@
-/** @type {import('../generator.js').SnippetDefinition[]} */
+/** @type {import('../validate.js').SnippetDefinition[]} */
 export default [
-  {
-    key: "react-functional-component",
-    prefix: "rfc",
-    description: "React functional component",
-    languages: ["javascriptreact", "typescriptreact"],
-    body: [
-      "export function ${1:Component}() {",
-      "  return (",
-      "    <${2:div} className=\"${3:}\">",
-      "      $0",
-      "    </${2:div}>",
-      "  );",
-      "}",
-    ],
-    variants: {
-      typescriptreact: {
-        body: [
-          "type ${1:Component}Props = {",
-          "  children?: React.ReactNode;",
-          "  className?: string;",
-          "};",
-          "",
-          "export function ${1:Component}({ children, className }: ${1:Component}Props) {",
-          "  return (",
-          "    <${2:div} className={className}>",
-          "      {children}",
-          "      $0",
-          "    </${2:div}>",
-          "  );",
-          "}",
-        ],
-      },
-    },
-  },
   {
     key: "react-default-export-component",
     prefix: "rfcde",

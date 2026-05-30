@@ -1,3 +1,20 @@
+/**
+ * @typedef {Object} SnippetVariant
+ * @property {string} [prefix]
+ * @property {string} [description]
+ * @property {string | string[]} [body]
+ */
+
+/**
+ * @typedef {Object} SnippetDefinition
+ * @property {string} key
+ * @property {string} prefix
+ * @property {string} description
+ * @property {string | string[]} body
+ * @property {string[]} languages
+ * @property {Partial<Record<string, SnippetVariant>>} [variants]
+ */
+
 const REQUIRED_FIELDS = ["key", "prefix", "description", "body", "languages"];
 
 function assertBody(body, key) {
@@ -10,6 +27,7 @@ function assertBody(body, key) {
   throw new Error(`Snippet "${key}" has invalid body — must be a string or string array`);
 }
 
+/** @param {SnippetDefinition} snippet */
 export function validateSnippetDefinition(snippet) {
   for (const field of REQUIRED_FIELDS) {
     if (snippet[field] === undefined || snippet[field] === null || snippet[field] === "") {
@@ -32,6 +50,7 @@ export function validateSnippetDefinition(snippet) {
   }
 }
 
+/** @param {SnippetDefinition[]} catalog */
 export function validateSnippetCatalog(catalog) {
   const keys = new Set();
 

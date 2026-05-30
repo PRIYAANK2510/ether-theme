@@ -3,7 +3,7 @@
   "displayName": "Ether Themes",
   "description": "Token-driven color themes and web development snippets for VS Code and Cursor.",
   "publisher": "PRIYAANK2510",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "icon": "icon.png",
   "type": "module",
   "license": "MIT",
@@ -167,6 +167,7 @@
   },
   "scripts": {
     "build": "node src/build.js",
+    "snippets:sync": "node src/snippets/catalog/sync-es7-extension.mjs",
     "watch": "node --watch --watch-path=src src/build.js",
     "test": "vitest run",
     "lint": "eslint .",

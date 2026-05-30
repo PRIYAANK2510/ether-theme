@@ -1,4 +1,4 @@
-/** @type {import('../generator.js').SnippetDefinition[]} */
+/** @type {import('../validate.js').SnippetDefinition[]} */
 export default [
   {
     key: "ts-interface",
@@ -201,20 +201,6 @@ export default [
     description: "TypeScript import statement",
     languages: ["typescript"],
     body: "import ${1:module} from \"${2:module}\";",
-  },
-  {
-    key: "ts-import-named",
-    prefix: "imd",
-    description: "TypeScript named import",
-    languages: ["typescript"],
-    body: "import { ${1:member} } from \"${2:module}\";",
-  },
-  {
-    key: "ts-export-default",
-    prefix: "exd",
-    description: "TypeScript export default",
-    languages: ["typescript"],
-    body: "export default ${1:value};",
   },
   {
     key: "ts-const-assertion-object",

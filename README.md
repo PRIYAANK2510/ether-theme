@@ -5,7 +5,7 @@
 <h1 align="center">Ether Themes</h1>
 
 <p align="center">
-  <strong>20 token-driven color themes</strong> and <strong>223 web development snippets</strong> for VS Code and Cursor.
+  <strong>20 token-driven color themes</strong> and <strong>392 web development snippets</strong> for VS Code and Cursor.
 </p>
 
 <p align="center">
@@ -58,7 +58,7 @@ Search **Ether Themes** in the Extensions panel, or use the links above.
 ## Highlights
 
 - **20 themes** — 18 dark and 2 light variants in one extension
-- **223 snippets** — production-ready React, JavaScript, TypeScript, HTML, and CSS templates
+- **392 snippets** — Ether templates plus ES7+ React/Redux/React-Native patterns for JavaScript, TypeScript, JSX, TSX, HTML, and CSS
 - **Token-driven build** — palette files in `src/palettes/` generate full `.color-theme.json` files
 - **Contrast-aware** — WCAG validation on critical token pairs at build time
 - **Consistent syntax** — 36 shared `tokenColor` rules across every theme
@@ -66,7 +66,7 @@ Search **Ether Themes** in the Extensions panel, or use the links above.
 
 ## Snippets
 
-Ether ships **223 snippets** across six language scopes. Type a prefix in an editor file and accept the suggestion to insert the template.
+Ether ships **392 snippets** across six language scopes. Type a prefix in an editor file and accept the suggestion to insert the template.
 
 | Language | File types | Count | Example prefixes |
 |----------|------------|------:|------------------|
