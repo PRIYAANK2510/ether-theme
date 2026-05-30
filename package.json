@@ -71,7 +71,8 @@
     "publish:openvsx": "ovsx publish releases/*.vsix",
     "publish:all": "npm run package && npm run publish:openvsx && npm run publish:marketplace",
     "publish:local": "dotenv -e .env -- npm run publish:all",
-    "release": "npm run check && npm run package"
+    "release": "npm run check && npm run package",
+    "setup:github": "gh repo create Priyaank/ether-theme --public --source=. --remote=origin --push --description \"Token-driven color themes for VS Code and Cursor.\""
   },
   "vsce": {
     "yarn": false,

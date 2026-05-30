@@ -16,6 +16,40 @@ Token-driven dark color themes for **VS Code** and **Cursor**, built from palett
 
 Select a theme via **Preferences: Color Theme** (`Ctrl+K Ctrl+T`).
 
+## First push to GitHub
+
+The GitHub repo must exist before `git push` works. Pick **one** method:
+
+### Option A — Publish Branch (Cursor / VS Code)
+
+1. Sign in to GitHub: click **Accounts** (bottom-left) → **Sign in to GitHub**
+2. Open **Source Control** → **Publish Branch**
+3. Name the repo **`ether-theme`**, choose **Public**
+4. Cursor creates `github.com/Priyaank/ether-theme` and pushes `main`
+
+If **Publish Branch** is missing or fails, the project may still have a broken `origin` remote. Remove it and try again:
+
+```bash
+git remote remove origin
+```
+
+Then repeat step 2.
+
+### Option B — GitHub CLI
+
+```bash
+gh auth login
+npm run setup:github
+```
+
+### Option C — Create repo in the browser
+
+1. [Create ether-theme on GitHub](https://github.com/new?name=ether-theme) — **do not** add README or license
+2. ```bash
+   git remote add origin https://github.com/Priyaank/ether-theme.git
+   git push -u origin main
+   ```
+
 ## Install
 
 **From the Marketplace (after publish):** search **Ether** in Extensions.
