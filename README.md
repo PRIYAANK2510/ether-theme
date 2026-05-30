@@ -16,45 +16,11 @@ Token-driven dark color themes for **VS Code** and **Cursor**, built from palett
 
 Select a theme via **Preferences: Color Theme** (`Ctrl+K Ctrl+T`).
 
-## First push to GitHub
-
-The GitHub repo must exist before `git push` works. Pick **one** method:
-
-### Option A — Publish Branch (Cursor / VS Code)
-
-1. Sign in to GitHub: click **Accounts** (bottom-left) → **Sign in to GitHub**
-2. Open **Source Control** → **Publish Branch**
-3. Name the repo **`ether-theme`**, choose **Public**
-4. Cursor creates `github.com/PRIYAANK2510/ether-theme` and pushes `main`
-
-If **Publish Branch** is missing or fails, the project may still have a broken `origin` remote. Remove it and try again:
-
-```bash
-git remote remove origin
-```
-
-Then repeat step 2.
-
-### Option B — GitHub CLI
-
-```bash
-gh auth login
-npm run setup:github
-```
-
-### Option C — Create repo in the browser
-
-1. [Create ether-theme on GitHub](https://github.com/new?name=ether-theme) — **do not** add README or license
-2. ```bash
-   git remote add origin https://github.com/PRIYAANK2510/ether-theme.git
-   git push -u origin main
-   ```
-
 ## Install
 
-**From the Marketplace (after publish):** search **Ether** in Extensions.
+Search **Ether Themes** in Extensions (VS Code Marketplace or Open VSX).
 
-**From source / VSIX:**
+**From source:**
 
 ```bash
 git clone https://github.com/PRIYAANK2510/ether-theme.git
@@ -63,129 +29,66 @@ npm install
 npm run build
 ```
 
-Press **F5** to preview in an Extension Development Host, or:
+Press **F5** to preview, or package locally:
 
 ```bash
 npm run package
-code --install-extension releases/ether-theme-0.1.0.vsix
+code --install-extension releases/ether-theme-*.vsix
 ```
 
 ## Development
 
-### Prerequisites
-
-- Node.js 20+
-- VS Code or Cursor
-
-### Setup
+**Prerequisites:** Node.js 20+, VS Code or Cursor
 
 ```bash
 npm install
 npm run build
+npm run watch    # auto-rebuild while editing palettes
 ```
-
-### Preview (F5)
-
-1. Open this folder as the workspace root.
-2. Press **F5** (Run → Start Debugging).
-3. In the Extension Development Host, open **Preferences: Color Theme** and pick any Ether theme.
-
-Run `npm run watch` to rebuild when `src/` changes, then **Developer: Reload Window** in the dev host.
 
 ### Scripts
 
-| Script | Description |
+| Script | When to use |
 |--------|-------------|
-| `npm run build` | Generate theme JSON, remove orphaned themes, sync `package.json` |
-| `npm run watch` | Rebuild when `src/**` changes |
-| `npm run check` | Lint, test, and validate |
-| `npm run package` | Create VSIX in `releases/` |
-| `npm run package:install` | Package and install locally |
-| `npm run release` | Full check + package |
-| `npm run publish:local` | Publish using tokens from `.env` |
-| `npm run publish:all` | Publish when `VSCE_PAT` / `OVSX_PAT` are already in the environment |
+| `npm run build` | Generate theme JSON and sync `package.json` |
+| `npm run watch` | Auto-rebuild while editing palettes |
+| `npm run check` | Lint + test + build |
+| `npm run package` | Build a VSIX only |
+| `npm run publish:local` | Package + publish (reads `.env` tokens) |
 
 ## Adding or removing a theme
 
-**Add:** create `src/palettes/my-theme.js` exporting `{ id, label, type, uiTheme, ui, syntax }`, then `npm run build`. Palettes are auto-discovered — no manual registry edit.
+**Add:** create `src/palettes/my-theme.js` exporting `{ id, label, type, uiTheme, ui, syntax }`, then `npm run build`.
 
-**Remove:** delete the palette file and run `npm run build`. The matching `themes/*.color-theme.json` and `package.json` entry are removed automatically.
-
-Each palette defines separate `ui` and `syntax` token objects. Workbench keys and syntax rules are shared across all themes.
-
-## Workbench color layers
-
-| Layer | Count | Source |
-|-------|-------|--------|
-| **Core** | 141 | `src/workbench/core-catalog.js` + `derive-core.js` |
-| **Extension** | 68 | `src/workbench/extension-catalog.js` + `derive-extensions.js` |
-
-### Cursor agent / Composer panel
-
-| Region | Workbench key | Palette token |
-|--------|---------------|---------------|
-| Code editor + agent frame | `editor.background` | `surfaceEditor` (Cursor shares one token) |
-| Chat / inline chat chrome | `chat.*`, `inlineChat.*` | `surfaceAgent` (defaults to `surfacePanel`) |
-| Chat links | `textLink.foreground` | `accent` |
-| Empty editor groups | `editorGroup.emptyBackground` | `surfacePanel` |
-
-The detached **Agents Window** may ignore custom themes.
+**Remove:** delete the palette file and run `npm run build`. Orphan theme JSON and `package.json` entries are removed automatically.
 
 ## Publishing
 
-Publisher ID in `package.json` is **Priyaank**.
-
-### First-time setup
-
-1. Push the repo to GitHub: [github.com/PRIYAANK2510/ether-theme](https://github.com/PRIYAANK2510/ether-theme)
-2. Create tokens:
-   - **VSCE_PAT** — [Azure DevOps](https://dev.azure.com/_users/settings/tokens) with **Marketplace → Manage**
-   - **OVSX_PAT** — [Open VSX](https://open-vsx.org/user-settings/tokens)
-3. Copy `.env.example` → `.env` and paste both tokens (never commit `.env`)
-
-### Publish locally
+Add GitHub secrets **`VSCE_PAT`** and **`OVSX_PAT`**, then:
 
 ```bash
-npm run publish:local
+git add .
+git commit -m "Add Ether Frost theme"
+git push
 ```
 
-This runs `npm run package`, then publishes to Open VSX and the VS Code Marketplace. `vsce login` / `ovsx login` are optional when PATs are set.
+Pushes that change `src/`, `themes/`, or `package.json` auto-bump the patch version and publish. README-only changes do not release.
 
-### Publish via GitHub Actions
-
-Add repository secrets `VSCE_PAT` and `OVSX_PAT`, then:
-
-```bash
-git tag v0.1.0
-git push origin v0.1.0
-```
-
-CI runs checks, packages the VSIX, and publishes to both registries.
+Manual publish: `npm run publish:local` or **Actions → Release → Run workflow**.
 
 ## Architecture
 
 ```
 src/
-  build.js                         → CLI entry
-  generator/index.js               → compose themes, write JSON, sync package.json
-  workbench/
-    core-catalog.js                → core workbench key manifest (141 keys)
-    extension-catalog.js           → extension key manifest (68 keys)
-    derive-core.js                 → palette ui → core workbench colors
-    derive-extensions.js           → palette ui → extension workbench colors
-    constants.js                   → re-exports catalogs + syntax rule count
-  syntax/rules.js                  → 36 tokenColor rules
-  utils/color.js                   → chroma helpers + validation
-  palettes/*.js                    → per-theme ui + syntax palettes (auto-loaded)
-themes/*.color-theme.json          → generated output (shipped in VSIX)
-tests/generator.test.js            → vitest suite
+  build.js              → CLI entry
+  generator/index.js    → compose themes, write JSON, sync package.json
+  workbench/            → core + extension workbench color derivation
+  syntax/rules.js       → tokenColor rules
+  utils/color.js        → chroma helpers + validation
+  palettes/*.js         → per-theme ui + syntax (auto-loaded)
+themes/*.color-theme.json
+scripts/                → publish + version bump (CI)
 ```
-
-## Troubleshooting
-
-**Stale TypeScript errors:** this repo is JavaScript-only. Reload the window and close ghost tabs for deleted `.ts` paths. See `jsconfig.json` and `.vscode/settings.json`.
-
-**F5 fails with `npm is not recognized`:** reload Cursor after installing Node, or run the **build** task (uses `node src/build.js` directly).
 
 ## License
 

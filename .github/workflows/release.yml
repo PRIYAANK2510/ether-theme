@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "themes/**"
+      - "package.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      !contains(github.event.head_commit.message, '[skip release]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - name: Bump patch version
+        id: bump
+        run: echo "version=$(node scripts/bump-version.js)" >> "$GITHUB_OUTPUT"
+      - name: Publish extension
+        run: npm run publish
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      - name: Commit release and tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json CHANGELOG.md themes/
+          git diff --staged --quiet && echo "Nothing to commit" && exit 0
+          git commit -m "Release v${{ steps.bump.outputs.version }} [skip release]"
+          git tag "v${{ steps.bump.outputs.version }}"
+          git push origin main --tags
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vsix
+          path: releases/*.vsix

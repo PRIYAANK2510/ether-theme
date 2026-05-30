@@ -1,8 +1,6 @@
 import { withAlphaByte } from "../utils/color.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
 
-export { EXTENSION_WORKBENCH_COLOR_IDS };
-
 /**
  * Derive modern VS Code / Cursor workbench keys from palette UI tokens.
  * @param {Record<string, string>} base - palette.ui

@@ -1,9 +1,7 @@
 import { withAlphaByte } from "../utils/color.js";
 import { WORKBENCH_COLOR_IDS } from "./constants.js";
-import {
-  EXTENSION_WORKBENCH_COLOR_IDS,
-  deriveWorkbenchExtensionColors,
-} from "./derive-extensions.js";
+import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
+import { deriveWorkbenchExtensionColors } from "./derive-extensions.js";
 
 export const UI_ALPHA = {
   a15: 0x15,
@@ -44,12 +42,9 @@ function deriveScrollbarVariants(scrollbar) {
   };
 }
 
-export function deriveUISemantics(base, options = {}) {
-  const cursorAgentShell = options.cursorAgentShell ?? "editor";
+export function deriveUISemantics(base) {
   const accent = deriveAccentVariants(base.accent);
   const scrollbar = deriveScrollbarVariants(base.scrollbar);
-  const editorBackground =
-    cursorAgentShell === "panel" ? base.surfacePanel : base.surfaceEditor;
 
   const colors = {
     focusBorder: base.accent,
@@ -107,7 +102,7 @@ export function deriveUISemantics(base, options = {}) {
     "tab.inactiveBackground": base.surfacePanel,
     "tab.activeForeground": base.accent,
     "tab.inactiveForeground": base.fgMuted,
-    "editor.background": editorBackground,
+    "editor.background": base.surfaceEditor,
     "editor.foreground": base.fgPrimary,
     "editorLineNumber.foreground": base.fgMuted,
     "editorCursor.foreground": base.cursor,

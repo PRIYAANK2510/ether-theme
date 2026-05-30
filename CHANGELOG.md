@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-05-30
+
+### Fixed
+
+- Marketplace repository link now points at GitHub (`markdown: github`)
+- Display name set to **Ether Themes**
+- `.env` excluded from VSIX; simplified publish scripts
+- Auto-release on push when themes change
+
 ## [0.1.0] - 2026-05-30
 
 ### Added
@@ -19,8 +28,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 36 shared `tokenColor` syntax rules across all themes
 - Inline validation (deprecated keys, transparency rules, schema checks)
 - Vitest test suite
-- GitHub Actions CI on push/PR; automated publish to Open VSX and VS Code Marketplace on version tags
+- GitHub Actions CI; auto-release on push when themes change
 - PAT-based publishing via `VSCE_PAT` / `OVSX_PAT` (local `.env` or GitHub Secrets)
 - F5 Extension Development Host workflow for VS Code and Cursor
 
+[0.1.1]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.1
 [0.1.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.0

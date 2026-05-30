@@ -1,8 +1,11 @@
 src/**
 tests/**
+scripts/**
 .github/**
 releases/**
 .vscode/**
+.env
+.env.*
 jsconfig.json
 vitest.config.js
 eslint.config.js

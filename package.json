@@ -1,12 +1,13 @@
 {
   "name": "ether-theme",
-  "displayName": "Ether",
+  "displayName": "Ether Themes",
   "description": "Token-driven color themes for VS Code and Cursor.",
   "publisher": "Priyaank",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "icon": "icon.png",
   "type": "module",
   "license": "MIT",
+  "markdown": "github",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -54,25 +55,13 @@
   "scripts": {
     "build": "node src/build.js",
     "watch": "node --watch --watch-path=src src/build.js",
-    "dev": "npm run watch",
-    "clean": "rimraf themes/*.color-theme.json releases/*.vsix",
-    "validate": "node src/build.js",
-    "validate:package": "vsce ls --tree",
     "test": "vitest run",
-    "test:watch": "vitest",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "check": "npm run lint && npm run test && npm run validate",
+    "check": "npm run lint && npm run test && npm run build",
     "vscode:prepublish": "npm run build",
     "package": "vsce package --out releases/",
-    "package:install": "npm run package && code --install-extension releases/ether-theme-0.1.0.vsix",
-    "publish:marketplace": "vsce publish",
-    "publish:marketplace:patch": "vsce publish patch",
-    "publish:openvsx": "ovsx publish releases/*.vsix",
-    "publish:all": "npm run package && npm run publish:openvsx && npm run publish:marketplace",
-    "publish:local": "dotenv -e .env -- npm run publish:all",
-    "release": "npm run check && npm run package",
-    "setup:github": "gh repo create PRIYAANK2510/ether-theme --public --source=. --remote=origin --push --description \"Token-driven color themes for VS Code and Cursor.\""
+    "publish": "node scripts/publish.js",
+    "publish:local": "dotenv -e .env -- npm run publish"
   },
   "vsce": {
     "yarn": false,
@@ -86,7 +75,6 @@
     "dotenv-cli": "^8.0.0",
     "eslint": "^9.27.0",
     "ovsx": "^0.10.2",
-    "rimraf": "^6.0.1",
     "vitest": "^3.1.4"
   }
 }
