@@ -1,9 +1,10 @@
-import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, statSync, writeFileSync, mkdirSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { join } from "node:path";
 
 const PKG_PATH = "package.json";
 const VSCE_PUBLISHER = "Priyaank";
+const RELEASES_DIR = "releases";
 
 function run(command) {
   execSync(command, { stdio: "inherit", env: process.env, shell: true });
@@ -20,25 +21,26 @@ function writePackage(pkg) {
 function latestVsix() {
   const packageJson = readPackage();
   const expected = `ether-theme-${packageJson.version}.vsix`;
-  const files = readdirSync("releases").filter((file) => file.endsWith(".vsix"));
+  const files = readdirSync(RELEASES_DIR).filter((file) => file.endsWith(".vsix"));
 
   if (files.includes(expected)) {
     return expected;
   }
 
   return files.sort(
-    (a, b) => statSync(join("releases", b)).mtimeMs - statSync(join("releases", a)).mtimeMs,
+    (a, b) => statSync(join(RELEASES_DIR, b)).mtimeMs - statSync(join(RELEASES_DIR, a)).mtimeMs,
   )[0];
 }
 
+mkdirSync(RELEASES_DIR, { recursive: true });
 run("npm run package");
 
 const vsix = latestVsix();
 if (!vsix) {
-  throw new Error("No VSIX found in releases/.");
+  throw new Error(`No VSIX found in ${RELEASES_DIR}/.`);
 }
 
-run(`npx ovsx publish ${join("releases", vsix)}`);
+run(`npx ovsx publish ${join(RELEASES_DIR, vsix)}`);
 
 const pkg = readPackage();
 const openVsxPublisher = pkg.publisher;

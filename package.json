@@ -113,6 +113,7 @@
     "lint": "eslint .",
     "check": "npm run lint && npm run test && npm run build",
     "vscode:prepublish": "npm run build",
+    "prepackage": "node --input-type=module -e \"import { mkdirSync } from 'node:fs'; mkdirSync('releases', { recursive: true });\"",
     "package": "vsce package --out releases/",
     "publish": "node scripts/publish.js",
     "publish:local": "dotenv -e .env -- npm run publish"
