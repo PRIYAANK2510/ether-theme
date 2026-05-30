@@ -1,4 +1,4 @@
-import { withAlphaByte } from "../utils/color.js";
+import { mixColors, withAlphaByte } from "../utils/color.js";
 import { WORKBENCH_COLOR_IDS } from "./constants.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
 import { deriveComposerInputColors, deriveWorkbenchExtensionColors } from "./derive-extensions.js";
@@ -107,7 +107,8 @@ export function deriveUISemantics(base) {
     "tab.inactiveForeground": base.fgMuted,
     "editor.background": base.surfaceEditor,
     "editor.foreground": base.fgPrimary,
-    "editorLineNumber.foreground": base.fgMuted,
+    "editorLineNumber.foreground": mixColors(base.fgMuted, base.surfaceEditor, 0.68),
+    "editorLineNumber.activeForeground": mixColors(base.fgMuted, base.surfaceEditor, 0.42),
     "editorCursor.foreground": base.cursor,
     "editor.selectionBackground": accent.a30,
     "editor.selectionHighlightBackground": accent.a20,

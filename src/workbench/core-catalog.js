@@ -60,6 +60,7 @@ export const CORE_WORKBENCH_COLOR_IDS = [
   "editor.background",
   "editor.foreground",
   "editorLineNumber.foreground",
+  "editorLineNumber.activeForeground",
   "editorCursor.foreground",
   "editor.selectionBackground",
   "editor.selectionHighlightBackground",
