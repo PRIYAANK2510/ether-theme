@@ -2,42 +2,13 @@ import { mixColors, withAlphaByte } from "../utils/color.js";
 import { WORKBENCH_COLOR_IDS } from "./constants.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
 import { deriveComposerInputColors, deriveWorkbenchExtensionColors } from "./derive-extensions.js";
+import {
+  UI_ALPHA,
+  deriveAccentVariants,
+  deriveInteractiveOverlays,
+} from "./derive-interactive.js";
 
-/** Fixed alpha-byte values reused across workbench derivations. */
-export const UI_ALPHA = {
-  a15: 0x15,
-  a20: 0x20,
-  a28: 0x28,
-  a30: 0x30,
-  a40: 0x40,
-  a48: 0x48,
-  a55: 0x55,
-  a60: 0x60,
-  a77: 0x77,
-  aAA: 0xaa,
-  aBB: 0xbb,
-  aB0: 0xb0,
-  aCC: 0xcc,
-  aD7: 0xd7,
-};
-
-/**
- * @param {string} accent
- * @returns {Record<"a15" | "a20" | "a28" | "a30" | "a40" | "a48" | "aBB" | "aB0" | "aCC", string>}
- */
-export function deriveAccentVariants(accent) {
-  return {
-    a15: withAlphaByte(accent, UI_ALPHA.a15),
-    a20: withAlphaByte(accent, UI_ALPHA.a20),
-    a28: withAlphaByte(accent, UI_ALPHA.a28),
-    a30: withAlphaByte(accent, UI_ALPHA.a30),
-    a40: withAlphaByte(accent, UI_ALPHA.a40),
-    a48: withAlphaByte(accent, UI_ALPHA.a48),
-    aBB: withAlphaByte(accent, UI_ALPHA.aBB),
-    aB0: withAlphaByte(accent, UI_ALPHA.aB0),
-    aCC: withAlphaByte(accent, UI_ALPHA.aCC),
-  };
-}
+export { UI_ALPHA, deriveAccentVariants } from "./derive-interactive.js";
 
 function deriveScrollbarVariants(scrollbar) {
   return {
@@ -55,6 +26,7 @@ function deriveScrollbarVariants(scrollbar) {
  */
 export function deriveUISemantics(base) {
   const accent = deriveAccentVariants(base.accent);
+  const interactive = deriveInteractiveOverlays(base);
   const scrollbar = deriveScrollbarVariants(base.scrollbar);
   const composerInput = deriveComposerInputColors(base, accent);
 
@@ -87,18 +59,21 @@ export function deriveUISemantics(base) {
     "badge.background": base.accent,
     "badge.foreground": base.fgOnAccent,
     "progressBar.background": base.accent,
-    "list.activeSelectionBackground": base.surfacePanel,
+    "list.activeSelectionBackground": base.surfaceListFocus,
     "list.activeSelectionForeground": base.accent,
     "list.dropBackground": base.dropTarget,
     "list.focusBackground": base.surfaceListFocus,
     "list.focusForeground": base.fgListFocus,
-    "list.hoverBackground": base.surfacePanel,
+    "list.hoverBackground": base.surfaceListFocus,
     "list.hoverForeground": base.fgListFocus,
-    "list.inactiveSelectionBackground": base.surfacePanel,
+    "list.inactiveSelectionBackground": base.surfaceHover,
     "list.inactiveSelectionForeground": base.accent,
     "activityBar.background": base.surfaceShell,
     "activityBar.dropBorder": base.dropTarget,
     "activityBar.foreground": base.fgActivity,
+    "activityBar.activeForeground": base.fgPrimary,
+    "activityBar.inactiveForeground": base.fgActivity,
+    "activityBar.activeBorder": base.accent,
     "activityBarBadge.background": base.accent,
     "activityBarBadge.foreground": base.fgOnAccent,
     "activityBar.border": base.surfaceBorder,
@@ -166,7 +141,10 @@ export function deriveUISemantics(base) {
     "editorWidget.background": base.surfaceWidget,
     "editorSuggestWidget.background": base.surfaceWidget,
     "editorSuggestWidget.border": accent.a40,
-    "editorSuggestWidget.selectedBackground": base.surfaceHover,
+    "editorSuggestWidget.foreground": base.fgPrimary,
+    "editorSuggestWidget.highlightForeground": base.accent,
+    "editorSuggestWidget.selectedBackground": base.surfaceListFocus,
+    "editorSuggestWidget.selectedForeground": base.fgListFocus,
     "editorHoverWidget.background": base.surfaceHover,
     "editorHoverWidget.border": withAlphaByte(base.surfaceHover, 0),
     "editorHoverWidget.foreground": base.fgPrimary,
@@ -183,7 +161,7 @@ export function deriveUISemantics(base) {
       base.warning,
       UI_ALPHA.a60,
     ),
-    "peekViewResult.selectionBackground": base.surfacePanel,
+    "peekViewResult.selectionBackground": base.surfaceListFocus,
     "peekViewTitle.background": base.surfacePeek,
     "peekViewTitleDescription.foreground": base.fgMuted,
     "merge.currentHeaderBackground": withAlphaByte(
@@ -203,10 +181,10 @@ export function deriveUISemantics(base) {
     "statusBar.background": base.surfacePanel,
     "statusBar.debuggingBackground": base.error,
     "statusBar.noFolderBackground": base.surfacePanel,
-    "statusBarItem.activeBackground": accent.aCC,
-    "statusBarItem.hoverBackground": accent.aB0,
-    "statusBarItem.prominentBackground": accent.aB0,
-    "statusBarItem.prominentHoverBackground": accent.aCC,
+    "statusBarItem.activeBackground": interactive.activeBackground,
+    "statusBarItem.hoverBackground": interactive.hoverBackground,
+    "statusBarItem.prominentBackground": accent.a28,
+    "statusBarItem.prominentHoverBackground": interactive.subtleBackground,
     "terminal.ansiRed": base.terminalRed,
     "terminal.ansiGreen": base.terminalGreen,
     "terminal.ansiYellow": base.terminalYellow,
@@ -229,7 +207,7 @@ export function deriveUISemantics(base) {
     "notificationsErrorIcon.foreground": base.error,
     "extensionButton.prominentBackground": accent.aCC,
     "extensionButton.prominentForeground": base.fgOnButton ?? base.surfaceShell,
-    "extensionButton.prominentHoverBackground": accent.aB0,
+    "extensionButton.prominentHoverBackground": withAlphaByte(base.accentHover, UI_ALPHA.aCC),
     "pickerGroup.border": base.ruler,
     "pickerGroup.foreground": base.fgMuted,
     "debugToolBar.background": base.surfaceWidget,

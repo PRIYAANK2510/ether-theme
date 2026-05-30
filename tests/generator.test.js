@@ -12,8 +12,8 @@ import {
   validatePaletteContrast,
   PALETTE_CONTRAST_TARGETS,
 } from "../src/utils/color.js";
-import etherObsidian from "../src/palettes/ether-obsidian.js";
-import etherAurora from "../src/palettes/ether-aurora.js";
+import etherGraphite from "../src/palettes/ether-graphite.js";
+import etherStorm from "../src/palettes/ether-storm.js";
 import {
   composeTheme,
   loadPalettes,
@@ -45,22 +45,23 @@ describe("color-utils", () => {
     expect(lighten("#000000", 0.5)).not.toBe("#000000");
     expect(darken("#ffffff", 0.5)).not.toBe("#ffffff");
   });
+
 });
 
 describe("theme generator", () => {
-  const palette = etherObsidian;
+  const palette = etherGraphite;
   const theme = composeTheme(palette);
 
   it("removes orphaned theme JSON when palette is deleted", () => {
     const dir = mkdtempSync(join(tmpdir(), "ether-themes-"));
-    writeFileSync(join(dir, "ether-obsidian.color-theme.json"), "{}");
+    writeFileSync(join(dir, "ether-graphite.color-theme.json"), "{}");
     writeFileSync(join(dir, "removed-theme.color-theme.json"), "{}");
 
-    const removed = removeOrphanedThemeFiles(["ether-obsidian"], dir);
+    const removed = removeOrphanedThemeFiles(["ether-graphite"], dir);
 
     expect(removed).toHaveLength(1);
     expect(removed[0]).toMatch(/removed-theme\.color-theme\.json$/);
-    expect(existsSync(join(dir, "ether-obsidian.color-theme.json"))).toBe(true);
+    expect(existsSync(join(dir, "ether-graphite.color-theme.json"))).toBe(true);
     expect(existsSync(join(dir, "removed-theme.color-theme.json"))).toBe(false);
   });
 
@@ -68,13 +69,19 @@ describe("theme generator", () => {
     expect(SYNTAX_RULE_COUNT).toBe(EXPECTED_SYNTAX_RULE_COUNT);
   });
 
+  it("uses unique syntax rule names", () => {
+    const names = theme.tokenColors.slice(1).map((rule) => rule.name);
+    expect(new Set(names).size).toBe(names.length);
+  });
+
   it("composes a complete theme from palette tokens", () => {
-    expect(theme.name).toBe("Ether Obsidian");
+    expect(theme.name).toBe("Ether Graphite");
     expect(theme.type).toBe("dark");
     expect(Object.keys(theme.colors)).toHaveLength(
       WORKBENCH_COLOR_IDS.length + EXTENSION_WORKBENCH_COLOR_IDS.length,
     );
     expect(theme.tokenColors).toHaveLength(EXPECTED_SYNTAX_RULE_COUNT);
+    expect(theme.semanticHighlighting).toBe(true);
     expect(theme).not.toHaveProperty("semanticTokenColors");
   });
 
@@ -146,6 +153,27 @@ describe("theme generator", () => {
     );
   });
 
+  it("uses visible interactive hover and selection states", () => {
+    const panel = palette.ui.surfacePanel.toLowerCase();
+    const listFocus = palette.ui.surfaceListFocus.toLowerCase();
+
+    expect(theme.colors["list.hoverBackground"].toLowerCase()).toBe(listFocus);
+    expect(theme.colors["list.hoverBackground"].toLowerCase()).not.toBe(panel);
+    expect(theme.colors["list.activeSelectionBackground"].toLowerCase()).toBe(listFocus);
+    expect(theme.colors["statusBarItem.hoverForeground"].toLowerCase()).toBe(
+      palette.ui.fgPrimary.toLowerCase(),
+    );
+    expect(theme.colors["button.secondaryHoverForeground"].toLowerCase()).toBe(
+      palette.ui.fgPrimary.toLowerCase(),
+    );
+    expect(theme.colors["editorSuggestWidget.selectedForeground"].toLowerCase()).toBe(
+      palette.ui.fgListFocus.toLowerCase(),
+    );
+    expect(theme.colors["activityBar.activeForeground"].toLowerCase()).toBe(
+      palette.ui.fgPrimary.toLowerCase(),
+    );
+  });
+
   it("derives all extension workbench colors", () => {
     for (const key of EXTENSION_WORKBENCH_COLOR_IDS) {
       expect(theme.colors[key]).toMatch(/^#[0-9a-f]{3,8}$/i);
@@ -179,14 +207,19 @@ describe("theme generator", () => {
     }
 
     expect(PALETTE_CONTRAST_TARGETS.fgPrimary).toBeGreaterThanOrEqual(7);
+    expect(PALETTE_CONTRAST_TARGETS.syntaxToken).toBeGreaterThanOrEqual(4.5);
   });
 
   it("keeps editor and sidebar independent when palette defines them separately", () => {
-    const aurora = composeTheme(etherAurora);
-    expect(aurora.colors["sideBar.background"].toLowerCase()).toBe("#0f1422");
-    expect(aurora.colors["editor.background"].toLowerCase()).toBe("#131928");
-    expect(aurora.colors["inlineChat.background"].toLowerCase()).toBe("#131928");
-    expect(aurora.colors["agentsChatInput.background"].toLowerCase()).toBe("#131928");
-    expect(aurora.colors["input.border"].toLowerCase()).toBe("#070a1035");
+    const graphite = composeTheme(etherGraphite);
+    expect(graphite.colors["sideBar.background"].toLowerCase()).toBe("#161618");
+    expect(graphite.colors["editor.background"].toLowerCase()).toBe("#1c1c1e");
+    expect(graphite.colors["inlineChat.background"].toLowerCase()).toBe("#1c1c1e");
+    expect(graphite.colors["agentsChatInput.background"].toLowerCase()).toBe("#1c1c1e");
+    expect(graphite.colors["input.border"].toLowerCase()).toBe("#0e0e1035");
+
+    const storm = composeTheme(etherStorm);
+    expect(storm.colors["sideBar.background"].toLowerCase()).toBe("#181c22");
+    expect(storm.colors["editor.background"].toLowerCase()).toBe("#1c2028");
   });
 });

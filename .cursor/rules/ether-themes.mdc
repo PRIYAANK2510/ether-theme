@@ -8,6 +8,21 @@ alwaysApply: false
 
 Based on [VS Code Color Theme API](https://code.visualstudio.com/api/extension-guides/color-theme): workbench `colors` + TextMate `tokenColors`. Ether derives both from palette tokens — never patch generated theme JSON.
 
+## Current palettes (8 dark)
+
+| ID | Side panel (`surfacePanel`) | Editor (`surfaceEditor`) | Character |
+|----|----------------------------|--------------------------|-----------|
+| `ether-graphite` | `#161618` | `#1C1C1E` | Pure neutral gray |
+| `ether-storm` | `#181C22` | `#1C2028` | Cool blue-gray |
+| `ether-ember` | `#1A1816` | `#201E1A` | Warm charcoal |
+| `ether-luna` | `#0C0E14` | `#101218` | Deepest moonlit night — lunar silver accent |
+| `ether-moss` | `#181C18` | `#1C221E` | Forest gray-green |
+| `ether-dusk` | `#1A1820` | `#1E1C28` | Plum twilight |
+| `ether-ink` | `#141412` | `#1A1A18` | Warm sumi ink (neutral black, cinnabar accent) |
+| `ether-stone` | `#1C1A18` | `#22201C` | Warm stone |
+
+All palettes are **dark only** (`type: "dark"`, `uiTheme: "vs-dark"`). Each must feel unique via surface temperature and accent — not neon or oversaturated syntax.
+
 ## Adding or editing a palette
 
 Create/edit `src/palettes/ether-{name}.js`:
@@ -16,14 +31,42 @@ Create/edit `src/palettes/ether-{name}.js`:
 export default {
   id: "ether-{name}",       // matches filename stem
   label: "Ether {Name}",
-  type: "dark",               // "dark" | "light"
-  uiTheme: "vs-dark",         // "vs-dark" | "vs"
-  ui: { accent, fgPrimary, surfaceEditor, /* … */ },
+  type: "dark",
+  uiTheme: "vs-dark",
+  ui: { accent, fgPrimary, surfacePanel, surfaceEditor, /* … */ },
   syntax: { default, comment, string, keyword, /* role keys */ },
 };
 ```
 
 Copy an existing palette as a template. All `ui` and `syntax` keys are validated at build time.
+
+### Anchor-first workflow (required)
+
+**Do not** pick accent or syntax colors first. Build surfaces in this order:
+
+1. **Anchors** — set `surfacePanel` (sidebar) and `surfaceEditor` (editor). Panel is slightly darker than editor; both share the same hue family.
+2. **Surface stack** — derive darker/lighter steps from the anchors:
+   - `surfaceBorder` → darkest chrome edge
+   - `surfaceShell` → below panel
+   - `surfacePanel` → sidebar, tabs inactive, status bar (anchor)
+   - `surfaceEditor` → editor + composer pane (anchor)
+   - `surfaceLineHighlight` → current line, one step above editor
+   - `surfaceInput`, `surfaceHover`, `surfaceWidget`, `surfaceNotification`, `surfaceListFocus` — interpolate between panel and editor or one step lighter
+   - `surfacePeek` → usually matches `surfaceShell`
+   - `surfaceAgent` → usually matches `surfacePanel`
+3. **Foreground** — `fgPrimary` (7:1 on editor), `fgMuted` / `fgActivity` (4.5:1 on editor), `fgListFocus`, `fgOnAccent` (4.5:1 on accent).
+4. **Accent** — one muted hue aligned with the surface family (steel blue on cool grays, copper on warm, sage on green, etc.).
+5. **Syntax** — restrained role colors that harmonize with the surface temperature; verify all 11 roles pass contrast on `surfaceEditor`.
+6. **Terminal & git** — match the palette family; reuse accent/modified/added/deleted patterns from a sibling palette if unsure.
+
+Example anchor pairs already in the catalog:
+
+```
+Graphite:  panel #161618  →  editor #1C1C1E   (neutral)
+Storm:     panel #181C22  →  editor #1C2028   (cool blue-gray)
+```
+
+Workbench mapping: `sideBar.background` = `surfacePanel`, `editor.background` = `surfaceEditor`, composer/agent inputs = `surfaceEditor` (see `derive-extensions.js`).
 
 ## Workbench derivation (required path)
 
@@ -34,16 +77,43 @@ Copy an existing palette as a template. All `ui` and `syntax` keys are validated
 
 Use `mixColors`, `withAlphaByte`, `lighten`/`darken` from `src/utils/color.js` — not ad-hoc hex math.
 
+### Interactive states (hover / selection)
+
+Shared logic lives in `src/workbench/derive-interactive.js`. **Never** pair accent-tinted hover backgrounds with `fgMuted` text — contrast collapses (status bar bug).
+
+| Pattern | Background | Foreground |
+|---------|------------|------------|
+| List hover / selection / focus | `surfaceListFocus` | `fgListFocus` |
+| List inactive selection | `surfaceHover` | accent |
+| Neutral overlay (status bar, secondary buttons) | `fgPrimary` at 15–30% alpha | `fgPrimary` → `fgListFocus` on hover |
+| Tabs / menus / quick pick focus | `surfaceListFocus` | `fgListFocus` |
+| Activity bar active icon | — | `fgPrimary` + `activeBorder` accent |
+| Suggest widget selected row | `surfaceListFocus` | `fgListFocus` |
+| Primary / prominent buttons | solid accent | `fgOnButton`; hover uses `accentHover` |
+
+List rows sit on `surfacePanel` — do **not** set `list.hoverBackground` to `surfacePanel` (invisible hover).
+
 ## Syntax highlighting
 
-- Rules live in `src/syntax/rules.js` — one shared set across all 20 themes.
-- Map scopes to `syntax.{role}` tokens (`comment`, `keyword`, `function`, etc.).
+- Rules live in `src/syntax/rules.js` — one shared set across all themes (currently 58 rules).
+- Map scopes to `syntax.{role}` tokens: `default`, `comment`, `string`, `number`, `cyan`, `keyword`, `variable`, `function`, `type`, `red`, `pink`.
 - `SYNTAX_RULE_COUNT` must equal `EXPECTED_SYNTAX_RULE_COUNT`; tests enforce this.
+- Enable `semanticHighlighting: true` in generated themes (scope-map fallback; no hand-authored `semanticTokenColors`).
 - **Do not** add `semanticTokenColors` or `settings.background` on token rules.
+- **Italic policy**: comments, doc comments, keywords, decorators, inherited classes, CSS `@`-rules — yes. Functions, types, tags, identifiers, parameters — no.
 
 ## Contrast & validation
 
-Build fails if palette tokens miss WCAG targets in `PALETTE_CONTRAST_TARGETS` (`fgPrimary`, `fgMuted`, `syntax.default`, `syntax.comment`, `fgOnAccent`). Tune base tokens, not generated output.
+Build fails if palette tokens miss WCAG targets in `PALETTE_CONTRAST_TARGETS`:
+
+| Token | Minimum ratio (on `surfaceEditor` unless noted) |
+|-------|--------------------------------------------------|
+| `ui.fgPrimary` | 7:1 |
+| `syntax.default` | 7:1 |
+| `ui.fgMuted`, all other `syntax.*` | 4.5:1 |
+| `ui.fgOnAccent` | 4.5:1 (on `ui.accent`) |
+
+Tune base tokens in `src/palettes/` — there is no post-build syntax tuning script. Comments on darker editors (e.g. `#161E2A`, `#181E2C`) often need to be brighter than on neutral grays.
 
 ## Removing a theme
 

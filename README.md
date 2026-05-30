@@ -5,7 +5,7 @@
 <h1 align="center">Ether Themes</h1>
 
 <p align="center">
-  <strong>20 token-driven color themes</strong> and <strong>392 web development snippets</strong> for VS Code and Cursor.
+  <strong>8 dark token-driven color themes</strong> and <strong>392 web development snippets</strong> for VS Code and Cursor.
 </p>
 
 <p align="center">
@@ -32,36 +32,27 @@ Search **Ether Themes** in the Extensions panel, or use the links above.
 
 ## Themes
 
-| Theme | Type | Accent | Character |
-|-------|------|--------|-----------|
-| **Ether Abyss** | Dark | Bioluminescent cyan | Abyssal deep sea — void black-blue, glowing aquatic syntax |
-| **Ether Aurora** | Dark | Electric teal | Deep space navy — arctic greens, solar ambers, glacial syntax |
-| **Ether Brass** | Dark | Antique brass | Walnut workshop — copper browns, burnished gold control flow |
-| **Ether Carbon** | Dark | Silver white | Neutral graphite — monochrome UI, crisp contrast, minimal color |
-| **Ether Crimson** | Dark | Scarlet | Deep wine black — warm reds, ember syntax, dramatic contrast |
-| **Ether Eclipse** | Dark | Hot coral | Total eclipse void — salmon accents on pure black |
-| **Ether Ember** | Dark | Molten amber | Charcoal workshop — warm copper control flow, gold types |
-| **Ether Forest** | Dark | Sage green | Moss-black canopy — earthy greens, natural calm, soft highlights |
-| **Ether Haze** | Dark | Soft mint | Smoky blue-gray fog — muted desaturated calm, gentle contrast |
-| **Ether Jade** | Dark | Vivid emerald | Imperial jade jewel — rich green-black, luminous syntax |
-| **Ether Linen** | Light | Rust terracotta | Warm cream paper — ink navy text, editorial readability |
-| **Ether Midnight** | Dark | Periwinkle | Classic Ether dark — balanced blue-violet surfaces, familiar feel |
-| **Ether Nebula** | Dark | Orchid purple | Cosmic violet haze — nebula magentas, starlight syntax |
-| **Ether Obsidian** | Dark | Burnished gold | Pure monochrome obsidian — ivory text, minimal chromatic noise |
-| **Ether Pearl** | Light | Cobalt blue | Cool pearl white — slate text, crisp professional clarity |
-| **Ether Plasma** | Dark | Chartreuse | Fusion reactor — electric lime on void black, high energy |
-| **Ether Sangria** | Dark | Dusty peach | Wine cellar burgundy — deep maroon surfaces, warm peach accent |
-| **Ether Slate** | Dark | Steel blue | Cool industrial gray — muted blues, professional restraint |
-| **Ether Terra** | Dark | Terracotta clay | Red earth sienna — desert clay tones, warm organic warmth |
-| **Ether Vesper** | Dark | Rose | Violet-black twilight — dusk lavender text, romantic contrast |
+Each palette is built **anchor-first**: pick `surfacePanel` (sidebar) and `surfaceEditor` (editor), then derive surfaces, text, accent, and syntax from that family. All eight pass WCAG contrast validation at build time.
+
+| Theme | Side panel | Editor | Accent | Character |
+|-------|------------|--------|--------|-----------|
+| **Ether Graphite** | `#161618` | `#1C1C1E` | Steel blue | Pure neutral gray |
+| **Ether Storm** | `#181C22` | `#1C2028` | Soft blue | Cool blue-gray slate |
+| **Ether Ember** | `#1A1816` | `#201E1A` | Copper | Warm charcoal |
+| **Ether Luna** | `#0C0E14` | `#101218` | Lunar silver | Deepest moonlit night |
+| **Ether Moss** | `#181C18` | `#1C221E` | Sage | Forest gray-green |
+| **Ether Dusk** | `#1A1820` | `#1E1C28` | Rose | Plum twilight |
+| **Ether Ink** | `#141412` | `#1A1A18` | Cinnabar | Warm sumi ink (neutral black) |
+| **Ether Stone** | `#1C1A18` | `#22201C` | Terracotta | Warm stone |
 
 ## Highlights
 
-- **20 themes** — 18 dark and 2 light variants in one extension
+- **8 dark themes** — distinct surface temperatures, restrained accents, no light variants
 - **392 snippets** — Ether templates plus ES7+ React/Redux/React-Native patterns for JavaScript, TypeScript, JSX, TSX, HTML, and CSS
 - **Token-driven build** — palette files in `src/palettes/` generate full `.color-theme.json` files
-- **Contrast-aware** — WCAG validation on critical token pairs at build time
-- **Consistent syntax** — 36 shared `tokenColor` rules across every theme
+- **Contrast-aware** — WCAG validation on all syntax roles and critical UI tokens at build time
+- **58 shared syntax rules** — broad language coverage with semantic highlighting enabled
+- **Polished workbench** — consistent list, tab, status bar, and button hover/selection states
 - **Works in Cursor** — published on Open VSX and the VS Code Marketplace
 
 ## Snippets
@@ -170,7 +161,7 @@ Press **F5** to open the Extension Development Host and preview themes live.
 <details>
 <summary><strong>Adding or removing a theme</strong></summary>
 
-**Add:** create `src/palettes/my-theme.js` exporting `{ id, label, type, uiTheme, ui, syntax }`, then run `npm run build`.
+**Add:** create `src/palettes/ether-{name}.js` with `{ id, label, type: "dark", uiTheme: "vs-dark", ui, syntax }`. Set `surfacePanel` and `surfaceEditor` first, then derive the rest. Run `npm run build`.
 
 **Remove:** delete the palette file and run `npm run build`. Orphan theme JSON and `package.json` entries are removed automatically.
 
@@ -182,6 +173,8 @@ Press **F5** to open the Extension Development Host and preview themes live.
 Add GitHub secrets **`VSCE_PAT`** and **`OVSX_PAT`**, then push changes to `src/`, `themes/`, or `package.json` — CI auto-bumps the patch version and publishes.
 
 Manual publish: `npm run publish:local` or **Actions → Release → Run workflow**.
+
+See [docs/WORKFLOW.md](docs/WORKFLOW.md) for push-without-publish and local install notes.
 
 </details>
 

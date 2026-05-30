@@ -45,6 +45,7 @@ export function composeTheme(palette) {
   return {
     name: palette.label,
     type: palette.type,
+    semanticHighlighting: true,
     colors,
     tokenColors: buildTokenColors(palette.syntax),
   };

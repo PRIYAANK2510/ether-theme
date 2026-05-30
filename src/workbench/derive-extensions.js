@@ -1,5 +1,6 @@
 import { mixColors, withAlphaByte } from "../utils/color.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
+import { deriveInteractiveOverlays } from "./derive-interactive.js";
 
 /**
  * @param {import("../utils/color.js").PaletteUITokens} base
@@ -40,13 +41,14 @@ export function deriveWorkbenchExtensionColors(base, accent) {
   const composerPane = base.surfaceEditor;
   const composerInput = deriveComposerInputColors(base, accent);
   const formInput = deriveFormInputColors(base);
+  const interactive = deriveInteractiveOverlays(base);
 
   const colors = {
     // Composer pane follows editor.background in Cursor — keep chat chrome flush with the editor
     "chat.requestBackground": mixColors(composerPane, base.surfacePanel, 0.22),
     "chat.requestBorder": withAlphaByte(base.surfaceBorder, 0x40),
-    "chat.slashCommandBackground": accent.a28,
-    "chat.slashCommandForeground": base.accent,
+    "chat.slashCommandBackground": interactive.subtleBackground,
+    "chat.slashCommandForeground": base.fgListFocus,
     "chat.avatarBackground": withAlphaByte(base.accent, 0x40),
     "chat.avatarForeground": base.fgOnAccent,
     "chat.editedFileForeground": base.findMatch,
@@ -93,6 +95,10 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "statusBar.foreground": base.fgMuted,
     "statusBar.border": base.surfaceBorder,
     "statusBar.debuggingForeground": base.fgOnAccent,
+    "statusBarItem.hoverForeground": interactive.hoverForeground,
+    "statusBarItem.activeForeground": interactive.activeForeground,
+    "statusBarItem.prominentForeground": base.accent,
+    "statusBarItem.prominentHoverForeground": interactive.activeForeground,
 
     "tab.border": base.surfaceBorder,
     "tab.activeBorderTop": base.accent,
@@ -113,6 +119,7 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "sideBarStickyScroll.background": base.surfacePanel,
 
     "panelTitle.activeForeground": base.fgPrimary,
+    "panelTitle.hoverForeground": base.fgListFocus,
     "panelTitle.border": base.surfaceBorder,
 
     "notifications.border": base.surfaceBorder,
@@ -121,9 +128,10 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "notificationLink.foreground": base.accent,
     "notificationToast.border": base.surfaceBorder,
 
-    "button.secondaryBackground": withAlphaByte(base.fgPrimary, 0x0c),
+    "button.secondaryBackground": interactive.subtleBackground,
     "button.secondaryForeground": base.fgMuted,
-    "button.secondaryHoverBackground": withAlphaByte(base.fgPrimary, 0x18),
+    "button.secondaryHoverBackground": interactive.hoverBackground,
+    "button.secondaryHoverForeground": interactive.hoverForeground,
     "dropdown.foreground": base.fgPrimary,
     "dropdown.listBackground": base.surfaceShell,
     "checkbox.background": formInput.background,

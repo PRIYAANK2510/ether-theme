@@ -89,6 +89,7 @@ import { EXTENSION_WORKBENCH_COLOR_IDS } from "../workbench/extension-catalog.js
  * @property {string} type
  * @property {Record<string, string>} colors
  * @property {Array<{ name?: string, scope?: string | string[], settings: { foreground?: string, fontStyle?: string } }>} tokenColors
+ * @property {boolean} [semanticHighlighting]
  */
 
 function toHexByte(value) {
@@ -164,12 +165,28 @@ export function isValidColor(color) {
   return chroma.valid(color);
 }
 
+/** Syntax role keys validated for editor contrast. */
+export const SYNTAX_TOKEN_KEYS = [
+  "default",
+  "comment",
+  "string",
+  "number",
+  "cyan",
+  "keyword",
+  "variable",
+  "function",
+  "type",
+  "red",
+  "pink",
+];
+
 /** WCAG contrast targets for palette base tokens (checked at build time). */
 export const PALETTE_CONTRAST_TARGETS = {
   fgPrimary: 7,
   fgMuted: 4.5,
   syntaxDefault: 7,
-  syntaxComment: 3,
+  /** All syntax tokens including comment (also used for bracket punctuation). */
+  syntaxToken: 4.5,
   fgOnAccent: 4.5,
 };
 
@@ -193,19 +210,24 @@ export function validatePaletteContrast(palette) {
     ["ui.fgPrimary", palette.ui.fgPrimary, editor, PALETTE_CONTRAST_TARGETS.fgPrimary],
     ["ui.fgMuted", palette.ui.fgMuted, editor, PALETTE_CONTRAST_TARGETS.fgMuted],
     ["syntax.default", palette.syntax.default, editor, PALETTE_CONTRAST_TARGETS.syntaxDefault],
-    ["syntax.comment", palette.syntax.comment, editor, PALETTE_CONTRAST_TARGETS.syntaxComment],
     [
       "ui.fgOnAccent",
       palette.ui.fgOnAccent,
       palette.ui.accent,
       PALETTE_CONTRAST_TARGETS.fgOnAccent,
     ],
+    ...SYNTAX_TOKEN_KEYS.filter((key) => key !== "default").map((key) => [
+      `syntax.${key}`,
+      palette.syntax[key],
+      editor,
+      PALETTE_CONTRAST_TARGETS.syntaxToken,
+    ]),
   ];
 
   const failures = [];
   for (const [path, foreground, background, minimum] of checks) {
     const ratio = contrastRatio(foreground, background);
-    if (ratio < minimum) {
+    if (Number(ratio.toFixed(2)) < minimum) {
       failures.push(
         `${path}: ${ratio.toFixed(2)}:1 (minimum ${minimum}:1)`,
       );

@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2] - 2026-05-31
+
+### Changed
+
+- **Theme lineup rebuilt** — replaced the previous 20-palette collection with **8 anchor-first dark themes**: Graphite, Storm, Ember, Luna, Moss, Dusk, Ink, Stone
+- Palettes now start from `surfacePanel` + `surfaceEditor`, then derive surfaces, foreground, accent, and syntax; light themes removed
+- Expanded shared syntax highlighting from 36 to **58 rules** with `semanticHighlighting: true`
+- WCAG contrast validation now covers all 11 syntax roles (7:1 default text, 4.5:1 for other roles and UI tokens)
+
+### Fixed
+
+- **Workbench interactive states** — status bar, sidebar lists, secondary buttons, suggest widget, activity bar, and panel tabs now use visible hover/selection backgrounds with matching foreground lifts (fixes muted-on-accent hover contrast)
+- Added `derive-interactive.js` for shared neutral overlay pattern across interactive UI
+
+### Removed
+
+- 12 legacy palettes and generated themes (Abyss, Aurora, Brass, Carbon, Crimson, Eclipse, Forest, Haze, Jade, Linen, Nebula, Obsidian, Pearl, Plasma, Sangria, Slate, Terra, Vesper, Midnight, etc.)
+
 ## [0.2.1] - 2026-05-30
 
 ### Added
@@ -97,6 +115,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PAT-based publishing via `VSCE_PAT` / `OVSX_PAT` (local `.env` or GitHub Secrets)
 - F5 Extension Development Host workflow for VS Code and Cursor
 
+[0.2.2]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.2
 [0.2.1]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.1
 [0.2.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.0
 [0.1.5]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.5

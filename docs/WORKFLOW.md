@@ -18,7 +18,7 @@ Commit generated artifacts when you changed source:
 
 ## Commit and push **without** publishing
 
-Pushing to `main` under `src/**`, `themes/**`, or `package.json` triggers an automatic release. To push without publishing:
+Pushing to `main` under `src/`**, `themes/**`, or `package.json` triggers an automatic release. To push without publishing:
 
 ### Option 1 — `[skip release]` in the commit message
 
@@ -101,11 +101,15 @@ Same steps as automatic release (check → bump → publish → tag). Useful whe
 
 ## Quick reference
 
-| Goal | Command / action |
-|------|------------------|
-| Verify locally | `npm run check` |
-| Build only | `npm run build` |
-| Package VSIX (no upload) | `npm run package` → `releases/*.vsix` |
-| Push to main, no publish | Commit message includes `[skip release]` |
-| Ship a release | Push to `main` (source/themes/package.json changes) |
-| Publish from your machine | `npm run publish:local` |
+
+| Goal                      | Command / action                                    |
+| ------------------------- | --------------------------------------------------- |
+| Verify locally            | `npm run check`                                     |
+| Build only                | `npm run build`                                     |
+| Package VSIX (no upload)  | `npm run package` → `releases/*.vsix`               |
+| Install VSIX locally    | `cursor --install-extension releases/ether-theme-*.vsix` |
+| Push to main, no publish  | Commit message includes `[skip release]`            |
+| Ship a release            | Push to `main` (source/themes/package.json changes) |
+| Publish from your machine | `npm run publish:local`                             |
+
+

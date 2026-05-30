@@ -63,6 +63,10 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
   "statusBar.foreground",
   "statusBar.border",
   "statusBar.debuggingForeground",
+  "statusBarItem.hoverForeground",
+  "statusBarItem.activeForeground",
+  "statusBarItem.prominentForeground",
+  "statusBarItem.prominentHoverForeground",
 
   // ── Tabs ───────────────────────────────────────────────────────────────
   "tab.border",
@@ -87,6 +91,7 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
 
   // ── Panel polish ───────────────────────────────────────────────────────
   "panelTitle.activeForeground",
+  "panelTitle.hoverForeground",
   "panelTitle.border",
 
   // ── Notifications (modern API) ─────────────────────────────────────────
@@ -100,6 +105,7 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
   "button.secondaryBackground",
   "button.secondaryForeground",
   "button.secondaryHoverBackground",
+  "button.secondaryHoverForeground",
   "dropdown.foreground",
   "dropdown.listBackground",
   "checkbox.background",
