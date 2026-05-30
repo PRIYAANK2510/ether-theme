@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Extension icon updated to the Ether brand mark (wavy blue bands on charcoal)
 - Rebuilt all palette base tokens for stronger, more readable contrast (AAA body text at 7:1, AA muted UI at 4.5:1)
 - Brightened `fgMuted` and `syntax.comment` across every existing dark theme
 - README theme table updated with type (Light/Dark), accent, and character for all 20 themes
