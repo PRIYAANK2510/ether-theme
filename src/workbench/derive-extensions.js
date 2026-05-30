@@ -1,5 +1,32 @@
-import { withAlphaByte } from "../utils/color.js";
+import { mixColors, withAlphaByte } from "../utils/color.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
+
+/**
+ * Embedded agent/composer prompt — flush with editor.background.
+ * Cursor paints the composer pane from editor.background; the prompt should not
+ * read as a separate sunken card.
+ */
+export function deriveComposerInputColors(base, accent) {
+  return {
+    background: base.surfaceEditor,
+    border: withAlphaByte(base.surfaceBorder, 0x35),
+    foreground: base.fgPrimary,
+    placeholder: base.fgMuted,
+    focusBorder: accent.aBB,
+  };
+}
+
+/**
+ * Standard form fields on panels, dialogs, and quick pick.
+ */
+export function deriveFormInputColors(base) {
+  return {
+    background: base.surfaceInput,
+    border: withAlphaByte(base.dropdownBorder, 0x72),
+    foreground: base.fgPrimary,
+    placeholder: base.fgMuted,
+  };
+}
 
 /**
  * Derive modern VS Code / Cursor workbench keys from palette UI tokens.
@@ -7,33 +34,42 @@ import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
  * @param {ReturnType<import("./derive-core.js").deriveAccentVariants>} accent
  */
 export function deriveWorkbenchExtensionColors(base, accent) {
-  const agent = base.surfaceAgent ?? base.surfacePanel;
+  const composerPane = base.surfaceEditor;
+  const composerInput = deriveComposerInputColors(base, accent);
+  const formInput = deriveFormInputColors(base);
 
   const colors = {
-    // Agent / chat — surfaceAgent; frame still follows editor.background (Cursor)
-    "chat.requestBackground": withAlphaByte(agent, 0x9e),
-    "chat.requestBorder": base.surfaceBorder,
-    "chat.slashCommandBackground": accent.a48,
+    // Agent / chat — composer pane follows editor.background in Cursor
+    "chat.requestBackground": mixColors(composerPane, base.surfacePanel, 0.22),
+    "chat.requestBorder": withAlphaByte(base.surfaceBorder, 0x40),
+    "chat.slashCommandBackground": accent.a28,
     "chat.slashCommandForeground": base.accent,
     "chat.avatarBackground": withAlphaByte(base.accent, 0x40),
     "chat.avatarForeground": base.fgOnAccent,
     "chat.editedFileForeground": base.findMatch,
-    "inlineChat.background": agent,
-    "inlineChat.border": withAlphaByte(base.surfaceBorder, 0x77),
+    "inlineChat.background": composerPane,
+    "inlineChat.border": withAlphaByte(base.surfaceBorder, 0x28),
     "inlineChat.foreground": base.fgPrimary,
-    "inlineChat.shadow": base.shadow,
+    "inlineChat.shadow": withAlphaByte(base.shadow, 0x55),
     "inlineChatDiff.inserted": withAlphaByte(base.diffInserted, 0x20),
     "inlineChatDiff.removed": withAlphaByte(base.diffRemoved, 0x20),
-    "inlineChatInput.background": base.surfaceInput,
-    "inlineChatInput.border": base.dropdownBorder,
-    "inlineChatInput.focusBorder": base.accent,
-    "inlineChatInput.placeholderForeground": base.fgMuted,
+    "inlineChatInput.background": composerInput.background,
+    "inlineChatInput.border": composerInput.border,
+    "inlineChatInput.focusBorder": composerInput.focusBorder,
+    "inlineChatInput.placeholderForeground": composerInput.placeholder,
+
+    "agentsChatInput.background": composerInput.background,
+    "agentsChatInput.border": composerInput.border,
+    "agentsChatInput.foreground": composerInput.foreground,
+    "agentsChatInput.placeholderForeground": composerInput.placeholder,
+    "agentsChatInput.focusBorder": composerInput.focusBorder,
+    "agentSessionsList.background": composerPane,
 
     "descriptionForeground": base.fgMuted,
     "textLink.foreground": base.accent,
     "textLink.activeForeground": base.accentHover,
 
-    "quickInput.background": base.surfaceInput,
+    "quickInput.background": formInput.background,
     "quickInput.foreground": base.fgPrimary,
     "quickInputTitle.background": base.surfacePanel,
     "quickInputList.focusBackground": base.surfaceListFocus,
@@ -82,13 +118,13 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "notificationLink.foreground": base.accent,
     "notificationToast.border": base.surfaceBorder,
 
-    "button.secondaryBackground": base.surfaceInput,
-    "button.secondaryForeground": base.fgPrimary,
-    "button.secondaryHoverBackground": base.surfaceHover,
+    "button.secondaryBackground": withAlphaByte(base.fgPrimary, 0x0c),
+    "button.secondaryForeground": base.fgMuted,
+    "button.secondaryHoverBackground": withAlphaByte(base.fgPrimary, 0x18),
     "dropdown.foreground": base.fgPrimary,
     "dropdown.listBackground": base.surfaceShell,
-    "checkbox.background": base.surfaceInput,
-    "checkbox.border": base.dropdownBorder,
+    "checkbox.background": formInput.background,
+    "checkbox.border": formInput.border,
     "checkbox.foreground": base.accent,
   };
 

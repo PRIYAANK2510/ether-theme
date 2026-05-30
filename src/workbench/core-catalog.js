@@ -14,6 +14,8 @@ export const CORE_WORKBENCH_COLOR_IDS = [
   "dropdown.background",
   "dropdown.border",
   "input.background",
+  "input.border",
+  "input.foreground",
   "input.placeholderForeground",
   "inputOption.activeBorder",
   "inputValidation.errorBackground",

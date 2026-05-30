@@ -1,7 +1,7 @@
 import { withAlphaByte } from "../utils/color.js";
 import { WORKBENCH_COLOR_IDS } from "./constants.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
-import { deriveWorkbenchExtensionColors } from "./derive-extensions.js";
+import { deriveComposerInputColors, deriveWorkbenchExtensionColors } from "./derive-extensions.js";
 
 export const UI_ALPHA = {
   a15: 0x15,
@@ -45,9 +45,10 @@ function deriveScrollbarVariants(scrollbar) {
 export function deriveUISemantics(base) {
   const accent = deriveAccentVariants(base.accent);
   const scrollbar = deriveScrollbarVariants(base.scrollbar);
+  const composerInput = deriveComposerInputColors(base, accent);
 
   const colors = {
-    focusBorder: base.accent,
+    focusBorder: accent.aBB,
     foreground: base.fgPrimary,
     "widget.shadow": base.shadow,
     "selection.background": accent.a40,
@@ -57,8 +58,10 @@ export function deriveUISemantics(base) {
     "button.hoverBackground": withAlphaByte(base.accentHover, UI_ALPHA.aCC),
     "dropdown.background": base.surfaceInput,
     "dropdown.border": base.dropdownBorder,
-    "input.background": base.surfaceInput,
-    "input.placeholderForeground": base.fgMuted,
+    "input.background": composerInput.background,
+    "input.border": composerInput.border,
+    "input.foreground": composerInput.foreground,
+    "input.placeholderForeground": composerInput.placeholder,
     "inputOption.activeBorder": base.accent,
     "inputValidation.errorBackground": base.inputValidationError,
     "inputValidation.errorBorder": base.inputValidationError,

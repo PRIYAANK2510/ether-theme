@@ -121,17 +121,22 @@ describe("theme generator", () => {
   });
 
   it("maps palette surfaces to sidebar, editor, and agent chat chrome", () => {
-    const agent = palette.ui.surfaceAgent ?? palette.ui.surfacePanel;
+    const composerPane = palette.ui.surfaceEditor;
 
     expect(theme.colors["sideBar.background"].toLowerCase()).toBe(
       palette.ui.surfacePanel.toLowerCase(),
     );
-    expect(theme.colors["editor.background"].toLowerCase()).toBe(
-      palette.ui.surfaceEditor.toLowerCase(),
+    expect(theme.colors["editor.background"].toLowerCase()).toBe(composerPane.toLowerCase());
+    expect(theme.colors["inlineChat.background"].toLowerCase()).toBe(composerPane.toLowerCase());
+    expect(theme.colors["agentsChatInput.background"].toLowerCase()).toBe(
+      composerPane.toLowerCase(),
     );
-    expect(theme.colors["inlineChat.background"].toLowerCase()).toBe(agent.toLowerCase());
+    expect(theme.colors["input.background"].toLowerCase()).toBe(composerPane.toLowerCase());
+    expect(theme.colors["agentSessionsList.background"].toLowerCase()).toBe(
+      composerPane.toLowerCase(),
+    );
     expect(theme.colors["chat.requestBackground"].toLowerCase()).toBe(
-      withAlphaByte(agent, 0x9e).toLowerCase(),
+      mixColors(composerPane, palette.ui.surfacePanel, 0.22).toLowerCase(),
     );
     expect(theme.colors["textLink.foreground"].toLowerCase()).toBe(
       palette.ui.accent.toLowerCase(),
@@ -180,6 +185,8 @@ describe("theme generator", () => {
     const aurora = composeTheme(etherAurora);
     expect(aurora.colors["sideBar.background"].toLowerCase()).toBe("#0f1422");
     expect(aurora.colors["editor.background"].toLowerCase()).toBe("#131928");
-    expect(aurora.colors["inlineChat.background"].toLowerCase()).toBe("#0f1422");
+    expect(aurora.colors["inlineChat.background"].toLowerCase()).toBe("#131928");
+    expect(aurora.colors["agentsChatInput.background"].toLowerCase()).toBe("#131928");
+    expect(aurora.colors["input.border"].toLowerCase()).toBe("#070a1035");
   });
 });

@@ -2,8 +2,8 @@
  * Curated VS Code / Cursor workbench color keys beyond the Ether core set.
  * Focused subset for chat/agent, command palette, menus, tabs, and links.
  *
- * Agent panel frame: Cursor sets --composer-pane-background from editor.background
- * only. Chat chrome uses chat.* / inlineChat.* below (surfaceAgent in palette).
+ * Agent panel frame: Cursor sets --composer-pane-background from editor.background.
+ * Chat chrome and prompt input use chat.*, inlineChat.*, agentsChatInput.* below.
  */
 export const EXTENSION_WORKBENCH_COLOR_IDS = [
   // ── Cursor agent / chat ──────────────────────────────────────────────
@@ -24,6 +24,14 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
   "inlineChatInput.border",
   "inlineChatInput.focusBorder",
   "inlineChatInput.placeholderForeground",
+
+  // ── Cursor / VS Code agent composer input ─────────────────────────────
+  "agentsChatInput.background",
+  "agentsChatInput.border",
+  "agentsChatInput.foreground",
+  "agentsChatInput.placeholderForeground",
+  "agentsChatInput.focusBorder",
+  "agentSessionsList.background",
 
   // ── Global text / links ────────────────────────────────────────────────
   "descriptionForeground",
