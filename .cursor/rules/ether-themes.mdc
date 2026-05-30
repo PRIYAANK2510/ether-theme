@@ -1,0 +1,50 @@
+---
+description: Palette, workbench, and syntax theme conventions
+globs: src/palettes/**,src/workbench/**,src/syntax/**,src/generator/**,src/utils/color.js,themes/**
+alwaysApply: false
+---
+
+# Theme & Palette Rules
+
+Based on [VS Code Color Theme API](https://code.visualstudio.com/api/extension-guides/color-theme): workbench `colors` + TextMate `tokenColors`. Ether derives both from palette tokens — never patch generated theme JSON.
+
+## Adding or editing a palette
+
+Create/edit `src/palettes/ether-{name}.js`:
+
+```js
+export default {
+  id: "ether-{name}",       // matches filename stem
+  label: "Ether {Name}",
+  type: "dark",               // "dark" | "light"
+  uiTheme: "vs-dark",         // "vs-dark" | "vs"
+  ui: { accent, fgPrimary, surfaceEditor, /* … */ },
+  syntax: { default, comment, string, keyword, /* role keys */ },
+};
+```
+
+Copy an existing palette as a template. All `ui` and `syntax` keys are validated at build time.
+
+## Workbench derivation (required path)
+
+1. **New workbench key** → add to `src/workbench/core-catalog.js` OR `extension-catalog.js`.
+2. **Derive the value** in `derive-core.js` (core) or `derive-extensions.js` (chat/agent, menus, tabs).
+3. Never emit keys from `DEPRECATED_THEME_COLOR_IDS` in `color.js`.
+4. Keys in `TRANSPARENT_WORKBENCH_COLOR_IDS` must use alpha via `withAlphaByte` (not opaque `#RRGGBB`).
+
+Use `mixColors`, `withAlphaByte`, `lighten`/`darken` from `src/utils/color.js` — not ad-hoc hex math.
+
+## Syntax highlighting
+
+- Rules live in `src/syntax/rules.js` — one shared set across all 20 themes.
+- Map scopes to `syntax.{role}` tokens (`comment`, `keyword`, `function`, etc.).
+- `SYNTAX_RULE_COUNT` must equal `EXPECTED_SYNTAX_RULE_COUNT`; tests enforce this.
+- **Do not** add `semanticTokenColors` or `settings.background` on token rules.
+
+## Contrast & validation
+
+Build fails if palette tokens miss WCAG targets in `PALETTE_CONTRAST_TARGETS` (`fgPrimary`, `fgMuted`, `syntax.default`, `syntax.comment`, `fgOnAccent`). Tune base tokens, not generated output.
+
+## Removing a theme
+
+Delete the palette file and run `npm run build` — orphaned JSON and `package.json` entries are cleaned automatically.

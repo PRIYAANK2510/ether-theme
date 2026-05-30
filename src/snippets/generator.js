@@ -25,6 +25,11 @@ function resolveSnippetForLanguage(snippet, language) {
   };
 }
 
+/**
+ * @param {import("./validate.js").SnippetDefinition[]} catalog
+ * @returns {Record<string, Record<string, import("./validate.js").GeneratedSnippet>>}
+ * @throws {Error} On unknown languages or validation failures
+ */
 export function composeSnippetFiles(catalog) {
   const byLanguage = Object.fromEntries(
     SNIPPET_LANGUAGES.map(({ language }) => [language, {}]),
@@ -55,6 +60,13 @@ export function composeSnippetFiles(catalog) {
   return byLanguage;
 }
 
+/**
+ * @param {string} language
+ * @param {Record<string, import("./validate.js").GeneratedSnippet>} snippets
+ * @param {string} [outputDir]
+ * @returns {string} Absolute path to the written file
+ * @throws {Error} When no output file is configured for the language
+ */
 export function writeSnippetFile(language, snippets, outputDir = snippetsDir) {
   const fileName = SNIPPET_LANGUAGES.find((entry) => entry.language === language)?.file;
   if (!fileName) {
@@ -67,6 +79,9 @@ export function writeSnippetFile(language, snippets, outputDir = snippetsDir) {
   return filePath;
 }
 
+/**
+ * @param {Array<{ language: string, path: string }>} contributions
+ */
 export function syncSnippetContributions(contributions) {
   const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
   packageJson.contributes = {
@@ -80,6 +95,10 @@ export function syncSnippetContributions(contributions) {
   );
 }
 
+/**
+ * @returns {Promise<{ catalogCount: number, generatedFiles: string[], contributions: Array<{ language: string, path: string }> }>}
+ * @throws {Error} When catalog is below {@link MIN_SNIPPET_COUNT} or validation fails
+ */
 export async function generateAllSnippets() {
   const catalog = await loadSnippetCatalog();
   const catalogCount = validateSnippetCatalog(catalog);

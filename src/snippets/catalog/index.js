@@ -24,15 +24,18 @@ const CATALOG = [
   { file: "typescript-react.js", synced: true },
 ];
 
-/** @type {readonly string[]} */
+/** Catalog module filenames loaded by {@link loadSnippetCatalog}. */
 export const CATALOG_MODULES = CATALOG.map((entry) => entry.file);
 
-/** @type {ReadonlySet<string>} */
+/** Modules regenerated from the ES7+ extension via `npm run snippets:sync`. */
 export const SYNCED_MODULES = new Set(
   CATALOG.filter((entry) => entry.synced).map((entry) => entry.file),
 );
 
-/** @returns {Promise<import('../validate.js').SnippetDefinition[]>} */
+/**
+ * @returns {Promise<import('../validate.js').SnippetDefinition[]>}
+ * @throws {Error} When a catalog module does not default-export an array
+ */
 export async function loadSnippetCatalog() {
   /** @type {import('../validate.js').SnippetDefinition[]} */
   const catalog = [];

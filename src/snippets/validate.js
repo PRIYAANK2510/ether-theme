@@ -7,12 +7,19 @@
 
 /**
  * @typedef {Object} SnippetDefinition
- * @property {string} key
+ * @property {string} key - Stable catalog identifier
  * @property {string} prefix
  * @property {string} description
  * @property {string | string[]} body
- * @property {string[]} languages
- * @property {Partial<Record<string, SnippetVariant>>} [variants]
+ * @property {string[]} languages - VS Code language ids
+ * @property {Partial<Record<string, SnippetVariant>>} [variants] - Per-language overrides
+ */
+
+/**
+ * @typedef {Object} GeneratedSnippet
+ * @property {string | string[]} prefix
+ * @property {string | string[]} body
+ * @property {string} description
  */
 
 const REQUIRED_FIELDS = ["key", "prefix", "description", "body", "languages"];
@@ -27,7 +34,10 @@ function assertBody(body, key) {
   throw new Error(`Snippet "${key}" has invalid body — must be a string or string array`);
 }
 
-/** @param {SnippetDefinition} snippet */
+/**
+ * @param {SnippetDefinition} snippet
+ * @throws {Error} On missing fields, empty languages, or invalid body
+ */
 export function validateSnippetDefinition(snippet) {
   for (const field of REQUIRED_FIELDS) {
     if (snippet[field] === undefined || snippet[field] === null || snippet[field] === "") {
@@ -50,7 +60,11 @@ export function validateSnippetDefinition(snippet) {
   }
 }
 
-/** @param {SnippetDefinition[]} catalog */
+/**
+ * @param {SnippetDefinition[]} catalog
+ * @returns {number} Number of validated definitions
+ * @throws {Error} On duplicate keys or invalid definitions
+ */
 export function validateSnippetCatalog(catalog) {
   const keys = new Set();
 
@@ -66,6 +80,11 @@ export function validateSnippetCatalog(catalog) {
   return catalog.length;
 }
 
+/**
+ * @param {Record<string, GeneratedSnippet>} snippets
+ * @param {string} language
+ * @throws {Error} On duplicate names/prefixes or invalid entries
+ */
 export function validateGeneratedSnippetFile(snippets, language) {
   const prefixes = new Set();
   const names = new Set();

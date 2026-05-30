@@ -2,12 +2,13 @@ import { mixColors, withAlphaByte } from "../utils/color.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
 
 /**
- * Embedded agent/composer prompt — flush with editor.background.
- * Cursor paints the composer pane from editor.background; the prompt should not
- * read as a separate sunken card.
+ * @param {import("../utils/color.js").PaletteUITokens} base
+ * @param {ReturnType<import("./derive-core.js").deriveAccentVariants>} accent
+ * @returns {{ background: string, border: string, foreground: string, placeholder: string, focusBorder: string }}
  */
 export function deriveComposerInputColors(base, accent) {
   return {
+    // Match editor.background so Cursor's composer pane does not look like a sunken card
     background: base.surfaceEditor,
     border: withAlphaByte(base.surfaceBorder, 0x35),
     foreground: base.fgPrimary,
@@ -17,7 +18,8 @@ export function deriveComposerInputColors(base, accent) {
 }
 
 /**
- * Standard form fields on panels, dialogs, and quick pick.
+ * @param {import("../utils/color.js").PaletteUITokens} base
+ * @returns {{ background: string, border: string, foreground: string, placeholder: string }}
  */
 export function deriveFormInputColors(base) {
   return {
@@ -29,9 +31,10 @@ export function deriveFormInputColors(base) {
 }
 
 /**
- * Derive modern VS Code / Cursor workbench keys from palette UI tokens.
- * @param {Record<string, string>} base - palette.ui
+ * @param {import("../utils/color.js").PaletteUITokens} base
  * @param {ReturnType<import("./derive-core.js").deriveAccentVariants>} accent
+ * @returns {Record<string, string>}
+ * @throws {Error} When a required extension workbench key has no derivation
  */
 export function deriveWorkbenchExtensionColors(base, accent) {
   const composerPane = base.surfaceEditor;
@@ -39,7 +42,7 @@ export function deriveWorkbenchExtensionColors(base, accent) {
   const formInput = deriveFormInputColors(base);
 
   const colors = {
-    // Agent / chat — composer pane follows editor.background in Cursor
+    // Composer pane follows editor.background in Cursor — keep chat chrome flush with the editor
     "chat.requestBackground": mixColors(composerPane, base.surfacePanel, 0.22),
     "chat.requestBorder": withAlphaByte(base.surfaceBorder, 0x40),
     "chat.slashCommandBackground": accent.a28,

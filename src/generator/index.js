@@ -16,6 +16,9 @@ const themesDir = join(rootDir, "themes");
 const palettesDir = join(dirname(fileURLToPath(import.meta.url)), "../palettes");
 const packageJsonPath = join(rootDir, "package.json");
 
+/**
+ * @returns {Promise<import("../utils/color.js").Palette[]>}
+ */
 export async function loadPalettes() {
   const files = readdirSync(palettesDir)
     .filter((file) => file.endsWith(".js"))
@@ -30,6 +33,11 @@ export async function loadPalettes() {
   return palettes;
 }
 
+/**
+ * @param {import("../utils/color.js").Palette} palette
+ * @returns {import("../utils/color.js").Theme}
+ * @throws {Error} When palette validation fails
+ */
 export function composeTheme(palette) {
   validatePalette(palette);
   const colors = deriveUISemantics(palette.ui);
@@ -42,6 +50,11 @@ export function composeTheme(palette) {
   };
 }
 
+/**
+ * @param {string} id - Palette id used as the theme filename stem
+ * @param {import("../utils/color.js").Theme} theme
+ * @returns {string} Absolute path to the written file
+ */
 export function writeThemeFile(id, theme) {
   mkdirSync(themesDir, { recursive: true });
   const filePath = join(themesDir, `${id}.color-theme.json`);
@@ -49,6 +62,9 @@ export function writeThemeFile(id, theme) {
   return filePath;
 }
 
+/**
+ * @param {Array<{ label: string, uiTheme: string, path: string }>} contributions
+ */
 export function syncPackageContributions(contributions) {
   const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
   packageJson.contributes = {
@@ -62,7 +78,11 @@ export function syncPackageContributions(contributions) {
   );
 }
 
-/** Delete generated theme JSON whose palette no longer exists. */
+/**
+ * @param {string[]} activeIds - Palette ids that should remain on disk
+ * @param {string} [themesDirectory]
+ * @returns {string[]} Paths of deleted theme files
+ */
 export function removeOrphanedThemeFiles(activeIds, themesDirectory = themesDir) {
   mkdirSync(themesDirectory, { recursive: true });
   const activeFileNames = new Set(
@@ -85,6 +105,11 @@ export function removeOrphanedThemeFiles(activeIds, themesDirectory = themesDir)
   return removedFiles;
 }
 
+/**
+ * @param {import("../utils/color.js").Palette[]} palettes
+ * @returns {{ contributions: Array<{ label: string, uiTheme: string, path: string }>, generatedFiles: string[], removedFiles: string[] }}
+ * @throws {Error} When theme validation fails for any palette
+ */
 export function generateAllThemes(palettes) {
   const contributions = [];
   const generatedFiles = [];

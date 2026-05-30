@@ -253,8 +253,13 @@ const syntaxRuleDefinitions = [
   },
 ];
 
+/** Number of TextMate scope rules emitted by {@link buildTokenColors}. */
 export const SYNTAX_RULE_COUNT = syntaxRuleDefinitions.length;
 
+/**
+ * @param {import("../utils/color.js").PaletteSyntaxTokens} syntax
+ * @returns {Array<{ name?: string, scope?: string | string[], settings: { foreground: string, fontStyle?: string } }>}
+ */
 export function buildTokenColors(syntax) {
   return syntaxRuleDefinitions.map((rule) => {
     if (rule.global) {

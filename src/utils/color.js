@@ -2,6 +2,95 @@ import chroma from "chroma-js";
 import { WORKBENCH_COLOR_IDS, EXPECTED_SYNTAX_RULE_COUNT } from "../workbench/constants.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "../workbench/extension-catalog.js";
 
+/**
+ * @typedef {Object} PaletteSyntaxTokens
+ * @property {string} default
+ * @property {string} comment
+ * @property {string} string
+ * @property {string} number
+ * @property {string} cyan
+ * @property {string} keyword
+ * @property {string} variable
+ * @property {string} function
+ * @property {string} type
+ * @property {string} red
+ * @property {string} pink
+ */
+
+/**
+ * @typedef {Object} PaletteUITokens
+ * @property {string} accent
+ * @property {string} accentHover
+ * @property {string} surfaceBorder
+ * @property {string} surfaceShell
+ * @property {string} surfacePanel
+ * @property {string} surfaceEditor
+ * @property {string} surfaceLineHighlight
+ * @property {string} surfaceInput
+ * @property {string} surfaceHover
+ * @property {string} surfacePeek
+ * @property {string} surfaceWidget
+ * @property {string} surfaceNotification
+ * @property {string} surfaceListFocus
+ * @property {string} fgPrimary
+ * @property {string} fgMuted
+ * @property {string} fgActivity
+ * @property {string} fgOnAccent
+ * @property {string} [fgOnButton]
+ * @property {string} fgListFocus
+ * @property {string} shadow
+ * @property {string} error
+ * @property {string} warning
+ * @property {string} findMatch
+ * @property {string} gitAdded
+ * @property {string} gitModified
+ * @property {string} gitDeleted
+ * @property {string} scrollbar
+ * @property {string} indentGuide
+ * @property {string} indentGuideActive
+ * @property {string} ruler
+ * @property {string} cursor
+ * @property {string} dropdownBorder
+ * @property {string} dropTarget
+ * @property {string} editorGroupDrop
+ * @property {string} inputValidationError
+ * @property {string} inputValidationInfo
+ * @property {string} inputValidationWarning
+ * @property {string} diffInserted
+ * @property {string} diffRemoved
+ * @property {string} mergeCurrent
+ * @property {string} terminalRed
+ * @property {string} terminalGreen
+ * @property {string} terminalYellow
+ * @property {string} terminalBlue
+ * @property {string} terminalMagenta
+ * @property {string} terminalCyan
+ * @property {string} terminalBrightRed
+ * @property {string} terminalBrightGreen
+ * @property {string} terminalBrightYellow
+ * @property {string} terminalBrightBlue
+ * @property {string} terminalBrightMagenta
+ * @property {string} terminalBrightCyan
+ */
+
+/**
+ * @typedef {Object} Palette
+ * @property {string} id
+ * @property {string} label
+ * @property {"dark" | "light"} type
+ * @property {"vs-dark" | "vs"} uiTheme
+ * @property {PaletteUITokens} ui
+ * @property {PaletteSyntaxTokens} syntax
+ */
+
+/**
+ * @typedef {Object} Theme
+ * @property {string} name
+ * @property {string} type
+ * @property {Record<string, string>} colors
+ * @property {Array<{ name?: string, scope?: string | string[], settings: { foreground?: string, fontStyle?: string } }>} tokenColors
+ */
+
 function toHexByte(value) {
   return Math.round(value).toString(16).padStart(2, "0").toUpperCase();
 }
@@ -10,6 +99,11 @@ function normalizeHex(hex) {
   return hex.toUpperCase();
 }
 
+/**
+ * @param {string} color
+ * @param {number} alpha - 0–1 opacity
+ * @returns {string} Uppercase `#RRGGBB` or `#RRGGBBAA`
+ */
 export function withAlpha(color, alpha) {
   const c = chroma(color).alpha(alpha);
   const [r, g, b] = c.rgb();
@@ -21,6 +115,11 @@ export function withAlpha(color, alpha) {
   return `#${toHexByte(r)}${toHexByte(g)}${toHexByte(b)}${toHexByte(alpha * 255)}`;
 }
 
+/**
+ * @param {string} color
+ * @param {number} alphaByte - 0–255 alpha channel
+ * @returns {string} Uppercase `#RRGGBB` or `#RRGGBBAA`
+ */
 export function withAlphaByte(color, alphaByte) {
   const c = chroma(color);
   const [r, g, b] = c.rgb();
@@ -32,18 +131,35 @@ export function withAlphaByte(color, alphaByte) {
   return `#${toHexByte(r)}${toHexByte(g)}${toHexByte(b)}${toHexByte(alphaByte)}`;
 }
 
+/**
+ * @param {string} a
+ * @param {string} b
+ * @param {number} ratio - Blend weight toward `b` (0–1)
+ * @returns {string}
+ */
 export function mixColors(a, b, ratio) {
   return normalizeHex(chroma.mix(a, b, ratio, "rgb").hex());
 }
 
+/**
+ * @param {string} color
+ * @param {number} amount - Chroma brighten factor (scaled ×5 internally)
+ * @returns {string}
+ */
 export function lighten(color, amount) {
   return normalizeHex(chroma(color).brighten(amount * 5).hex());
 }
 
+/**
+ * @param {string} color
+ * @param {number} amount - Chroma darken factor (scaled ×5 internally)
+ * @returns {string}
+ */
 export function darken(color, amount) {
   return normalizeHex(chroma(color).darken(amount * 5).hex());
 }
 
+/** @param {string} color */
 export function isValidColor(color) {
   return chroma.valid(color);
 }
@@ -57,10 +173,20 @@ export const PALETTE_CONTRAST_TARGETS = {
   fgOnAccent: 4.5,
 };
 
+/**
+ * @param {string} foreground
+ * @param {string} background
+ * @returns {number} WCAG contrast ratio
+ */
 export function contrastRatio(foreground, background) {
   return chroma.contrast(foreground, background);
 }
 
+/**
+ * @param {Palette} palette
+ * @returns {Palette}
+ * @throws {Error} When any base token fails {@link PALETTE_CONTRAST_TARGETS}
+ */
 export function validatePaletteContrast(palette) {
   const editor = palette.ui.surfaceEditor;
   const checks = [
@@ -95,6 +221,11 @@ export function validatePaletteContrast(palette) {
   return palette;
 }
 
+/**
+ * @param {Palette} palette
+ * @returns {Palette}
+ * @throws {Error} On invalid color values or contrast failures
+ */
 export function validatePalette(palette) {
   for (const [key, value] of Object.entries(palette.ui)) {
     if (!value || !isValidColor(value)) {
@@ -137,6 +268,10 @@ export const TRANSPARENT_WORKBENCH_COLOR_IDS = [
   "merge.currentContentBackground",
 ];
 
+/**
+ * @param {string} hex
+ * @returns {number} Alpha channel 0–255; opaque colors return 255
+ */
 export function colorAlphaByte(hex) {
   const normalized = hex.replace(/^#/, "");
   if (normalized.length === 8) {
@@ -145,6 +280,11 @@ export function colorAlphaByte(hex) {
   return 0xff;
 }
 
+/**
+ * @param {Theme} theme
+ * @param {string} paletteId
+ * @throws {Error} On schema violations, missing keys, deprecated colors, or invalid values
+ */
 export function validateGeneratedTheme(theme, paletteId) {
   for (const key of ["name", "type", "colors", "tokenColors"]) {
     if (!(key in theme)) {

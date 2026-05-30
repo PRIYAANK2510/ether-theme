@@ -3,6 +3,7 @@ import { WORKBENCH_COLOR_IDS } from "./constants.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
 import { deriveComposerInputColors, deriveWorkbenchExtensionColors } from "./derive-extensions.js";
 
+/** Fixed alpha-byte values reused across workbench derivations. */
 export const UI_ALPHA = {
   a15: 0x15,
   a20: 0x20,
@@ -20,6 +21,10 @@ export const UI_ALPHA = {
   aD7: 0xd7,
 };
 
+/**
+ * @param {string} accent
+ * @returns {Record<"a15" | "a20" | "a28" | "a30" | "a40" | "a48" | "aBB" | "aB0" | "aCC", string>}
+ */
 export function deriveAccentVariants(accent) {
   return {
     a15: withAlphaByte(accent, UI_ALPHA.a15),
@@ -42,6 +47,12 @@ function deriveScrollbarVariants(scrollbar) {
   };
 }
 
+/**
+ * Maps palette UI tokens to the full VS Code workbench color table.
+ * @param {import("../utils/color.js").PaletteUITokens} base
+ * @returns {Record<string, string>}
+ * @throws {Error} When a required workbench key has no derivation
+ */
 export function deriveUISemantics(base) {
   const accent = deriveAccentVariants(base.accent);
   const scrollbar = deriveScrollbarVariants(base.scrollbar);
@@ -108,6 +119,7 @@ export function deriveUISemantics(base) {
     "editor.background": base.surfaceEditor,
     "editor.foreground": base.fgPrimary,
     "editorLineNumber.foreground": mixColors(base.fgMuted, base.surfaceEditor, 0.68),
+    // Blend toward editor bg so line numbers stay subtle without a separate token
     "editorLineNumber.activeForeground": mixColors(base.fgMuted, base.surfaceEditor, 0.42),
     "editorCursor.foreground": base.cursor,
     "editor.selectionBackground": accent.a30,
@@ -231,6 +243,7 @@ export function deriveUISemantics(base) {
   }
 
   const ordered = {};
+  // Emit in catalog order so generated themes diff predictably
   for (const key of WORKBENCH_COLOR_IDS) {
     ordered[key] = colors[key];
   }
