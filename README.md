@@ -3,7 +3,7 @@
 Token-driven dark and light color themes for **VS Code** and **Cursor**, built from palette files and shipped as a single extension.
 
 **Repository:** [github.com/PRIYAANK2510/ether-theme](https://github.com/PRIYAANK2510/ether-theme)  
-**Publisher:** [Priyaank](https://marketplace.visualstudio.com/manage) on the VS Code Marketplace
+**Publisher:** [PRIYAANK2510](https://open-vsx.org/extension/PRIYAANK2510/ether-theme) on Open VSX (Cursor) · [Priyaank](https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme) on VS Code Marketplace
 
 ## Themes
 
