@@ -1,9 +1,34 @@
-# Ether
+<p align="center">
+  <img src="icon.png" width="88" alt="Ether Themes" />
+</p>
 
-Token-driven dark and light color themes for **VS Code** and **Cursor**, built from palette files and shipped as a single extension.
+<h1 align="center">Ether Themes</h1>
 
-**Repository:** [github.com/PRIYAANK2510/ether-theme](https://github.com/PRIYAANK2510/ether-theme)  
-**Publisher:** [PRIYAANK2510](https://open-vsx.org/extension/PRIYAANK2510/ether-theme) on Open VSX (Cursor) · [Priyaank](https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme) on VS Code Marketplace
+<p align="center">
+  <strong>20 token-driven color themes</strong> for VS Code and Cursor — built from palette files, validated for contrast.
+</p>
+
+<p align="center">
+  <a href="https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme"><img src="https://img.shields.io/visual-studio-marketplace/v/Priyaank.ether-theme?label=VS%20Code&color=007ACC&logo=visualstudiocode" alt="VS Code Marketplace version" /></a>
+  <a href="https://open-vsx.org/extension/PRIYAANK2510/ether-theme"><img src="https://img.shields.io/open-vsx/v/PRIYAANK2510/ether-theme?label=Open%20VSX&color=0098FF" alt="Open VSX version" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" /></a>
+</p>
+
+<p align="center">
+  <a href="https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme">Install on VS Code</a>
+  ·
+  <a href="https://open-vsx.org/extension/PRIYAANK2510/ether-theme">Install on Cursor</a>
+  ·
+  <a href="https://github.com/PRIYAANK2510/ether-theme">GitHub</a>
+</p>
+
+---
+
+## Install
+
+Search **Ether Themes** in the Extensions panel, or use the links above.
+
+**Quick pick:** `Ctrl+K Ctrl+T` (Windows/Linux) · `Cmd+K Cmd+T` (macOS)
 
 ## Themes
 
@@ -30,13 +55,17 @@ Token-driven dark and light color themes for **VS Code** and **Cursor**, built f
 | **Ether Terra** | Dark | Terracotta clay | Red earth sienna — desert clay tones, warm organic warmth |
 | **Ether Vesper** | Dark | Rose | Violet-black twilight — dusk lavender text, romantic contrast |
 
-Select a theme via **Preferences: Color Theme** (`Ctrl+K Ctrl+T`).
+## Highlights
 
-## Install
+- **20 themes** — 18 dark and 2 light variants in one extension
+- **Token-driven build** — palette files in `src/palettes/` generate full `.color-theme.json` files
+- **Contrast-aware** — WCAG validation on critical token pairs at build time
+- **Consistent syntax** — 36 shared `tokenColor` rules across every theme
+- **Works in Cursor** — published on Open VSX and the VS Code Marketplace
 
-Search **Ether Themes** in Extensions (VS Code Marketplace or Open VSX).
+## Development
 
-**From source:**
+**Prerequisites:** Node.js 20+, VS Code or Cursor
 
 ```bash
 git clone https://github.com/PRIYAANK2510/ether-theme.git
@@ -45,66 +74,33 @@ npm install
 npm run build
 ```
 
-Press **F5** to preview, or package locally:
+Press **F5** to open the Extension Development Host and preview themes live.
 
-```bash
-npm run package
-code --install-extension releases/ether-theme-*.vsix
-```
-
-## Development
-
-**Prerequisites:** Node.js 20+, VS Code or Cursor
-
-```bash
-npm install
-npm run build
-npm run watch    # auto-rebuild while editing palettes
-```
-
-### Scripts
-
-| Script | When to use |
-|--------|-------------|
+| Script | Purpose |
+|--------|---------|
 | `npm run build` | Generate theme JSON and sync `package.json` |
 | `npm run watch` | Auto-rebuild while editing palettes |
-| `npm run check` | Lint + test + build |
-| `npm run package` | Build a VSIX only |
-| `npm run publish:local` | Package + publish (reads `.env` tokens) |
+| `npm run check` | Lint, test, and build |
+| `npm run package` | Build a `.vsix` locally |
+| `npm run publish:local` | Package and publish (requires `.env` tokens) |
 
-## Adding or removing a theme
+<details>
+<summary><strong>Adding or removing a theme</strong></summary>
 
-**Add:** create `src/palettes/my-theme.js` exporting `{ id, label, type, uiTheme, ui, syntax }`, then `npm run build`.
+**Add:** create `src/palettes/my-theme.js` exporting `{ id, label, type, uiTheme, ui, syntax }`, then run `npm run build`.
 
 **Remove:** delete the palette file and run `npm run build`. Orphan theme JSON and `package.json` entries are removed automatically.
 
-## Publishing
+</details>
 
-Add GitHub secrets **`VSCE_PAT`** and **`OVSX_PAT`**, then:
+<details>
+<summary><strong>Publishing</strong></summary>
 
-```bash
-git add .
-git commit -m "Add Ether Frost theme"
-git push
-```
-
-Pushes that change `src/`, `themes/`, or `package.json` auto-bump the patch version and publish. README-only changes do not release.
+Add GitHub secrets **`VSCE_PAT`** and **`OVSX_PAT`**, then push changes to `src/`, `themes/`, or `package.json` — CI auto-bumps the patch version and publishes.
 
 Manual publish: `npm run publish:local` or **Actions → Release → Run workflow**.
 
-## Architecture
-
-```
-src/
-  build.js              → CLI entry
-  generator/index.js    → compose themes, write JSON, sync package.json
-  workbench/            → core + extension workbench color derivation
-  syntax/rules.js       → tokenColor rules
-  utils/color.js        → chroma helpers + validation
-  palettes/*.js         → per-theme ui + syntax (auto-loaded)
-themes/*.color-theme.json
-scripts/                → publish + version bump (CI)
-```
+</details>
 
 ## License
 
