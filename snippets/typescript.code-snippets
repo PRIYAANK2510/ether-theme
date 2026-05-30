@@ -1,0 +1,311 @@
+{
+  "TypeScript interface": {
+    "prefix": "interface",
+    "body": [
+      "interface ${1:Name} {",
+      "  $0",
+      "}"
+    ],
+    "description": "TypeScript interface"
+  },
+  "TypeScript type alias": {
+    "prefix": "type",
+    "body": "type ${1:Name} = ${2:type};",
+    "description": "TypeScript type alias"
+  },
+  "TypeScript enum": {
+    "prefix": "enum",
+    "body": [
+      "enum ${1:Name} {",
+      "  ${2:Value},",
+      "  $0",
+      "}"
+    ],
+    "description": "TypeScript enum"
+  },
+  "TypeScript function with types": {
+    "prefix": "fn",
+    "body": [
+      "function ${1:name}(${2:params}: ${3:ParamsType}): ${4:ReturnType} {",
+      "  $0",
+      "}"
+    ],
+    "description": "TypeScript function with types"
+  },
+  "TypeScript async function with types": {
+    "prefix": "afn",
+    "body": [
+      "async function ${1:name}(${2:params}: ${3:ParamsType}): Promise<${4:ReturnType}> {",
+      "  $0",
+      "}"
+    ],
+    "description": "TypeScript async function with types"
+  },
+  "TypeScript arrow function with types": {
+    "prefix": "arrow",
+    "body": [
+      "const ${1:name} = (${2:params}: ${3:ParamsType}): ${4:ReturnType} => {",
+      "  $0",
+      "};"
+    ],
+    "description": "TypeScript arrow function with types"
+  },
+  "TypeScript generic function": {
+    "prefix": "gfn",
+    "body": [
+      "function ${1:name}<${2:T}>(${3:param}: ${2:T}): ${4:ReturnType} {",
+      "  $0",
+      "}"
+    ],
+    "description": "TypeScript generic function"
+  },
+  "TypeScript generic type alias": {
+    "prefix": "gtype",
+    "body": "type ${1:Name}<${2:T}> = ${3:type};",
+    "description": "TypeScript generic type alias"
+  },
+  "TypeScript import type": {
+    "prefix": "imtype",
+    "body": "import type { ${1:Type} } from \"${2:module}\";",
+    "description": "TypeScript import type"
+  },
+  "TypeScript export type": {
+    "prefix": "extype",
+    "body": "export type { ${1:Type} };",
+    "description": "TypeScript export type"
+  },
+  "TypeScript satisfies expression": {
+    "prefix": "satisfies",
+    "body": "${1:value} satisfies ${2:Type}",
+    "description": "TypeScript satisfies expression"
+  },
+  "TypeScript as const assertion": {
+    "prefix": "asconst",
+    "body": "${1:value} as const",
+    "description": "TypeScript as const assertion"
+  },
+  "TypeScript Partial utility type": {
+    "prefix": "partial",
+    "body": "Partial<${1:Type}>",
+    "description": "TypeScript Partial utility type"
+  },
+  "TypeScript Pick utility type": {
+    "prefix": "pick",
+    "body": "Pick<${1:Type}, ${2:\"key\"}>",
+    "description": "TypeScript Pick utility type"
+  },
+  "TypeScript Omit utility type": {
+    "prefix": "omit",
+    "body": "Omit<${1:Type}, ${2:\"key\"}>",
+    "description": "TypeScript Omit utility type"
+  },
+  "TypeScript Record utility type": {
+    "prefix": "record",
+    "body": "Record<${1:Key}, ${2:Value}>",
+    "description": "TypeScript Record utility type"
+  },
+  "TypeScript Readonly utility type": {
+    "prefix": "readonly",
+    "body": "Readonly<${1:Type}>",
+    "description": "TypeScript Readonly utility type"
+  },
+  "TypeScript union type": {
+    "prefix": "union",
+    "body": "${1:TypeA} | ${2:TypeB}",
+    "description": "TypeScript union type"
+  },
+  "TypeScript intersection type": {
+    "prefix": "intersect",
+    "body": "${1:TypeA} & ${2:TypeB}",
+    "description": "TypeScript intersection type"
+  },
+  "TypeScript type guard function": {
+    "prefix": "typeguard",
+    "body": [
+      "function is${1:Type}(value: unknown): value is ${1:Type} {",
+      "  return $0;",
+      "}"
+    ],
+    "description": "TypeScript type guard function"
+  },
+  "TypeScript class with typed constructor": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name} {",
+      "  constructor(private readonly ${2:prop}: ${3:Type}) {",
+      "    $0",
+      "  }",
+      "}"
+    ],
+    "description": "TypeScript class with typed constructor"
+  },
+  "TypeScript try catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "  $1",
+      "} catch (error) {",
+      "  $0",
+      "}"
+    ],
+    "description": "TypeScript try catch"
+  },
+  "TypeScript import statement": {
+    "prefix": "im",
+    "body": "import ${1:module} from \"${2:module}\";",
+    "description": "TypeScript import statement"
+  },
+  "TypeScript named import": {
+    "prefix": "imd",
+    "body": "import { ${1:member} } from \"${2:module}\";",
+    "description": "TypeScript named import"
+  },
+  "TypeScript export default": {
+    "prefix": "exd",
+    "body": "export default ${1:value};",
+    "description": "TypeScript export default"
+  },
+  "TypeScript const object assertion": {
+    "prefix": "constobj",
+    "body": [
+      "const ${1:name} = {",
+      "  $0",
+      "} as const;"
+    ],
+    "description": "TypeScript const object assertion"
+  },
+  "TypeScript discriminated union": {
+    "prefix": "discriminated",
+    "body": [
+      "type ${1:Result} =",
+      "  | { status: \"success\"; data: ${2:DataType} }",
+      "  | { status: \"error\"; error: Error };"
+    ],
+    "description": "TypeScript discriminated union"
+  },
+  "TypeScript Required utility type": {
+    "prefix": "required",
+    "body": "Required<${1:Type}>",
+    "description": "TypeScript Required utility type"
+  },
+  "TypeScript NonNullable utility type": {
+    "prefix": "nonnullable",
+    "body": "NonNullable<${1:Type}>",
+    "description": "TypeScript NonNullable utility type"
+  },
+  "TypeScript Extract utility type": {
+    "prefix": "extract",
+    "body": "Extract<${1:Union}, ${2:Member}>",
+    "description": "TypeScript Extract utility type"
+  },
+  "TypeScript Exclude utility type": {
+    "prefix": "exclude",
+    "body": "Exclude<${1:Union}, ${2:Member}>",
+    "description": "TypeScript Exclude utility type"
+  },
+  "TypeScript ReturnType utility type": {
+    "prefix": "returntype",
+    "body": "ReturnType<typeof ${1:fn}>",
+    "description": "TypeScript ReturnType utility type"
+  },
+  "TypeScript Parameters utility type": {
+    "prefix": "parameters",
+    "body": "Parameters<typeof ${1:fn}>",
+    "description": "TypeScript Parameters utility type"
+  },
+  "TypeScript Awaited utility type": {
+    "prefix": "awaited",
+    "body": "Awaited<${1:PromiseType}>",
+    "description": "TypeScript Awaited utility type"
+  },
+  "TypeScript keyof type": {
+    "prefix": "keyof",
+    "body": "keyof ${1:Type}",
+    "description": "TypeScript keyof type"
+  },
+  "TypeScript typeof type query": {
+    "prefix": "typeof",
+    "body": "typeof ${1:value}",
+    "description": "TypeScript typeof type query"
+  },
+  "TypeScript assertNever exhaustiveness helper": {
+    "prefix": "assertnever",
+    "body": [
+      "function assertNever(value: never): never {",
+      "  throw new Error(`Unexpected value: ${String(value)}`);",
+      "}"
+    ],
+    "description": "TypeScript assertNever exhaustiveness helper"
+  },
+  "TypeScript typed fetch helper": {
+    "prefix": "fetch",
+    "body": [
+      "async function fetch${1:Resource}(url: string, init?: RequestInit): Promise<${2:ResponseType}> {",
+      "  const response = await fetch(url, {",
+      "    ...init,",
+      "    headers: {",
+      "      Accept: \"application/json\",",
+      "      ...init?.headers,",
+      "    },",
+      "  });",
+      "",
+      "  if (!response.ok) {",
+      "    throw new Error(`Request failed: ${response.status}`);",
+      "  }",
+      "",
+      "  return response.json() as Promise<${2:ResponseType}>;",
+      "}"
+    ],
+    "description": "TypeScript typed fetch helper"
+  },
+  "TypeScript Result type alias": {
+    "prefix": "result",
+    "body": "type Result<T, E = Error> = { ok: true; value: T } | { ok: false; error: E };",
+    "description": "TypeScript Result type alias"
+  },
+  "TypeScript branded type": {
+    "prefix": "branded",
+    "body": [
+      "type ${1:Brand} = ${2:string} & { readonly __brand: unique symbol };",
+      "",
+      "function create${1:Brand}(value: ${2:string}): ${1:Brand} {",
+      "  return value as ${1:Brand};",
+      "}"
+    ],
+    "description": "TypeScript branded type"
+  },
+  "TypeScript try catch with error narrowing": {
+    "prefix": "trynarrow",
+    "body": [
+      "try {",
+      "  $1",
+      "} catch (error) {",
+      "  if (error instanceof Error) {",
+      "    $0",
+      "  } else {",
+      "    throw error;",
+      "  }",
+      "}"
+    ],
+    "description": "TypeScript try catch with error narrowing"
+  },
+  "TypeScript const enum": {
+    "prefix": "constenum",
+    "body": [
+      "const enum ${1:Name} {",
+      "  ${2:Value},",
+      "  $0",
+      "}"
+    ],
+    "description": "TypeScript const enum"
+  },
+  "TypeScript DeepPartial recursive type": {
+    "prefix": "deeppartial",
+    "body": [
+      "type DeepPartial<T> = {",
+      "  [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];",
+      "};"
+    ],
+    "description": "TypeScript DeepPartial recursive type"
+  }
+}

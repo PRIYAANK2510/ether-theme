@@ -1,0 +1,743 @@
+{
+  "React functional component": {
+    "prefix": "rfc",
+    "body": [
+      "export function ${1:Component}() {",
+      "  return (",
+      "    <${2:div} className=\"${3:}\">",
+      "      $0",
+      "    </${2:div}>",
+      "  );",
+      "}"
+    ],
+    "description": "React functional component"
+  },
+  "React default export component": {
+    "prefix": "rfcde",
+    "body": [
+      "export default function ${1:Component}() {",
+      "  return (",
+      "    <${2:div}>",
+      "      $0",
+      "    </${2:div}>",
+      "  );",
+      "}"
+    ],
+    "description": "React default export component"
+  },
+  "React arrow function component": {
+    "prefix": "rfca",
+    "body": [
+      "export const ${1:Component} = (${2:props}) => {",
+      "  return (",
+      "    <${3:div}>",
+      "      $0",
+      "    </${3:div}>",
+      "  );",
+      "};"
+    ],
+    "description": "React arrow function component"
+  },
+  "React memo component": {
+    "prefix": "rfcmemo",
+    "body": [
+      "import { memo } from \"react\";",
+      "",
+      "export const ${1:Component} = memo(function ${1:Component}(${2:props}) {",
+      "  return (",
+      "    <${3:div}>",
+      "      $0",
+      "    </${3:div}>",
+      "  );",
+      "});",
+      "",
+      "${1:Component}.displayName = \"${1:Component}\";"
+    ],
+    "description": "React memo component"
+  },
+  "React forwardRef component": {
+    "prefix": "rfcforwardref",
+    "body": [
+      "import { forwardRef } from \"react\";",
+      "",
+      "export const ${1:Component} = forwardRef(function ${1:Component}(${2:props}, ref) {",
+      "  return (",
+      "    <${3:div} ref={ref}>",
+      "      $0",
+      "    </${3:div}>",
+      "  );",
+      "});",
+      "",
+      "${1:Component}.displayName = \"${1:Component}\";"
+    ],
+    "description": "React forwardRef component"
+  },
+  "React lazy loaded component": {
+    "prefix": "rfclazy",
+    "body": [
+      "import { lazy, Suspense } from \"react\";",
+      "",
+      "const ${1:Component} = lazy(() => import(\"./${1:Component}\"));",
+      "",
+      "export function ${1:Component}Loader(${2:props}) {",
+      "  return (",
+      "    <Suspense fallback={<div role=\"status\" aria-live=\"polite\">Loading...</div>}>",
+      "      <${1:Component} {...${2:props}} />",
+      "    </Suspense>",
+      "  );",
+      "}"
+    ],
+    "description": "React lazy loaded component"
+  },
+  "React client component directive": {
+    "prefix": "rfcclient",
+    "body": [
+      "\"use client\";",
+      "",
+      "import { useState } from \"react\";",
+      "",
+      "export function ${1:Component}() {",
+      "  const [${2:state}, set${2/(.*)/${2:/capitalize}/}] = useState(${3:null});",
+      "",
+      "  return (",
+      "    <${4:div}>",
+      "      $0",
+      "    </${4:div}>",
+      "  );",
+      "}"
+    ],
+    "description": "React client component directive"
+  },
+  "React async server component": {
+    "prefix": "rfcserver",
+    "body": [
+      "export async function ${1:Component}(${2:props}) {",
+      "  const ${3:data} = await ${4:fetchData}();",
+      "",
+      "  return (",
+      "    <${5:div}>",
+      "      $0",
+      "    </${5:div}>",
+      "  );",
+      "}"
+    ],
+    "description": "React async server component"
+  },
+  "React onClick handler": {
+    "prefix": "rfonClick",
+    "body": [
+      "const handle${1:Click} = (event) => {",
+      "  event.preventDefault();",
+      "  $0",
+      "};"
+    ],
+    "description": "React onClick handler"
+  },
+  "React onChange handler": {
+    "prefix": "rfonChange",
+    "body": [
+      "const handle${1:Change} = (event) => {",
+      "  const { name, value } = event.target;",
+      "  $0",
+      "};"
+    ],
+    "description": "React onChange handler"
+  },
+  "React onSubmit handler": {
+    "prefix": "rfonSubmit",
+    "body": [
+      "const handle${1:Submit} = async (event) => {",
+      "  event.preventDefault();",
+      "",
+      "  try {",
+      "    $0",
+      "  } catch (error) {",
+      "    console.error(error);",
+      "  }",
+      "};"
+    ],
+    "description": "React onSubmit handler"
+  },
+  "React useState destructure": {
+    "prefix": "rfstate",
+    "body": "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:initial});",
+    "description": "React useState destructure"
+  },
+  "React fragment shorthand": {
+    "prefix": "rf<>",
+    "body": [
+      "<>",
+      "  $0",
+      "</>"
+    ],
+    "description": "React fragment shorthand"
+  },
+  "React conditional render": {
+    "prefix": "rfcond",
+    "body": [
+      "{${1:condition} ? (",
+      "  ${2:<div>Content</div>}",
+      ") : null}"
+    ],
+    "description": "React conditional render"
+  },
+  "React ternary render": {
+    "prefix": "rfternary",
+    "body": [
+      "{${1:condition} ? (",
+      "  ${2:<div>True</div>}",
+      ") : (",
+      "  ${3:<div>False</div>}",
+      ")}"
+    ],
+    "description": "React ternary render"
+  },
+  "React map over array": {
+    "prefix": "rfmap",
+    "body": [
+      "{${1:items}.map((${2:item}) => (",
+      "  <${3:li} key={${2:item}.${4:id}}>",
+      "    $0",
+      "  </${3:li}>",
+      "))}"
+    ],
+    "description": "React map over array"
+  },
+  "React accessible button": {
+    "prefix": "rfbtn",
+    "body": [
+      "<button",
+      "  type=\"${1|button,submit,reset|}\"",
+      "  onClick={handle${2:Click}}",
+      "  aria-label=\"${3:Action}\"",
+      "  disabled={${4:isDisabled}}",
+      ">",
+      "  $0",
+      "</button>"
+    ],
+    "description": "React accessible button"
+  },
+  "React accessible anchor link": {
+    "prefix": "rfalink",
+    "body": [
+      "<a href=\"${1:#}\" aria-label=\"${2:Description}\">",
+      "  $0",
+      "</a>"
+    ],
+    "description": "React accessible anchor link"
+  },
+  "React labeled accessible input": {
+    "prefix": "rflabelinput",
+    "body": [
+      "<label htmlFor=\"${1:input-id}\">",
+      "  ${2:Label}",
+      "  <input",
+      "    id=\"${1:input-id}\"",
+      "    name=\"${3:name}\"",
+      "    type=\"${4|text,email,password,search,tel,url|}\"",
+      "    value={${5:value}}",
+      "    onChange={handleChange}",
+      "    required",
+      "    aria-required=\"true\"",
+      "  />",
+      "</label>"
+    ],
+    "description": "React labeled accessible input"
+  },
+  "Import React": {
+    "prefix": "rfim",
+    "body": "import ${1|*,{ }|} from \"react\";",
+    "description": "Import React"
+  },
+  "Import React hook": {
+    "prefix": "rfimh",
+    "body": "import { ${1|useState,useEffect,useCallback,useMemo,useRef,useReducer,useContext|} } from \"react\";",
+    "description": "Import React hook"
+  },
+  "React Testing Library render test": {
+    "prefix": "rftest",
+    "body": [
+      "import { render, screen } from \"@testing-library/react\";",
+      "import { ${1:Component} } from \"./${1:Component}\";",
+      "",
+      "describe(\"${1:Component}\", () => {",
+      "  it(\"${2:renders correctly}\", () => {",
+      "    render(<${1:Component} />);",
+      "    expect(screen.getByRole(\"${3:button}\", { name: /${4:text}/i })).toBeInTheDocument();",
+      "  });",
+      "});"
+    ],
+    "description": "React Testing Library render test"
+  },
+  "React useState hook": {
+    "prefix": "usestate",
+    "body": "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:initial});",
+    "description": "React useState hook"
+  },
+  "React useEffect hook": {
+    "prefix": "useeffect",
+    "body": [
+      "useEffect(() => {",
+      "  $0",
+      "}, [${1:dependencies}]);"
+    ],
+    "description": "React useEffect hook"
+  },
+  "React useEffect with cleanup": {
+    "prefix": "useeffectcl",
+    "body": [
+      "useEffect(() => {",
+      "  $1",
+      "",
+      "  return () => {",
+      "    $0",
+      "  };",
+      "}, [${2:dependencies}]);"
+    ],
+    "description": "React useEffect with cleanup"
+  },
+  "React useCallback hook": {
+    "prefix": "usecallback",
+    "body": [
+      "const ${1:handler} = useCallback((${2:args}) => {",
+      "  $0",
+      "}, [${3:dependencies}]);"
+    ],
+    "description": "React useCallback hook"
+  },
+  "React useMemo hook": {
+    "prefix": "usememo",
+    "body": [
+      "const ${1:value} = useMemo(() => {",
+      "  return $0;",
+      "}, [${2:dependencies}]);"
+    ],
+    "description": "React useMemo hook"
+  },
+  "React useRef hook": {
+    "prefix": "useref",
+    "body": "const ${1:ref} = useRef(${2:null});",
+    "description": "React useRef hook"
+  },
+  "React useReducer hook": {
+    "prefix": "usereducer",
+    "body": "const [${1:state}, ${2:dispatch}] = useReducer(${3:reducer}, ${4:initialState});",
+    "description": "React useReducer hook"
+  },
+  "React reducer function with action types": {
+    "prefix": "reducer",
+    "body": [
+      "function ${1:feature}Reducer(state, action) {",
+      "  switch (action.type) {",
+      "    case \"${2:SET_VALUE}\":",
+      "      return { ...state, ${3:value}: action.payload };",
+      "    default:",
+      "      return state;",
+      "  }",
+      "}"
+    ],
+    "description": "React reducer function with action types"
+  },
+  "React useContext hook": {
+    "prefix": "usecontext",
+    "body": "const ${1:context} = useContext(${2:Context});",
+    "description": "React useContext hook"
+  },
+  "React useLayoutEffect hook": {
+    "prefix": "uselayouteffect",
+    "body": [
+      "useLayoutEffect(() => {",
+      "  $0",
+      "}, [${1:dependencies}]);"
+    ],
+    "description": "React useLayoutEffect hook"
+  },
+  "React useImperativeHandle hook": {
+    "prefix": "useimperativehandle",
+    "body": [
+      "useImperativeHandle(ref, () => ({",
+      "  ${1:focus}: () => {",
+      "    $0",
+      "  },",
+      "}), [${2:dependencies}]);"
+    ],
+    "description": "React useImperativeHandle hook"
+  },
+  "React useId hook": {
+    "prefix": "useid",
+    "body": "const ${1:id} = useId();",
+    "description": "React useId hook"
+  },
+  "React useDeferredValue hook": {
+    "prefix": "usedeferredvalue",
+    "body": "const ${1:deferredValue} = useDeferredValue(${2:value});",
+    "description": "React useDeferredValue hook"
+  },
+  "React useTransition hook": {
+    "prefix": "usetransition",
+    "body": [
+      "const [${1:isPending}, ${2:startTransition}] = useTransition();",
+      "",
+      "${2:startTransition}(() => {",
+      "  $0",
+      "});"
+    ],
+    "description": "React useTransition hook"
+  },
+  "React useActionState hook": {
+    "prefix": "useactionstate",
+    "body": [
+      "const [${1:state}, ${2:formAction}, ${3:isPending}] = useActionState(${4:action}, ${5:initialState});"
+    ],
+    "description": "React useActionState hook"
+  },
+  "React use() for promises and context": {
+    "prefix": "use",
+    "body": "const ${1:value} = use(${2:promiseOrContext});",
+    "description": "React use() for promises and context"
+  },
+  "React custom hook": {
+    "prefix": "usehook",
+    "body": [
+      "export function use${1:Hook}(${2:params}) {",
+      "  $0",
+      "  return ${3:value};",
+      "}"
+    ],
+    "description": "React custom hook"
+  },
+  "React useDebounce custom hook": {
+    "prefix": "usedebounce",
+    "body": [
+      "export function useDebounce(${1:value}, ${2:delayMs} = 300) {",
+      "  const [debouncedValue, setDebouncedValue] = useState(${1:value});",
+      "",
+      "  useEffect(() => {",
+      "    const timer = window.setTimeout(() => setDebouncedValue(${1:value}), ${2:delayMs});",
+      "    return () => window.clearTimeout(timer);",
+      "  }, [${1:value}, ${2:delayMs}]);",
+      "",
+      "  return debouncedValue;",
+      "}"
+    ],
+    "description": "React useDebounce custom hook"
+  },
+  "React useLocalStorage custom hook": {
+    "prefix": "uselocalstorage",
+    "body": [
+      "export function useLocalStorage(${1:key}, ${2:initialValue}) {",
+      "  const [value, setValue] = useState(() => {",
+      "    try {",
+      "      const stored = window.localStorage.getItem(${1:key});",
+      "      return stored ? JSON.parse(stored) : ${2:initialValue};",
+      "    } catch {",
+      "      return ${2:initialValue};",
+      "    }",
+      "  });",
+      "",
+      "  useEffect(() => {",
+      "    window.localStorage.setItem(${1:key}, JSON.stringify(value));",
+      "  }, [${1:key}, value]);",
+      "",
+      "  return [value, setValue];",
+      "}"
+    ],
+    "description": "React useLocalStorage custom hook"
+  },
+  "React useMediaQuery custom hook": {
+    "prefix": "usemediaquery",
+    "body": [
+      "export function useMediaQuery(${1:query}) {",
+      "  const [matches, setMatches] = useState(() => window.matchMedia(${1:query}).matches);",
+      "",
+      "  useEffect(() => {",
+      "    const mediaQuery = window.matchMedia(${1:query});",
+      "    const handler = (event) => setMatches(event.matches);",
+      "",
+      "    mediaQuery.addEventListener(\"change\", handler);",
+      "    return () => mediaQuery.removeEventListener(\"change\", handler);",
+      "  }, [${1:query}]);",
+      "",
+      "  return matches;",
+      "}"
+    ],
+    "description": "React useMediaQuery custom hook"
+  },
+  "React useSyncExternalStore hook": {
+    "prefix": "usesyncexternalstore",
+    "body": [
+      "const ${1:snapshot} = useSyncExternalStore(",
+      "  ${2:subscribe},",
+      "  ${3:getSnapshot},",
+      "  ${4:getServerSnapshot},",
+      ");"
+    ],
+    "description": "React useSyncExternalStore hook"
+  },
+  "React useEventListener custom hook": {
+    "prefix": "useeventlistener",
+    "body": [
+      "export function useEventListener(${1:eventName}, ${2:handler}, ${3:element} = window) {",
+      "  const savedHandler = useRef(${2:handler});",
+      "",
+      "  useEffect(() => {",
+      "    savedHandler.current = ${2:handler};",
+      "  }, [${2:handler}]);",
+      "",
+      "  useEffect(() => {",
+      "    if (!${3:element}) return;",
+      "",
+      "    const listener = (event) => savedHandler.current(event);",
+      "    ${3:element}.addEventListener(${1:eventName}, listener);",
+      "    return () => ${3:element}.removeEventListener(${1:eventName}, listener);",
+      "  }, [${1:eventName}, ${3:element}]);",
+      "}"
+    ],
+    "description": "React useEventListener custom hook"
+  },
+  "React createContext with provider": {
+    "prefix": "rfctx",
+    "body": [
+      "import { createContext, useContext, useMemo } from \"react\";",
+      "",
+      "const ${1:Context} = createContext(undefined);",
+      "",
+      "export function ${1:Context}Provider({ children }) {",
+      "  const value = useMemo(() => ({",
+      "    $0",
+      "  }), []);",
+      "",
+      "  return (",
+      "    <${1:Context}.Provider value={value}>{children}</${1:Context}.Provider>",
+      "  );",
+      "}"
+    ],
+    "description": "React createContext with provider"
+  },
+  "React context consumer hook": {
+    "prefix": "rfctxhook",
+    "body": [
+      "export function use${1:Context}() {",
+      "  const context = useContext(${1:Context});",
+      "  if (context === undefined) {",
+      "    throw new Error(\"use${1:Context} must be used within a ${1:Context}Provider\");",
+      "  }",
+      "  return context;",
+      "}"
+    ],
+    "description": "React context consumer hook"
+  },
+  "React error boundary class": {
+    "prefix": "rferrorboundary",
+    "body": [
+      "import { Component } from \"react\";",
+      "",
+      "class ${1:ErrorBoundary} extends Component {",
+      "  constructor(props) {",
+      "    super(props);",
+      "    this.state = { hasError: false, error: null };",
+      "  }",
+      "",
+      "  static getDerivedStateFromError(error) {",
+      "    return { hasError: true, error };",
+      "  }",
+      "",
+      "  componentDidCatch(error, errorInfo) {",
+      "    console.error(error, errorInfo);",
+      "    $0",
+      "  }",
+      "",
+      "  render() {",
+      "    if (this.state.hasError) {",
+      "      return ${2:<div role=\"alert\">Something went wrong.</div>};",
+      "    }",
+      "    return this.props.children;",
+      "  }",
+      "}"
+    ],
+    "description": "React error boundary class"
+  },
+  "React Suspense wrapper": {
+    "prefix": "rfsuspense",
+    "body": [
+      "<Suspense fallback={<${1:div} role=\"status\" aria-live=\"polite\">Loading...</${1:div}>}>",
+      "  $0",
+      "</Suspense>"
+    ],
+    "description": "React Suspense wrapper"
+  },
+  "React createPortal": {
+    "prefix": "rfportal",
+    "body": [
+      "import { createPortal } from \"react-dom\";",
+      "",
+      "return createPortal(",
+      "  ${1:<div>Content</div>},",
+      "  document.getElementById(\"${2:portal-root}\")!,",
+      ");"
+    ],
+    "description": "React createPortal"
+  },
+  "React StrictMode wrapper": {
+    "prefix": "rfstrict",
+    "body": [
+      "<StrictMode>",
+      "  $0",
+      "</StrictMode>"
+    ],
+    "description": "React StrictMode wrapper"
+  },
+  "React props spread": {
+    "prefix": "rfspread",
+    "body": "<${1:Component} {...${2:props}} $0 />",
+    "description": "React props spread"
+  },
+  "React controlled input": {
+    "prefix": "rfinput",
+    "body": [
+      "<input",
+      "  id=\"${1:input-id}\"",
+      "  name=\"${2:name}\"",
+      "  type=\"${3:text}\"",
+      "  value={${4:value}}",
+      "  onChange={(event) => set${4/(.*)/${4:/capitalize}/}(event.target.value)}",
+      "  aria-label=\"${5:Label}\"",
+      "  $0",
+      "/>"
+    ],
+    "description": "React controlled input"
+  },
+  "React form with submit handler": {
+    "prefix": "rfform",
+    "body": [
+      "<form onSubmit={handleSubmit} noValidate>",
+      "  $0",
+      "  <button type=\"submit\" disabled={${1:isSubmitting}}>",
+      "    ${2:Submit}",
+      "  </button>",
+      "</form>"
+    ],
+    "description": "React form with submit handler"
+  },
+  "React 19 form with action": {
+    "prefix": "rfformaction",
+    "body": [
+      "<form action={${1:formAction}}>",
+      "  $0",
+      "  <button type=\"submit\" disabled={${2:isPending}}>",
+      "    ${3:Submit}",
+      "  </button>",
+      "</form>"
+    ],
+    "description": "React 19 form with action"
+  },
+  "React useEffect fetch with AbortController": {
+    "prefix": "rffetch",
+    "body": [
+      "useEffect(() => {",
+      "  const controller = new AbortController();",
+      "",
+      "  async function fetchData() {",
+      "    try {",
+      "      const response = await fetch(\"${1:/api/data}\", {",
+      "        signal: controller.signal,",
+      "        headers: { Accept: \"application/json\" },",
+      "      });",
+      "",
+      "      if (!response.ok) {",
+      "        throw new Error(`Request failed: ${response.status}`);",
+      "      }",
+      "",
+      "      const data = await response.json();",
+      "      $0",
+      "    } catch (error) {",
+      "      if (error.name !== \"AbortError\") {",
+      "        console.error(error);",
+      "      }",
+      "    }",
+      "  }",
+      "",
+      "  fetchData();",
+      "  return () => controller.abort();",
+      "}, [${2:dependencies}]);"
+    ],
+    "description": "React useEffect fetch with AbortController"
+  },
+  "React data fetching with loading and error states": {
+    "prefix": "rfquery",
+    "body": [
+      "const [${1:data}, set${1/(.*)/${1:/capitalize}/}] = useState(null);",
+      "const [${2:isLoading}, set${2/(.*)/${2:/capitalize}/}] = useState(true);",
+      "const [${3:error}, set${3/(.*)/${3:/capitalize}/}] = useState(null);",
+      "",
+      "useEffect(() => {",
+      "  let cancelled = false;",
+      "",
+      "  async function load() {",
+      "    set${2/(.*)/${2:/capitalize}/}(true);",
+      "    set${3/(.*)/${3:/capitalize}/}(null);",
+      "",
+      "    try {",
+      "      const response = await fetch(\"${4:/api/data}\");",
+      "      if (!response.ok) throw new Error(`Request failed: ${response.status}`);",
+      "      const result = await response.json();",
+      "      if (!cancelled) set${1/(.*)/${1:/capitalize}/}(result);",
+      "    } catch (err) {",
+      "      if (!cancelled) set${3/(.*)/${3:/capitalize}/}(err);",
+      "    } finally {",
+      "      if (!cancelled) set${2/(.*)/${2:/capitalize}/}(false);",
+      "    }",
+      "  }",
+      "",
+      "  load();",
+      "  return () => { cancelled = true; };",
+      "}, [${5:dependencies}]);",
+      "",
+      "if (${2:isLoading}) return <div role=\"status\">Loading...</div>;",
+      "if (${3:error}) return <div role=\"alert\">Failed to load data.</div>;",
+      "if (!${1:data}) return null;"
+    ],
+    "description": "React data fetching with loading and error states"
+  },
+  "React compound component pattern": {
+    "prefix": "rfcompound",
+    "body": [
+      "function ${1:Card}({ children }) {",
+      "  return <article className=\"card\">{children}</article>;",
+      "}",
+      "",
+      "${1:Card}.Header = function ${1:Card}Header({ children }) {",
+      "  return <header className=\"card__header\">{children}</header>;",
+      "};",
+      "",
+      "${1:Card}.Body = function ${1:Card}Body({ children }) {",
+      "  return <div className=\"card__body\">{children}</div>;",
+      "};",
+      "",
+      "export { ${1:Card} };"
+    ],
+    "description": "React compound component pattern"
+  },
+  "React optimistic UI update pattern": {
+    "prefix": "rfoptimistic",
+    "body": [
+      "const [${1:items}, set${1/(.*)/${1:/capitalize}/}] = useState([]);",
+      "const [${2:isPending}, startTransition] = useTransition();",
+      "",
+      "function handle${3:Action}(${4:item}) {",
+      "  const previous = ${1:items};",
+      "  set${1/(.*)/${1:/capitalize}/}((current) => [...current, ${4:item}]);",
+      "",
+      "  startTransition(async () => {",
+      "    try {",
+      "      await ${5:saveItem}(${4:item});",
+      "    } catch (error) {",
+      "      set${1/(.*)/${1:/capitalize}/}(previous);",
+      "      console.error(error);",
+      "    }",
+      "  });",
+      "}"
+    ],
+    "description": "React optimistic UI update pattern"
+  }
+}

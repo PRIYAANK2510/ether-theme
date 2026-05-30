@@ -1,4 +1,5 @@
 import { loadPalettes, generateAllThemes } from "./generator/index.js";
+import { generateAllSnippets } from "./snippets/generator.js";
 
 const palettes = await loadPalettes();
 
@@ -23,3 +24,16 @@ if (removedFiles.length > 0) {
 }
 
 console.log(`Synced ${contributions.length} theme contribution(s) to package.json`);
+
+const {
+  catalogCount,
+  generatedFiles: snippetFiles,
+  contributions: snippetContributions,
+} = await generateAllSnippets();
+
+console.log(`Generated ${snippetFiles.length} snippet file(s) from ${catalogCount} definitions:`);
+for (const file of snippetFiles) {
+  console.log(`  - ${file}`);
+}
+
+console.log(`Synced ${snippetContributions.length} snippet contribution(s) to package.json`);

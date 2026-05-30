@@ -5,7 +5,7 @@
 <h1 align="center">Ether Themes</h1>
 
 <p align="center">
-  <strong>20 token-driven color themes</strong> for VS Code and Cursor — built from palette files, validated for contrast.
+  <strong>20 token-driven color themes</strong> and <strong>223 web development snippets</strong> for VS Code and Cursor.
 </p>
 
 <p align="center">
@@ -58,10 +58,93 @@ Search **Ether Themes** in the Extensions panel, or use the links above.
 ## Highlights
 
 - **20 themes** — 18 dark and 2 light variants in one extension
+- **223 snippets** — production-ready React, JavaScript, TypeScript, HTML, and CSS templates
 - **Token-driven build** — palette files in `src/palettes/` generate full `.color-theme.json` files
 - **Contrast-aware** — WCAG validation on critical token pairs at build time
 - **Consistent syntax** — 36 shared `tokenColor` rules across every theme
 - **Works in Cursor** — published on Open VSX and the VS Code Marketplace
+
+## Snippets
+
+Ether ships **223 snippets** across six language scopes. Type a prefix in an editor file and accept the suggestion to insert the template.
+
+| Language | File types | Count | Example prefixes |
+|----------|------------|------:|------------------|
+| **JavaScript** | `.js`, `.mjs`, `.cjs` | 43 | `fn`, `fetch`, `debounce`, `groupby`, `pipe`, `addevent` |
+| **TypeScript** | `.ts` | 43 | `interface`, `discriminated`, `returntype`, `branded`, `fetch` |
+| **React (JSX)** | `.jsx` | 58 | `rfc`, `rfcserver`, `usedebounce`, `rfquery`, `rfcompound` |
+| **React (TSX)** | `.tsx` | 63 | `rfc`, `rfpropschildren`, `useactionstate`, `rferrorboundary` |
+| **HTML** | `.html`, `.htm` | 37 | `html5`, `og`, `dialog`, `table`, `layout`, `datalist` |
+| **CSS** | `.css` | 37 | `flexcenter`, `modernreset`, `fluidtype`, `darkmode`, `layer` |
+
+### React and JSX/TSX
+
+| Prefix | Description |
+|--------|-------------|
+| `rfc` | Functional component |
+| `rfcserver` | Async server component |
+| `rfcde` | Default export component |
+| `rfca` | Arrow function component |
+| `rfcmemo` | `memo` component with `displayName` |
+| `rfcforwardref` | `forwardRef` with `ComponentPropsWithoutRef` |
+| `rfclazy` | Lazy loaded component with accessible fallback |
+| `usestate` | `useState` hook |
+| `useeffect` | `useEffect` hook |
+| `useactionstate` | React 19 `useActionState` |
+| `usedebounce` | Debounce custom hook |
+| `uselocalstorage` | Local storage sync hook |
+| `usecallback` | `useCallback` hook |
+| `usememo` | `useMemo` hook |
+| `usehook` | Custom hook scaffold |
+| `rfctx` | Context provider with `useMemo` value |
+| `rferrorboundary` | Error boundary with fallback prop |
+| `rfsuspense` | Suspense wrapper |
+| `rffetch` | Fetch with `AbortController` + `response.ok` |
+| `rfquery` | Loading / error / data fetch pattern |
+| `rfcompound` | Compound component pattern |
+
+### JavaScript and TypeScript
+
+| Prefix | Description |
+|--------|-------------|
+| `fn` | Function declaration |
+| `fetch` | Fetch with headers and error handling |
+| `debounce` / `throttle` | Utility timing helpers |
+| `arrow` | Arrow function |
+| `im` / `imd` | Import / named import |
+| `try` | Try/catch |
+| `interface` | TypeScript interface |
+| `discriminated` | Discriminated union |
+| `returntype` / `parameters` | Utility type helpers |
+| `gfn` | Generic function |
+| `satisfies` | `satisfies` expression |
+
+### HTML and CSS
+
+| Prefix | Description |
+|--------|-------------|
+| `html5` | Full HTML5 boilerplate with skip link |
+| `og` | Open Graph meta tags |
+| `viewport` | Viewport meta tag |
+| `dialog` | Native dialog element |
+| `form` / `input` / `button` | Form controls |
+| `table` | Accessible data table |
+| `skiplink` | Skip to content link |
+| `flexcenter` / `flexcol` | Flexbox layouts |
+| `modernreset` | Modern CSS reset |
+| `grid` / `gridcenter` | Grid layouts |
+| `media` / `darkmode` | Responsive and theme queries |
+| `keyframes` | CSS animation keyframes |
+| `vars` | CSS custom properties |
+
+<details>
+<summary><strong>Adding or editing snippets</strong></summary>
+
+Add a definition to a file in `src/snippets/catalog/`, then run `npm run build`. Snippet JSON and `package.json` contributions are regenerated automatically.
+
+Each definition needs `key`, `prefix`, `description`, `body`, and `languages`. Use `variants` for language-specific overrides (for example typed TSX bodies).
+
+</details>
 
 ## Development
 
@@ -78,7 +161,7 @@ Press **F5** to open the Extension Development Host and preview themes live.
 
 | Script | Purpose |
 |--------|---------|
-| `npm run build` | Generate theme JSON and sync `package.json` |
+| `npm run build` | Generate theme JSON, snippet files, and sync `package.json` |
 | `npm run watch` | Auto-rebuild while editing palettes |
 | `npm run check` | Lint, test, and build |
 | `npm run package` | Build a `.vsix` locally |

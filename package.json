@@ -1,9 +1,9 @@
 {
   "name": "ether-theme",
   "displayName": "Ether Themes",
-  "description": "Token-driven color themes for VS Code and Cursor.",
+  "description": "Token-driven color themes and web development snippets for VS Code and Cursor.",
   "publisher": "PRIYAANK2510",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "icon": "icon.png",
   "type": "module",
   "license": "MIT",
@@ -12,7 +12,8 @@
     "vscode": "^1.85.0"
   },
   "categories": [
-    "Themes"
+    "Themes",
+    "Snippets"
   ],
   "repository": {
     "type": "git",
@@ -26,7 +27,13 @@
     "theme",
     "color-theme",
     "dark",
-    "ether"
+    "ether",
+    "snippets",
+    "react",
+    "typescript",
+    "javascript",
+    "html",
+    "css"
   ],
   "contributes": {
     "themes": [
@@ -129,6 +136,32 @@
         "label": "Ether Vesper",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-vesper.color-theme.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/javascriptreact.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/typescriptreact.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.code-snippets"
+      },
+      {
+        "language": "css",
+        "path": "./snippets/css.code-snippets"
       }
     ]
   },

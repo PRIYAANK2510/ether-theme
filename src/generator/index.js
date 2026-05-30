@@ -51,7 +51,10 @@ export function writeThemeFile(id, theme) {
 
 export function syncPackageContributions(contributions) {
   const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
-  packageJson.contributes.themes = contributions;
+  packageJson.contributes = {
+    ...packageJson.contributes,
+    themes: contributions,
+  };
   writeFileSync(
     packageJsonPath,
     `${JSON.stringify(packageJson, null, 2)}\n`,

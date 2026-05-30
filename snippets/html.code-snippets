@@ -1,0 +1,339 @@
+{
+  "HTML5 document boilerplate": {
+    "prefix": "html5",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"${1:en}\">",
+      "<head>",
+      "  <meta charset=\"UTF-8\">",
+      "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "  <meta name=\"description\" content=\"${2:Page description}\">",
+      "  <meta name=\"theme-color\" content=\"${3:#ffffff}\">",
+      "  <title>${4:Document}</title>",
+      "  <link rel=\"icon\" href=\"${5:/favicon.ico}\" sizes=\"any\">",
+      "  <link rel=\"stylesheet\" href=\"${6:/styles.css}\">",
+      "  $0",
+      "</head>",
+      "<body>",
+      "  <a class=\"skip-link\" href=\"#main-content\">Skip to content</a>",
+      "  <main id=\"main-content\">",
+      "",
+      "  </main>",
+      "  <script type=\"module\" src=\"${7:/main.js}\"></script>",
+      "</body>",
+      "</html>"
+    ],
+    "description": "HTML5 document boilerplate"
+  },
+  "HTML viewport meta tag": {
+    "prefix": "viewport",
+    "body": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+    "description": "HTML viewport meta tag"
+  },
+  "HTML meta description": {
+    "prefix": "metadesc",
+    "body": "<meta name=\"description\" content=\"${1:description}\">",
+    "description": "HTML meta description"
+  },
+  "HTML link stylesheet": {
+    "prefix": "linkcss",
+    "body": "<link rel=\"stylesheet\" href=\"${1:styles.css}\">",
+    "description": "HTML link stylesheet"
+  },
+  "HTML script with defer": {
+    "prefix": "scriptdef",
+    "body": "<script src=\"${1:app.js}\" defer></script>",
+    "description": "HTML script with defer"
+  },
+  "HTML ES module script": {
+    "prefix": "scriptmod",
+    "body": "<script type=\"module\" src=\"${1:app.js}\"></script>",
+    "description": "HTML ES module script"
+  },
+  "HTML header element": {
+    "prefix": "header",
+    "body": [
+      "<header>",
+      "  $0",
+      "</header>"
+    ],
+    "description": "HTML header element"
+  },
+  "HTML nav element": {
+    "prefix": "nav",
+    "body": [
+      "<nav aria-label=\"${1:Main}\">",
+      "  $0",
+      "</nav>"
+    ],
+    "description": "HTML nav element"
+  },
+  "HTML main element": {
+    "prefix": "main",
+    "body": [
+      "<main>",
+      "  $0",
+      "</main>"
+    ],
+    "description": "HTML main element"
+  },
+  "HTML section element": {
+    "prefix": "section",
+    "body": [
+      "<section aria-labelledby=\"${1:section-heading}\">",
+      "  $0",
+      "</section>"
+    ],
+    "description": "HTML section element"
+  },
+  "HTML article element": {
+    "prefix": "article",
+    "body": [
+      "<article>",
+      "  $0",
+      "</article>"
+    ],
+    "description": "HTML article element"
+  },
+  "HTML footer element": {
+    "prefix": "footer",
+    "body": [
+      "<footer>",
+      "  $0",
+      "</footer>"
+    ],
+    "description": "HTML footer element"
+  },
+  "HTML form": {
+    "prefix": "form",
+    "body": [
+      "<form action=\"${1:/submit}\" method=\"${2|post,get|}\">",
+      "  $0",
+      "</form>"
+    ],
+    "description": "HTML form"
+  },
+  "HTML text input with label": {
+    "prefix": "input",
+    "body": [
+      "<label for=\"${1:id}\">${2:Label}</label>",
+      "<input id=\"${1:id}\" name=\"${3:name}\" type=\"${4|text,email,password,number,tel,url,search|}\" ${5:required}>"
+    ],
+    "description": "HTML text input with label"
+  },
+  "HTML textarea with label": {
+    "prefix": "textarea",
+    "body": [
+      "<label for=\"${1:id}\">${2:Label}</label>",
+      "<textarea id=\"${1:id}\" name=\"${3:name}\" rows=\"${4:4}\"></textarea>"
+    ],
+    "description": "HTML textarea with label"
+  },
+  "HTML select with label": {
+    "prefix": "select",
+    "body": [
+      "<label for=\"${1:id}\">${2:Label}</label>",
+      "<select id=\"${1:id}\" name=\"${3:name}\">",
+      "  <option value=\"${4:value}\">${5:Option}</option>",
+      "  $0",
+      "</select>"
+    ],
+    "description": "HTML select with label"
+  },
+  "HTML button": {
+    "prefix": "button",
+    "body": "<button type=\"${1|button,submit,reset|}\">${2:Button}</button>",
+    "description": "HTML button"
+  },
+  "HTML aria-label attribute": {
+    "prefix": "aria",
+    "body": "aria-label=\"${1:description}\"",
+    "description": "HTML aria-label attribute"
+  },
+  "HTML skip to content link": {
+    "prefix": "skiplink",
+    "body": "<a class=\"skip-link\" href=\"#${1:main-content}\">Skip to content</a>",
+    "description": "HTML skip to content link"
+  },
+  "HTML responsive image": {
+    "prefix": "img",
+    "body": "<img src=\"${1:image.jpg}\" alt=\"${2:description}\" width=\"${3:800}\" height=\"${4:600}\" loading=\"lazy\">",
+    "description": "HTML responsive image"
+  },
+  "HTML picture element": {
+    "prefix": "picture",
+    "body": [
+      "<picture>",
+      "  <source srcset=\"${1:image.webp}\" type=\"image/webp\">",
+      "  <img src=\"${2:image.jpg}\" alt=\"${3:description}\">",
+      "</picture>"
+    ],
+    "description": "HTML picture element"
+  },
+  "HTML video element": {
+    "prefix": "video",
+    "body": [
+      "<video controls width=\"${1:640}\" height=\"${2:360}\">",
+      "  <source src=\"${3:video.mp4}\" type=\"video/mp4\">",
+      "  Your browser does not support the video tag.",
+      "</video>"
+    ],
+    "description": "HTML video element"
+  },
+  "HTML details and summary": {
+    "prefix": "details",
+    "body": [
+      "<details>",
+      "  <summary>${1:Summary}</summary>",
+      "  $0",
+      "</details>"
+    ],
+    "description": "HTML details and summary"
+  },
+  "HTML unordered list": {
+    "prefix": "ul",
+    "body": [
+      "<ul>",
+      "  <li>$0</li>",
+      "</ul>"
+    ],
+    "description": "HTML unordered list"
+  },
+  "HTML ordered list": {
+    "prefix": "ol",
+    "body": [
+      "<ol>",
+      "  <li>$0</li>",
+      "</ol>"
+    ],
+    "description": "HTML ordered list"
+  },
+  "HTML anchor link": {
+    "prefix": "a",
+    "body": "<a href=\"${1:url}\">${2:Link text}</a>",
+    "description": "HTML anchor link"
+  },
+  "HTML Open Graph meta tags": {
+    "prefix": "og",
+    "body": [
+      "<meta property=\"og:title\" content=\"${1:Title}\">",
+      "<meta property=\"og:description\" content=\"${2:Description}\">",
+      "<meta property=\"og:type\" content=\"${3|website,article|}\">",
+      "<meta property=\"og:url\" content=\"${4:https://example.com}\">",
+      "<meta property=\"og:image\" content=\"${5:https://example.com/og-image.jpg}\">"
+    ],
+    "description": "HTML Open Graph meta tags"
+  },
+  "HTML canonical link": {
+    "prefix": "canonical",
+    "body": "<link rel=\"canonical\" href=\"${1:https://example.com/page}\">",
+    "description": "HTML canonical link"
+  },
+  "HTML preload resource hint": {
+    "prefix": "preload",
+    "body": "<link rel=\"preload\" href=\"${1:/font.woff2}\" as=\"${2|font,style,script,fetch|}\" crossorigin>",
+    "description": "HTML preload resource hint"
+  },
+  "HTML dialog element": {
+    "prefix": "dialog",
+    "body": [
+      "<dialog id=\"${1:dialog-id}\" aria-labelledby=\"${2:dialog-title}\">",
+      "  <h2 id=\"${2:dialog-title}\">${3:Dialog title}</h2>",
+      "  $0",
+      "  <form method=\"dialog\">",
+      "    <button value=\"cancel\">Close</button>",
+      "  </form>",
+      "</dialog>"
+    ],
+    "description": "HTML dialog element"
+  },
+  "HTML fieldset with legend": {
+    "prefix": "fieldset",
+    "body": [
+      "<fieldset>",
+      "  <legend>${1:Group label}</legend>",
+      "  $0",
+      "</fieldset>"
+    ],
+    "description": "HTML fieldset with legend"
+  },
+  "HTML accessible data table": {
+    "prefix": "table",
+    "body": [
+      "<table>",
+      "  <caption>${1:Table description}</caption>",
+      "  <thead>",
+      "    <tr>",
+      "      <th scope=\"col\">${2:Column}</th>",
+      "    </tr>",
+      "  </thead>",
+      "  <tbody>",
+      "    <tr>",
+      "      <td>$0</td>",
+      "    </tr>",
+      "  </tbody>",
+      "</table>"
+    ],
+    "description": "HTML accessible data table"
+  },
+  "HTML sandboxed iframe": {
+    "prefix": "iframe",
+    "body": "<iframe src=\"${1:url}\" title=\"${2:Embedded content}\" sandbox=\"${3|allow-scripts,allow-same-origin|}\" loading=\"lazy\"></iframe>",
+    "description": "HTML sandboxed iframe"
+  },
+  "HTML checkbox with label": {
+    "prefix": "checkbox",
+    "body": [
+      "<label>",
+      "  <input type=\"checkbox\" name=\"${1:name}\" value=\"${2:value}\" ${3:checked}>",
+      "  ${4:Label text}",
+      "</label>"
+    ],
+    "description": "HTML checkbox with label"
+  },
+  "HTML radio button group": {
+    "prefix": "radio",
+    "body": [
+      "<fieldset>",
+      "  <legend>${1:Choose an option}</legend>",
+      "  <label>",
+      "    <input type=\"radio\" name=\"${2:group}\" value=\"${3:option-a}\" checked>",
+      "    ${4:Option A}",
+      "  </label>",
+      "  <label>",
+      "    <input type=\"radio\" name=\"${2:group}\" value=\"${5:option-b}\">",
+      "    ${6:Option B}",
+      "  </label>",
+      "  $0",
+      "</fieldset>"
+    ],
+    "description": "HTML radio button group"
+  },
+  "HTML datalist autocomplete": {
+    "prefix": "datalist",
+    "body": [
+      "<label for=\"${1:input-id}\">${2:Label}</label>",
+      "<input id=\"${1:input-id}\" name=\"${3:name}\" list=\"${4:list-id}\">",
+      "<datalist id=\"${4:list-id}\">",
+      "  <option value=\"${5:Option}\"></option>",
+      "  $0",
+      "</datalist>"
+    ],
+    "description": "HTML datalist autocomplete"
+  },
+  "HTML semantic page layout": {
+    "prefix": "layout",
+    "body": [
+      "<header>",
+      "  <nav aria-label=\"Primary\">$1</nav>",
+      "</header>",
+      "<main id=\"main-content\">",
+      "  $0",
+      "</main>",
+      "<footer>",
+      "  $2",
+      "</footer>"
+    ],
+    "description": "HTML semantic page layout"
+  }
+}
