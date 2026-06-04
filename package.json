@@ -3,7 +3,7 @@
   "displayName": "Ether Themes",
   "description": "Token-driven color themes and web development snippets for VS Code and Cursor.",
   "publisher": "PRIYAANK2510",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "icon": "icon.png",
   "type": "module",
   "license": "MIT",
