@@ -23,8 +23,8 @@ jobs:
       !contains(github.event.head_commit.message, '[skip release]')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: npm
@@ -50,7 +50,7 @@ jobs:
         run: |
           git tag "v${{ steps.bump.outputs.version }}" 2>/dev/null || true
           git push origin "v${{ steps.bump.outputs.version }}" 2>/dev/null || true
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: vsix
           path: releases/*.vsix
