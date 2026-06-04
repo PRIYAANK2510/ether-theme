@@ -111,5 +111,3 @@ Same steps as automatic release (check → bump → publish → tag). Useful whe
 | Push to main, no publish  | Commit message includes `[skip release]`            |
 | Ship a release            | Push to `main` (source/themes/package.json changes) |
 | Publish from your machine | `npm run publish:local`                             |
-
-
