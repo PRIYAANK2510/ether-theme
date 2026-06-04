@@ -1,6 +1,6 @@
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadPalettes, generateAllThemes } from "./generator/index.js";
+import { generateAllThemes, loadPalettes } from "./generator/index.js";
 import {
   generateAllPreviews,
   syncReadmePreviewGallery,
