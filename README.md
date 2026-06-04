@@ -296,56 +296,6 @@ Ether ships **392 snippets** across six language scopes. Type a prefix in an edi
 | `keyframes`                 | CSS animation keyframes               |
 | `vars`                      | CSS custom properties                 |
 
-
-**Adding or editing snippets**
-
-Add a definition to a file in `src/snippets/catalog/`, then run `npm run build`. Snippet JSON and `package.json` contributions are regenerated automatically.
-
-Each definition needs `key`, `prefix`, `description`, `body`, and `languages`. Use `variants` for language-specific overrides (for example typed TSX bodies).
-
-
-
-## Development
-
-**Prerequisites:** Node.js 20+, VS Code or Cursor
-
-```bash
-git clone https://github.com/PRIYAANK2510/ether-theme.git
-cd ether-theme
-npm install
-npm run build
-```
-
-Press **F5** to open the Extension Development Host and preview themes live.
-
-
-| Script                  | Purpose                                                     |
-| ----------------------- | ----------------------------------------------------------- |
-| `npm run build`         | Generate theme JSON, snippet files, and sync `package.json` |
-| `npm run watch`         | Auto-rebuild while editing palette                          |
-| `npm run check`         | Lint, test, and build                                       |
-| `npm run package`       | Build a `.vsix` locally                                     |
-| `npm run publish:local` | Package and publish (requires `.env` tokens)                |
-
-
-**Adding or removing a theme**
-
-**Add:** create `src/palettes/ether-{name}.js` with `{ id, label, type: "dark", uiTheme: "vs-dark", ui, syntax }`. Set `surfacePanel` and `surfaceEditor` first, then derive the rest. Add a one-line blurb to `THEME_CHARACTER` in `src/generator/preview-svg.js`, then run `npm run build` (generates theme JSON, preview assets, and README gallery).
-
-**Remove:** delete the palette file and run `npm run build`. Orphan theme JSON, preview files, and `package.json` entries are removed automatically.
-
-
-
-**Publishing**
-
-Add GitHub secrets `**VSCE_PAT`** and `**OVSX_PAT**`, then push changes to `src/`, `themes/`, or `package.json` — CI auto-bumps the patch version and publishes.
-
-Manual publish: `npm run publish:local` or **Actions → Release → Run workflow**.
-
-See [docs/WORKFLOW.md](docs/WORKFLOW.md) for push-without-publish and local install notes.
-
-
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
