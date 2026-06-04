@@ -74,6 +74,24 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
   "editorGroupHeader.tabsBorder",
   "editorGroupHeader.noTabsBackground",
 
+  // ── Diff editor ────────────────────────────────────────────────────────
+  "diffEditor.border",
+  "diffEditor.diagonalFill",
+  "diffEditor.insertedLineBackground",
+  "diffEditor.removedLineBackground",
+  "diffEditor.unchangedRegionBackground",
+  "diffEditor.unchangedRegionForeground",
+  "diffEditor.unchangedRegionShadow",
+  "diffEditor.unchangedCodeBackground",
+  "multiDiffEditor.headerBackground",
+  "multiDiffEditor.background",
+  "multiDiffEditor.border",
+  "editorGroupHeader.border",
+  "breadcrumb.foreground",
+  "breadcrumb.background",
+  "breadcrumb.focusForeground",
+  "breadcrumb.activeSelectionForeground",
+
   // ── Sidebar polish ─────────────────────────────────────────────────────
   "sideBarSectionHeader.foreground",
   "sideBarSectionHeader.border",

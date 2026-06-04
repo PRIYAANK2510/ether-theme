@@ -202,6 +202,51 @@ describe("theme generator", () => {
     }
   });
 
+  it("separates diff file headers from the editor surface for every palette", async () => {
+    const palettes = await loadPalettes();
+    const diffKeys = [
+      "multiDiffEditor.headerBackground",
+      "multiDiffEditor.background",
+      "multiDiffEditor.border",
+      "diffEditor.unchangedRegionBackground",
+      "diffEditor.unchangedRegionForeground",
+      "diffEditor.unchangedRegionShadow",
+      "diffEditor.unchangedCodeBackground",
+      "editorGroupHeader.border",
+      "breadcrumb.foreground",
+      "breadcrumb.background",
+      "breadcrumb.focusForeground",
+      "breadcrumb.activeSelectionForeground",
+    ];
+
+    for (const palette of palettes) {
+      const theme = composeTheme(palette);
+      const editorBg = theme.colors["editor.background"].toLowerCase();
+      const headerBg =
+        theme.colors["multiDiffEditor.headerBackground"].toLowerCase();
+      const panelBg = palette.ui.surfacePanel.toLowerCase();
+      const foldedBg =
+        theme.colors["diffEditor.unchangedRegionBackground"].toLowerCase();
+
+      for (const key of diffKeys) {
+        expect(theme.colors[key], `${palette.id}:${key}`).toMatch(
+          /^#[0-9a-f]{3,8}$/i,
+        );
+      }
+
+      expect(theme.colors["multiDiffEditor.background"].toLowerCase()).toBe(
+        editorBg,
+      );
+      if (panelBg !== editorBg) {
+        expect(headerBg).toBe(panelBg);
+      }
+      expect(headerBg).not.toBe(editorBg);
+      expect(theme.colors["breadcrumb.background"].toLowerCase()).toBe(headerBg);
+      expect(foldedBg).not.toBe(headerBg);
+      expect(foldedBg).not.toBe(editorBg);
+    }
+  });
+
   it("resolves all core workbench colors", () => {
     for (const key of WORKBENCH_COLOR_IDS) {
       expect(theme.colors[key]).toMatch(/^#[0-9a-f]{3,8}$/i);

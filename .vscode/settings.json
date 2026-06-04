@@ -6,6 +6,7 @@
     }
   ],
   "debug.toolBarLocation": "docked",
+  "debug.onTaskErrors": "showErrors",
   "typescript.validate.enable": false,
   "typescript.disableAutomaticTypeAcquisition": true,
   "javascript.validate.enable": true,

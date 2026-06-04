@@ -7,6 +7,8 @@ import {
 } from "./generator/preview-svg.js";
 import { generateAllSnippets } from "./snippets/generator.js";
 
+const skipPreviews = process.argv.includes("--skip-previews");
+
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const docsDir = join(rootDir, "docs");
 const previewsDir = join(docsDir, "previews");
@@ -36,23 +38,25 @@ if (removedFiles.length > 0) {
 
 console.log(`Synced ${contributions.length} theme contribution(s) to package.json`);
 
-const { generatedFiles: previewFiles, removedFiles: removedPreviews } =
-  generateAllPreviews(palettes, previewsDir);
+if (!skipPreviews) {
+  const { generatedFiles: previewFiles, removedFiles: removedPreviews } =
+    generateAllPreviews(palettes, previewsDir);
 
-console.log(`Generated ${previewFiles.length} theme preview(s):`);
-for (const file of previewFiles) {
-  console.log(`  - ${file}`);
-}
-
-if (removedPreviews.length > 0) {
-  console.log(`Removed ${removedPreviews.length} orphaned preview(s):`);
-  for (const file of removedPreviews) {
+  console.log(`Generated ${previewFiles.length} theme preview(s):`);
+  for (const file of previewFiles) {
     console.log(`  - ${file}`);
   }
-}
 
-syncReadmePreviewGallery(readmePath, palettes);
-console.log(`Synced theme preview gallery in README.md`);
+  if (removedPreviews.length > 0) {
+    console.log(`Removed ${removedPreviews.length} orphaned preview(s):`);
+    for (const file of removedPreviews) {
+      console.log(`  - ${file}`);
+    }
+  }
+
+  syncReadmePreviewGallery(readmePath, palettes);
+  console.log(`Synced theme preview gallery in README.md`);
+}
 
 const {
   catalogCount,
@@ -66,3 +70,4 @@ for (const file of snippetFiles) {
 }
 
 console.log(`Synced ${snippetContributions.length} snippet contribution(s) to package.json`);
+console.log("Build complete.");

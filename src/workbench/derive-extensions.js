@@ -1,5 +1,6 @@
 import { mixColors, withAlphaByte } from "../utils/color.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
+import { deriveDiffEditorColors } from "./derive-diff.js";
 import { deriveInteractiveOverlays } from "./derive-interactive.js";
 
 /**
@@ -104,6 +105,8 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "editorGroup.focusedEmptyBorder": base.accent,
     "editorGroupHeader.tabsBorder": base.surfaceBorder,
     "editorGroupHeader.noTabsBackground": base.surfacePanel,
+
+    ...deriveDiffEditorColors(base),
 
     "sideBarSectionHeader.foreground": base.fgPrimary,
     "sideBarSectionHeader.border": base.surfaceBorder,

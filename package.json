@@ -192,6 +192,7 @@
   },
   "scripts": {
     "build": "node src/build.js",
+    "build:extension": "node src/build.js --skip-previews",
     "snippets:sync": "node src/snippets/catalog/sync-es7-extension.mjs",
     "watch": "node --watch --watch-path=src src/build.js",
     "test": "vitest run",

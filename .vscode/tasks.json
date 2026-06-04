@@ -3,18 +3,30 @@
   "tasks": [
     {
       "label": "build",
-      "type": "shell",
-      "command": "node",
-      "args": ["src/build.js"],
-      "options": {
-        "cwd": "${workspaceFolder}",
-        "env": {
-          "PATH": "${env:PATH};${env:ProgramFiles}\\nodejs;${env:APPDATA}\\npm"
-        }
-      },
+      "type": "npm",
+      "script": "build:extension",
       "group": {
         "kind": "build",
         "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "build:full",
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "close": true
       },
       "problemMatcher": []
     }
