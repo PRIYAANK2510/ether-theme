@@ -16,6 +16,16 @@ function run(command) {
   execSync(command, { stdio: "inherit", env: process.env, shell: true });
 }
 
+/** @param {string} command */
+function tryRun(command) {
+  try {
+    run(command);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function readPackage() {
   return JSON.parse(readFileSync(PKG_PATH, "utf8"));
 }
@@ -50,15 +60,29 @@ const vsixPath = join(RELEASES_DIR, vsix);
 const pkg = readPackage();
 const openVsxPublisher = pkg.publisher;
 
+let vsceOk = false;
 if (openVsxPublisher !== VSCE_PUBLISHER) {
   writePackage({ ...pkg, publisher: VSCE_PUBLISHER });
-  try {
-    run("npx vsce publish");
-  } finally {
-    writePackage(pkg);
-  }
+  vsceOk = tryRun("npx vsce publish");
+  writePackage(pkg);
 } else {
-  run("npx vsce publish");
+  vsceOk = tryRun("npx vsce publish");
 }
 
-run(`npx ovsx publish ${vsixPath}`);
+const ovsxOk = tryRun(`npx ovsx publish ${vsixPath}`);
+
+if (!vsceOk && !ovsxOk) {
+  console.error("Publish failed on both VS Code Marketplace and Open VSX.");
+  process.exit(1);
+}
+
+if (!vsceOk) {
+  console.error("VS Code Marketplace publish failed. Check VSCE_PAT.");
+  process.exit(1);
+}
+
+if (!ovsxOk) {
+  console.warn(
+    "Open VSX publish failed (VS Code Marketplace succeeded). Update OVSX_PAT in GitHub Secrets.",
+  );
+}
