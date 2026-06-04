@@ -4,3 +4,7 @@ releases/
 .env
 .DS_Store
 Thumbs.db
+
+# Previews are PNG-only; SVG is rasterized in memory at build time
+docs/previews/*.svg
+docs/previews/gallery-row-*.png

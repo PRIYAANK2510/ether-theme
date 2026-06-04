@@ -1,5 +1,16 @@
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { loadPalettes, generateAllThemes } from "./generator/index.js";
+import {
+  generateAllPreviews,
+  syncReadmePreviewGallery,
+} from "./generator/preview-svg.js";
 import { generateAllSnippets } from "./snippets/generator.js";
+
+const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
+const docsDir = join(rootDir, "docs");
+const previewsDir = join(docsDir, "previews");
+const readmePath = join(rootDir, "README.md");
 
 const palettes = await loadPalettes();
 
@@ -24,6 +35,24 @@ if (removedFiles.length > 0) {
 }
 
 console.log(`Synced ${contributions.length} theme contribution(s) to package.json`);
+
+const { generatedFiles: previewFiles, removedFiles: removedPreviews } =
+  generateAllPreviews(palettes, previewsDir);
+
+console.log(`Generated ${previewFiles.length} theme preview(s):`);
+for (const file of previewFiles) {
+  console.log(`  - ${file}`);
+}
+
+if (removedPreviews.length > 0) {
+  console.log(`Removed ${removedPreviews.length} orphaned preview(s):`);
+  for (const file of removedPreviews) {
+    console.log(`  - ${file}`);
+  }
+}
+
+syncReadmePreviewGallery(readmePath, palettes);
+console.log(`Synced theme preview gallery in README.md`);
 
 const {
   catalogCount,

@@ -7,7 +7,6 @@
   ],
   "debug.toolBarLocation": "docked",
   "typescript.validate.enable": false,
-  "typescript.tsserver.enable": false,
   "typescript.disableAutomaticTypeAcquisition": true,
   "javascript.validate.enable": true,
   "terminal.integrated.env.windows": {

@@ -11,6 +11,7 @@ npm run check   # lint + test + build
 Commit generated artifacts when you changed source:
 
 - `themes/*.color-theme.json` (from palette edits)
+- `docs/previews/*.png` and the README gallery block (from palette edits)
 - `snippets/*.code-snippets` (from catalog edits)
 - `package.json` (contributions are synced by the build)
 

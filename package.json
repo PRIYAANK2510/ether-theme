@@ -209,11 +209,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
-    "globals": "^16.2.0",
+    "@resvg/resvg-js": "2.6.2",
     "@vscode/vsce": "^3.3.2",
     "chroma-js": "^3.1.2",
     "dotenv-cli": "^8.0.0",
     "eslint": "^9.27.0",
+    "globals": "^16.2.0",
     "ovsx": "^0.10.2",
     "vitest": "^3.1.4"
   }

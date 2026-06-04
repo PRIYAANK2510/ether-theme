@@ -19,6 +19,15 @@ import {
   loadPalettes,
   removeOrphanedThemeFiles,
 } from "../src/generator/index.js";
+import {
+  PREVIEW_README_EXT,
+  renderReadmePreviewGallery,
+  renderThemePreviewSvg,
+  THEME_CHARACTER,
+  PNG_RENDER_WIDTH,
+  renderSvgToPng,
+  writePreviewAssets,
+} from "../src/generator/preview-svg.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "../src/workbench/extension-catalog.js";
 import { CORE_WORKBENCH_COLOR_IDS } from "../src/workbench/core-catalog.js";
 import { WORKBENCH_COLOR_IDS, EXPECTED_SYNTAX_RULE_COUNT } from "../src/workbench/constants.js";
@@ -239,6 +248,57 @@ describe("theme generator", () => {
     expect(PALETTE_CONTRAST_TARGETS.fgPrimary).toBeGreaterThanOrEqual(7);
     expect(PALETTE_CONTRAST_TARGETS.syntaxToken).toBeGreaterThanOrEqual(4.5);
     expect(PALETTE_CONTRAST_TARGETS.syntaxComment).toBe(2.5);
+  });
+
+  it("renders README gallery with PNG previews in a responsive flex layout", async () => {
+    const palettes = await loadPalettes();
+    const gallery = renderReadmePreviewGallery(palettes);
+
+    expect(PREVIEW_README_EXT).toBe("png");
+    expect(gallery).toContain(
+      `<img src="docs/previews/ether-aurora.${PREVIEW_README_EXT}"`,
+    );
+    expect(gallery).toContain("max-width:420px");
+    expect(gallery).toContain("display:flex");
+    expect(gallery).toContain("flex-wrap:wrap");
+    expect(gallery).toContain("text-align:center");
+    expect(gallery).toContain("margin:6px 0 0");
+    expect(gallery).not.toContain("<table>");
+    expect(gallery).not.toContain("data:image");
+    expect(gallery).not.toContain("gallery-row");
+  });
+
+  it("writes high-DPI PNG previews for README gallery", () => {
+    const dir = mkdtempSync(join(tmpdir(), "ether-previews-"));
+    const { pngPath } = writePreviewAssets(etherGraphite, dir);
+
+    expect(pngPath).toMatch(/ether-graphite\.png$/);
+    expect(existsSync(pngPath)).toBe(true);
+    const png = renderSvgToPng(renderThemePreviewSvg(etherGraphite));
+    expect(png.subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");
+    expect(PNG_RENDER_WIDTH).toBe(2100);
+  });
+
+  it("renders SVG previews with palette surfaces and syntax colors", async () => {
+    const palettes = await loadPalettes();
+    const aurora = palettes.find((item) => item.id === "ether-aurora");
+    expect(aurora).toBeDefined();
+
+    const svg = renderThemePreviewSvg(aurora);
+    expect(svg).toContain('<?xml version="1.0"');
+    expect(svg).toContain(aurora.ui.surfaceEditor);
+    expect(svg).toContain(aurora.syntax.keyword);
+    expect(svg).toContain(`aria-label="${aurora.label} theme preview"`);
+    expect(svg).toContain("<tspan");
+    expect(svg).toContain("generateAllPreviews");
+    expect(svg).toContain("syncReadmePreviewGallery");
+    expect(svg).toContain("build.js");
+    expect(svg).not.toContain("syntaxGlow");
+    expect(svg).toContain('class="title"');
+
+    for (const palette of palettes) {
+      expect(THEME_CHARACTER[palette.id]).toBeTruthy();
+    }
   });
 
   it("keeps editor and sidebar independent when palette defines them separately", () => {
