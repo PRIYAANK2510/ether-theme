@@ -1,38 +1,38 @@
-import { describe, expect, it } from "vitest";
 import { existsSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import {
-  darken,
-  lighten,
-  mixColors,
-  withAlpha,
-  withAlphaByte,
-  colorAlphaByte,
-  validatePaletteContrast,
-  PALETTE_CONTRAST_TARGETS,
-} from "../src/utils/color.js";
-import etherGraphite from "../src/palettes/ether-graphite.js";
-import etherStorm from "../src/palettes/ether-storm.js";
+import { describe, expect, it } from "vitest";
 import {
   composeTheme,
   loadPalettes,
   removeOrphanedThemeFiles,
 } from "../src/generator/index.js";
 import {
+  PNG_RENDER_WIDTH,
   PREVIEW_README_EXT,
   renderReadmePreviewGallery,
+  renderSvgToPng,
   renderThemePreviewSvg,
   THEME_CHARACTER,
-  PNG_RENDER_WIDTH,
-  renderSvgToPng,
   writePreviewAssets,
 } from "../src/generator/preview-svg.js";
-import { EXTENSION_WORKBENCH_COLOR_IDS } from "../src/workbench/extension-catalog.js";
-import { CORE_WORKBENCH_COLOR_IDS } from "../src/workbench/core-catalog.js";
-import { WORKBENCH_COLOR_IDS, EXPECTED_SYNTAX_RULE_COUNT } from "../src/workbench/constants.js";
+import etherGraphite from "../src/palettes/ether-graphite.js";
+import etherStorm from "../src/palettes/ether-storm.js";
 import { SYNTAX_RULE_COUNT } from "../src/syntax/rules.js";
-import { DEPRECATED_THEME_COLOR_IDS } from "../src/utils/color.js";
+import {
+  colorAlphaByte,
+  darken,
+  DEPRECATED_THEME_COLOR_IDS,
+  lighten,
+  mixColors,
+  PALETTE_CONTRAST_TARGETS,
+  validatePaletteContrast,
+  withAlpha,
+  withAlphaByte,
+} from "../src/utils/color.js";
+import { EXPECTED_SYNTAX_RULE_COUNT, WORKBENCH_COLOR_IDS } from "../src/workbench/constants.js";
+import { CORE_WORKBENCH_COLOR_IDS } from "../src/workbench/core-catalog.js";
+import { EXTENSION_WORKBENCH_COLOR_IDS } from "../src/workbench/extension-catalog.js";
 
 describe("color-utils", () => {
   it("applies alpha via chroma", () => {
@@ -261,8 +261,10 @@ describe("theme generator", () => {
     expect(gallery).toContain("max-width:420px");
     expect(gallery).toContain("display:flex");
     expect(gallery).toContain("flex-wrap:wrap");
-    expect(gallery).toContain("text-align:center");
-    expect(gallery).toContain("margin:6px 0 0");
+    expect(gallery).toContain("text-align:left");
+    expect(gallery).toContain("margin:0 0 10px");
+    expect(gallery).toContain("margin:0 0 64px");
+    expect(gallery).toMatch(/<strong>Ether Aurora<\/strong>[\s\S]*docs\/previews\/ether-aurora\.png/);
     expect(gallery).not.toContain("<table>");
     expect(gallery).not.toContain("data:image");
     expect(gallery).not.toContain("gallery-row");
@@ -290,9 +292,10 @@ describe("theme generator", () => {
     expect(svg).toContain(aurora.syntax.keyword);
     expect(svg).toContain(`aria-label="${aurora.label} theme preview"`);
     expect(svg).toContain("<tspan");
-    expect(svg).toContain("generateAllPreviews");
-    expect(svg).toContain("syncReadmePreviewGallery");
-    expect(svg).toContain("build.js");
+    expect(svg).toContain("normalizeId");
+    expect(svg).toContain("syncRecords");
+    expect(svg).toContain("store");
+    expect(svg).toContain("<circle");
     expect(svg).not.toContain("syntaxGlow");
     expect(svg).toContain('class="title"');
 
