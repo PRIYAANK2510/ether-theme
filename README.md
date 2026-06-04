@@ -218,7 +218,7 @@ Previews below are **high-DPI VS Code–style miniatures** (responsive gallery, 
 
 ## Snippets
 
-Ether ships **392 snippets** across six language scopes. Type a prefix in an editor file and accept the suggestion to insert the template.
+Ether ships **392 snippets** across six language scopes. Type a prefix in an editor file and accept the suggestions to insert the template.
 
 
 | Language        | File types            | Count | Example prefixes                                               |
