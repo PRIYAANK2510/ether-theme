@@ -9,8 +9,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { deriveUISemantics } from "../workbench/derive-core.js";
 import { buildTokenColors } from "../syntax/rules.js";
-import { validatePalette, validateGeneratedTheme } from "../utils/color.js";
-
+import {
+  deriveCommentForeground,
+  validatePalette,
+  validateGeneratedTheme,
+} from "../utils/color.js";
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const themesDir = join(rootDir, "themes");
 const palettesDir = join(dirname(fileURLToPath(import.meta.url)), "../palettes");
@@ -21,7 +24,7 @@ const packageJsonPath = join(rootDir, "package.json");
  */
 export async function loadPalettes() {
   const files = readdirSync(palettesDir)
-    .filter((file) => file.endsWith(".js"))
+    .filter((file) => file.endsWith(".js") && file.startsWith("ether-"))
     .sort();
 
   const palettes = [];
@@ -41,13 +44,17 @@ export async function loadPalettes() {
 export function composeTheme(palette) {
   validatePalette(palette);
   const colors = deriveUISemantics(palette.ui);
+  const syntax = {
+    ...palette.syntax,
+    comment: deriveCommentForeground(palette.ui),
+  };
 
   return {
     name: palette.label,
     type: palette.type,
     semanticHighlighting: true,
     colors,
-    tokenColors: buildTokenColors(palette.syntax),
+    tokenColors: buildTokenColors(syntax),
   };
 }
 

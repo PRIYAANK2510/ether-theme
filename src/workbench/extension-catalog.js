@@ -3,7 +3,7 @@
  * Focused subset for chat/agent, command palette, menus, tabs, and links.
  *
  * Agent panel frame: Cursor sets --composer-pane-background from editor.background.
- * Chat chrome and prompt input use chat.*, inlineChat.*, agentsChatInput.* below.
+ * Chat chrome and prompt input use chat.* and inlineChat.* (VS Code schema).
  */
 export const EXTENSION_WORKBENCH_COLOR_IDS = [
   // ── Cursor agent / chat ──────────────────────────────────────────────
@@ -24,14 +24,6 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
   "inlineChatInput.border",
   "inlineChatInput.focusBorder",
   "inlineChatInput.placeholderForeground",
-
-  // ── Cursor / VS Code agent composer input ─────────────────────────────
-  "agentsChatInput.background",
-  "agentsChatInput.border",
-  "agentsChatInput.foreground",
-  "agentsChatInput.placeholderForeground",
-  "agentsChatInput.focusBorder",
-  "agentSessionsList.background",
 
   // ── Global text / links ────────────────────────────────────────────────
   "descriptionForeground",
@@ -64,7 +56,6 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
   "statusBar.border",
   "statusBar.debuggingForeground",
   "statusBarItem.hoverForeground",
-  "statusBarItem.activeForeground",
   "statusBarItem.prominentForeground",
   "statusBarItem.prominentHoverForeground",
 
@@ -91,7 +82,6 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
 
   // ── Panel polish ───────────────────────────────────────────────────────
   "panelTitle.activeForeground",
-  "panelTitle.hoverForeground",
   "panelTitle.border",
 
   // ── Notifications (modern API) ─────────────────────────────────────────
@@ -105,7 +95,6 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
   "button.secondaryBackground",
   "button.secondaryForeground",
   "button.secondaryHoverBackground",
-  "button.secondaryHoverForeground",
   "dropdown.foreground",
   "dropdown.listBackground",
   "checkbox.background",

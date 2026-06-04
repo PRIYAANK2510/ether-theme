@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.3] - 2026-05-29
+
+### Added
+
+- **17 new dark palettes** — Aurora, Clay, Coral, Dracula, Flame, Frost, Lichen, Mint, Mirage, Mocha, Noir, Opal, Prism, Sage, Sand, Slate, Tide, Velvet (25 themes total)
+- Comment foreground derived at build time from the same mix as **active gutter line numbers** (`deriveCommentForeground`)
+
+### Changed
+
+- **Theme lineup expanded** from 8 to **25** anchor-first dark palettes; README and marketplace metadata updated
+- Renamed **Ether Ink** → **Ether Clay**
+- Gutter line numbers use shared `LINE_NUMBER_MIX_*` constants; inactive vs active blends unchanged in intent
+- Palette `syntax.comment` values synced to derived comment color for accurate source documentation
+- Relaxed comment contrast target to **2.5:1** (subdued comments, still readable)
+
+### Fixed
+
+- Comments no longer share the same visual weight as `fgMuted` / body-adjacent syntax on several palettes
+- `fgMuted` vs `syntax.comment` separation on Slate (sidebar chrome vs editor comments)
+
+### Removed
+
+- Auto-generated light themes and `derive-light-palette.js`
+- Redundant scripts: `check-palettes.mjs`, `sync-palette-comments.js`
+- Stale local `.vsix` artifacts from `releases/` (still gitignored; recreated by `npm run package`)
+
 ## [0.2.2] - 2026-05-31
 
 ### Changed
@@ -115,6 +141,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PAT-based publishing via `VSCE_PAT` / `OVSX_PAT` (local `.env` or GitHub Secrets)
 - F5 Extension Development Host workflow for VS Code and Cursor
 
+[0.2.3]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.3
 [0.2.2]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.2
 [0.2.1]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.1
 [0.2.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.0

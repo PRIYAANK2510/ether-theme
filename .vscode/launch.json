@@ -2,11 +2,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run Extension (Ether Theme)",
+      "name": "Run Ether Theme Extension",
       "type": "extensionHost",
       "request": "launch",
       "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
-      "preLaunchTask": "build"
+      "outFiles": ["${workspaceFolder}/**/*.js"],
+      "preLaunchTask": "build",
+      "presentation": {
+        "group": "ether",
+        "order": 1
+      }
     }
   ]
 }

@@ -42,9 +42,9 @@
     "list.inactiveSelectionForeground": "#6898D8",
     "activityBar.background": "#141820",
     "activityBar.dropBorder": "#2A303A",
-    "activityBar.foreground": "#747C8A",
-    "activityBar.activeForeground": "#E0E4EA",
+    "activityBar.foreground": "#E0E4EA",
     "activityBar.inactiveForeground": "#747C8A",
+    "activityBar.activeBackground": "#6898D828",
     "activityBar.activeBorder": "#6898D8",
     "activityBarBadge.background": "#6898D8",
     "activityBarBadge.foreground": "#101418",
@@ -170,12 +170,6 @@
     "inlineChatInput.border": "#10141835",
     "inlineChatInput.focusBorder": "#6898D8BB",
     "inlineChatInput.placeholderForeground": "#8E96A4",
-    "agentsChatInput.background": "#1C2028",
-    "agentsChatInput.border": "#10141835",
-    "agentsChatInput.foreground": "#E0E4EA",
-    "agentsChatInput.placeholderForeground": "#8E96A4",
-    "agentsChatInput.focusBorder": "#6898D8BB",
-    "agentSessionsList.background": "#1C2028",
     "descriptionForeground": "#8E96A4",
     "textLink.foreground": "#6898D8",
     "textLink.activeForeground": "#7CA8E0",
@@ -198,7 +192,6 @@
     "statusBar.border": "#101418",
     "statusBar.debuggingForeground": "#101418",
     "statusBarItem.hoverForeground": "#E0E4EA",
-    "statusBarItem.activeForeground": "#EEF2F8",
     "statusBarItem.prominentForeground": "#6898D8",
     "statusBarItem.prominentHoverForeground": "#EEF2F8",
     "tab.border": "#101418",
@@ -216,8 +209,7 @@
     "sideBarSectionHeader.border": "#101418",
     "sideBarTitle.background": "#181C22",
     "sideBarStickyScroll.background": "#181C22",
-    "panelTitle.activeForeground": "#E0E4EA",
-    "panelTitle.hoverForeground": "#EEF2F8",
+    "panelTitle.activeForeground": "#EEF2F8",
     "panelTitle.border": "#101418",
     "notifications.border": "#101418",
     "notificationCenterHeader.background": "#181C22",
@@ -225,9 +217,8 @@
     "notificationLink.foreground": "#6898D8",
     "notificationToast.border": "#101418",
     "button.secondaryBackground": "#E0E4EA15",
-    "button.secondaryForeground": "#8E96A4",
+    "button.secondaryForeground": "#E0E4EA",
     "button.secondaryHoverBackground": "#E0E4EA20",
-    "button.secondaryHoverForeground": "#E0E4EA",
     "dropdown.foreground": "#E0E4EA",
     "dropdown.listBackground": "#141820",
     "checkbox.background": "#181C24",
@@ -286,7 +277,7 @@
         "meta.diff"
       ],
       "settings": {
-        "foreground": "#808898",
+        "foreground": "#5E6470",
         "fontStyle": "italic"
       }
     },
@@ -308,7 +299,7 @@
         "comment.line.number-sign.documentation"
       ],
       "settings": {
-        "foreground": "#808898",
+        "foreground": "#5E6470",
         "fontStyle": "italic"
       }
     },
@@ -986,7 +977,7 @@
         "punctuation.section.scope"
       ],
       "settings": {
-        "foreground": "#808898"
+        "foreground": "#5E6470"
       }
     },
     {

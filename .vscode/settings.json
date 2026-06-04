@@ -1,4 +1,11 @@
 {
+  "json.schemas": [
+    {
+      "fileMatch": ["themes/*.color-theme.json"],
+      "url": "vscode://schemas/color-theme"
+    }
+  ],
+  "debug.toolBarLocation": "docked",
   "typescript.validate.enable": false,
   "typescript.tsserver.enable": false,
   "typescript.disableAutomaticTypeAcquisition": true,

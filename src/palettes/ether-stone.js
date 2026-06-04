@@ -62,7 +62,7 @@ export default {
 
     syntax: {
         default: "#EAE6E0",
-        comment: "#908A80",
+        comment: "#69645D",
         string: "#98B880",
         number: "#D8A848",
         cyan: "#68B8C0",

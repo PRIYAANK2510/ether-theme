@@ -1,4 +1,9 @@
-import { mixColors, withAlphaByte } from "../utils/color.js";
+import {
+  deriveCommentForeground,
+  mixColors,
+  withAlphaByte,
+  LINE_NUMBER_MIX_INACTIVE,
+} from "../utils/color.js";
 import { WORKBENCH_COLOR_IDS } from "./constants.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
 import { deriveComposerInputColors, deriveWorkbenchExtensionColors } from "./derive-extensions.js";
@@ -70,9 +75,9 @@ export function deriveUISemantics(base) {
     "list.inactiveSelectionForeground": base.accent,
     "activityBar.background": base.surfaceShell,
     "activityBar.dropBorder": base.dropTarget,
-    "activityBar.foreground": base.fgActivity,
-    "activityBar.activeForeground": base.fgPrimary,
+    "activityBar.foreground": base.fgPrimary,
     "activityBar.inactiveForeground": base.fgActivity,
+    "activityBar.activeBackground": withAlphaByte(base.accent, UI_ALPHA.a28),
     "activityBar.activeBorder": base.accent,
     "activityBarBadge.background": base.accent,
     "activityBarBadge.foreground": base.fgOnAccent,
@@ -93,9 +98,12 @@ export function deriveUISemantics(base) {
     "tab.inactiveForeground": base.fgMuted,
     "editor.background": base.surfaceEditor,
     "editor.foreground": base.fgPrimary,
-    "editorLineNumber.foreground": mixColors(base.fgMuted, base.surfaceEditor, 0.68),
-    // Blend toward editor bg so line numbers stay subtle without a separate token
-    "editorLineNumber.activeForeground": mixColors(base.fgMuted, base.surfaceEditor, 0.42),
+    "editorLineNumber.foreground": mixColors(
+      base.fgMuted,
+      base.surfaceEditor,
+      LINE_NUMBER_MIX_INACTIVE,
+    ),
+    "editorLineNumber.activeForeground": deriveCommentForeground(base),
     "editorCursor.foreground": base.cursor,
     "editor.selectionBackground": accent.a30,
     "editor.selectionHighlightBackground": accent.a20,

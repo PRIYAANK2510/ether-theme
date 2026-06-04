@@ -77,8 +77,8 @@ import { EXTENSION_WORKBENCH_COLOR_IDS } from "../workbench/extension-catalog.js
  * @typedef {Object} Palette
  * @property {string} id
  * @property {string} label
- * @property {"dark" | "light"} type
- * @property {"vs-dark" | "vs"} uiTheme
+ * @property {"dark"} type
+ * @property {"vs-dark"} uiTheme
  * @property {PaletteUITokens} ui
  * @property {PaletteSyntaxTokens} syntax
  */
@@ -180,13 +180,29 @@ export const SYNTAX_TOKEN_KEYS = [
   "pink",
 ];
 
-/** WCAG contrast targets for palette base tokens (checked at build time). */
+/** Blend of fgMuted toward editor — inactive gutter line numbers. */
+export const LINE_NUMBER_MIX_INACTIVE = 0.68;
+
+/** Blend for active gutter line numbers and syntax comments. */
+export const LINE_NUMBER_MIX_ACTIVE = 0.42;
+
+/**
+ * Comment foreground — same mix as active editor line numbers.
+ * @param {import("./color.js").PaletteUITokens} ui
+ */
+export function deriveCommentForeground(ui) {
+  return mixColors(ui.fgMuted, ui.surfaceEditor, LINE_NUMBER_MIX_ACTIVE);
+}
+
+/** WCAG contrast targets for dark palette base tokens (checked at build time). */
 export const PALETTE_CONTRAST_TARGETS = {
   fgPrimary: 7,
   fgMuted: 4.5,
   syntaxDefault: 7,
-  /** All syntax tokens including comment (also used for bracket punctuation). */
+  /** All syntax tokens except comment (also used for bracket punctuation). */
   syntaxToken: 4.5,
+  /** Matches gutter line numbers — subdued, not body-text strength. */
+  syntaxComment: 2.5,
   fgOnAccent: 4.5,
 };
 
@@ -206,22 +222,22 @@ export function contrastRatio(foreground, background) {
  */
 export function validatePaletteContrast(palette) {
   const editor = palette.ui.surfaceEditor;
+  const targets = PALETTE_CONTRAST_TARGETS;
+  const commentForeground = deriveCommentForeground(palette.ui);
   const checks = [
-    ["ui.fgPrimary", palette.ui.fgPrimary, editor, PALETTE_CONTRAST_TARGETS.fgPrimary],
-    ["ui.fgMuted", palette.ui.fgMuted, editor, PALETTE_CONTRAST_TARGETS.fgMuted],
-    ["syntax.default", palette.syntax.default, editor, PALETTE_CONTRAST_TARGETS.syntaxDefault],
+    ["ui.fgPrimary", palette.ui.fgPrimary, editor, targets.fgPrimary],
+    ["ui.fgMuted", palette.ui.fgMuted, editor, targets.fgMuted],
+    ["syntax.default", palette.syntax.default, editor, targets.syntaxDefault],
     [
       "ui.fgOnAccent",
       palette.ui.fgOnAccent,
       palette.ui.accent,
-      PALETTE_CONTRAST_TARGETS.fgOnAccent,
+      targets.fgOnAccent,
     ],
-    ...SYNTAX_TOKEN_KEYS.filter((key) => key !== "default").map((key) => [
-      `syntax.${key}`,
-      palette.syntax[key],
-      editor,
-      PALETTE_CONTRAST_TARGETS.syntaxToken,
-    ]),
+    ...SYNTAX_TOKEN_KEYS.filter((key) => key !== "default" && key !== "comment").map(
+      (key) => [`syntax.${key}`, palette.syntax[key], editor, targets.syntaxToken],
+    ),
+    ["syntax.comment", commentForeground, editor, targets.syntaxComment],
   ];
 
   const failures = [];
@@ -266,9 +282,10 @@ export function validatePalette(palette) {
   return palette;
 }
 
-/** VS Code removed or renamed these; emitting them triggers schema warnings. */
+/** VS Code removed, renamed, or non-schema keys — never emit in generated themes. */
 export const DEPRECATED_THEME_COLOR_IDS = [
   "activityBar.dropBackground",
+  "activityBar.activeForeground",
   "editorGroup.background",
   "editorIndentGuide.background",
   "editorIndentGuide.activeBackground",
@@ -281,6 +298,15 @@ export const DEPRECATED_THEME_COLOR_IDS = [
   "chat.requestBubbleBackground",
   "chat.requestBubbleHoverBackground",
   "chat.requestCodeBorder",
+  "agentsChatInput.background",
+  "agentsChatInput.border",
+  "agentsChatInput.foreground",
+  "agentsChatInput.placeholderForeground",
+  "agentsChatInput.focusBorder",
+  "agentSessionsList.background",
+  "statusBarItem.activeForeground",
+  "panelTitle.hoverForeground",
+  "button.secondaryHoverForeground",
 ];
 
 /** Workbench colors that must include transparency (alpha byte < 0xff). */
@@ -365,6 +391,18 @@ export function validateGeneratedTheme(theme, paletteId) {
     if (!(key in theme.colors)) {
       throw new Error(
         `Missing extension workbench color "${key}" in theme "${paletteId}"`,
+      );
+    }
+  }
+
+  const allowedWorkbenchKeys = new Set([
+    ...WORKBENCH_COLOR_IDS,
+    ...EXTENSION_WORKBENCH_COLOR_IDS,
+  ]);
+  for (const key of Object.keys(theme.colors)) {
+    if (!allowedWorkbenchKeys.has(key)) {
+      throw new Error(
+        `Unknown workbench color "${key}" in theme "${paletteId}" (not in Ether catalogs)`,
       );
     }
   }

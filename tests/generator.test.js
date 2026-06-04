@@ -135,13 +135,12 @@ describe("theme generator", () => {
     );
     expect(theme.colors["editor.background"].toLowerCase()).toBe(composerPane.toLowerCase());
     expect(theme.colors["inlineChat.background"].toLowerCase()).toBe(composerPane.toLowerCase());
-    expect(theme.colors["agentsChatInput.background"].toLowerCase()).toBe(
+    expect(theme.colors["inlineChatInput.background"].toLowerCase()).toBe(
       composerPane.toLowerCase(),
     );
     expect(theme.colors["input.background"].toLowerCase()).toBe(composerPane.toLowerCase());
-    expect(theme.colors["agentSessionsList.background"].toLowerCase()).toBe(
-      composerPane.toLowerCase(),
-    );
+    expect(theme.colors).not.toHaveProperty("agentsChatInput.background");
+    expect(theme.colors).not.toHaveProperty("agentSessionsList.background");
     expect(theme.colors["chat.requestBackground"].toLowerCase()).toBe(
       mixColors(composerPane, palette.ui.surfacePanel, 0.22).toLowerCase(),
     );
@@ -163,15 +162,29 @@ describe("theme generator", () => {
     expect(theme.colors["statusBarItem.hoverForeground"].toLowerCase()).toBe(
       palette.ui.fgPrimary.toLowerCase(),
     );
-    expect(theme.colors["button.secondaryHoverForeground"].toLowerCase()).toBe(
+    expect(theme.colors["button.secondaryForeground"].toLowerCase()).toBe(
       palette.ui.fgPrimary.toLowerCase(),
     );
+    expect(theme.colors).not.toHaveProperty("button.secondaryHoverForeground");
     expect(theme.colors["editorSuggestWidget.selectedForeground"].toLowerCase()).toBe(
       palette.ui.fgListFocus.toLowerCase(),
     );
-    expect(theme.colors["activityBar.activeForeground"].toLowerCase()).toBe(
+    expect(theme.colors["activityBar.foreground"].toLowerCase()).toBe(
       palette.ui.fgPrimary.toLowerCase(),
     );
+    expect(theme.colors).not.toHaveProperty("activityBar.activeForeground");
+    expect(theme.colors).toHaveProperty("activityBar.activeBackground");
+  });
+
+  it("emits only catalog workbench color keys (VS Code schema safe)", () => {
+    const allowed = new Set([
+      ...WORKBENCH_COLOR_IDS,
+      ...EXTENSION_WORKBENCH_COLOR_IDS,
+    ]);
+    for (const key of Object.keys(theme.colors)) {
+      expect(allowed.has(key)).toBe(true);
+    }
+    expect(Object.keys(theme.colors)).toHaveLength(allowed.size);
   });
 
   it("derives all extension workbench colors", () => {
@@ -193,10 +206,27 @@ describe("theme generator", () => {
     for (const item of palettes) {
       const generated = composeTheme(item);
       expect(generated.name).toBe(item.label);
+      expect(generated.type).toBe(item.type);
       expect(Object.keys(generated.colors)).toHaveLength(
         CORE_WORKBENCH_COLOR_IDS.length + EXTENSION_WORKBENCH_COLOR_IDS.length,
       );
     }
+  });
+
+  it("loads only dark palettes", async () => {
+    const palettes = await loadPalettes();
+
+    expect(palettes).toHaveLength(25);
+    expect(palettes.every((p) => p.type === "dark")).toBe(true);
+    expect(palettes.every((p) => p.uiTheme === "vs-dark")).toBe(true);
+  });
+
+  it("matches comment color to active gutter line numbers", () => {
+    const graphite = composeTheme(etherGraphite);
+    const commentRule = graphite.tokenColors.find((r) => r.name === "Comment");
+    expect(commentRule?.settings?.foreground?.toLowerCase()).toBe(
+      graphite.colors["editorLineNumber.activeForeground"].toLowerCase(),
+    );
   });
 
   it("meets minimum contrast on critical palette token pairs", async () => {
@@ -208,6 +238,7 @@ describe("theme generator", () => {
 
     expect(PALETTE_CONTRAST_TARGETS.fgPrimary).toBeGreaterThanOrEqual(7);
     expect(PALETTE_CONTRAST_TARGETS.syntaxToken).toBeGreaterThanOrEqual(4.5);
+    expect(PALETTE_CONTRAST_TARGETS.syntaxComment).toBe(2.5);
   });
 
   it("keeps editor and sidebar independent when palette defines them separately", () => {
@@ -215,7 +246,7 @@ describe("theme generator", () => {
     expect(graphite.colors["sideBar.background"].toLowerCase()).toBe("#161618");
     expect(graphite.colors["editor.background"].toLowerCase()).toBe("#1c1c1e");
     expect(graphite.colors["inlineChat.background"].toLowerCase()).toBe("#1c1c1e");
-    expect(graphite.colors["agentsChatInput.background"].toLowerCase()).toBe("#1c1c1e");
+    expect(graphite.colors["inlineChatInput.background"].toLowerCase()).toBe("#1c1c1e");
     expect(graphite.colors["input.border"].toLowerCase()).toBe("#0e0e1035");
 
     const storm = composeTheme(etherStorm);

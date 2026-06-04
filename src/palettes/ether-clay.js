@@ -1,6 +1,7 @@
+/** Clay — warm terracotta accent on bone-dark surfaces, like fired earth and parchment. */
 export default {
-    id: "ether-ink",
-    label: "Ether Ink",
+    id: "ether-clay",
+    label: "Ether Clay",
     type: "dark",
     uiTheme: "vs-dark",
 
@@ -62,7 +63,7 @@ export default {
 
     syntax: {
         default: "#E8E4DC",
-        comment: "#908A80",
+        comment: "#646159",
         string: "#78A878",
         number: "#D8A848",
         cyan: "#68B8B8",

@@ -63,13 +63,6 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "inlineChatInput.focusBorder": composerInput.focusBorder,
     "inlineChatInput.placeholderForeground": composerInput.placeholder,
 
-    "agentsChatInput.background": composerInput.background,
-    "agentsChatInput.border": composerInput.border,
-    "agentsChatInput.foreground": composerInput.foreground,
-    "agentsChatInput.placeholderForeground": composerInput.placeholder,
-    "agentsChatInput.focusBorder": composerInput.focusBorder,
-    "agentSessionsList.background": composerPane,
-
     "descriptionForeground": base.fgMuted,
     "textLink.foreground": base.accent,
     "textLink.activeForeground": base.accentHover,
@@ -96,7 +89,6 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "statusBar.border": base.surfaceBorder,
     "statusBar.debuggingForeground": base.fgOnAccent,
     "statusBarItem.hoverForeground": interactive.hoverForeground,
-    "statusBarItem.activeForeground": interactive.activeForeground,
     "statusBarItem.prominentForeground": base.accent,
     "statusBarItem.prominentHoverForeground": interactive.activeForeground,
 
@@ -118,8 +110,7 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "sideBarTitle.background": base.surfacePanel,
     "sideBarStickyScroll.background": base.surfacePanel,
 
-    "panelTitle.activeForeground": base.fgPrimary,
-    "panelTitle.hoverForeground": base.fgListFocus,
+    "panelTitle.activeForeground": base.fgListFocus,
     "panelTitle.border": base.surfaceBorder,
 
     "notifications.border": base.surfaceBorder,
@@ -129,9 +120,8 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "notificationToast.border": base.surfaceBorder,
 
     "button.secondaryBackground": interactive.subtleBackground,
-    "button.secondaryForeground": base.fgMuted,
+    "button.secondaryForeground": base.fgPrimary,
     "button.secondaryHoverBackground": interactive.hoverBackground,
-    "button.secondaryHoverForeground": interactive.hoverForeground,
     "dropdown.foreground": base.fgPrimary,
     "dropdown.listBackground": base.surfaceShell,
     "checkbox.background": formInput.background,

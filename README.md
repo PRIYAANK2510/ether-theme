@@ -5,7 +5,7 @@
 <h1 align="center">Ether Themes</h1>
 
 <p align="center">
-  <strong>8 dark token-driven color themes</strong> and <strong>392 web development snippets</strong> for VS Code and Cursor.
+  <strong>25 dark token-driven color themes</strong> and <strong>392 web development snippets</strong> for VS Code and Cursor.
 </p>
 
 <p align="center">
@@ -32,25 +32,45 @@ Search **Ether Themes** in the Extensions panel, or use the links above.
 
 ## Themes
 
-Each palette is built **anchor-first**: pick `surfacePanel` (sidebar) and `surfaceEditor` (editor), then derive surfaces, text, accent, and syntax from that family. All eight pass WCAG contrast validation at build time.
+Each palette is built **anchor-first**: set `surfacePanel` (sidebar) and `surfaceEditor` (editor), then fill surfaces, text, accent, and syntax. All **25 dark themes** pass WCAG contrast validation at build time.
 
-| Theme | Side panel | Editor | Accent | Character |
-|-------|------------|--------|--------|-----------|
-| **Ether Graphite** | `#161618` | `#1C1C1E` | Steel blue | Pure neutral gray |
-| **Ether Storm** | `#181C22` | `#1C2028` | Soft blue | Cool blue-gray slate |
-| **Ether Ember** | `#1A1816` | `#201E1A` | Copper | Warm charcoal |
-| **Ether Luna** | `#0C0E14` | `#101218` | Lunar silver | Deepest moonlit night |
-| **Ether Moss** | `#181C18` | `#1C221E` | Sage | Forest gray-green |
-| **Ether Dusk** | `#1A1820` | `#1E1C28` | Rose | Plum twilight |
-| **Ether Ink** | `#141412` | `#1A1A18` | Cinnabar | Warm sumi ink (neutral black) |
-| **Ether Stone** | `#1C1A18` | `#22201C` | Terracotta | Warm stone |
+**Comment color** is derived from the same mix as **active gutter line numbers** — subdued, italic prose that does not compete with code.
+
+| Theme | Character |
+|-------|-----------|
+| **Ether Aurora** | Deep navy, electric teal |
+| **Ether Clay** | Warm sumi ink, cinnabar |
+| **Ether Coral** | Dusty rose, soft magenta |
+| **Ether Dracula** | Charcoal, candy Dracula syntax |
+| **Ether Dusk** | Plum twilight, rose accent |
+| **Ether Ember** | Warm charcoal, copper |
+| **Ether Flame** | Ember red-orange glow |
+| **Ether Frost** | Arctic blue-gray frost |
+| **Ether Graphite** | Pure neutral gray, steel blue |
+| **Ether Lichen** | Forest floor, moss green |
+| **Ether Luna** | Moonlit night, silver |
+| **Ether Mint** | Cool mint-teal developer |
+| **Ether Mirage** | Desert dusk, mirage cyan |
+| **Ether Mocha** | Catppuccin-style cozy pastel |
+| **Ether Moss** | Sage forest gray-green |
+| **Ether Noir** | Near-monochrome noir |
+| **Ether Opal** | Opalescent violet-gray |
+| **Ether Prism** | Prism refraction, vivid syntax |
+| **Ether Sage** | Muted sage green |
+| **Ether Sand** | Warm parchment sand |
+| **Ether Slate** | Atom-style gunmetal slate |
+| **Ether Stone** | Terracotta warm stone |
+| **Ether Storm** | Cool blue-gray slate |
+| **Ether Tide** | Ocean tide teal |
+| **Ether Velvet** | Velvet plum wine |
 
 ## Highlights
 
-- **8 dark themes** — distinct surface temperatures, restrained accents, no light variants
+- **25 dark themes** — distinct surface temperatures and accents; dark-only lineup
 - **392 snippets** — Ether templates plus ES7+ React/Redux/React-Native patterns for JavaScript, TypeScript, JSX, TSX, HTML, and CSS
 - **Token-driven build** — palette files in `src/palettes/` generate full `.color-theme.json` files
-- **Contrast-aware** — WCAG validation on all syntax roles and critical UI tokens at build time
+- **Contrast-aware** — WCAG validation on syntax roles and critical UI tokens at build time
+- **Subdued comments** — comment foreground matches active line numbers in the gutter
 - **58 shared syntax rules** — broad language coverage with semantic highlighting enabled
 - **Polished workbench** — consistent list, tab, status bar, and button hover/selection states
 - **Works in Cursor** — published on Open VSX and the VS Code Marketplace
