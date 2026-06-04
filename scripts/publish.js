@@ -16,12 +16,40 @@ function run(command) {
   execSync(command, { stdio: "inherit", env: process.env, shell: true });
 }
 
+const ALREADY_PUBLISHED =
+  /already exists|already been published|duplicate version|version .* is already/i;
+
 /** @param {string} command */
 function tryRun(command) {
   try {
-    run(command);
+    execSync(command, {
+      stdio: "pipe",
+      env: process.env,
+      shell: true,
+      encoding: "utf8",
+    });
     return true;
-  } catch {
+  } catch (error) {
+    const output = [
+      error instanceof Error ? error.message : String(error),
+      error && typeof error === "object" && "stdout" in error ? String(error.stdout) : "",
+      error && typeof error === "object" && "stderr" in error ? String(error.stderr) : "",
+    ].join("\n");
+
+    if (error && typeof error === "object" && "stdout" in error && error.stdout) {
+      process.stdout.write(String(error.stdout));
+    }
+    if (error && typeof error === "object" && "stderr" in error && error.stderr) {
+      process.stderr.write(String(error.stderr));
+    }
+
+    if (ALREADY_PUBLISHED.test(output)) {
+      console.warn(
+        `Publish skipped (this version is already on the registry): ${command}`,
+      );
+      return true;
+    }
+
     return false;
   }
 }
