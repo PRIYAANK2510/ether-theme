@@ -96,8 +96,9 @@ function snippetSubnav(active) {
 
 /**
  * @param {import("../snippets/catalog/index.js").SnippetCatalogEntry[]} catalog
+ * @param {import("../utils/color.js").Palette[]} palettes
  */
-function buildLanguagePages(catalog) {
+function buildLanguagePages(catalog, palettes) {
   /** @type {Record<string, import("../snippets/catalog/index.js").SnippetCatalogEntry[]>} */
   const byLanguage = Object.fromEntries(
     SNIPPET_LANGUAGES.map(({ language }) => [language, []]),
@@ -170,6 +171,7 @@ function buildLanguagePages(catalog) {
       description: `Browse ${entries.length} ${meta.label} snippets for ${meta.extensions}. React, Next.js, TypeScript, testing, and more.`,
       canonicalPath: `snippets/${meta.slug}.html`,
       active: "snippets",
+      palettes,
       subnav: snippetSubnav(language),
       content: `<header class="page-header">
   <h1>${escapeHtml(meta.label)} snippets</h1>
@@ -191,7 +193,11 @@ ${categorySections}`,
 /**
  * @param {import("../snippets/catalog/index.js").SnippetCatalogEntry[]} catalog
  */
-function buildSnippetIndex(catalog) {
+/**
+ * @param {import("../snippets/catalog/index.js").SnippetCatalogEntry[]} catalog
+ * @param {import("../utils/color.js").Palette[]} palettes
+ */
+function buildSnippetIndex(catalog, palettes) {
   const total = catalog.length;
   const categories = new Set(catalog.map((entry) => entry.category)).size;
 
@@ -234,6 +240,7 @@ function buildSnippetIndex(catalog) {
     description: `Searchable reference for all ${total} Ether Themes snippets — React, Next.js, TypeScript, HTML, CSS, and more.`,
     canonicalPath: "snippets/",
     active: "snippets",
+    palettes,
     subnav: snippetSubnav("home"),
     content: `<header class="page-header">
   <h1>Snippet catalog</h1>
@@ -266,9 +273,13 @@ function buildSnippetIndex(catalog) {
 /**
  * @param {import("../snippets/catalog/index.js").SnippetCatalogEntry[]} catalog
  */
-export function buildSnippetPages(catalog) {
-  buildSnippetIndex(catalog);
-  return buildLanguagePages(catalog);
+/**
+ * @param {import("../snippets/catalog/index.js").SnippetCatalogEntry[]} catalog
+ * @param {import("../utils/color.js").Palette[]} palettes
+ */
+export function buildSnippetPages(catalog, palettes) {
+  buildSnippetIndex(catalog, palettes);
+  return buildLanguagePages(catalog, palettes);
 }
 
 export async function loadSnippetCatalog() {

@@ -19,6 +19,7 @@ import {
   renderSearchInput,
   siteRootDir,
 } from "./site-layout.js";
+import { renderSyntaxPreview } from "./site-syntax-preview.js";
 
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const previewsSourceDir = join(rootDir, "docs", "previews");
@@ -48,6 +49,9 @@ function renderThemeCard(palette, { compact = false } = {}) {
   <div class="theme-card-body">
     <h3>${escapeHtml(palette.label)}</h3>
     <p>${escapeHtml(character)}</p>
+    <div class="theme-card-actions">
+      <button type="button" class="try-theme" data-apply-theme="${escapeHtml(palette.id)}">Try on site</button>
+    </div>
   </div>
 </article>`;
 }
@@ -79,22 +83,27 @@ export function buildHomePage(palettes, snippetCount) {
     active: "home",
     ogImage,
     includeLightbox: true,
-    content: `<section class="landing-hero">
-  <span class="hero-eyebrow">VS Code &amp; Cursor extension</span>
-  <h1>Dark themes built for long coding sessions</h1>
-  <p class="lead">Twenty-five WCAG-validated palettes, ${snippetCount} production-ready snippets, and bundled grammars — one install, zero extra setup.</p>
-  <div class="cta-row">
-    <a class="cta cta-primary" href="${VS_MARKETPLACE}">Install on VS Code</a>
-    <a class="cta" href="${OPEN_VSX}">Install on Cursor</a>
-    <a class="cta" href="${THEMES_BASE}/">Browse themes</a>
-    <a class="cta" href="${SNIPPETS_BASE}/">Browse snippets</a>
+    palettes,
+    content: `<section class="landing-grid">
+  <div class="landing-hero">
+    <span class="hero-eyebrow">VS Code &amp; Cursor extension</span>
+    <h1>Dark themes built for long coding sessions</h1>
+    <p class="lead">Twenty-five WCAG-validated palettes, ${snippetCount} production-ready snippets, and bundled grammars — one install, zero extra setup.</p>
+    <p class="lead" style="margin-top:12px">Use the <strong>Preview</strong> picker in the nav to try any Ether theme on this site.</p>
+    <div class="cta-row">
+      <a class="cta cta-primary" href="${VS_MARKETPLACE}">Install on VS Code</a>
+      <a class="cta" href="${OPEN_VSX}">Install on Cursor</a>
+      <a class="cta" href="${THEMES_BASE}/">Browse themes</a>
+      <a class="cta" href="${SNIPPETS_BASE}/">Browse snippets</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>${palettes.length}</strong><span>dark themes</span></div>
+      <div class="stat"><strong>${snippetCount}</strong><span>snippets</span></div>
+      <div class="stat"><strong>4</strong><span>grammars</span></div>
+      <div class="stat"><strong>WCAG</strong><span>validated palettes</span></div>
+    </div>
   </div>
-  <div class="stats">
-    <div class="stat"><strong>${palettes.length}</strong><span>dark themes</span></div>
-    <div class="stat"><strong>${snippetCount}</strong><span>snippets</span></div>
-    <div class="stat"><strong>4</strong><span>grammars</span></div>
-    <div class="stat"><strong>WCAG</strong><span>validated palettes</span></div>
-  </div>
+  ${renderSyntaxPreview()}
 </section>
 
 <section class="feature-grid">
@@ -173,11 +182,14 @@ export function buildThemesPage(palettes) {
     active: "themes",
     ogImage,
     includeLightbox: true,
+    palettes,
     content: `<header class="page-header">
   <span class="hero-eyebrow">Theme gallery</span>
   <h1>${palettes.length} dark color themes</h1>
-  <p>Every palette is WCAG-validated with tuned syntax and workbench colors. Click a preview to enlarge. Install the extension, then press <code>Ctrl+K Ctrl+T</code> to switch themes.</p>
+  <p>Every palette is WCAG-validated with tuned syntax and workbench colors. Click a preview to enlarge, or <strong>Try on site</strong> to preview the palette live. Install the extension, then press <code>Ctrl+K Ctrl+T</code> to switch themes.</p>
 </header>
+
+${renderSyntaxPreview()}
 
 ${renderSearchInput("theme-search", "Search themes by name or character…")}
 <p id="search-empty" class="empty-state hidden">No themes match your search.</p>

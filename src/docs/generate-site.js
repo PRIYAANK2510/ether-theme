@@ -16,6 +16,7 @@ import {
   siteRootDir,
   writeBrandAssets,
   writeSiteStyles,
+  writeThemesStyles,
 } from "./site-layout.js";
 
 const assetsDir = join(siteRootDir, "assets");
@@ -36,9 +37,11 @@ export async function generateSite() {
     loadSnippetCatalog(),
   ]);
 
+  writeThemesStyles(assetsDir, palettes);
+
   buildHomePage(palettes, catalog.length);
   buildThemesPage(palettes);
-  const languageFiles = buildSnippetPages(catalog);
+  const languageFiles = buildSnippetPages(catalog, palettes);
 
   writeFileSync(join(siteRootDir, ".nojekyll"), "", "utf8");
 
@@ -53,6 +56,7 @@ export async function generateSite() {
       "snippets/index.html",
       ...languageFiles.map((file) => `snippets/${file}`),
       "assets/site.css",
+      "assets/themes.css",
       "assets/site.js",
       "assets/favicon-16.png",
       "assets/favicon-32.png",

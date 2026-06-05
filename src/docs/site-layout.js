@@ -15,6 +15,7 @@ import {
   VS_MARKETPLACE,
 } from "./site-config.js";
 import { SITE_STYLES } from "./site-styles.js";
+import { buildThemesStylesheet } from "./site-theme-tokens.js";
 
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "../..");
 export const siteRootDir = join(rootDir, "site");
@@ -63,10 +64,39 @@ export async function writeBrandAssets(assetsDir) {
  *   ogImage?: string,
  * }} options
  */
+export function renderThemeBootScript() {
+  return `<script>
+try {
+  var savedTheme = localStorage.getItem("ether-site-theme");
+  if (savedTheme) document.documentElement.setAttribute("data-ether-theme", savedTheme);
+} catch (e) { /* storage unavailable */ }
+</script>`;
+}
+
+/**
+ * @param {import("../utils/color.js").Palette[]} palettes
+ */
+export function renderThemePicker(palettes) {
+  const options = palettes
+    .map((palette) => {
+      const selected = palette.id === "ether-dusk" ? " selected" : "";
+      return `<option value="${escapeHtml(palette.id)}" data-color="${escapeHtml(palette.ui.surfaceShell)}"${selected}>${escapeHtml(palette.label)}</option>`;
+    })
+    .join("");
+
+  return `<div class="theme-picker">
+  <label class="theme-picker-label" for="site-theme-select">Preview</label>
+  <select id="site-theme-select" class="theme-select" aria-label="Preview an Ether extension theme on this site">
+    ${options}
+  </select>
+</div>`;
+}
+
 export function renderHead({ pageTitle, description, canonicalPath, ogImage }) {
   const canonical = `${SITE_URL}${canonicalPath.replace(/^\//, "")}`;
   const image = ogImage ?? `${SITE_URL}assets/apple-touch-icon.png`;
-  return `<meta charset="utf-8" />
+  return `${renderThemeBootScript()}
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
@@ -89,13 +119,15 @@ export function renderHead({ pageTitle, description, canonicalPath, ogImage }) {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="${ASSETS_BASE}/themes.css" />
   <link rel="stylesheet" href="${ASSETS_BASE}/site.css" />`;
 }
 
 /**
  * @param {"home" | "themes" | "snippets"} active
+ * @param {import("../utils/color.js").Palette[]} palettes
  */
-export function renderTopbar(active) {
+export function renderTopbar(active, palettes) {
   const navItems = [
     { id: "home", href: `${SITE_BASE}/`, label: "Home" },
     { id: "themes", href: `${THEMES_BASE}/`, label: "Themes" },
@@ -120,6 +152,7 @@ export function renderTopbar(active) {
     </a>
     <nav class="nav" aria-label="Primary">
       ${nav}
+      ${renderThemePicker(palettes)}
       <a class="nav-cta" href="${VS_MARKETPLACE}">Install</a>
     </nav>
   </div>
@@ -197,6 +230,7 @@ export function renderPrefixPill(prefix) {
  *   subnav?: string,
  *   ogImage?: string,
  *   includeLightbox?: boolean,
+ *   palettes: import("../utils/color.js").Palette[],
  * }} options
  */
 export function renderPage({
@@ -208,14 +242,15 @@ export function renderPage({
   subnav = "",
   ogImage,
   includeLightbox = false,
+  palettes,
 }) {
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ether-theme="ether-dusk">
 <head>
   ${renderHead({ pageTitle, description, canonicalPath, ogImage })}
 </head>
 <body>
-  ${renderTopbar(active)}
+  ${renderTopbar(active, palettes)}
   ${subnav}
   <main class="container">
     ${content}
@@ -233,4 +268,17 @@ export function renderPage({
 export function writeSiteStyles(assetsDir) {
   mkdirSync(assetsDir, { recursive: true });
   writeFileSync(join(assetsDir, "site.css"), `${SITE_STYLES.trim()}\n`, "utf8");
+}
+
+/**
+ * @param {string} assetsDir
+ * @param {import("../utils/color.js").Palette[]} palettes
+ */
+export function writeThemesStyles(assetsDir, palettes) {
+  mkdirSync(assetsDir, { recursive: true });
+  writeFileSync(
+    join(assetsDir, "themes.css"),
+    buildThemesStylesheet(palettes),
+    "utf8",
+  );
 }
