@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { generateAllThemes, loadPalettes } from "./generator/index.js";
 import { generateAllPreviews } from "./generator/preview-svg/assets.js";
 import { syncReadmePreviewGallery } from "./generator/preview-svg/gallery.js";
+import { generateAllGrammars } from "./grammars/sync.js";
 import { generateAllSnippets } from "./snippets/generator.js";
 
 const skipPreviews = process.argv.includes("--skip-previews");
@@ -35,6 +36,10 @@ if (removedFiles.length > 0) {
 }
 
 console.log(`Synced ${contributions.length} theme contribution(s) to package.json`);
+
+const { languages, grammars } = generateAllGrammars();
+console.log(`Synced ${languages.length} language association(s) to package.json`);
+console.log(`Synced ${grammars.length} bundled grammar(s) to package.json`);
 
 if (!skipPreviews) {
   const { generatedFiles: previewFiles, removedFiles: removedPreviews } =

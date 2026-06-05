@@ -1009,6 +1009,66 @@
       }
     },
     {
+      "name": "Kotlin — Keyword & Modifier",
+      "scope": [
+        "keyword.soft.kotlin",
+        "keyword.hard.kotlin",
+        "keyword.hard.package.kotlin",
+        "keyword.hard.class.kotlin",
+        "keyword.hard.object.kotlin",
+        "keyword.hard.typealias.kotlin",
+        "keyword.hard.fun.kotlin",
+        "keyword.control.kotlin",
+        "storage.modifier.other.kotlin",
+        "storage.modifier.kotlin",
+        "storage.type.function.arrow.kotlin",
+        "keyword.operator.assignment.kotlin",
+        "keyword.operator.assignment.arithmetic.kotlin",
+        "keyword.operator.arithmetic.kotlin",
+        "keyword.operator.comparison.kotlin",
+        "keyword.operator.logical.kotlin",
+        "keyword.operator.increment-decrement.kotlin",
+        "keyword.operator.range.kotlin",
+        "variable.language.wildcard.kotlin"
+      ],
+      "settings": {
+        "foreground": "#A898F0",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Kotlin — Type & Declaration",
+      "scope": [
+        "entity.name.type.kotlin",
+        "entity.name.type.class.kotlin",
+        "entity.name.type.object.kotlin",
+        "entity.name.type.class.extension.kotlin",
+        "entity.name.function.declaration.kotlin",
+        "entity.name.function.call.kotlin",
+        "entity.name.function.reference.kotlin",
+        "entity.name.package.kotlin",
+        "meta.import.kotlin",
+        "meta.package.kotlin",
+        "meta.class.kotlin"
+      ],
+      "settings": {
+        "foreground": "#F0D888"
+      }
+    },
+    {
+      "name": "Kotlin — Comment",
+      "scope": [
+        "comment.line.double-slash.kotlin",
+        "comment.block.kotlin",
+        "comment.block.javadoc.kotlin",
+        "keyword.other.documentation.javadoc.kotlin"
+      ],
+      "settings": {
+        "foreground": "#4D5C70",
+        "fontStyle": "italic"
+      }
+    },
+    {
       "name": "Label / Goto",
       "scope": [
         "entity.name.label",

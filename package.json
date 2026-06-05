@@ -188,6 +188,478 @@
         "language": "css",
         "path": "./snippets/css.code-snippets"
       }
+    ],
+    "languages": [
+      {
+        "id": "bat",
+        "aliases": [
+          "Batch"
+        ],
+        "extensions": [
+          ".bat",
+          ".cmd"
+        ],
+        "filenames": [
+          "gradlew.bat"
+        ]
+      },
+      {
+        "id": "c",
+        "aliases": [
+          "C"
+        ],
+        "extensions": [
+          ".h"
+        ]
+      },
+      {
+        "id": "cmake",
+        "aliases": [
+          "CMake"
+        ],
+        "extensions": [
+          ".cmake"
+        ],
+        "filenames": [
+          "CMakeLists.txt"
+        ]
+      },
+      {
+        "id": "cpp",
+        "aliases": [
+          "C++"
+        ],
+        "extensions": [
+          ".hpp",
+          ".hxx",
+          ".cc",
+          ".cxx",
+          ".hh",
+          ".ino"
+        ]
+      },
+      {
+        "id": "csharp",
+        "aliases": [
+          "C#"
+        ],
+        "extensions": [
+          ".csx"
+        ]
+      },
+      {
+        "id": "css",
+        "aliases": [
+          "CSS"
+        ],
+        "extensions": [
+          ".pcss",
+          ".postcss"
+        ]
+      },
+      {
+        "id": "dockerfile",
+        "aliases": [
+          "Dockerfile"
+        ],
+        "filenames": [
+          "Dockerfile",
+          "Containerfile"
+        ],
+        "filenamePatterns": [
+          "Dockerfile.*",
+          "Containerfile.*"
+        ]
+      },
+      {
+        "id": "dotenv",
+        "aliases": [
+          "Dotenv",
+          "Environment"
+        ],
+        "extensions": [
+          ".env"
+        ],
+        "filenamePatterns": [
+          ".env.*",
+          "*.env.local",
+          "*.env.development",
+          "*.env.production",
+          "*.env.test"
+        ]
+      },
+      {
+        "id": "go",
+        "aliases": [
+          "Go"
+        ],
+        "filenames": [
+          "go.mod",
+          "go.sum"
+        ]
+      },
+      {
+        "id": "groovy",
+        "aliases": [
+          "Groovy",
+          "Gradle"
+        ],
+        "filenamePatterns": [
+          "build.gradle",
+          "settings.gradle"
+        ]
+      },
+      {
+        "id": "html",
+        "aliases": [
+          "HTML"
+        ],
+        "extensions": [
+          ".htm",
+          ".xhtml",
+          ".ejs",
+          ".erb"
+        ]
+      },
+      {
+        "id": "ignore",
+        "aliases": [
+          "Ignore"
+        ],
+        "extensions": [
+          ".gitignore",
+          ".dockerignore",
+          ".npmignore",
+          ".prettierignore",
+          ".eslintignore"
+        ],
+        "filenames": [
+          ".gitignore",
+          ".dockerignore",
+          ".npmignore"
+        ]
+      },
+      {
+        "id": "ini",
+        "aliases": [
+          "Ini",
+          "EditorConfig"
+        ],
+        "extensions": [
+          ".editorconfig",
+          ".cfg",
+          ".conf",
+          ".ini"
+        ]
+      },
+      {
+        "id": "java",
+        "aliases": [
+          "Java"
+        ],
+        "extensions": [
+          ".aidl"
+        ]
+      },
+      {
+        "id": "javascript",
+        "aliases": [
+          "JavaScript"
+        ],
+        "extensions": [
+          ".mjs",
+          ".cjs"
+        ]
+      },
+      {
+        "id": "json",
+        "aliases": [
+          "JSON"
+        ],
+        "extensions": [
+          ".jsonc",
+          ".json5",
+          ".webmanifest",
+          ".code-workspace"
+        ],
+        "filenames": [
+          "package-lock.json",
+          "composer.lock"
+        ]
+      },
+      {
+        "id": "kotlin",
+        "aliases": [
+          "Kotlin"
+        ],
+        "extensions": [
+          ".kt",
+          ".kts"
+        ],
+        "filenamePatterns": [
+          "*.gradle.kts"
+        ],
+        "configuration": "./src/grammars/language-configs/kotlin-language-configuration.json"
+      },
+      {
+        "id": "less",
+        "aliases": [
+          "Less"
+        ],
+        "extensions": [
+          ".less"
+        ]
+      },
+      {
+        "id": "log",
+        "aliases": [
+          "Log"
+        ],
+        "extensions": [
+          ".log"
+        ]
+      },
+      {
+        "id": "lua",
+        "aliases": [
+          "Lua"
+        ],
+        "extensions": [
+          ".lua"
+        ]
+      },
+      {
+        "id": "makefile",
+        "aliases": [
+          "Makefile"
+        ],
+        "filenames": [
+          "Makefile",
+          "GNUmakefile",
+          "makefile",
+          "GNUMakefile"
+        ]
+      },
+      {
+        "id": "markdown",
+        "aliases": [
+          "Markdown"
+        ],
+        "extensions": [
+          ".mdx",
+          ".mdown",
+          ".mkd",
+          ".markdown"
+        ]
+      },
+      {
+        "id": "perl",
+        "aliases": [
+          "Perl"
+        ],
+        "extensions": [
+          ".pl",
+          ".pm"
+        ]
+      },
+      {
+        "id": "php",
+        "aliases": [
+          "PHP"
+        ],
+        "extensions": [
+          ".phtml",
+          ".php3",
+          ".php4",
+          ".php5"
+        ]
+      },
+      {
+        "id": "proguard",
+        "aliases": [
+          "ProGuard",
+          "R8"
+        ],
+        "extensions": [
+          ".pro",
+          ".keep"
+        ],
+        "filenamePatterns": [
+          "proguard-rules.pro",
+          "**/proguard-rules.pro"
+        ],
+        "configuration": "./src/grammars/language-configs/proguard-language-configuration.json"
+      },
+      {
+        "id": "properties",
+        "aliases": [
+          "Properties"
+        ],
+        "extensions": [
+          ".properties"
+        ],
+        "filenames": [
+          "gradle.properties",
+          "local.properties"
+        ]
+      },
+      {
+        "id": "python",
+        "aliases": [
+          "Python"
+        ],
+        "extensions": [
+          ".pyi",
+          ".pyw"
+        ],
+        "filenames": [
+          "Pipfile",
+          "Snakefile"
+        ]
+      },
+      {
+        "id": "ruby",
+        "aliases": [
+          "Ruby"
+        ],
+        "extensions": [
+          ".gemspec",
+          ".rake"
+        ],
+        "filenames": [
+          "Gemfile",
+          "Rakefile",
+          "Vagrantfile",
+          "Podfile",
+          "Brewfile"
+        ]
+      },
+      {
+        "id": "rust",
+        "aliases": [
+          "Rust"
+        ],
+        "extensions": [
+          ".rs"
+        ]
+      },
+      {
+        "id": "scss",
+        "aliases": [
+          "SCSS"
+        ],
+        "extensions": [
+          ".scss",
+          ".sass"
+        ]
+      },
+      {
+        "id": "shellscript",
+        "aliases": [
+          "Shell Script"
+        ],
+        "extensions": [
+          ".sh",
+          ".bash",
+          ".zsh"
+        ],
+        "filenames": [
+          "gradlew"
+        ]
+      },
+      {
+        "id": "sql",
+        "aliases": [
+          "SQL"
+        ],
+        "extensions": [
+          ".ddl",
+          ".dml",
+          ".mysql",
+          ".pgsql"
+        ]
+      },
+      {
+        "id": "swift",
+        "aliases": [
+          "Swift"
+        ],
+        "extensions": [
+          ".swift"
+        ]
+      },
+      {
+        "id": "toml",
+        "aliases": [
+          "TOML"
+        ],
+        "extensions": [
+          ".toml"
+        ],
+        "filenames": [
+          "Cargo.toml",
+          "pyproject.toml"
+        ]
+      },
+      {
+        "id": "typescript",
+        "aliases": [
+          "TypeScript"
+        ],
+        "extensions": [
+          ".mts",
+          ".cts"
+        ]
+      },
+      {
+        "id": "xml",
+        "aliases": [
+          "XML"
+        ],
+        "extensions": [
+          ".svg",
+          ".plist",
+          ".xaml",
+          ".csproj",
+          ".vbproj",
+          ".proj",
+          ".wxs",
+          ".wxi"
+        ],
+        "filenames": [
+          "AndroidManifest.xml"
+        ]
+      },
+      {
+        "id": "yaml",
+        "aliases": [
+          "YAML"
+        ],
+        "extensions": [
+          ".yaml",
+          ".yml"
+        ],
+        "filenames": [
+          ".yarnrc.yml"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "dotenv",
+        "scopeName": "source.dotenv",
+        "path": "./src/grammars/syntaxes/dotenv.tmLanguage.json"
+      },
+      {
+        "language": "kotlin",
+        "scopeName": "source.kotlin",
+        "path": "./src/grammars/syntaxes/kotlin.tmLanguage.json"
+      },
+      {
+        "language": "proguard",
+        "scopeName": "source.proguard",
+        "path": "./src/grammars/syntaxes/proguard.tmLanguage.json"
+      }
     ]
   },
   "scripts": {
