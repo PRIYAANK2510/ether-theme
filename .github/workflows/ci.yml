@@ -8,6 +8,8 @@ on:
 
 jobs:
   check:
+    # PRs only validate — publish/deploy run on push to main (release.yml, pages.yml).
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
