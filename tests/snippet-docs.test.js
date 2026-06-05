@@ -6,12 +6,26 @@ import { buildWebsite } from "../apps/website/scripts/build.mjs";
 
 const rootDir = join(import.meta.dirname, "..");
 const siteDir = join(rootDir, "site");
+const assetsDir = join(siteDir, "assets");
 
 function findMainBundle() {
-  const assetsDir = join(siteDir, "assets");
   return readdirSync(assetsDir).find(
     (file) => file.endsWith(".js") && file.startsWith("index-"),
   );
+}
+
+function readJsBundles() {
+  return Object.fromEntries(
+    readdirSync(assetsDir)
+      .filter((file) => file.endsWith(".js"))
+      .map((file) => [file, readFileSync(join(assetsDir, file), "utf8")]),
+  );
+}
+
+function bundlesContaining(text, bundles = readJsBundles()) {
+  return Object.entries(bundles)
+    .filter(([, content]) => content.includes(text))
+    .map(([file]) => file);
 }
 
 describe("product site (React)", () => {
@@ -62,22 +76,25 @@ describe("product site (React)", () => {
     const jsBundle = findMainBundle();
     expect(jsBundle).toBeTruthy();
 
-    const bundle = readFileSync(join(siteDir, "assets", jsBundle), "utf8");
-    expect(bundle).toContain("Snippet catalog");
-    expect(bundle).toContain("theme-switcher");
-    expect(bundle).toContain("ether-dusk");
-    expect(bundle).toContain("ether-sand");
+    const bundles = readJsBundles();
+    const mainBundle = bundles[jsBundle];
+    expect(mainBundle).toContain("theme-switcher");
+    expect(mainBundle).toContain("ether-dusk");
+    expect(mainBundle).toContain("ether-sand");
+
+    const snippetPageBundles = bundlesContaining("Snippet catalog", bundles);
+    expect(snippetPageBundles.some((file) => file.startsWith("SnippetsPage-")))
+      .toBe(true);
   }, 15_000);
 
   it("includes catalog prefixes in the built bundle", async () => {
     const catalog = await loadSnippetCatalogWithMeta();
     await buildWebsite();
 
-    const jsBundle = findMainBundle();
-    const bundle = readFileSync(join(siteDir, "assets", jsBundle), "utf8");
+    const bundles = Object.values(readJsBundles()).join("\n");
 
     for (const entry of catalog.slice(0, 20)) {
-      expect(bundle).toContain(entry.prefix);
+      expect(bundles).toContain(entry.prefix);
     }
   });
 });
