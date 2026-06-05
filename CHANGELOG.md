@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.15] - 2026-06-05
+
+### Fixed
+
+- Replace retired Shields.io VS Marketplace API badges with a static install badge and live Open VSX version/download badges in README and `package.json`
+
 ## [0.2.14] - 2026-06-05
 
 ### Added
@@ -246,6 +252,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.7]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.7
 [0.2.8]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.8
 [0.2.10]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.10
+[0.2.15]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.15
 [0.2.14]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.14
 [0.2.13]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.13
 [0.2.12]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.12

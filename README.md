@@ -6,9 +6,9 @@
 </p>
 
 <p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme"><img src="https://img.shields.io/visual-studio-marketplace/v/Priyaank.ether-theme?style=flat-square&label=VS%20Marketplace" alt="VS Marketplace version" /></a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme"><img src="https://img.shields.io/visual-studio-marketplace/i/Priyaank.ether-theme?style=flat-square" alt="VS Marketplace installs" /></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme"><img src="https://img.shields.io/badge/VS%20Marketplace-install-0078d7?style=flat-square&logo=visualstudiocode" alt="Install on VS Marketplace" /></a>
   <a href="https://open-vsx.org/extension/PRIYAANK2510/ether-theme"><img src="https://img.shields.io/open-vsx/v/PRIYAANK2510/ether-theme?style=flat-square&label=Open%20VSX" alt="Open VSX version" /></a>
+  <a href="https://open-vsx.org/extension/PRIYAANK2510/ether-theme"><img src="https://img.shields.io/open-vsx/dt/PRIYAANK2510/ether-theme?style=flat-square&label=downloads" alt="Open VSX downloads" /></a>
   <a href="https://github.com/PRIYAANK2510/ether-theme/blob/main/LICENSE"><img src="https://img.shields.io/github/license/PRIYAANK2510/ether-theme?style=flat-square" alt="MIT License" /></a>
 </p>
 

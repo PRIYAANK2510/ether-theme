@@ -63,19 +63,19 @@
   ],
   "badges": [
     {
-      "url": "https://img.shields.io/visual-studio-marketplace/v/Priyaank.ether-theme?style=flat-square&label=VS%20Marketplace",
+      "url": "https://img.shields.io/badge/VS%20Marketplace-install-0078d7?style=flat-square&logo=visualstudiocode",
       "href": "https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme",
-      "description": "VS Code Marketplace version"
-    },
-    {
-      "url": "https://img.shields.io/visual-studio-marketplace/i/Priyaank.ether-theme?style=flat-square",
-      "href": "https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme",
-      "description": "Total installs"
+      "description": "Install on VS Code Marketplace"
     },
     {
       "url": "https://img.shields.io/open-vsx/v/PRIYAANK2510/ether-theme?style=flat-square&label=Open%20VSX",
       "href": "https://open-vsx.org/extension/PRIYAANK2510/ether-theme",
       "description": "Open VSX version"
+    },
+    {
+      "url": "https://img.shields.io/open-vsx/dt/PRIYAANK2510/ether-theme?style=flat-square&label=downloads",
+      "href": "https://open-vsx.org/extension/PRIYAANK2510/ether-theme",
+      "description": "Open VSX downloads"
     }
   ],
   "contributes": {
