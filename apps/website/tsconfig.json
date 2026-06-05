@@ -16,11 +16,22 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "types": ["vite/client"],
-    "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "classnameTransform": "camelCase"
+        }
+      }
+    ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "../../shared/site-seo.d.ts"],
+  "include": [
+    "src",
+    "../../shared/site-seo.d.ts",
+    "../../shared/snippet-search.d.ts"
+  ],
   "exclude": ["src/generated"]
 }

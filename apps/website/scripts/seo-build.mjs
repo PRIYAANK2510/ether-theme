@@ -67,9 +67,7 @@ function escapeAttr(value) {
 
 /** @param {string} value */
 function escapeHtml(value) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;");
+  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 }
 
 /**
@@ -78,7 +76,9 @@ function escapeHtml(value) {
  */
 export function writeSeoArtifacts(siteDir, data) {
   const templateHtml = readFileSync(join(siteDir, "index.html"), "utf8");
-  const packageJson = JSON.parse(readFileSync(join(siteDir, "../package.json"), "utf8"));
+  const packageJson = JSON.parse(
+    readFileSync(join(siteDir, "../package.json"), "utf8"),
+  );
   const version = packageJson.version;
   const pages = allPageSeo(data.languages, {
     paletteCount: data.paletteCount,
@@ -97,7 +97,11 @@ export function writeSeoArtifacts(siteDir, data) {
     const segments = page.path.replace(/^\/|\/$/g, "").split("/");
     const routeDir = join(siteDir, ...segments);
     mkdirSync(routeDir, { recursive: true });
-    writeFileSync(join(routeDir, "index.html"), renderHead(templateHtml, page, version), "utf8");
+    writeFileSync(
+      join(routeDir, "index.html"),
+      renderHead(templateHtml, page, version),
+      "utf8",
+    );
   }
 
   const today = new Date().toISOString().slice(0, 10);

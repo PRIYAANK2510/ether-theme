@@ -8,12 +8,12 @@ VS Code/Cursor extension: **25 dark palettes**, **496 snippets**, **4 bundled gr
 
 ## Source of truth
 
-| Edit | Never hand-edit |
-|------|-----------------|
-| `src/palettes/` | `themes/*.color-theme.json` |
-| `src/snippets/catalog/` (non-synced) | `snippets/*.code-snippets` |
-| `src/grammars/` | `package.json` contributes |
-| `apps/website/src/` | `site/`, `apps/website/src/generated/` |
+| Edit                                 | Never hand-edit                        |
+| ------------------------------------ | -------------------------------------- |
+| `src/palettes/`                      | `themes/*.color-theme.json`            |
+| `src/snippets/catalog/` (non-synced) | `snippets/*.code-snippets`             |
+| `src/grammars/`                      | `package.json` contributes             |
+| `apps/website/src/`                  | `site/`, `apps/website/src/generated/` |
 
 Bridge modules for the site live in `shared/` (not `src/shared/`).
 

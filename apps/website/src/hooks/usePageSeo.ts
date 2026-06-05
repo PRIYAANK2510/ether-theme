@@ -28,7 +28,9 @@ function upsertMeta(
 }
 
 function upsertCanonical(href: string) {
-  let element = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  let element = document.head.querySelector<HTMLLinkElement>(
+    'link[rel="canonical"]',
+  );
   if (!element) {
     element = document.createElement("link");
     element.rel = "canonical";
@@ -41,7 +43,9 @@ export function usePageSeo(seo: PageSeo) {
   useEffect(() => {
     const canonical = canonicalUrl(seo.path);
     const image = seo.ogImage ?? DEFAULT_OG_IMAGE;
-    const imageUrl = image.startsWith("http") ? image : `${canonicalUrl("/").replace(/\/$/, "")}${image}`;
+    const imageUrl = image.startsWith("http")
+      ? image
+      : `${canonicalUrl("/").replace(/\/$/, "")}${image}`;
 
     document.title = seo.title;
     upsertMeta("name", "description", seo.description);

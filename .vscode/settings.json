@@ -10,6 +10,8 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.preferences.preferGoToSourceDefinition": true,
+  "typescript.preferences.useAliasesForRenames": false,
   "typescript.tsserver.maxTsServerMemory": 4096,
   "eslint.workingDirectories": [
     { "pattern": "apps/website" },

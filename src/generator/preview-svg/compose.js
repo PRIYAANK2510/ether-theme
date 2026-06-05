@@ -1,9 +1,4 @@
-import {
-  H,
-  PREVIEW_SVG_HEIGHT,
-  PREVIEW_SVG_WIDTH,
-  W,
-} from "./constants.js";
+import { H, PREVIEW_SVG_HEIGHT, PREVIEW_SVG_WIDTH, W } from "./constants.js";
 import {
   renderBreadcrumb,
   renderClipPaths,

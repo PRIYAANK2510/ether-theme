@@ -1,0 +1,90 @@
+@use "../styles/mixins.scss" as *;
+
+.tabs {
+  position: sticky;
+  top: var(--topbar-height);
+  z-index: var(--z-subnav);
+  margin: 0;
+  padding-top: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--topbar-bg);
+  backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.bar {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px 24px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 4px;
+  min-width: 0;
+}
+
+.search {
+  align-self: center;
+  width: min(200px, 100%);
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .search {
+    width: 100%;
+    margin-bottom: 0;
+    align-self: stretch;
+  }
+}
+
+.tab {
+  flex-shrink: 0;
+  margin-bottom: -1px;
+  padding: 16px 12px;
+
+  &:first-child {
+    padding-left: 0;
+  }
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+    color: var(--text);
+    border-bottom-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+}
+
+.tab[data-state="active"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}

@@ -1,4 +1,10 @@
-import { copyFileSync, mkdirSync, readdirSync, rmSync } from "node:fs";
+import {
+  copyFileSync,
+  mkdirSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { writeFileIfChanged } from "../../../src/utils/fs.js";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,9 +14,11 @@ import {
   LANGUAGE_META,
   resolveSnippetForLanguage,
 } from "../../../shared/site-snippets.js";
+import { buildSnippetSearchHaystack } from "../../../shared/snippet-search.js";
 import { loadPalettes } from "../../../src/generator/index.js";
 import { loadSnippetCatalogWithMeta } from "../../../src/snippets/catalog/index.js";
 import { SNIPPET_LANGUAGES } from "../../../src/snippets/registry.js";
+import { highlightSnippetForBuild } from "./highlight-snippet.mjs";
 
 const websiteDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const rootDir = join(websiteDir, "../..");
@@ -23,6 +31,7 @@ export async function prepareWebsiteData() {
   const palettes = await loadPalettes();
   const catalog = await loadSnippetCatalogWithMeta();
   const themes = buildThemesData(palettes);
+  const defaultTheme = themes["ether-dusk"];
 
   const paletteSummaries = palettes.map((palette) => ({
     id: palette.id,
@@ -34,11 +43,19 @@ export async function prepareWebsiteData() {
 
   const languages = SNIPPET_LANGUAGES.map(({ language }) => {
     const meta = LANGUAGE_META[language];
-    const count = catalog.filter((entry) => entry.languages.includes(language)).length;
+    const count = catalog.filter((entry) =>
+      entry.languages.includes(language),
+    ).length;
     return { ...meta, count };
   });
 
-  const snippets = catalog.flatMap((entry) =>
+  const defaultThemePath = join(
+    rootDir,
+    "themes",
+    "ether-dusk.color-theme.json",
+  );
+
+  const snippetIndex = catalog.flatMap((entry) =>
     entry.languages.map((language) => {
       const resolved = resolveSnippetForLanguage(entry, language);
       const meta = LANGUAGE_META[language];
@@ -50,28 +67,77 @@ export async function prepareWebsiteData() {
         languageSlug: meta.slug,
         prefix: resolved.prefix,
         description: resolved.description,
-        body: resolved.body,
-        search: [
-          resolved.prefix,
-          resolved.description,
-          entry.category,
-          meta.label,
-          entry.key,
-        ]
-          .join(" ")
-          .toLowerCase(),
+        search: buildSnippetSearchHaystack(resolved, entry, meta),
       };
     }),
   );
 
-  const categories = [...new Set(catalog.map((entry) => entry.category))].sort();
+  const snippetsBySlug = new Map();
+  for (const { language } of SNIPPET_LANGUAGES) {
+    const meta = LANGUAGE_META[language];
+    const entries = catalog.filter((entry) =>
+      entry.languages.includes(language),
+    );
+    const snippets = [];
+
+    for (const entry of entries) {
+      const resolved = resolveSnippetForLanguage(entry, language);
+      const defaultHtml = await highlightSnippetForBuild(
+        resolved.body,
+        language,
+        defaultThemePath,
+      );
+      snippets.push({
+        key: entry.key,
+        category: entry.category,
+        language,
+        prefix: resolved.prefix,
+        description: resolved.description,
+        body: resolved.body,
+        search: buildSnippetSearchHaystack(resolved, entry, meta),
+        defaultHtml,
+      });
+    }
+
+    snippetsBySlug.set(meta.slug, {
+      slug: meta.slug,
+      language,
+      snippets,
+    });
+  }
+
+  const categories = [
+    ...new Set(catalog.map((entry) => entry.category)),
+  ].sort();
 
   rmSync(publicDir, { recursive: true, force: true });
   mkdirSync(join(publicDir, "previews"), { recursive: true });
   const assetsDir = join(publicDir, "assets");
   mkdirSync(assetsDir, { recursive: true });
+  const snippetDataDir = join(publicDir, "data", "snippets");
+  mkdirSync(snippetDataDir, { recursive: true });
+  const themeDataDir = join(publicDir, "data", "themes");
+  mkdirSync(themeDataDir, { recursive: true });
 
-  for (const file of readdirSync(previewsSource).filter((name) => name.endsWith(".png"))) {
+  for (const [themeId, theme] of Object.entries(themes)) {
+    writeFileSync(
+      join(themeDataDir, `${themeId}.json`),
+      `${JSON.stringify(theme)}\n`,
+      "utf8",
+    );
+  }
+
+  for (const bundle of snippetsBySlug.values()) {
+    writeFileSync(
+      join(snippetDataDir, `${bundle.slug}.json`),
+      `${JSON.stringify(bundle)}\n`,
+      "utf8",
+    );
+  }
+
+  for (const file of readdirSync(previewsSource).filter((name) =>
+    name.endsWith(".png"),
+  )) {
     copyFileSync(join(previewsSource, file), join(publicDir, "previews", file));
   }
   await writeBrandAssets(iconSource, assetsDir);
@@ -82,9 +148,9 @@ export async function prepareWebsiteData() {
     catalogCount: catalog.length,
     categoryCount: categories.length,
     palettes: paletteSummaries,
-    themes,
+    defaultTheme,
     languages,
-    snippets,
+    snippets: snippetIndex,
     categories,
     defaultThemeId: "ether-dusk",
   };
@@ -99,8 +165,7 @@ export async function prepareWebsiteData() {
 }
 
 const invokedDirectly =
-  process.argv[1] &&
-  fileURLToPath(import.meta.url) === process.argv[1];
+  process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 
 if (invokedDirectly) {
   const result = await prepareWebsiteData();

@@ -4,7 +4,6 @@
   margin-bottom: 28px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border);
-  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
 
   h1 {
     margin: 0 0 8px;
@@ -17,20 +16,6 @@
     max-width: 62ch;
     line-height: 1.6;
   }
-}
-
-.heroEyebrow {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: 4px 10px;
-  border-radius: var(--radius-pill);
-  background: var(--accent-soft);
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .lead {
@@ -78,6 +63,17 @@
     white-space: nowrap;
     @include link-underline;
   }
+}
+
+.snippetTabAnchor {
+  display: block;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.snippetsPanel {
+  margin-top: var(--snippet-scroll-gap);
 }
 
 .resultMeta {

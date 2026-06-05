@@ -8,6 +8,7 @@ import { THEMES_SEO } from "../../../../shared/site-seo.js";
 import { SITE_DATA } from "@/generated/site-data";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setThemeQuery } from "@/store/searchSlice";
+import { PageIntro } from "@/components/PageIntro";
 import gridStyles from "@/styles/ui/grid.module.scss";
 import pageStyles from "@/styles/ui/page.module.scss";
 import styles from "./ThemesPage.module.scss";
@@ -32,16 +33,17 @@ export function ThemesPage() {
 
   return (
     <>
-      <header className={pageStyles.pageHeader}>
-        <span className={pageStyles.heroEyebrow}>Theme gallery</span>
-        <h1>{SITE_DATA.paletteCount} dark color themes</h1>
+      <PageIntro
+        kicker="Theme gallery"
+        title={`${SITE_DATA.paletteCount} dark color themes`}
+      >
         <p>
-          Every palette is WCAG-validated with tuned syntax and workbench colors. Use{" "}
-          <strong>Preview</strong> to enlarge a screenshot or <strong>Try</strong> to apply the
-          palette across the site. Install the extension, then press <code>Ctrl+K Ctrl+T</code> to
-          switch themes in your editor.
+          WCAG-validated palettes with tuned syntax and workbench colors.{" "}
+          <strong>Try</strong> applies a theme to this site;{" "}
+          <strong>Preview</strong> opens the editor screenshot. Use{" "}
+          <code>Ctrl+K Ctrl+T</code> in VS Code or Cursor after install.
         </p>
-      </header>
+      </PageIntro>
 
       <div className={styles.toolbar}>
         <SyntaxPreview />

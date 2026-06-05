@@ -54,9 +54,10 @@ export function snippetLanguageSeo(label, slug, count, extensions) {
  */
 export function canonicalUrl(path) {
   const normalized = path.startsWith("/") ? path : `/${path}`;
-  const withBase = normalized === "/"
-    ? SITE_URL
-    : `${SITE_URL.replace(/\/$/, "")}${normalized.replace(/\/$/, "")}/`;
+  const withBase =
+    normalized === "/"
+      ? SITE_URL
+      : `${SITE_URL.replace(/\/$/, "")}${normalized.replace(/\/$/, "")}/`;
   return withBase;
 }
 
@@ -79,10 +80,18 @@ export function allPageSeo(languages, counts = {}) {
     {
       ...SNIPPETS_SEO,
       title: `Ether Snippets — ${catalogCount} VS Code & Cursor Prefixes`,
-      description: SNIPPETS_SEO.description.replace("496", String(catalogCount)),
+      description: SNIPPETS_SEO.description.replace(
+        "496",
+        String(catalogCount),
+      ),
     },
     ...languages.map((language) =>
-      snippetLanguageSeo(language.label, language.slug, language.count, language.extensions),
+      snippetLanguageSeo(
+        language.label,
+        language.slug,
+        language.count,
+        language.extensions,
+      ),
     ),
   ];
 }

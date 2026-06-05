@@ -40,7 +40,9 @@ describe("generated snippet artifacts", () => {
   it("registers snippet contributions for all supported languages", () => {
     const contributions = buildSnippetContributions();
     expect(packageJson.contributes.snippets).toEqual(contributions);
-    expect(packageJson.contributes.snippets).toHaveLength(SNIPPET_LANGUAGES.length);
+    expect(packageJson.contributes.snippets).toHaveLength(
+      SNIPPET_LANGUAGES.length,
+    );
   });
 
   it("ships snippet files referenced by package.json", () => {
@@ -69,7 +71,10 @@ describe("snippet entry shape", () => {
 
       for (const [name, entry] of Object.entries(snippets)) {
         expect(entry.prefix, `${contribution.language}:${name}`).toBeTruthy();
-        expect(entry.description, `${contribution.language}:${name}`).toBeTruthy();
+        expect(
+          entry.description,
+          `${contribution.language}:${name}`,
+        ).toBeTruthy();
         expect(entry.body, `${contribution.language}:${name}`).toBeTruthy();
       }
     }

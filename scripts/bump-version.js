@@ -29,12 +29,15 @@ if (!changelog.includes(`## [${nextVersion}]`)) {
       ? `${changelog.trimEnd()}\n\n${entry}`
       : `${changelog.slice(0, insertAfter)}\n\n${entry}${changelog.slice(insertAfter + 1)}`;
 
-  const link = `[${nextVersion}]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v${nextVersion}`;
+  const link = `[${nextVersion}]: https://github.com/PRIYAANK2510/ether-theme/tree/v${nextVersion}`;
   if (!changelog.includes(link)) {
     changelog = `${changelog.trimEnd()}\n${link}\n`;
   }
 
-  writeFileSync(changelogPath, changelog.endsWith("\n") ? changelog : `${changelog}\n`);
+  writeFileSync(
+    changelogPath,
+    changelog.endsWith("\n") ? changelog : `${changelog}\n`,
+  );
 }
 
 console.log(nextVersion);

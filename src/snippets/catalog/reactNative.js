@@ -6,7 +6,12 @@ export default [
     key: "reactNative-react-native-component",
     prefix: "rnc",
     description: "React Native Component · rnc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { Text, View } from 'react-native'",
       "import React, { Component } from 'react'",
@@ -26,7 +31,12 @@ export default [
     key: "reactNative-react-native-component-export",
     prefix: "rnce",
     description: "React Native Component Export · rnce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { Text, View } from 'react-native'",
       "import React, { Component } from 'react'",
@@ -48,7 +58,12 @@ export default [
     key: "reactNative-react-native-component-with-styles",
     prefix: "rncs",
     description: "React Native Component With Styles · rncs",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { Text, StyleSheet, View } from 'react-native'",
       "import React, { Component } from 'react'",
@@ -70,7 +85,12 @@ export default [
     key: "reactNative-react-native-functional-component",
     prefix: "rnf",
     description: "React Native Functional Component · rnf",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { View, Text } from 'react-native'",
       "import React from 'react'",
@@ -88,7 +108,12 @@ export default [
     key: "reactNative-react-native-functional-component-with-styles",
     prefix: "rnfs",
     description: "React Native Functional Component With Styles · rnfs",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { StyleSheet, Text, View } from 'react-native'",
       "import React from 'react'",
@@ -108,7 +133,12 @@ export default [
     key: "reactNative-react-native-functional-export-component",
     prefix: "rnfe",
     description: "React Native Functional Export Component · rnfe",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { View, Text } from 'react-native'",
       "import React from 'react'",
@@ -128,7 +158,12 @@ export default [
     key: "reactNative-react-native-functional-export-component-with-styles",
     prefix: "rnfes",
     description: "React Native Functional Export Component With Styles · rnfes",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { StyleSheet, Text, View } from 'react-native'",
       "import React from 'react'",
@@ -150,14 +185,24 @@ export default [
     key: "reactNative-react-native-import",
     prefix: "imrn",
     description: "React Native Import · imrn",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: "import { ${1:first} } from 'react-native'",
   },
   {
     key: "reactNative-react-native-pure-component",
     prefix: "rnpc",
     description: "React Native Pure Component · rnpc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { Text, View } from 'react-native'",
       "import React, { PureComponent } from 'react'",
@@ -177,7 +222,12 @@ export default [
     key: "reactNative-react-native-pure-component-export",
     prefix: "rnpce",
     description: "React Native Pure Component Export · rnpce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { Text, View } from 'react-native'",
       "import React, { PureComponent } from 'react'",
@@ -199,7 +249,12 @@ export default [
     key: "reactNative-react-native-styles",
     prefix: "rnstyle",
     description: "React Native Styles · rnstyle",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: "const styles = StyleSheet.create({${1:first}})",
   },
 ];

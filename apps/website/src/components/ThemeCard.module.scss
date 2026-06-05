@@ -4,6 +4,8 @@
   @include surface-card;
   overflow: hidden;
   padding: 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 320px;
   transition:
     border-color var(--duration-normal) var(--ease-out),
     transform var(--duration-normal) var(--ease-out),

@@ -1,0 +1,212 @@
+@use "../styles/mixins.scss" as *;
+
+.list {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  border-bottom: 1px solid var(--border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.itemOpen {
+  background: var(--hover-row);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(84px, 112px) minmax(0, 1fr) auto;
+  gap: 12px 16px;
+  align-items: center;
+  padding: 14px 16px;
+  transition: background var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    background: var(--hover-row);
+  }
+}
+
+.itemOpen .row:hover {
+  background: transparent;
+}
+
+.prefixBtn,
+.content {
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: var(--radius-sm);
+  }
+}
+
+.prefixBtn {
+  justify-self: start;
+}
+
+.prefix {
+  display: inline-flex;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--code-bg);
+  color: var(--pill-code);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+}
+
+.prefixBtn:hover .prefix,
+.itemOpen .prefix {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.itemOpen .prefix {
+  background: color-mix(in srgb, var(--accent) 8%, var(--code-bg));
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.description {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 6px;
+  align-items: center;
+}
+
+.copyWrap {
+  flex-shrink: 0;
+}
+
+.expandBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &[aria-expanded="true"] {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    background: var(--accent-soft);
+  }
+}
+
+.expandIcon {
+  display: block;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.expandBtn[aria-expanded="true"] .expandIcon {
+  transform: rotate(180deg);
+}
+
+.itemBody {
+  padding: 0 16px 16px 144px;
+}
+
+.itemCode {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--code-bg);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.itemLoading {
+  margin: 0;
+  padding: 20px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    gap: 10px 12px;
+  }
+
+  .prefixBtn {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .actions {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .content {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .itemBody {
+    padding-left: 16px;
+  }
+}

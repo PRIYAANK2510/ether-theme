@@ -26,9 +26,17 @@ export function snippetLanguageSeo(
 export function canonicalUrl(path: string): string;
 
 export function allPageSeo(
-  languages: Array<{ slug: string; label: string; count: number; extensions: string }>,
+  languages: Array<{
+    slug: string;
+    label: string;
+    count: number;
+    extensions: string;
+  }>,
   counts?: { paletteCount?: number; catalogCount?: number },
 ): PageSeo[];
 
 export function jsonLdWebSite(seo: PageSeo): string;
-export function jsonLdSoftwareApplication(seo: PageSeo, version?: string): string;
+export function jsonLdSoftwareApplication(
+  seo: PageSeo,
+  version?: string,
+): string;

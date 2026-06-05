@@ -39,8 +39,7 @@ export function removeOrphanedPreviewFiles(activeIds, previewsDirectory) {
       continue;
     }
 
-    const keep =
-      themeMatch[2] === "png" && activeBaseNames.has(themeMatch[1]);
+    const keep = themeMatch[2] === "png" && activeBaseNames.has(themeMatch[1]);
     if (keep) {
       continue;
     }

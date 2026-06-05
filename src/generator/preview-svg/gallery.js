@@ -34,7 +34,9 @@ function renderGalleryCard(palette) {
  * @returns {string}
  */
 export function renderReadmePreviewGallery(palettes) {
-  const cards = palettes.map((palette) => renderGalleryCard(palette)).join("\n");
+  const cards = palettes
+    .map((palette) => renderGalleryCard(palette))
+    .join("\n");
 
   return `<div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;column-gap:${PREVIEW_CELL_GAP}px;row-gap:0;max-width:100%">
 ${cards}
@@ -56,9 +58,6 @@ export function syncReadmePreviewGallery(readmePath, palettes) {
     );
   }
 
-  const pattern = new RegExp(
-    `${GALLERY_START}[\\s\\S]*?${GALLERY_END}`,
-    "m",
-  );
+  const pattern = new RegExp(`${GALLERY_START}[\\s\\S]*?${GALLERY_END}`, "m");
   writeFileIfChanged(readmePath, readme.replace(pattern, block), "utf8");
 }

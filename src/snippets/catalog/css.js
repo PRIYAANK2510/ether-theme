@@ -16,32 +16,21 @@ export default [
     prefix: "flexcol",
     description: "CSS flex column layout",
     languages: ["css"],
-    body: [
-      "display: flex;",
-      "flex-direction: column;",
-      "gap: ${1:1rem};",
-    ],
+    body: ["display: flex;", "flex-direction: column;", "gap: ${1:1rem};"],
   },
   {
     key: "css-flex-row",
     prefix: "flexrow",
     description: "CSS flex row layout",
     languages: ["css"],
-    body: [
-      "display: flex;",
-      "flex-direction: row;",
-      "gap: ${1:1rem};",
-    ],
+    body: ["display: flex;", "flex-direction: row;", "gap: ${1:1rem};"],
   },
   {
     key: "css-grid-center",
     prefix: "gridcenter",
     description: "CSS grid center",
     languages: ["css"],
-    body: [
-      "display: grid;",
-      "place-items: center;",
-    ],
+    body: ["display: grid;", "place-items: center;"],
   },
   {
     key: "css-grid-layout",
@@ -59,11 +48,7 @@ export default [
     prefix: "media",
     description: "CSS media query",
     languages: ["css"],
-    body: [
-      "@media (min-width: ${1:768px}) {",
-      "  $0",
-      "}",
-    ],
+    body: ["@media (min-width: ${1:768px}) {", "  $0", "}"],
   },
   {
     key: "css-keyframes",
@@ -93,12 +78,7 @@ export default [
     prefix: "vars",
     description: "CSS custom properties block",
     languages: ["css"],
-    body: [
-      ":root {",
-      "  --${1:name}: ${2:value};",
-      "  $0",
-      "}",
-    ],
+    body: [":root {", "  --${1:name}: ${2:value};", "  $0", "}"],
   },
   {
     key: "css-custom-property-use",
@@ -112,13 +92,7 @@ export default [
     prefix: "boxreset",
     description: "CSS box-sizing reset",
     languages: ["css"],
-    body: [
-      "*,",
-      "*::before,",
-      "*::after {",
-      "  box-sizing: border-box;",
-      "}",
-    ],
+    body: ["*,", "*::before,", "*::after {", "  box-sizing: border-box;", "}"],
   },
   {
     key: "css-absolute-center",
@@ -137,11 +111,7 @@ export default [
     prefix: "sticky",
     description: "CSS position sticky",
     languages: ["css"],
-    body: [
-      "position: sticky;",
-      "top: ${1:0};",
-      "z-index: ${2:10};",
-    ],
+    body: ["position: sticky;", "top: ${1:0};", "z-index: ${2:10};"],
   },
   {
     key: "css-truncate",
@@ -254,17 +224,14 @@ export default [
     prefix: "fontstack",
     description: "CSS system font stack",
     languages: ["css"],
-    body: "font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;",
+    body: 'font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;',
   },
   {
     key: "css-reset-margin-padding",
     prefix: "resetmp",
     description: "CSS margin padding reset",
     languages: ["css"],
-    body: [
-      "margin: 0;",
-      "padding: 0;",
-    ],
+    body: ["margin: 0;", "padding: 0;"],
   },
   {
     key: "css-modern-reset",
@@ -424,11 +391,7 @@ export default [
     prefix: "has",
     description: "CSS :has() parent selector",
     languages: ["css"],
-    body: [
-      "&:has(${1:> img}) {",
-      "  $0",
-      "}",
-    ],
+    body: ["&:has(${1:> img}) {", "  $0", "}"],
   },
   {
     key: "css-oklch-color",
@@ -490,7 +453,7 @@ export default [
       "  }",
       "",
       "  a[href]::after {",
-      "    content: \" (\" attr(href) \")\";",
+      '    content: " (" attr(href) ")";',
       "  }",
       "",
       "  $0",

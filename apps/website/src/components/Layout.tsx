@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { pageTransitionKey } from "@/lib/routing";
 import { useAppDispatch } from "@/store/hooks";
 import { hydrateTheme } from "@/store/themeSlice";
 import { Footer } from "./Footer";
@@ -15,11 +16,15 @@ export function Layout() {
     dispatch(hydrateTheme());
   }, [dispatch]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pageTransitionKey(location.pathname)]);
+
   return (
     <>
       <Topbar />
       <main className={styles.container}>
-        <div key={location.pathname} className={styles.page}>
+        <div key={pageTransitionKey(location.pathname)} className={styles.page}>
           <Outlet />
         </div>
         <Footer />

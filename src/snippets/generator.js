@@ -69,14 +69,20 @@ export function composeSnippetFiles(catalog) {
  * @throws {Error} When no output file is configured for the language
  */
 export function writeSnippetFile(language, snippets, outputDir = snippetsDir) {
-  const fileName = SNIPPET_LANGUAGES.find((entry) => entry.language === language)?.file;
+  const fileName = SNIPPET_LANGUAGES.find(
+    (entry) => entry.language === language,
+  )?.file;
   if (!fileName) {
     throw new Error(`No output file configured for language "${language}"`);
   }
 
   mkdirSync(outputDir, { recursive: true });
   const filePath = join(outputDir, fileName);
-  writeFileIfChanged(filePath, `${JSON.stringify(snippets, null, 2)}\n`, "utf8");
+  writeFileIfChanged(
+    filePath,
+    `${JSON.stringify(snippets, null, 2)}\n`,
+    "utf8",
+  );
   return filePath;
 }
 

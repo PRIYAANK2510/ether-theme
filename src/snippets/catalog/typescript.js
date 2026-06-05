@@ -5,11 +5,7 @@ export default [
     prefix: "interface",
     description: "TypeScript interface",
     languages: ["typescript"],
-    body: [
-      "interface ${1:Name} {",
-      "  $0",
-      "}",
-    ],
+    body: ["interface ${1:Name} {", "  $0", "}"],
   },
   {
     key: "ts-type-alias",
@@ -23,12 +19,7 @@ export default [
     prefix: "enum",
     description: "TypeScript enum",
     languages: ["typescript"],
-    body: [
-      "enum ${1:Name} {",
-      "  ${2:Value},",
-      "  $0",
-      "}",
-    ],
+    body: ["enum ${1:Name} {", "  ${2:Value},", "  $0", "}"],
   },
   {
     key: "ts-function-typed",
@@ -86,7 +77,7 @@ export default [
     prefix: "imtype",
     description: "TypeScript import type",
     languages: ["typescript"],
-    body: "import type { ${1:Type} } from \"${2:module}\";",
+    body: 'import type { ${1:Type} } from "${2:module}";',
   },
   {
     key: "ts-export-type",
@@ -121,14 +112,14 @@ export default [
     prefix: "pick",
     description: "TypeScript Pick utility type",
     languages: ["typescript"],
-    body: "Pick<${1:Type}, ${2:\"key\"}>",
+    body: 'Pick<${1:Type}, ${2:"key"}>',
   },
   {
     key: "ts-omit-type",
     prefix: "omit",
     description: "TypeScript Omit utility type",
     languages: ["typescript"],
-    body: "Omit<${1:Type}, ${2:\"key\"}>",
+    body: 'Omit<${1:Type}, ${2:"key"}>',
   },
   {
     key: "ts-record-type",
@@ -187,31 +178,21 @@ export default [
     prefix: "try",
     description: "TypeScript try catch",
     languages: ["typescript"],
-    body: [
-      "try {",
-      "  $1",
-      "} catch (error) {",
-      "  $0",
-      "}",
-    ],
+    body: ["try {", "  $1", "} catch (error) {", "  $0", "}"],
   },
   {
     key: "ts-import",
     prefix: "im",
     description: "TypeScript import statement",
     languages: ["typescript"],
-    body: "import ${1:module} from \"${2:module}\";",
+    body: 'import ${1:module} from "${2:module}";',
   },
   {
     key: "ts-const-assertion-object",
     prefix: "constobj",
     description: "TypeScript const object assertion",
     languages: ["typescript"],
-    body: [
-      "const ${1:name} = {",
-      "  $0",
-      "} as const;",
-    ],
+    body: ["const ${1:name} = {", "  $0", "} as const;"],
   },
   {
     key: "ts-discriminated-union",
@@ -220,8 +201,8 @@ export default [
     languages: ["typescript"],
     body: [
       "type ${1:Result} =",
-      "  | { status: \"success\"; data: ${2:DataType} }",
-      "  | { status: \"error\"; error: Error };",
+      '  | { status: "success"; data: ${2:DataType} }',
+      '  | { status: "error"; error: Error };',
     ],
   },
   {
@@ -308,7 +289,7 @@ export default [
       "  const response = await fetch(url, {",
       "    ...init,",
       "    headers: {",
-      "      Accept: \"application/json\",",
+      '      Accept: "application/json",',
       "      ...init?.headers,",
       "    },",
       "  });",
@@ -363,12 +344,7 @@ export default [
     prefix: "constenum",
     description: "TypeScript const enum",
     languages: ["typescript"],
-    body: [
-      "const enum ${1:Name} {",
-      "  ${2:Value},",
-      "  $0",
-      "}",
-    ],
+    body: ["const enum ${1:Name} {", "  ${2:Value},", "  $0", "}"],
   },
   {
     key: "ts-deep-partial",
@@ -404,9 +380,7 @@ export default [
     prefix: "inferutil",
     description: "TypeScript infer inside conditional type",
     languages: ["typescript"],
-    body: [
-      "type ${1:Unwrap}<T> = T extends Promise<infer U> ? U : T;",
-    ],
+    body: ["type ${1:Unwrap}<T> = T extends Promise<infer U> ? U : T;"],
   },
   {
     key: "ts-module-augmentation",
@@ -414,7 +388,7 @@ export default [
     description: "TypeScript module augmentation",
     languages: ["typescript"],
     body: [
-      "declare module \"${1:module}\" {",
+      'declare module "${1:module}" {',
       "  interface ${2:Type} {",
       "    ${3:field}: ${4:string};",
       "  }",
@@ -428,7 +402,7 @@ export default [
     languages: ["typescript"],
     body: [
       "function is${1:Item}(value: unknown): value is ${1:Item} {",
-      "  return typeof value === \"object\" && value !== null && \"${2:id}\" in value;",
+      '  return typeof value === "object" && value !== null && "${2:id}" in value;',
       "}",
       "",
       "const ${3:items} = (raw as unknown[]).filter(is${1:Item});",

@@ -6,7 +6,12 @@ const syntaxRuleDefinitions = [
 
   {
     name: "Invalid",
-    scope: ["invalid", "invalid.illegal", "invalid.unimplemented", "invalid.deprecated"],
+    scope: [
+      "invalid",
+      "invalid.illegal",
+      "invalid.unimplemented",
+      "invalid.deprecated",
+    ],
     role: "red",
   },
 
@@ -37,11 +42,7 @@ const syntaxRuleDefinitions = [
 
   {
     name: "Comment",
-    scope: [
-      "comment",
-      "markup.quote.markdown",
-      "meta.diff",
-    ],
+    scope: ["comment", "markup.quote.markdown", "meta.diff"],
     role: "comment",
     fontStyle: "italic",
   },
@@ -787,11 +788,7 @@ const syntaxRuleDefinitions = [
 
   {
     name: "Regexp",
-    scope: [
-      "string.regexp",
-      "constant.regexp",
-      "meta.group.regexp",
-    ],
+    scope: ["string.regexp", "constant.regexp", "meta.group.regexp"],
     role: "cyan",
   },
 

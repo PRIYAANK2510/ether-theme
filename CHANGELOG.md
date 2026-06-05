@@ -5,18 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
-
 ## [1.0.2] - 2026-06-05
 
 ### Changed
 
 - Theme palette updates (auto-release)
+
 ## [1.0.1] - 2026-06-05
 
 ### Changed
 
 - Theme palette updates (auto-release)
+
 ## [1.0.0] - 2026-06-05
 
 ### Added — Official V1 release
@@ -103,6 +103,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Theme palette updates (auto-release)
+
 ## [0.2.9] - 2026-06-05
 
 ### Added
@@ -126,21 +127,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Theme palette updates (auto-release)
+
 ## [0.2.7] - 2026-06-04
 
 ### Changed
 
 - Theme palette updates (auto-release)
+
 ## [0.2.6] - 2026-06-04
 
 ### Changed
 
 - Theme palette updates (auto-release)
+
 ## [0.2.5] - 2026-06-04
 
 ### Changed
 
 - Theme palette updates (auto-release)
+
 ## [0.2.4] - 2026-06-04
 
 ### Changed
@@ -284,29 +289,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PAT-based publishing via `VSCE_PAT` / `OVSX_PAT` (local `.env` or GitHub Secrets)
 - F5 Extension Development Host workflow for VS Code and Cursor
 
-[1.0.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v1.0.0
-[0.2.4]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.4
-[0.2.3]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.3
-[0.2.2]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.2
-[0.2.1]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.1
-[0.2.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.0
-[0.1.5]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.5
-[0.1.4]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.4
-[0.1.3]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.3
-[0.1.2]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.2
-[0.1.1]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.1
-[0.1.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.1.0
-[0.2.5]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.5
-[0.2.6]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.6
-[0.2.7]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.7
-[0.2.8]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.8
-[0.2.10]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.10
-[0.2.16]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.16
-[0.2.15]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.15
-[0.2.14]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.14
-[0.2.13]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.13
-[0.2.12]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.12
-[0.2.11]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.11
-[0.2.17]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.17
-[1.0.1]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v1.0.1
-[1.0.2]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v1.0.2
+[1.0.0]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.0
+[0.2.4]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.4
+[0.2.3]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.3
+[0.2.2]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.2
+[0.2.1]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.1
+[0.2.0]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.0
+[0.1.5]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.1.5
+[0.1.4]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.1.4
+[0.1.3]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.1.3
+[0.1.2]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.1.2
+[0.1.1]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.1.1
+[0.1.0]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.1.0
+[0.2.5]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.5
+[0.2.6]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.6
+[0.2.7]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.7
+[0.2.8]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.8
+[0.2.10]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.10
+[0.2.16]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.16
+[0.2.15]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.15
+[0.2.14]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.14
+[0.2.13]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.13
+[0.2.12]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.12
+[0.2.11]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.11
+[0.2.17]: https://github.com/PRIYAANK2510/ether-theme/tree/v0.2.17
+[1.0.1]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.1
+[1.0.2]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.2

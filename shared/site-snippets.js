@@ -45,17 +45,9 @@ export function normalizeSnippetBody(body) {
   return Array.isArray(body) ? body.join("\n") : body;
 }
 
-/**
- * @param {string} body
- */
-export function formatSnippetBodyForDocs(body) {
-  return body
-    .replace(/\$\{(\d+)(?::([^}]*))?\}/g, (_, index, placeholder) => {
-      if (placeholder) return placeholder;
-      return index === "0" ? "█" : `⟨${index}⟩`;
-    })
-    .replace(/\$(\d+)/g, (_, index) => (index === "0" ? "█" : `⟨${index}⟩`));
-}
+import { formatSnippetBodyForDocs } from "./snippet-display.js";
+
+export { formatSnippetBodyForDocs };
 
 /**
  * @param {import("../src/snippets/validate.js").SnippetDefinition} snippet
@@ -66,6 +58,8 @@ export function resolveSnippetForLanguage(snippet, language) {
   return {
     prefix: variant.prefix ?? snippet.prefix,
     description: variant.description ?? snippet.description,
-    body: formatSnippetBodyForDocs(normalizeSnippetBody(variant.body ?? snippet.body)),
+    body: formatSnippetBodyForDocs(
+      normalizeSnippetBody(variant.body ?? snippet.body),
+    ),
   };
 }

@@ -83,7 +83,7 @@ git push origin main
 
 ## Publish flow
 
-Extension is published to **Open VSX** (Cursor) and the **VS Code Marketplace**.
+Extension is published to **Open VSX** (Cursor) and the **VS Code Marketplace** only — no GitHub Releases. CI pushes git tags for version history; do not create GitHub Releases manually.
 
 ### Automatic (recommended)
 
@@ -99,7 +99,7 @@ Extension is published to **Open VSX** (Cursor) and the **VS Code Marketplace**.
 1. `npm run check`
 2. Bump patch version in `package.json` + add `CHANGELOG.md` entry
 3. `npm run publish` → package VSIX → publish to Open VSX and VS Code Marketplace
-4. Commit `Release vX.Y.Z [skip release]`, tag `vX.Y.Z`, push to `main`
+4. Commit `chore: release vX.Y.Z [skip release]`, tag `vX.Y.Z`, push to `main` (tag only — not a GitHub Release)
 
 ### Manual publish (local)
 
@@ -140,10 +140,10 @@ If **Deploy Site** fails with `Get Pages site failed`, enable Pages once:
 
 ### Deploy
 
-| Trigger | What runs |
-| --- | --- |
-| Push to `main` (site/snippet/palette paths) | **Deploy Site** workflow |
-| Manual | **Actions → Deploy Site → Run workflow** |
+| Trigger                                     | What runs                                |
+| ------------------------------------------- | ---------------------------------------- |
+| Push to `main` (site/snippet/palette paths) | **Deploy Site** workflow                 |
+| Manual                                      | **Actions → Deploy Site → Run workflow** |
 
 Local preview:
 
@@ -167,22 +167,22 @@ Set `ES7_EXTENSION_ROOT` in `.env` if the extension is not at the default Cursor
 
 ## Quick reference
 
-| Goal | Command / action |
-| --- | --- |
-| Daily verify | `npm run check:fast` |
-| Pre-release verify | `npm run check` |
-| Extension rebuild loop | `npm run watch` |
-| Build only (full) | `npm run build` |
-| Extension build (F5) | `npm run build:extension` |
-| Website dev server | `npm run site:dev` |
-| Typecheck website | `npm run typecheck` |
-| Fast tests only | `npm run test:fast` |
-| Package VSIX (no upload) | `npm run package` → `releases/*.vsix` |
-| Install VSIX locally | `cursor --install-extension releases/ether-theme-*.vsix` |
-| Push to main, no publish | Commit message includes `[skip release]` |
-| Ship a release | Push to `main` (source/themes/package.json changes) |
-| Publish from your machine | `npm run publish:local` (see `.env.example`) |
-| Product site | https://priyaank2510.github.io/ether-theme/ |
-| Snippet catalog | https://priyaank2510.github.io/ether-theme/snippets/ |
-| Regenerate site locally | `npm run site:build` |
-| Open multi-root workspace | `ether.code-workspace` (extension + website TS) |
+| Goal                      | Command / action                                         |
+| ------------------------- | -------------------------------------------------------- |
+| Daily verify              | `npm run check:fast`                                     |
+| Pre-release verify        | `npm run check`                                          |
+| Extension rebuild loop    | `npm run watch`                                          |
+| Build only (full)         | `npm run build`                                          |
+| Extension build (F5)      | `npm run build:extension`                                |
+| Website dev server        | `npm run site:dev`                                       |
+| Typecheck website         | `npm run typecheck`                                      |
+| Fast tests only           | `npm run test:fast`                                      |
+| Package VSIX (no upload)  | `npm run package` → `releases/*.vsix`                    |
+| Install VSIX locally      | `cursor --install-extension releases/ether-theme-*.vsix` |
+| Push to main, no publish  | Commit message includes `[skip release]`                 |
+| Ship a release            | Push to `main` (source/themes/package.json changes)      |
+| Publish from your machine | `npm run publish:local` (see `.env.example`)             |
+| Product site              | https://priyaank2510.github.io/ether-theme/              |
+| Snippet catalog           | https://priyaank2510.github.io/ether-theme/snippets/     |
+| Regenerate site locally   | `npm run site:build`                                     |
+| Open multi-root workspace | `ether.code-workspace` (extension + website TS)          |

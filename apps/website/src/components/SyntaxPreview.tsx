@@ -35,11 +35,11 @@ export function SyntaxPreview() {
           {"\n  "}
           <span className={styles.keyword}>return</span>{" "}
           <span className={styles["default"]}>&lt;</span>
-          <span className={styles.type}>button</span>
+          <span className={styles.tag}>button</span>
           <span className={styles["default"]}>&gt;{"{"}</span>
           <span className={styles.variable}>count</span>
           <span className={styles["default"]}>{"}"}&lt;/</span>
-          <span className={styles.type}>button</span>
+          <span className={styles.tag}>button</span>
           <span className={styles["default"]}>&gt;</span>
           {"\n"}
           <span className={styles["default"]}>{"}"}</span>

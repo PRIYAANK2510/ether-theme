@@ -1,9 +1,4 @@
-import {
-  readFileSync,
-  mkdirSync,
-  readdirSync,
-  unlinkSync,
-} from "node:fs";
+import { readFileSync, mkdirSync, readdirSync, unlinkSync } from "node:fs";
 import { writeFileIfChanged } from "../utils/fs.js";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -17,7 +12,10 @@ import {
 } from "../utils/color.js";
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const themesDir = join(rootDir, "themes");
-const palettesDir = join(dirname(fileURLToPath(import.meta.url)), "../palettes");
+const palettesDir = join(
+  dirname(fileURLToPath(import.meta.url)),
+  "../palettes",
+);
 const packageJsonPath = join(rootDir, "package.json");
 
 /**
@@ -93,7 +91,10 @@ export function syncPackageContributions(contributions) {
  * @param {string} [themesDirectory]
  * @returns {string[]} Paths of deleted theme files
  */
-export function removeOrphanedThemeFiles(activeIds, themesDirectory = themesDir) {
+export function removeOrphanedThemeFiles(
+  activeIds,
+  themesDirectory = themesDir,
+) {
   mkdirSync(themesDirectory, { recursive: true });
   const activeFileNames = new Set(
     activeIds.map((id) => `${id}.color-theme.json`),

@@ -6,7 +6,10 @@ import {
 } from "../utils/color.js";
 import { WORKBENCH_COLOR_IDS } from "./constants.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
-import { deriveComposerInputColors, deriveWorkbenchExtensionColors } from "./derive-extensions.js";
+import {
+  deriveComposerInputColors,
+  deriveWorkbenchExtensionColors,
+} from "./derive-extensions.js";
 import {
   UI_ALPHA,
   deriveAccentVariants,
@@ -114,7 +117,10 @@ export function deriveUISemantics(base) {
       base.findMatch,
       UI_ALPHA.a55,
     ),
-    "editor.hoverHighlightBackground": withAlphaByte(base.surfaceHover, UI_ALPHA.a40),
+    "editor.hoverHighlightBackground": withAlphaByte(
+      base.surfaceHover,
+      UI_ALPHA.a40,
+    ),
     "editor.lineHighlightBackground": base.surfaceLineHighlight,
     "editor.lineHighlightBorder": base.surfaceLineHighlight,
     "editorLink.activeForeground": base.accent,
@@ -156,7 +162,10 @@ export function deriveUISemantics(base) {
     "editorHoverWidget.background": base.surfaceHover,
     "editorHoverWidget.border": withAlphaByte(base.surfaceHover, 0),
     "editorHoverWidget.foreground": base.fgPrimary,
-    "debugExceptionWidget.background": withAlphaByte(base.warning, UI_ALPHA.a60),
+    "debugExceptionWidget.background": withAlphaByte(
+      base.warning,
+      UI_ALPHA.a60,
+    ),
     "debugExceptionWidget.border": withAlphaByte(base.warning, UI_ALPHA.a60),
     "peekView.border": base.surfacePanel,
     "peekViewEditor.background": base.surfacePeek,
@@ -215,7 +224,10 @@ export function deriveUISemantics(base) {
     "notificationsErrorIcon.foreground": base.error,
     "extensionButton.prominentBackground": accent.aCC,
     "extensionButton.prominentForeground": base.fgOnButton ?? base.surfaceShell,
-    "extensionButton.prominentHoverBackground": withAlphaByte(base.accentHover, UI_ALPHA.aCC),
+    "extensionButton.prominentHoverBackground": withAlphaByte(
+      base.accentHover,
+      UI_ALPHA.aCC,
+    ),
     "pickerGroup.border": base.ruler,
     "pickerGroup.foreground": base.fgMuted,
     "debugToolBar.background": base.surfaceWidget,

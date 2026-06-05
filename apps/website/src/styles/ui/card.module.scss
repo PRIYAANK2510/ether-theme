@@ -1,7 +1,6 @@
 @use "../mixins.scss" as *;
 
-.card,
-.featureCard {
+.card {
   @include surface-card;
   @include interactive-lift;
   padding: 24px;
@@ -15,84 +14,5 @@
     margin: 0;
     color: var(--muted);
     line-height: 1.55;
-  }
-}
-
-.featureCard {
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--accent-glow), transparent 55%);
-    opacity: 0;
-    transition: opacity var(--duration-normal) var(--ease-out);
-    pointer-events: none;
-  }
-
-  &:hover::before {
-    opacity: 1;
-  }
-
-  > * {
-    position: relative;
-  }
-}
-
-.stat {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 16px;
-  min-width: 120px;
-  transition:
-    border-color var(--duration-fast) var(--ease-out),
-    transform var(--duration-fast) var(--ease-out);
-
-  strong {
-    display: block;
-    font-size: 1.35rem;
-    letter-spacing: -0.02em;
-  }
-
-  span {
-    color: var(--muted);
-    font-size: 0.82rem;
-  }
-
-  &:hover {
-    border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
-    transform: translateY(-1px);
-  }
-}
-
-.stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.grammarList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.grammarPill {
-  @include pill-control;
-  padding: 6px 12px;
-  border: 1px solid var(--border);
-  background: var(--surface-2);
-  color: var(--muted);
-  font-size: 0.84rem;
-
-  &:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-soft);
   }
 }

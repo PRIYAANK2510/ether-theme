@@ -52,7 +52,10 @@ export function ThemeSwitcher() {
           aria-hidden="true"
         />
         <span>{active.label}</span>
-        <span className={cn(styles.chevron, { [styles.chevronOpen]: open })} aria-hidden="true">
+        <span
+          className={cn(styles.chevron, { [styles.chevronOpen]: open })}
+          aria-hidden="true"
+        >
           ▾
         </span>
       </button>

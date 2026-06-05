@@ -64,7 +64,7 @@ export function deriveWorkbenchExtensionColors(base, accent) {
     "inlineChatInput.focusBorder": composerInput.focusBorder,
     "inlineChatInput.placeholderForeground": composerInput.placeholder,
 
-    "descriptionForeground": base.fgMuted,
+    descriptionForeground: base.fgMuted,
     "textLink.foreground": base.accent,
     "textLink.activeForeground": base.accentHover,
 
@@ -134,7 +134,9 @@ export function deriveWorkbenchExtensionColors(base, accent) {
 
   for (const key of EXTENSION_WORKBENCH_COLOR_IDS) {
     if (!(key in colors)) {
-      throw new Error(`Missing extension workbench color derivation for "${key}"`);
+      throw new Error(
+        `Missing extension workbench color derivation for "${key}"`,
+      );
     }
   }
 

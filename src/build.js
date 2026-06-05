@@ -37,10 +37,14 @@ if (removedFiles.length > 0) {
   }
 }
 
-console.log(`Synced ${contributions.length} theme contribution(s) to package.json`);
+console.log(
+  `Synced ${contributions.length} theme contribution(s) to package.json`,
+);
 
 const { languages, grammars } = generateAllGrammars();
-console.log(`Synced ${languages.length} language association(s) to package.json`);
+console.log(
+  `Synced ${languages.length} language association(s) to package.json`,
+);
 console.log(`Synced ${grammars.length} bundled grammar(s) to package.json`);
 
 if (!skipPreviews) {
@@ -69,16 +73,23 @@ const {
   contributions: snippetContributions,
 } = await generateAllSnippets();
 
-console.log(`Generated ${snippetFiles.length} snippet file(s) from ${catalogCount} definitions:`);
+console.log(
+  `Generated ${snippetFiles.length} snippet file(s) from ${catalogCount} definitions:`,
+);
 for (const file of snippetFiles) {
   console.log(`  - ${file}`);
 }
 
-console.log(`Synced ${snippetContributions.length} snippet contribution(s) to package.json`);
+console.log(
+  `Synced ${snippetContributions.length} snippet contribution(s) to package.json`,
+);
 
 if (!skipSite) {
-  const { paletteCount: sitePalettes, catalogCount: docsCount } = await buildWebsite();
-  console.log(`Generated product site (${sitePalettes} themes, ${docsCount} snippets)`);
+  const { paletteCount: sitePalettes, catalogCount: docsCount } =
+    await buildWebsite();
+  console.log(
+    `Generated product site (${sitePalettes} themes, ${docsCount} snippets)`,
+  );
 }
 
 console.log("Build complete.");

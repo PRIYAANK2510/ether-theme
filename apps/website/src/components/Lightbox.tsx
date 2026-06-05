@@ -54,7 +54,10 @@ export function Lightbox() {
           />
         </svg>
       </button>
-      <div className={styles.dialog} onClick={(event) => event.stopPropagation()}>
+      <div
+        className={styles.dialog}
+        onClick={(event) => event.stopPropagation()}
+      >
         <img src={lightbox.src} alt={`${lightbox.label} editor preview`} />
         <div className={styles.caption}>
           <strong>{lightbox.label}</strong>

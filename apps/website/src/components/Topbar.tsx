@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { ASSET_BASE, SITE_NAME, VS_MARKETPLACE } from "@/lib/config";
+import { ExternalLink } from "@/components/ExternalLink";
+import { Logo } from "@/components/ui/Logo";
+import { SITE_NAME, VS_MARKETPLACE } from "@/lib/config";
 import { cn } from "@/lib/cn";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import styles from "./Topbar.module.scss";
@@ -9,7 +11,7 @@ export function Topbar() {
     <header className={styles.topbar}>
       <div className={styles.inner}>
         <NavLink className={styles.brand} to="/">
-          <img src={`${ASSET_BASE}/logo.png`} width={44} height={44} alt="Ether Themes logo" />
+          <Logo className={styles.brandLogo} width={44} />
           <div className={styles.brandText}>
             <strong>{SITE_NAME}</strong>
             <span>VS Code &amp; Cursor extension</span>
@@ -44,9 +46,9 @@ export function Topbar() {
             </NavLink>
           </nav>
           <ThemeSwitcher />
-          <a className={styles.navCta} href={VS_MARKETPLACE}>
+          <ExternalLink className={styles.navCta} href={VS_MARKETPLACE}>
             Install
-          </a>
+          </ExternalLink>
         </div>
       </div>
     </header>

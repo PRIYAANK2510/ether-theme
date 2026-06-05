@@ -1,7 +1,7 @@
 # Ether Themes
 
 <p align="center">
-  <a href="https://github.com/PRIYAANK2510/ether-theme/releases/tag/v1.0.0"><img src="https://img.shields.io/badge/release-v1.0.0-6c63ff?style=flat-square" alt="Ether Themes v1.0.0" /></a>
+  <img src="icon.png" alt="Ether Themes logo" width="128" />
 </p>
 
 <p align="center">
@@ -219,14 +219,14 @@ Ether Aurora · Ether Clay · Ether Coral · Ether Dracula · Ether Dusk · Ethe
 
 📖 **[Snippet Documentation](https://PRIYAANK2510.github.io/ether-theme/snippets/)** — searchable reference for all 496 snippets with prefixes, categories, and code previews.
 
-| Language | File types | Popular prefixes |
-| --- | --- | --- |
-| JavaScript | `.js`, `.mjs`, `.cjs` | `fn`, `fetch`, `debounce`, `nodeexp`, `allsettled` |
-| TypeScript | `.ts` | `interface`, `zsafe`, `satisfies`, `gfn`, `nodeenv` |
-| React (JSX) | `.jsx` | `rfc`, `useoptimistic`, `tquse`, `nxpage`, `rfdialog` |
-| React (TSX) | `.tsx` | `rfcserver`, `useformstatus`, `tqmut`, `nxaction`, `vtcmp` |
-| HTML | `.html`, `.htm` | `html5`, `popover`, `jsonld`, `dialog`, `live` |
-| CSS | `.css` | `has`, `oklch`, `colormix`, `gridfit`, `modernreset` |
+| Language    | File types            | Popular prefixes                                           |
+| ----------- | --------------------- | ---------------------------------------------------------- |
+| JavaScript  | `.js`, `.mjs`, `.cjs` | `fn`, `fetch`, `debounce`, `nodeexp`, `allsettled`         |
+| TypeScript  | `.ts`                 | `interface`, `zsafe`, `satisfies`, `gfn`, `nodeenv`        |
+| React (JSX) | `.jsx`                | `rfc`, `useoptimistic`, `tquse`, `nxpage`, `rfdialog`      |
+| React (TSX) | `.tsx`                | `rfcserver`, `useformstatus`, `tqmut`, `nxaction`, `vtcmp` |
+| HTML        | `.html`, `.htm`       | `html5`, `popover`, `jsonld`, `dialog`, `live`             |
+| CSS         | `.css`                | `has`, `oklch`, `colormix`, `gridfit`, `modernreset`       |
 
 **Stacks covered:** React 19 hooks · Next.js server actions &amp; routes · TanStack Query · Zod validation · Vitest &amp; Testing Library · MSW · Express &amp; Fastify · modern CSS (`:has()`, nesting, `color-mix`)
 
@@ -236,12 +236,12 @@ Regenerate the product site locally: `npm run site:build` (output in `site/`).
 
 Bundled TextMate grammars and **38 file associations** tuned for Android Studio–style projects.
 
-| Grammar | Extensions &amp; files |
-| --- | --- |
-| **Kotlin** | `.kt`, `.kts`, `build.gradle.kts`, `settings.gradle.kts` — Compose &amp; Android annotations |
-| **AIDL** | `.aidl` — interfaces, parcelables, enums, unions |
-| **ProGuard / R8** | `.pro`, `.keep`, `proguard-rules.pro`, `consumer-rules.pro` |
-| **Dotenv** | `.env`, `.env.*` |
+| Grammar           | Extensions &amp; files                                                                       |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| **Kotlin**        | `.kt`, `.kts`, `build.gradle.kts`, `settings.gradle.kts` — Compose &amp; Android annotations |
+| **AIDL**          | `.aidl` — interfaces, parcelables, enums, unions                                             |
+| **ProGuard / R8** | `.pro`, `.keep`, `proguard-rules.pro`, `consumer-rules.pro`                                  |
+| **Dotenv**        | `.env`, `.env.*`                                                                             |
 
 **Android associations:** `AndroidManifest.xml`, `res/layout|values|drawable|navigation|xml|menu|color|anim/**`, `libs.versions.toml`, `google-services.json`, Gradle wrapper properties, Groovy `.gradle` scripts, and more.
 
@@ -254,11 +254,11 @@ npm install
 npm run check:fast   # daily: lint + typecheck + tests + extension + site
 ```
 
-| Task | Command |
-|------|---------|
-| Extension rebuild loop | `npm run watch` |
-| Website dev server | `npm run site:dev` |
-| Full pre-release check | `npm run check` |
+| Task                   | Command            |
+| ---------------------- | ------------------ |
+| Extension rebuild loop | `npm run watch`    |
+| Website dev server     | `npm run site:dev` |
+| Full pre-release check | `npm run check`    |
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide and [docs/WORKFLOW.md](docs/WORKFLOW.md) for release details.
 

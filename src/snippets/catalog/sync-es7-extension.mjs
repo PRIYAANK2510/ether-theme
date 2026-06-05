@@ -116,7 +116,9 @@ function buildCategoryMap() {
 
     const category = file.replace(/\.js$/, "");
     const content = readFileSync(join(sourceSnippetsDir, file), "utf8");
-    const keys = [...content.matchAll(/key:\s*['"]([^'"]+)['"]/g)].map((match) => match[1]);
+    const keys = [...content.matchAll(/key:\s*['"]([^'"]+)['"]/g)].map(
+      (match) => match[1],
+    );
 
     for (const key of keys) {
       map[key] = category;
@@ -180,7 +182,9 @@ for (const [moduleFile, snippets] of Object.entries(byModule).sort(([a], [b]) =>
   a.localeCompare(b),
 )) {
   if (!SYNCED_MODULES.has(moduleFile)) {
-    throw new Error(`Sync produced unmanaged module "${moduleFile}" — add it to SYNCED_MODULES`);
+    throw new Error(
+      `Sync produced unmanaged module "${moduleFile}" — add it to SYNCED_MODULES`,
+    );
   }
 
   snippets.sort((left, right) => left.key.localeCompare(right.key));
@@ -188,7 +192,9 @@ for (const [moduleFile, snippets] of Object.entries(byModule).sort(([a], [b]) =>
   written.push(moduleFile);
 }
 
-console.log(`Synced ${Object.keys(raw).length} extension snippets into ${written.length} catalog modules:`);
+console.log(
+  `Synced ${Object.keys(raw).length} extension snippets into ${written.length} catalog modules:`,
+);
 for (const file of written) {
   console.log(`  - ${file}`);
 }

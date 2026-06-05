@@ -31,14 +31,28 @@ function tryRun(command) {
   } catch (error) {
     const output = [
       error instanceof Error ? error.message : String(error),
-      error && typeof error === "object" && "stdout" in error ? String(error.stdout) : "",
-      error && typeof error === "object" && "stderr" in error ? String(error.stderr) : "",
+      error && typeof error === "object" && "stdout" in error
+        ? String(error.stdout)
+        : "",
+      error && typeof error === "object" && "stderr" in error
+        ? String(error.stderr)
+        : "",
     ].join("\n");
 
-    if (error && typeof error === "object" && "stdout" in error && error.stdout) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "stdout" in error &&
+      error.stdout
+    ) {
       process.stdout.write(String(error.stdout));
     }
-    if (error && typeof error === "object" && "stderr" in error && error.stderr) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "stderr" in error &&
+      error.stderr
+    ) {
       process.stderr.write(String(error.stderr));
     }
 
@@ -60,14 +74,18 @@ function readPackage() {
 function latestVsix() {
   const packageJson = readPackage();
   const expected = `ether-theme-${packageJson.version}.vsix`;
-  const files = readdirSync(RELEASES_DIR).filter((file) => file.endsWith(".vsix"));
+  const files = readdirSync(RELEASES_DIR).filter((file) =>
+    file.endsWith(".vsix"),
+  );
 
   if (files.includes(expected)) {
     return expected;
   }
 
   return files.sort(
-    (a, b) => statSync(join(RELEASES_DIR, b)).mtimeMs - statSync(join(RELEASES_DIR, a)).mtimeMs,
+    (a, b) =>
+      statSync(join(RELEASES_DIR, b)).mtimeMs -
+      statSync(join(RELEASES_DIR, a)).mtimeMs,
   )[0];
 }
 

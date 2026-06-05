@@ -32,6 +32,8 @@ export function paletteToSiteVars(palette) {
     "--syn-variable": syntax.variable,
     "--syn-number": syntax.number,
     "--syn-cyan": syntax.cyan,
+    "--syn-red": syntax.red,
+    "--syn-pink": syntax.pink,
     "--pill-code": syntax.function,
     "--overlay-bg": withAlpha(ui.surfaceShell, 0.9),
     "--success": ui.gitAdded,

@@ -1,33 +1,34 @@
-@use "../mixins.scss" as *;
+.category + .category {
+  margin-top: 32px;
+}
 
 .category {
-  margin-top: 32px;
-  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
-
   h3 {
     margin: 0 0 14px;
-    color: var(--accent);
-    font-size: 1.02rem;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.94rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
 }
 
 .categoryCount {
   color: var(--muted);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .snippetList {
   display: grid;
-  gap: 14px;
+  gap: 12px;
 }
 
 .snippet {
-  @include surface-card;
-  @include interactive-lift;
   overflow: hidden;
-  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 148px;
 }
 
 .snippetHead {
@@ -36,14 +37,17 @@
   gap: 10px;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px;
+  padding: 14px var(--snippet-card-pad-x);
   border-bottom: 1px solid var(--border);
   background: var(--surface-2);
 
   h4 {
     margin: 0;
     flex: 1 1 220px;
-    font-size: 0.98rem;
+    font-size: 0.94rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--text);
   }
 }
 
@@ -55,15 +59,35 @@
 }
 
 .tag {
-  @include pill-control;
-  border: 1px solid var(--border);
   padding: 3px 9px;
+  border-radius: var(--radius-sm);
   background: var(--surface-3);
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
+}
 
-  &:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+.snippetCodeEmbedded {
+  margin: 0;
+  padding: 14px 12px;
+  border-radius: 0;
+}
+
+.snippetCode {
+  margin: 0;
+  padding: 16px var(--snippet-card-pad-x);
+  overflow-x: auto;
+  background: var(--code-bg);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  tab-size: 2;
+  white-space: pre;
+
+  code {
+    border: none;
+    padding: 0;
+    background: transparent;
+    color: var(--syn-default);
+    font-size: inherit;
   }
 }

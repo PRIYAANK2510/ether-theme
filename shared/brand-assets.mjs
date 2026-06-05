@@ -33,7 +33,10 @@ export async function writeBrandAssets(iconSource, assetsDir) {
   })
     .composite([
       {
-        input: await sharp(iconSource).resize(220, 220, { fit: "contain" }).png().toBuffer(),
+        input: await sharp(iconSource)
+          .resize(220, 220, { fit: "contain" })
+          .png()
+          .toBuffer(),
         left: 96,
         top: 205,
       },
@@ -41,5 +44,8 @@ export async function writeBrandAssets(iconSource, assetsDir) {
     .png()
     .toFile(join(assetsDir, "og-image.png"));
 
-  copyFileSync(join(assetsDir, "favicon-32.png"), join(assetsDir, "favicon.png"));
+  copyFileSync(
+    join(assetsDir, "favicon-32.png"),
+    join(assetsDir, "favicon.png"),
+  );
 }

@@ -1,5 +1,8 @@
 import chroma from "chroma-js";
-import { WORKBENCH_COLOR_IDS, EXPECTED_SYNTAX_RULE_COUNT } from "../workbench/constants.js";
+import {
+  WORKBENCH_COLOR_IDS,
+  EXPECTED_SYNTAX_RULE_COUNT,
+} from "../workbench/constants.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "../workbench/extension-catalog.js";
 
 /**
@@ -148,7 +151,11 @@ export function mixColors(a, b, ratio) {
  * @returns {string}
  */
 export function lighten(color, amount) {
-  return normalizeHex(chroma(color).brighten(amount * 5).hex());
+  return normalizeHex(
+    chroma(color)
+      .brighten(amount * 5)
+      .hex(),
+  );
 }
 
 /**
@@ -157,7 +164,11 @@ export function lighten(color, amount) {
  * @returns {string}
  */
 export function darken(color, amount) {
-  return normalizeHex(chroma(color).darken(amount * 5).hex());
+  return normalizeHex(
+    chroma(color)
+      .darken(amount * 5)
+      .hex(),
+  );
 }
 
 /** @param {string} color */
@@ -234,9 +245,14 @@ export function validatePaletteContrast(palette) {
       palette.ui.accent,
       targets.fgOnAccent,
     ],
-    ...SYNTAX_TOKEN_KEYS.filter((key) => key !== "default" && key !== "comment").map(
-      (key) => [`syntax.${key}`, palette.syntax[key], editor, targets.syntaxToken],
-    ),
+    ...SYNTAX_TOKEN_KEYS.filter(
+      (key) => key !== "default" && key !== "comment",
+    ).map((key) => [
+      `syntax.${key}`,
+      palette.syntax[key],
+      editor,
+      targets.syntaxToken,
+    ]),
     ["syntax.comment", commentForeground, editor, targets.syntaxComment],
   ];
 
@@ -244,9 +260,7 @@ export function validatePaletteContrast(palette) {
   for (const [path, foreground, background, minimum] of checks) {
     const ratio = contrastRatio(foreground, background);
     if (Number(ratio.toFixed(2)) < minimum) {
-      failures.push(
-        `${path}: ${ratio.toFixed(2)}:1 (minimum ${minimum}:1)`,
-      );
+      failures.push(`${path}: ${ratio.toFixed(2)}:1 (minimum ${minimum}:1)`);
     }
   }
 
@@ -346,7 +360,9 @@ export function validateGeneratedTheme(theme, paletteId) {
 
   for (const key of WORKBENCH_COLOR_IDS) {
     if (!(key in theme.colors)) {
-      throw new Error(`Missing workbench color "${key}" in theme "${paletteId}"`);
+      throw new Error(
+        `Missing workbench color "${key}" in theme "${paletteId}"`,
+      );
     }
   }
 

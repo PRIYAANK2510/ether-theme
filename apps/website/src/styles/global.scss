@@ -6,7 +6,7 @@
   --radius-sm: 10px;
   --radius-pill: 999px;
   --mono: "Cascadia Code", "Fira Code", "JetBrains Mono", Consolas, monospace;
-  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Inter", sans-serif;
   --bg: #141218;
   --surface: #1a1820;
   --surface-2: #16141c;
@@ -26,7 +26,9 @@
   --shadow-lg: 0 28px 64px var(--shadow);
   --hover-row: rgba(200, 144, 168, 0.06);
   --topbar-bg: rgba(20, 18, 24, 0.88);
-  --topbar-height: 73px;
+  --topbar-height: 80px;
+  --snippet-scroll-gap: 16px;
+  --snippet-card-pad-x: 16px;
   --syn-default: #e6e2ec;
   --syn-comment: #625e6c;
   --syn-string: #88c8a8;
@@ -44,8 +46,8 @@
   --duration-fast: 0.15s;
   --duration-normal: 0.22s;
   --duration-slow: 0.4s;
-  --z-subnav: 20;
   --z-topbar: 30;
+  --z-subnav: 29;
   --z-dropdown: 50;
   --z-modal: 100;
 }
@@ -71,7 +73,11 @@ body {
   font-family: var(--sans);
   background:
     radial-gradient(900px 480px at 0% -5%, var(--accent-glow), transparent 60%),
-    radial-gradient(700px 400px at 100% 0%, var(--accent-glow-2), transparent 55%),
+    radial-gradient(
+      700px 400px at 100% 0%,
+      var(--accent-glow-2),
+      transparent 55%
+    ),
     var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -128,6 +134,14 @@ pre {
   font-family: var(--mono);
   font-size: 0.84rem;
   color: var(--syn-default);
+}
+
+pre code {
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
 }
 
 @media (prefers-reduced-motion: reduce) {

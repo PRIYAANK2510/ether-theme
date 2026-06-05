@@ -2,11 +2,12 @@
 
 .root {
   @include surface-card;
-  @include interactive-lift;
   overflow: hidden;
   padding: 0;
-  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
-  animation-delay: 0.06s;
+  border-radius: var(--radius);
+  box-shadow:
+    var(--shadow-md),
+    0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
 .chrome {
@@ -57,12 +58,12 @@
 
 .code {
   margin: 0;
-  padding: 16px 18px;
+  padding: 20px 22px 24px;
   overflow-x: auto;
   background: var(--code-bg);
   font-family: var(--mono);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  font-size: 0.84rem;
+  line-height: 1.65;
 }
 
 .keyword {
@@ -91,6 +92,10 @@
 
 .comment {
   color: var(--syn-comment);
+}
+
+.tag {
+  color: var(--syn-red);
 }
 
 .default {

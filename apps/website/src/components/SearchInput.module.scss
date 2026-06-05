@@ -2,7 +2,63 @@
 
 .wrap {
   position: relative;
-  margin-bottom: 20px;
+  margin: 4px 0 24px;
+}
+
+.wrapCompact {
+  margin: 0;
+  width: 100%;
+
+  .input {
+    padding: 8px 34px 8px 32px;
+    font-size: 0.86rem;
+    border-radius: calc(var(--radius) - 2px);
+  }
+
+  .icon {
+    left: 10px;
+    width: 16px;
+    height: 16px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .clear {
+    right: 8px;
+    width: 16px;
+    height: 16px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.wrapToolbar {
+  .input {
+    min-height: 34px;
+    padding: 6px 30px 6px 28px;
+    font-size: 0.84rem;
+    line-height: 1.3;
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+  }
+
+  .icon {
+    left: 9px;
+  }
+
+  .clear {
+    right: 7px;
+  }
+}
+
+.wrapInactive {
+  display: none;
 }
 
 .input {

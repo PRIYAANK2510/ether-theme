@@ -31,7 +31,9 @@ function assertBody(body, key) {
   if (Array.isArray(body) && body.every((line) => typeof line === "string")) {
     return;
   }
-  throw new Error(`Snippet "${key}" has invalid body — must be a string or string array`);
+  throw new Error(
+    `Snippet "${key}" has invalid body — must be a string or string array`,
+  );
 }
 
 /**
@@ -40,13 +42,21 @@ function assertBody(body, key) {
  */
 export function validateSnippetDefinition(snippet) {
   for (const field of REQUIRED_FIELDS) {
-    if (snippet[field] === undefined || snippet[field] === null || snippet[field] === "") {
-      throw new Error(`Snippet "${snippet.key ?? "unknown"}" is missing required field "${field}"`);
+    if (
+      snippet[field] === undefined ||
+      snippet[field] === null ||
+      snippet[field] === ""
+    ) {
+      throw new Error(
+        `Snippet "${snippet.key ?? "unknown"}" is missing required field "${field}"`,
+      );
     }
   }
 
   if (!Array.isArray(snippet.languages) || snippet.languages.length === 0) {
-    throw new Error(`Snippet "${snippet.key}" must declare at least one language`);
+    throw new Error(
+      `Snippet "${snippet.key}" must declare at least one language`,
+    );
   }
 
   assertBody(snippet.body, snippet.key);
@@ -96,12 +106,16 @@ export function validateGeneratedSnippetFile(snippets, language) {
     names.add(name);
 
     if (!entry.prefix || !entry.description) {
-      throw new Error(`Snippet "${name}" in ${language} is missing prefix or description`);
+      throw new Error(
+        `Snippet "${name}" in ${language} is missing prefix or description`,
+      );
     }
 
     assertBody(entry.body, `${language}:${name}`);
 
-    const prefixList = Array.isArray(entry.prefix) ? entry.prefix : [entry.prefix];
+    const prefixList = Array.isArray(entry.prefix)
+      ? entry.prefix
+      : [entry.prefix];
     for (const prefix of prefixList) {
       if (prefixes.has(prefix)) {
         throw new Error(`Duplicate prefix "${prefix}" in ${language}`);

@@ -6,21 +6,37 @@ export default [
     key: "typescript-export-interface",
     prefix: "expint",
     description: "Export Interface · expint",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: "export interface ${1:first} {${2:second}}",
   },
   {
     key: "typescript-export-type",
     prefix: "exptp",
     description: "Export Type · exptp",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: "export type ${1:first} = {${2:second}}",
   },
   {
     key: "typescript-typescript-react-arrow-function-component",
     prefix: "tsrafc",
-    description: "Creates a React Arrow Function Component with ES7 module system and TypeScript interface · tsrafc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Arrow Function Component with ES7 module system and TypeScript interface · tsrafc",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "",
@@ -36,8 +52,14 @@ export default [
   {
     key: "typescript-typescript-react-arrow-function-export-component",
     prefix: "tsrafce",
-    description: "Creates a React Arrow Function Component with ES7 module system and TypeScript interface · tsrafce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Arrow Function Component with ES7 module system and TypeScript interface · tsrafce",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "",
@@ -55,8 +77,14 @@ export default [
   {
     key: "typescript-typescript-react-class-component",
     prefix: "tsrcc",
-    description: "Creates a React component class with ES7 module system and TypeScript interfaces · tsrcc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React component class with ES7 module system and TypeScript interfaces · tsrcc",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { Component } from 'react'",
       "",
@@ -78,8 +106,14 @@ export default [
   {
     key: "typescript-typescript-react-class-component-redux",
     prefix: "tsrcredux",
-    description: "Creates a React component class with connected redux and ES7 module system and TypeScript interfaces · tsrcredux",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React component class with connected redux and ES7 module system and TypeScript interfaces · tsrcredux",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { connect } from 'react-redux'",
       "import React, { Component } from 'react'",
@@ -108,8 +142,14 @@ export default [
   {
     key: "typescript-typescript-react-class-export-component",
     prefix: "tsrce",
-    description: "Creates a React component class with ES7 module system and TypeScript interfaces · tsrce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React component class with ES7 module system and TypeScript interfaces · tsrce",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { Component } from 'react'",
       "",
@@ -133,8 +173,14 @@ export default [
   {
     key: "typescript-typescript-react-class-export-pure-component",
     prefix: "tsrpce",
-    description: "Creates a React pure component class with ES7 module system and TypeScript interface · tsrpce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React pure component class with ES7 module system and TypeScript interface · tsrpce",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { PureComponent } from 'react'",
       "",
@@ -154,8 +200,14 @@ export default [
   {
     key: "typescript-typescript-react-class-pure-component",
     prefix: "tsrpc",
-    description: "Creates a React pure component class with ES7 module system and TypeScript interface · tsrpc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React pure component class with ES7 module system and TypeScript interface · tsrpc",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { PureComponent } from 'react'",
       "",
@@ -173,8 +225,14 @@ export default [
   {
     key: "typescript-typescript-react-functional-component",
     prefix: "tsrfc",
-    description: "Creates a React Functional Component with ES7 module system and TypeScript interface · tsrfc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Functional Component with ES7 module system and TypeScript interface · tsrfc",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "",
@@ -190,8 +248,14 @@ export default [
   {
     key: "typescript-typescript-react-functional-export-component",
     prefix: "tsrfce",
-    description: "Creates a React Functional Component with ES7 module system and TypeScript interface · tsrfce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Functional Component with ES7 module system and TypeScript interface · tsrfce",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "",
@@ -209,8 +273,14 @@ export default [
   {
     key: "typescript-typescript-react-native-arrow-function-component",
     prefix: "tsrnf",
-    description: "Creates a React Native Arrow Function Component with ES7 module system in TypeScript · tsrnf",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Native Arrow Function Component with ES7 module system in TypeScript · tsrnf",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { View, Text } from 'react-native'",
       "import React from 'react'",
@@ -231,8 +301,14 @@ export default [
   {
     key: "typescript-typescript-react-native-arrow-function-component-with-styles",
     prefix: "tsrnfs",
-    description: "Creates a React Native Arrow Function Component with ES7 module system, TypeScript interface and StyleSheet · tsrnfs",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Native Arrow Function Component with ES7 module system, TypeScript interface and StyleSheet · tsrnfs",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { StyleSheet, Text, View } from 'react-native'",
       "import React from 'react'",

@@ -61,9 +61,9 @@ export default [
     description: "Zod discriminated union schema",
     languages: ["typescript", "javascript"],
     body: [
-      "const ${1:Schema} = z.discriminatedUnion(\"type\", [",
-      "  z.object({ type: z.literal(\"${2:success}\"), data: z.${3|string()|}() }),",
-      "  z.object({ type: z.literal(\"${4:error}\"), message: z.string() }),",
+      'const ${1:Schema} = z.discriminatedUnion("type", [',
+      '  z.object({ type: z.literal("${2:success}"), data: z.${3|string()|}() }),',
+      '  z.object({ type: z.literal("${4:error}"), message: z.string() }),',
       "]);",
     ],
   },
@@ -79,7 +79,7 @@ export default [
     prefix: "zenum",
     description: "Zod native enum schema",
     languages: ["typescript", "javascript"],
-    body: "z.enum([\"${1:option-a}\", \"${2:option-b}\"])",
+    body: 'z.enum(["${1:option-a}", "${2:option-b}"])',
   },
   {
     key: "zod-union-schema",
@@ -96,7 +96,7 @@ export default [
     body: [
       "${1:Schema}.refine(",
       "  (${2:value}) => ${3:condition},",
-      "  { message: \"${4:Validation failed}\" },",
+      '  { message: "${4:Validation failed}" },',
       ")",
     ],
   },
@@ -139,7 +139,7 @@ export default [
     body: [
       "function formatZodErrors(error: z.ZodError) {",
       "  return error.issues.map((issue) => ({",
-      "    path: issue.path.join(\".\"),",
+      '    path: issue.path.join("."),',
       "    message: issue.message,",
       "  }));",
       "}",
@@ -149,7 +149,7 @@ export default [
         body: [
           "function formatZodErrors(error) {",
           "  return error.issues.map((issue) => ({",
-          "    path: issue.path.join(\".\"),",
+          '    path: issue.path.join("."),',
           "    message: issue.message,",
           "  }));",
           "}",

@@ -9,7 +9,9 @@ const siteDir = join(rootDir, "site");
 
 function findMainBundle() {
   const assetsDir = join(siteDir, "assets");
-  return readdirSync(assetsDir).find((file) => file.endsWith(".js") && file.startsWith("index-"));
+  return readdirSync(assetsDir).find(
+    (file) => file.endsWith(".js") && file.startsWith("index-"),
+  );
 }
 
 describe("product site (React)", () => {
@@ -28,14 +30,18 @@ describe("product site (React)", () => {
     expect(existsSync(join(siteDir, ".nojekyll"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "favicon-16.png"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "favicon-32.png"))).toBe(true);
-    expect(existsSync(join(siteDir, "assets", "apple-touch-icon.png"))).toBe(true);
+    expect(existsSync(join(siteDir, "assets", "apple-touch-icon.png"))).toBe(
+      true,
+    );
     expect(existsSync(join(siteDir, "assets", "logo.png"))).toBe(true);
     expect(existsSync(join(siteDir, "previews", "ether-dusk.png"))).toBe(true);
     expect(existsSync(join(siteDir, "robots.txt"))).toBe(true);
     expect(existsSync(join(siteDir, "sitemap.xml"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "og-image.png"))).toBe(true);
     expect(existsSync(join(siteDir, "themes", "index.html"))).toBe(true);
-    expect(existsSync(join(siteDir, "snippets", "javascript", "index.html"))).toBe(true);
+    expect(
+      existsSync(join(siteDir, "snippets", "javascript", "index.html")),
+    ).toBe(true);
 
     const indexHtml = readFileSync(join(siteDir, "index.html"), "utf8");
     expect(indexHtml).toContain("/ether-theme/");
@@ -43,7 +49,7 @@ describe("product site (React)", () => {
     expect(indexHtml).toContain("/ether-theme/assets/favicon-32.png");
     expect(indexHtml).toContain('meta name="description"');
     expect(indexHtml).toContain('property="og:title"');
-    expect(indexHtml).toContain('application/ld+json');
+    expect(indexHtml).toContain("application/ld+json");
 
     const robots = readFileSync(join(siteDir, "robots.txt"), "utf8");
     expect(robots).toContain("Sitemap:");

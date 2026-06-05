@@ -4,11 +4,11 @@ Thanks for helping improve Ether — themes, snippets, grammars, and the product
 
 ## Prerequisites
 
-| Tool | Version |
-|------|---------|
-| Node.js | **20+** (CI uses **24** — see `.nvmrc`) |
-| npm | 10+ |
-| VS Code or Cursor | **1.85+** for extension dev (F5) |
+| Tool              | Version                                 |
+| ----------------- | --------------------------------------- |
+| Node.js           | **20+** (CI uses **24** — see `.nvmrc`) |
+| npm               | 10+                                     |
+| VS Code or Cursor | **1.85+** for extension dev (F5)        |
 
 ```bash
 git clone https://github.com/PRIYAANK2510/ether-theme.git
@@ -37,14 +37,14 @@ Ether/
 
 ## Daily commands
 
-| Command | When to use |
-|---------|-------------|
-| `npm run watch` | Palette/snippet edits — rebuilds extension artifacts (no PNG previews, no site) |
-| `npm run site:dev` | Website UI work → http://localhost:4173/ether-theme/ |
-| `npm run check:fast` | Before every push — lint, typecheck, fast tests, extension + site build |
-| `npm run check` | Before release — includes PNG previews + full test suite |
-| `npm run lint:fix` | Auto-fix ESLint issues |
-| `npm run test:watch` | Vitest watch mode |
+| Command              | When to use                                                                     |
+| -------------------- | ------------------------------------------------------------------------------- |
+| `npm run watch`      | Palette/snippet edits — rebuilds extension artifacts (no PNG previews, no site) |
+| `npm run site:dev`   | Website UI work → http://localhost:4173/ether-theme/                            |
+| `npm run check:fast` | Before every push — lint, typecheck, fast tests, extension + site build         |
+| `npm run check`      | Before release — includes PNG previews + full test suite                        |
+| `npm run lint:fix`   | Auto-fix ESLint issues                                                          |
+| `npm run test:watch` | Vitest watch mode                                                               |
 
 ### Extension development (F5)
 
@@ -62,12 +62,12 @@ TypeScript lives in `apps/website/`. Run `npm run typecheck` for IDE-equivalent 
 
 ## What to edit
 
-| Change | Edit | Generated output |
-|--------|------|------------------|
-| Theme colors | `src/palettes/*.js` | `themes/*.color-theme.json`, `docs/previews/*.png`, README gallery |
-| Snippets | `src/snippets/catalog/*.js` | `snippets/*.code-snippets` |
-| Grammars | `src/grammars/` | `package.json` language associations |
-| Product site | `apps/website/src/` | `site/` (on build) |
+| Change       | Edit                        | Generated output                                                   |
+| ------------ | --------------------------- | ------------------------------------------------------------------ |
+| Theme colors | `src/palettes/*.js`         | `themes/*.color-theme.json`, `docs/previews/*.png`, README gallery |
+| Snippets     | `src/snippets/catalog/*.js` | `snippets/*.code-snippets`                                         |
+| Grammars     | `src/grammars/`             | `package.json` language associations                               |
+| Product site | `apps/website/src/`         | `site/` (on build)                                                 |
 
 **Never hand-edit** `themes/`, `snippets/`, or `package.json` contributes blocks — the build syncs them.
 

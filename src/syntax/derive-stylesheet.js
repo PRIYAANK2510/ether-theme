@@ -67,7 +67,11 @@ function tuneSyntaxToken(source, targetHue, background, options = {}) {
 
   let color = chroma.hsl(hue, saturation, lightness);
   let attempts = 0;
-  while (contrastRatio(color.hex(), background) < 4.5 && lightness < 0.92 && attempts < 12) {
+  while (
+    contrastRatio(color.hex(), background) < 4.5 &&
+    lightness < 0.92 &&
+    attempts < 12
+  ) {
     lightness += 0.025;
     color = chroma.hsl(hue, saturation, lightness);
     attempts += 1;
@@ -94,7 +98,11 @@ function nudgeHue(hex, targetHue, background) {
   let nextLightness = lightness;
   let color = chroma.hsl(targetHue, saturation, nextLightness);
   let attempts = 0;
-  while (contrastRatio(color.hex(), background) < 4.5 && nextLightness < 0.92 && attempts < 12) {
+  while (
+    contrastRatio(color.hex(), background) < 4.5 &&
+    nextLightness < 0.92 &&
+    attempts < 12
+  ) {
     nextLightness += 0.025;
     color = chroma.hsl(targetHue, saturation, nextLightness);
     attempts += 1;
@@ -123,13 +131,25 @@ function enforceHueSeparation(tokens, background) {
         continue;
       }
 
-      result[roleB] = nudgeHue(result[roleB], SHEET_HUES[ROLE_HUE_KEYS[roleB]], background);
+      result[roleB] = nudgeHue(
+        result[roleB],
+        SHEET_HUES[ROLE_HUE_KEYS[roleB]],
+        background,
+      );
       adjusted = true;
 
       const nextHueA = chroma(result[roleA]).get("hsl.h");
       const nextHueB = chroma(result[roleB]).get("hsl.h");
-      if (!Number.isNaN(nextHueA) && !Number.isNaN(nextHueB) && hueDelta(nextHueA, nextHueB) < minDelta) {
-        result[roleA] = nudgeHue(result[roleA], SHEET_HUES[ROLE_HUE_KEYS[roleA]], background);
+      if (
+        !Number.isNaN(nextHueA) &&
+        !Number.isNaN(nextHueB) &&
+        hueDelta(nextHueA, nextHueB) < minDelta
+      ) {
+        result[roleA] = nudgeHue(
+          result[roleA],
+          SHEET_HUES[ROLE_HUE_KEYS[roleA]],
+          background,
+        );
       }
     }
 
@@ -153,44 +173,98 @@ export function deriveStylesheetSyntaxTokens(syntax, ui) {
   const punctuation = deriveCommentForeground(ui);
 
   const tokens = {
-    sheetProperty: tuneSyntaxToken(syntax.function, SHEET_HUES.property, editor, {
-      hueWeight: 0.95,
-    }),
-    sheetFunction: tuneSyntaxToken(syntax.function, SHEET_HUES.function, editor, {
-      hueWeight: 0.88,
-      light: [0.64, 0.84],
-    }),
-    sheetSelectorClass: tuneSyntaxToken(syntax.type, SHEET_HUES.selectorClass, editor, {
-      hueWeight: 0.8,
-      sat: [0.5, 0.78],
-    }),
-    sheetSelectorTag: tuneSyntaxToken(syntax.red, SHEET_HUES.selectorTag, editor, {
-      sat: [0.48, 0.72],
-    }),
-    sheetSelectorPseudo: tuneSyntaxToken(syntax.cyan, SHEET_HUES.selectorPseudo, editor),
-    sheetSelectorId: tuneSyntaxToken(syntax.cyan, SHEET_HUES.selectorId, editor, {
-      sat: [0.38, 0.62],
-    }),
-    sheetValueKeyword: tuneSyntaxToken(syntax.cyan, SHEET_HUES.valueKeyword, editor, {
-      hueWeight: 0.86,
-    }),
-    sheetValueNumber: tuneSyntaxToken(syntax.number, SHEET_HUES.valueNumber, editor, {
-      hueWeight: 0.92,
-      sat: [0.55, 0.82],
-    }),
-    sheetValueIdentifier: tuneSyntaxToken(syntax.pink, SHEET_HUES.valueIdentifier, editor, {
-      sat: [0.38, 0.65],
-    }),
-    sheetColorLiteral: tuneSyntaxToken(syntax.pink, SHEET_HUES.colorLiteral, editor, {
-      sat: [0.32, 0.58],
-      light: [0.62, 0.78],
-    }),
+    sheetProperty: tuneSyntaxToken(
+      syntax.function,
+      SHEET_HUES.property,
+      editor,
+      {
+        hueWeight: 0.95,
+      },
+    ),
+    sheetFunction: tuneSyntaxToken(
+      syntax.function,
+      SHEET_HUES.function,
+      editor,
+      {
+        hueWeight: 0.88,
+        light: [0.64, 0.84],
+      },
+    ),
+    sheetSelectorClass: tuneSyntaxToken(
+      syntax.type,
+      SHEET_HUES.selectorClass,
+      editor,
+      {
+        hueWeight: 0.8,
+        sat: [0.5, 0.78],
+      },
+    ),
+    sheetSelectorTag: tuneSyntaxToken(
+      syntax.red,
+      SHEET_HUES.selectorTag,
+      editor,
+      {
+        sat: [0.48, 0.72],
+      },
+    ),
+    sheetSelectorPseudo: tuneSyntaxToken(
+      syntax.cyan,
+      SHEET_HUES.selectorPseudo,
+      editor,
+    ),
+    sheetSelectorId: tuneSyntaxToken(
+      syntax.cyan,
+      SHEET_HUES.selectorId,
+      editor,
+      {
+        sat: [0.38, 0.62],
+      },
+    ),
+    sheetValueKeyword: tuneSyntaxToken(
+      syntax.cyan,
+      SHEET_HUES.valueKeyword,
+      editor,
+      {
+        hueWeight: 0.86,
+      },
+    ),
+    sheetValueNumber: tuneSyntaxToken(
+      syntax.number,
+      SHEET_HUES.valueNumber,
+      editor,
+      {
+        hueWeight: 0.92,
+        sat: [0.55, 0.82],
+      },
+    ),
+    sheetValueIdentifier: tuneSyntaxToken(
+      syntax.pink,
+      SHEET_HUES.valueIdentifier,
+      editor,
+      {
+        sat: [0.38, 0.65],
+      },
+    ),
+    sheetColorLiteral: tuneSyntaxToken(
+      syntax.pink,
+      SHEET_HUES.colorLiteral,
+      editor,
+      {
+        sat: [0.32, 0.58],
+        light: [0.62, 0.78],
+      },
+    ),
     sheetVariable: tuneSyntaxToken(syntax.cyan, SHEET_HUES.variable, editor, {
       hueWeight: 0.84,
     }),
-    sheetSassVariable: tuneSyntaxToken(syntax.cyan, SHEET_HUES.sassVariable, editor, {
-      sat: [0.4, 0.68],
-    }),
+    sheetSassVariable: tuneSyntaxToken(
+      syntax.cyan,
+      SHEET_HUES.sassVariable,
+      editor,
+      {
+        sat: [0.4, 0.68],
+      },
+    ),
     sheetAtRule: tuneSyntaxToken(syntax.keyword, SHEET_HUES.atRule, editor, {
       sat: [0.38, 0.65],
     }),

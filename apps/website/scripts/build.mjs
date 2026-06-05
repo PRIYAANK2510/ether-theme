@@ -31,8 +31,7 @@ export async function buildWebsite() {
 }
 
 const invokedDirectly =
-  process.argv[1] &&
-  fileURLToPath(import.meta.url) === process.argv[1];
+  process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 
 if (invokedDirectly) {
   const result = await buildWebsite();

@@ -74,10 +74,7 @@ export function trimTokensToWidth(tokens, maxWidth) {
     const w = textAdvance(token.text, "code");
     if (used + w > maxWidth - ellipsisWidth) {
       if (out.length === 0) {
-        const slice = Math.max(
-          4,
-          Math.floor((maxWidth / CHAR_W.code) * 0.85),
-        );
+        const slice = Math.max(4, Math.floor((maxWidth / CHAR_W.code) * 0.85));
         out.push({
           text: `${token.text.slice(0, slice)}…`,
           role: token.role,

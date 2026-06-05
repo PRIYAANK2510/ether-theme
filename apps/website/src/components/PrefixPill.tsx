@@ -2,7 +2,12 @@ import { useState } from "react";
 import { cn } from "@/lib/cn";
 import styles from "./PrefixPill.module.scss";
 
-export function PrefixPill({ prefix }: { prefix: string }) {
+type PrefixPillProps = {
+  prefix: string;
+  showPrefix?: boolean;
+};
+
+export function PrefixPill({ prefix, showPrefix = true }: PrefixPillProps) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -18,12 +23,22 @@ export function PrefixPill({ prefix }: { prefix: string }) {
   return (
     <button
       type="button"
-      className={cn(styles.pill, { [styles.copied]: copied })}
+      className={cn(styles.pill, {
+        [styles.copied]: copied,
+        [styles.pillCompact]: !showPrefix,
+      })}
       onClick={copy}
-      title="Copy prefix to clipboard"
+      title={`Copy ${prefix} to clipboard`}
     >
-      <code>{prefix}</code>
-      <span>{copied ? "Copied!" : "Copy"}</span>
+      {showPrefix ? (
+        <>
+          <span className={styles.prefix}>
+            <code className={styles.code}>{prefix}</code>
+          </span>
+          <span className={styles.divider} aria-hidden="true" />
+        </>
+      ) : null}
+      <span className={styles.action}>{copied ? "Copied!" : "Copy"}</span>
     </button>
   );
 }

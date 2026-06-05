@@ -6,14 +6,24 @@ export default [
     key: "redux-import-redux-connect",
     prefix: "redux",
     description: "Import Redux Connect · redux",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: "import { connect } from 'react-redux'",
   },
   {
     key: "redux-mapping-to-props",
     prefix: "reduxmap",
     description: "Mapping To Props · reduxmap",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "const mapStateToProps = (state) => ({})",
       "",
@@ -24,7 +34,12 @@ export default [
     key: "redux-redux-action",
     prefix: "rxaction",
     description: "Redux Action · rxaction",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "export const ${1:first} = (payload) => ({",
       "  type: ${2:second},",
@@ -37,14 +52,24 @@ export default [
     key: "redux-redux-const",
     prefix: "rxconst",
     description: "Redux Const · rxconst",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: "export const ${1:first} = '${1:first}'",
   },
   {
     key: "redux-redux-reducer",
     prefix: "rxreducer",
     description: "Redux Reducer · rxreducer",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "const initialState = {}",
       "",
@@ -65,7 +90,12 @@ export default [
     key: "redux-redux-selector",
     prefix: "rxselect",
     description: "Redux Selector · rxselect",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { createSelector } from 'reselect'",
       "",
@@ -76,7 +106,12 @@ export default [
     key: "redux-redux-slice",
     prefix: "rxslice",
     description: "Redux Slice · rxslice",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import { createSlice } from '@reduxjs/toolkit'",
       "",

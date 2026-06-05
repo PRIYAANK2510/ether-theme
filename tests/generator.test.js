@@ -31,7 +31,10 @@ import {
   withAlphaByte,
 } from "../src/utils/color.js";
 import { writeFileIfChanged } from "../src/utils/fs.js";
-import { EXPECTED_SYNTAX_RULE_COUNT, WORKBENCH_COLOR_IDS } from "../src/workbench/constants.js";
+import {
+  EXPECTED_SYNTAX_RULE_COUNT,
+  WORKBENCH_COLOR_IDS,
+} from "../src/workbench/constants.js";
 import { CORE_WORKBENCH_COLOR_IDS } from "../src/workbench/core-catalog.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "../src/workbench/extension-catalog.js";
 
@@ -39,11 +42,11 @@ describe("fs-utils", () => {
   it("skips writes when LF-normalized text is unchanged", () => {
     const dir = mkdtempSync(join(tmpdir(), "ether-fs-"));
     const filePath = join(dir, "sample.json");
-    writeFileSync(filePath, "{\n  \"a\": 1\n}\n");
+    writeFileSync(filePath, '{\n  "a": 1\n}\n');
 
-    expect(writeFileIfChanged(filePath, "{\n  \"a\": 1\n}\n")).toBe(false);
-    expect(writeFileIfChanged(filePath, "{\r\n  \"a\": 1\r\n}\r\n")).toBe(false);
-    expect(writeFileIfChanged(filePath, "{\n  \"a\": 2\n}\n")).toBe(true);
+    expect(writeFileIfChanged(filePath, '{\n  "a": 1\n}\n')).toBe(false);
+    expect(writeFileIfChanged(filePath, '{\r\n  "a": 1\r\n}\r\n')).toBe(false);
+    expect(writeFileIfChanged(filePath, '{\n  "a": 2\n}\n')).toBe(true);
   });
 });
 
@@ -67,7 +70,6 @@ describe("color-utils", () => {
     expect(lighten("#000000", 0.5)).not.toBe("#000000");
     expect(darken("#ffffff", 0.5)).not.toBe("#ffffff");
   });
-
 });
 
 describe("theme generator", () => {
@@ -100,15 +102,21 @@ describe("theme generator", () => {
     const cssPropertyRule = theme.tokenColors.find(
       (rule) => rule.name === "CSS / SCSS Property Name",
     );
-    const classRule = theme.tokenColors.find((rule) => rule.name === "CSS Selector — Class");
-    const valueRule = theme.tokenColors.find((rule) => rule.name === "CSS / SCSS Value Keyword");
+    const classRule = theme.tokenColors.find(
+      (rule) => rule.name === "CSS Selector — Class",
+    );
+    const valueRule = theme.tokenColors.find(
+      (rule) => rule.name === "CSS / SCSS Value Keyword",
+    );
     const objectPropertyRule = theme.tokenColors.find(
       (rule) => rule.name === "Object Property",
     );
 
     expect(cssPropertyRule).toBeDefined();
     expect(cssPropertyRule.scope).toContain("support.type.property-name.scss");
-    expect(objectPropertyRule.scope).not.toContain("support.type.property-name");
+    expect(objectPropertyRule.scope).not.toContain(
+      "support.type.property-name",
+    );
 
     const property = cssPropertyRule.settings.foreground;
     const selector = classRule.settings.foreground;
@@ -171,10 +179,12 @@ describe("theme generator", () => {
     expect(theme.colors["button.foreground"].toLowerCase()).toBe(
       palette.ui.fgOnButton.toLowerCase(),
     );
-    expect(theme.colors["extensionButton.prominentForeground"].toLowerCase()).toBe(
-      palette.ui.fgOnButton.toLowerCase(),
+    expect(
+      theme.colors["extensionButton.prominentForeground"].toLowerCase(),
+    ).toBe(palette.ui.fgOnButton.toLowerCase());
+    expect(theme.colors["activityBar.dropBorder"]).toBe(
+      theme.colors["list.dropBackground"],
     );
-    expect(theme.colors["activityBar.dropBorder"]).toBe(theme.colors["list.dropBackground"]);
     expect(theme.colors["notifications.background"].toLowerCase()).toBe(
       palette.ui.surfaceNotification.toLowerCase(),
     );
@@ -194,14 +204,16 @@ describe("theme generator", () => {
       expect(rule.settings).not.toHaveProperty("background");
     }
     expect(theme.colors).not.toHaveProperty("chat.requestBubbleBackground");
-    expect(theme.colors).not.toHaveProperty("chat.requestBubbleHoverBackground");
+    expect(theme.colors).not.toHaveProperty(
+      "chat.requestBubbleHoverBackground",
+    );
     expect(theme.colors).not.toHaveProperty("chat.requestCodeBorder");
-    expect(colorAlphaByte(theme.colors["editor.hoverHighlightBackground"])).toBeLessThan(
-      0xff,
-    );
-    expect(colorAlphaByte(theme.colors["merge.currentHeaderBackground"])).toBeLessThan(
-      0xff,
-    );
+    expect(
+      colorAlphaByte(theme.colors["editor.hoverHighlightBackground"]),
+    ).toBeLessThan(0xff);
+    expect(
+      colorAlphaByte(theme.colors["merge.currentHeaderBackground"]),
+    ).toBeLessThan(0xff);
     expect(theme.colors).toHaveProperty("editorIndentGuide.background1");
     expect(theme.colors).not.toHaveProperty("editorIndentGuide.background");
   });
@@ -212,12 +224,18 @@ describe("theme generator", () => {
     expect(theme.colors["sideBar.background"].toLowerCase()).toBe(
       palette.ui.surfacePanel.toLowerCase(),
     );
-    expect(theme.colors["editor.background"].toLowerCase()).toBe(composerPane.toLowerCase());
-    expect(theme.colors["inlineChat.background"].toLowerCase()).toBe(composerPane.toLowerCase());
+    expect(theme.colors["editor.background"].toLowerCase()).toBe(
+      composerPane.toLowerCase(),
+    );
+    expect(theme.colors["inlineChat.background"].toLowerCase()).toBe(
+      composerPane.toLowerCase(),
+    );
     expect(theme.colors["inlineChatInput.background"].toLowerCase()).toBe(
       composerPane.toLowerCase(),
     );
-    expect(theme.colors["input.background"].toLowerCase()).toBe(composerPane.toLowerCase());
+    expect(theme.colors["input.background"].toLowerCase()).toBe(
+      composerPane.toLowerCase(),
+    );
     expect(theme.colors).not.toHaveProperty("agentsChatInput.background");
     expect(theme.colors).not.toHaveProperty("agentSessionsList.background");
     expect(theme.colors["chat.requestBackground"].toLowerCase()).toBe(
@@ -237,7 +255,9 @@ describe("theme generator", () => {
 
     expect(theme.colors["list.hoverBackground"].toLowerCase()).toBe(listFocus);
     expect(theme.colors["list.hoverBackground"].toLowerCase()).not.toBe(panel);
-    expect(theme.colors["list.activeSelectionBackground"].toLowerCase()).toBe(listFocus);
+    expect(theme.colors["list.activeSelectionBackground"].toLowerCase()).toBe(
+      listFocus,
+    );
     expect(theme.colors["statusBarItem.hoverForeground"].toLowerCase()).toBe(
       palette.ui.fgPrimary.toLowerCase(),
     );
@@ -245,9 +265,9 @@ describe("theme generator", () => {
       palette.ui.fgPrimary.toLowerCase(),
     );
     expect(theme.colors).not.toHaveProperty("button.secondaryHoverForeground");
-    expect(theme.colors["editorSuggestWidget.selectedForeground"].toLowerCase()).toBe(
-      palette.ui.fgListFocus.toLowerCase(),
-    );
+    expect(
+      theme.colors["editorSuggestWidget.selectedForeground"].toLowerCase(),
+    ).toBe(palette.ui.fgListFocus.toLowerCase());
     expect(theme.colors["activityBar.foreground"].toLowerCase()).toBe(
       palette.ui.fgPrimary.toLowerCase(),
     );
@@ -311,7 +331,9 @@ describe("theme generator", () => {
         expect(headerBg).toBe(panelBg);
       }
       expect(headerBg).not.toBe(editorBg);
-      expect(theme.colors["breadcrumb.background"].toLowerCase()).toBe(headerBg);
+      expect(theme.colors["breadcrumb.background"].toLowerCase()).toBe(
+        headerBg,
+      );
       expect(foldedBg).not.toBe(headerBg);
       expect(foldedBg).not.toBe(editorBg);
     }
@@ -379,7 +401,9 @@ describe("theme generator", () => {
     expect(gallery).toContain("text-align:left");
     expect(gallery).toContain("margin:0 0 10px");
     expect(gallery).toContain("margin:0 0 64px");
-    expect(gallery).toMatch(/<strong>Ether Aurora<\/strong>[\s\S]*docs\/previews\/ether-aurora\.png/);
+    expect(gallery).toMatch(
+      /<strong>Ether Aurora<\/strong>[\s\S]*docs\/previews\/ether-aurora\.png/,
+    );
     expect(gallery).not.toContain("<table>");
     expect(gallery).not.toContain("data:image");
     expect(gallery).not.toContain("gallery-row");
@@ -413,15 +437,18 @@ describe("theme generator", () => {
     expect(svg).toContain("<circle");
     expect(svg).not.toContain("syntaxGlow");
     expect(svg).toContain('class="title"');
-
   });
 
   it("keeps editor and sidebar independent when palette defines them separately", () => {
     const graphite = composeTheme(etherGraphite);
     expect(graphite.colors["sideBar.background"].toLowerCase()).toBe("#161618");
     expect(graphite.colors["editor.background"].toLowerCase()).toBe("#1c1c1e");
-    expect(graphite.colors["inlineChat.background"].toLowerCase()).toBe("#1c1c1e");
-    expect(graphite.colors["inlineChatInput.background"].toLowerCase()).toBe("#1c1c1e");
+    expect(graphite.colors["inlineChat.background"].toLowerCase()).toBe(
+      "#1c1c1e",
+    );
+    expect(graphite.colors["inlineChatInput.background"].toLowerCase()).toBe(
+      "#1c1c1e",
+    );
     expect(graphite.colors["input.border"].toLowerCase()).toBe("#0e0e1035");
 
     const storm = composeTheme(etherStorm);

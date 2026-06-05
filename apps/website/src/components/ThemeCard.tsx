@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { SITE_BASE } from "@/lib/config";
 import { useAppDispatch } from "@/store/hooks";
 import { setTheme } from "@/store/themeSlice";
@@ -10,7 +11,7 @@ type PaletteSummary = {
   preview: string;
 };
 
-export function ThemeCard({ palette }: { palette: PaletteSummary }) {
+function ThemeCardInner({ palette }: { palette: PaletteSummary }) {
   const dispatch = useAppDispatch();
   const previewSrc = `${SITE_BASE}${palette.preview}`;
 
@@ -51,7 +52,11 @@ export function ThemeCard({ palette }: { palette: PaletteSummary }) {
           <button type="button" className={styles.tryPill} onClick={tryTheme}>
             Try
           </button>
-          <button type="button" className={styles.previewPill} onClick={openPreview}>
+          <button
+            type="button"
+            className={styles.previewPill}
+            onClick={openPreview}
+          >
             Preview
           </button>
         </div>
@@ -59,3 +64,5 @@ export function ThemeCard({ palette }: { palette: PaletteSummary }) {
     </article>
   );
 }
+
+export const ThemeCard = memo(ThemeCardInner);

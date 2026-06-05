@@ -5,8 +5,14 @@ export default [
   {
     key: "components-react-arrow-function-component",
     prefix: "rafc",
-    description: "Creates a React Arrow Function Component with ES7 module system · rafc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Arrow Function Component with ES7 module system · rafc",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "",
@@ -21,8 +27,14 @@ export default [
   {
     key: "components-react-arrow-function-component-with-prop-types",
     prefix: "rafcp",
-    description: "Creates a React Arrow Function Component with ES7 module system with PropTypes · rafcp",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Arrow Function Component with ES7 module system with PropTypes · rafcp",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "import PropTypes from 'prop-types'",
@@ -41,8 +53,14 @@ export default [
   {
     key: "components-react-arrow-function-export-component",
     prefix: "rafce",
-    description: "Creates a React Arrow Function Component with ES7 module system · rafce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Arrow Function Component with ES7 module system · rafce",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "",
@@ -59,7 +77,12 @@ export default [
     key: "components-react-class-component",
     prefix: "rcc",
     description: "Creates a React component class with ES7 module system · rcc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { Component } from 'react'",
       "",
@@ -76,8 +99,14 @@ export default [
   {
     key: "components-react-class-component-prop-types",
     prefix: "rccp",
-    description: "Creates a React component class with PropTypes and ES7 module system · rccp",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React component class with PropTypes and ES7 module system · rccp",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import PropTypes from 'prop-types'",
       "import React, { Component } from 'react'",
@@ -97,8 +126,14 @@ export default [
   {
     key: "components-react-class-component-redux",
     prefix: "rcredux",
-    description: "Creates a React component class with connected redux and ES7 module system · rcredux",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React component class with connected redux and ES7 module system · rcredux",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { Component } from 'react'",
       "import { connect } from 'react-redux'",
@@ -121,8 +156,14 @@ export default [
   {
     key: "components-react-class-component-redux-prop-types",
     prefix: "rcreduxp",
-    description: "Creates a React component class with PropTypes with connected redux and ES7 module system · rcreduxp",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React component class with PropTypes with connected redux and ES7 module system · rcreduxp",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import PropTypes from 'prop-types'",
       "import React, { Component } from 'react'",
@@ -151,7 +192,12 @@ export default [
     key: "components-react-class-export-component",
     prefix: "rce",
     description: "Creates a React component class with ES7 module system · rce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { Component } from 'react'",
       "",
@@ -169,8 +215,14 @@ export default [
   {
     key: "components-react-class-export-component-with-prop-types",
     prefix: "rcep",
-    description: "Creates a React component class with ES7 module system · rcep",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React component class with ES7 module system · rcep",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import PropTypes from 'prop-types'",
       "import React, { Component } from 'react'",
@@ -191,8 +243,14 @@ export default [
   {
     key: "components-react-class-export-pure-component",
     prefix: "rpce",
-    description: "Creates a React pure component class with ES7 module system export · rpce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React pure component class with ES7 module system export · rpce",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { PureComponent } from 'react'",
       "",
@@ -210,8 +268,14 @@ export default [
   {
     key: "components-react-class-pure-component",
     prefix: "rpc",
-    description: "Creates a React pure component class with ES7 module system · rpc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React pure component class with ES7 module system · rpc",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { PureComponent } from 'react'",
       "",
@@ -228,8 +292,14 @@ export default [
   {
     key: "components-react-class-pure-component-with-prop-types",
     prefix: "rpcp",
-    description: "Creates a React component class with ES7 module system · rpcp",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React component class with ES7 module system · rpcp",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import PropTypes from 'prop-types'",
       "import React, { PureComponent } from 'react'",
@@ -249,8 +319,14 @@ export default [
   {
     key: "components-react-function-memo-component",
     prefix: "rmc",
-    description: "Creates a React Memo Function Component with ES7 module system · rmc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Memo Function Component with ES7 module system · rmc",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React, { memo } from 'react'",
       "",
@@ -266,8 +342,14 @@ export default [
   {
     key: "components-react-function-memo-component-with-prop-types",
     prefix: "rmcp",
-    description: "Creates a React Memo Function Component with ES7 module system with PropTypes · rmcp",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Memo Function Component with ES7 module system with PropTypes · rmcp",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import PropTypes from 'prop-types'",
       "import React, { memo } from 'react'",
@@ -286,8 +368,14 @@ export default [
   {
     key: "components-react-functional-component",
     prefix: "rfc",
-    description: "Creates a React Functional Component with ES7 module system · rfc",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Functional Component with ES7 module system · rfc",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "",
@@ -302,8 +390,14 @@ export default [
   {
     key: "components-react-functional-component-redux",
     prefix: "rfcredux",
-    description: "Creates a React functional component with connected redux and ES7 module system · rfcredux",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React functional component with connected redux and ES7 module system · rfcredux",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "import { connect } from 'react-redux'",
@@ -324,8 +418,14 @@ export default [
   {
     key: "components-react-functional-component-redux-prop-types",
     prefix: "rfcreduxp",
-    description: "DEPRECATED: Creates a React functional component with PropTypes with connected redux and ES7 module system · rfcreduxp",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "DEPRECATED: Creates a React functional component with PropTypes with connected redux and ES7 module system · rfcreduxp",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import PropTypes from 'prop-types'",
       "import React from 'react'",
@@ -351,8 +451,14 @@ export default [
   {
     key: "components-react-functional-component-with-prop-types",
     prefix: "rfcp",
-    description: "Creates a React Functional Component with ES7 module system with PropTypes · rfcp",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Functional Component with ES7 module system with PropTypes · rfcp",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "import PropTypes from 'prop-types'",
@@ -372,8 +478,14 @@ export default [
   {
     key: "components-react-functional-export-component",
     prefix: "rfce",
-    description: "Creates a React Functional Component with ES7 module system · rfce",
-    languages: ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+    description:
+      "Creates a React Functional Component with ES7 module system · rfce",
+    languages: [
+      "typescript",
+      "typescriptreact",
+      "javascript",
+      "javascriptreact",
+    ],
     body: [
       "import React from 'react'",
       "",

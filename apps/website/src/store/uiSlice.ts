@@ -13,10 +13,7 @@ export const uiSlice = createSlice({
     themeMenuOpen: false,
   },
   reducers: {
-    openLightbox(
-      state,
-      action: PayloadAction<{ src: string; label: string }>,
-    ) {
+    openLightbox(state, action: PayloadAction<{ src: string; label: string }>) {
       state.lightbox = { open: true, ...action.payload };
     },
     closeLightbox(state) {
@@ -28,4 +25,5 @@ export const uiSlice = createSlice({
   },
 });
 
-export const { openLightbox, closeLightbox, setThemeMenuOpen } = uiSlice.actions;
+export const { openLightbox, closeLightbox, setThemeMenuOpen } =
+  uiSlice.actions;
