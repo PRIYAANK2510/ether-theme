@@ -2,7 +2,7 @@
 
 # Ether Themes
 
-**25 dark token-driven color themes** and **392 web development snippets** for VS Code and Cursor.
+**25 dark token-driven color themes** and **496 web development snippets** for VS Code and Cursor.
 
 
 
@@ -208,7 +208,7 @@ Previews below are **high-DPI VS Code–style miniatures** (responsive gallery, 
 ## Highlights
 
 - **25 dark themes** — distinct surface temperatures and accents; dark-only lineup
-- **392 snippets** — Ether templates plus ES7+ React/Redux/React-Native patterns for JavaScript, TypeScript, JSX, TSX, HTML, and CSS
+- **496 snippets** — production-grade templates from FE to BE: React 19, Next.js, TanStack Query, Zod, Vitest/RTL, Node/Express, plus ES7+ React/Redux patterns
 - **Token-driven build** — palette files in `src/palettes/` generate full `.color-theme.json` files
 - **Contrast-aware** — WCAG validation on syntax roles and critical UI tokens at build time
 - **Subdued comments** — comment foreground matches active line numbers in the gutter
@@ -218,17 +218,17 @@ Previews below are **high-DPI VS Code–style miniatures** (responsive gallery, 
 
 ## Snippets
 
-Ether ships **392 snippets** across six language scopes. Type a prefix in an editor file and accept the suggestions to insert the template.
+Ether ships **496 snippet templates** across six language scopes. Type a prefix in an editor file and accept the suggestions to insert the template.
 
 
 | Language        | File types            | Count | Example prefixes                                               |
 | --------------- | --------------------- | ----- | -------------------------------------------------------------- |
-| **JavaScript**  | `.js`, `.mjs`, `.cjs` | 43    | `fn`, `fetch`, `debounce`, `groupby`, `pipe`, `addevent`       |
-| **TypeScript**  | `.ts`                 | 43    | `interface`, `discriminated`, `returntype`, `branded`, `fetch` |
-| **React (JSX)** | `.jsx`                | 58    | `rfc`, `rfcserver`, `usedebounce`, `rfquery`, `rfcompound`     |
-| **React (TSX)** | `.tsx`                | 63    | `rfc`, `rfpropschildren`, `useactionstate`, `rferrorboundary`  |
-| **HTML**        | `.html`, `.htm`       | 37    | `html5`, `og`, `dialog`, `table`, `layout`, `datalist`         |
-| **CSS**         | `.css`                | 37    | `flexcenter`, `modernreset`, `fluidtype`, `darkmode`, `layer`  |
+| **JavaScript**  | `.js`, `.mjs`, `.cjs` | 265   | `fn`, `fetch`, `vtdesc`, `zobject`, `nodeexp`, `allsettled`    |
+| **TypeScript**  | `.ts`                 | 270   | `interface`, `zsafe`, `nxget`, `nodeenv`, `tpltype`, `ztype`   |
+| **React (JSX)** | `.jsx`                | 259   | `rfc`, `tquse`, `useoptimistic`, `nxpage`, `rfdialog`, `rfquery` |
+| **React (TSX)** | `.tsx`                | 264   | `rfcserver`, `useformstatus`, `tqmut`, `nxaction`, `vtcmp`     |
+| **HTML**        | `.html`, `.htm`       | 45    | `html5`, `popover`, `jsonld`, `dialog`, `layout`, `live`       |
+| **CSS**         | `.css`                | 45    | `has`, `oklch`, `colormix`, `gridfit`, `modernreset`, `layer`  |
 
 
 ### React and JSX/TSX
@@ -257,6 +257,30 @@ Ether ships **392 snippets** across six language scopes. Type a prefix in an edi
 | `rffetch`         | Fetch with `AbortController` + `response.ok`   |
 | `rfquery`         | Loading / error / data fetch pattern           |
 | `rfcompound`      | Compound component pattern                     |
+| `useoptimistic`   | React 19 `useOptimistic` hook                  |
+| `useformstatus`   | React 19 `useFormStatus` hook                  |
+| `tquse` / `tqmut` | TanStack Query `useQuery` / `useMutation`      |
+| `nxaction`        | Next.js server action                          |
+| `nxpage`          | Next.js App Router async page                  |
+| `rfdialog`        | Accessible `<dialog>` pattern                  |
+
+
+### Testing, validation, and backend
+
+
+| Prefix            | Description                                    |
+| ----------------- | ---------------------------------------------- |
+| `vtdesc` / `vtit` | Vitest `describe` / `it` blocks                |
+| `vtrender`        | Testing Library `render` setup                 |
+| `vtcmp`           | Full RTL component test template               |
+| `vtmsw`           | MSW server setup for Vitest                    |
+| `zobject`         | Zod object schema                              |
+| `zsafe`           | Zod `safeParse` with error handling            |
+| `zform`           | Parse `FormData` in a server action          |
+| `nodeexp`         | Express app bootstrap                          |
+| `nodefast`        | Fastify route handler                          |
+| `nodeenv`         | Typed `process.env` with Zod                   |
+| `nxget` / `nxpost`| Next.js route handler GET / POST               |
 
 
 ### JavaScript and TypeScript
@@ -275,6 +299,9 @@ Ether ships **392 snippets** across six language scopes. Type a prefix in an edi
 | `returntype` / `parameters` | Utility type helpers                  |
 | `gfn`                       | Generic function                      |
 | `satisfies`                 | `satisfies` expression                |
+| `allsettled`                | `Promise.allSettled` parallel tasks     |
+| `clone`                     | `structuredClone` deep copy             |
+| `iterfilter`                | `Iterator.from` filter/map pipeline   |
 
 
 ### HTML and CSS
@@ -295,6 +322,11 @@ Ether ships **392 snippets** across six language scopes. Type a prefix in an edi
 | `media` / `darkmode`        | Responsive and theme queries          |
 | `keyframes`                 | CSS animation keyframes               |
 | `vars`                      | CSS custom properties                 |
+| `has`                       | CSS `:has()` parent selector          |
+| `oklch` / `colormix`        | Perceptual color and mixing           |
+| `popover`                   | HTML Popover API button + panel       |
+| `jsonld`                    | JSON-LD structured data               |
+| `live`                      | ARIA live region for announcements    |
 
 ## License
 

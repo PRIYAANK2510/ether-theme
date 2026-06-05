@@ -311,6 +311,38 @@
     ],
     "description": "React Testing Library render test"
   },
+  "React accessible icon-only button": {
+    "prefix": "rficonbtn",
+    "body": [
+      "<button",
+      "  type=\"button\"",
+      "  aria-label=\"${1:Action description}\"",
+      "  onClick={${2:onClick}}",
+      "  className=\"${3:icon-button}\"",
+      ">",
+      "  ${4:<Icon aria-hidden=\"true\" />}",
+      "</button>"
+    ],
+    "description": "React accessible icon-only button"
+  },
+  "React skeleton loading placeholder": {
+    "prefix": "rfskeleton",
+    "body": [
+      "<div",
+      "  role=\"status\"",
+      "  aria-live=\"polite\"",
+      "  aria-busy=\"true\"",
+      "  aria-label=\"${1:Loading content}\"",
+      "  className=\"${2:skeleton}\"",
+      "/>"
+    ],
+    "description": "React skeleton loading placeholder"
+  },
+  "React visually hidden screen reader text": {
+    "prefix": "rfhidden",
+    "body": "<span className=\"${1:sr-only}\">${2:Accessible label}</span>",
+    "description": "React visually hidden screen reader text"
+  },
   "React useState hook": {
     "prefix": "usestate",
     "body": "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState<${2:string} | null>(${3:null});",
@@ -528,6 +560,71 @@
       ");"
     ],
     "description": "React useSyncExternalStore hook"
+  },
+  "React useFormStatus for pending form state": {
+    "prefix": "useformstatus",
+    "body": "const { pending, data, method, action } = useFormStatus();",
+    "description": "React useFormStatus for pending form state"
+  },
+  "React useOptimistic hook": {
+    "prefix": "useoptimistic",
+    "body": [
+      "const [${1:optimisticState}, ${2:addOptimistic}] = useOptimistic<${6:State}, ${7:Update}>(",
+      "  ${3:state},",
+      "  (current, ${4:update}) => ${5:mergeUpdate(current, update)},",
+      ");"
+    ],
+    "description": "React useOptimistic hook"
+  },
+  "React useOnlineStatus custom hook": {
+    "prefix": "useonline",
+    "body": [
+      "export function useOnlineStatus() {",
+      "  const [isOnline, setIsOnline] = useState(() => navigator.onLine);",
+      "",
+      "  useEffect(() => {",
+      "    const handleOnline = () => setIsOnline(true);",
+      "    const handleOffline = () => setIsOnline(false);",
+      "",
+      "    window.addEventListener(\"online\", handleOnline);",
+      "    window.addEventListener(\"offline\", handleOffline);",
+      "",
+      "    return () => {",
+      "      window.removeEventListener(\"online\", handleOnline);",
+      "      window.removeEventListener(\"offline\", handleOffline);",
+      "    };",
+      "  }, []);",
+      "",
+      "  return isOnline;",
+      "}"
+    ],
+    "description": "React useOnlineStatus custom hook"
+  },
+  "React useIntersectionObserver custom hook": {
+    "prefix": "useinview",
+    "body": [
+      "export function useIntersectionObserver(",
+      "  options: IntersectionObserverInit = {},",
+      ") {",
+      "  const ref = useRef<HTMLElement | null>(null);",
+      "  const [isIntersecting, setIsIntersecting] = useState(false);",
+      "",
+      "  useEffect(() => {",
+      "    const element = ref.current;",
+      "    if (!element) return;",
+      "",
+      "    const observer = new IntersectionObserver(([entry]) => {",
+      "      setIsIntersecting(entry.isIntersecting);",
+      "    }, options);",
+      "",
+      "    observer.observe(element);",
+      "    return () => observer.disconnect();",
+      "  }, [options]);",
+      "",
+      "  return { ref, isIntersecting };",
+      "}"
+    ],
+    "description": "React useIntersectionObserver custom hook"
   },
   "React useEventListener custom hook": {
     "prefix": "useeventlistener",
@@ -786,6 +883,77 @@
     ],
     "description": "React compound component pattern"
   },
+  "React accessible dialog with focus trap": {
+    "prefix": "rfdialog",
+    "body": [
+      "<dialog",
+      "  ref={${1:dialogRef}}",
+      "  aria-labelledby=\"${2:dialog-title}\"",
+      "  onClose={${3:onClose}}",
+      ">",
+      "  <h2 id=\"${2:dialog-title}\">${4:Dialog title}</h2>",
+      "  $0",
+      "  <form method=\"dialog\">",
+      "    <button type=\"submit\">Close</button>",
+      "  </form>",
+      "</dialog>"
+    ],
+    "description": "React accessible dialog with focus trap"
+  },
+  "React roving tabindex keyboard list navigation": {
+    "prefix": "rfkeyboard",
+    "body": [
+      "function handleKeyDown(event: React.KeyboardEvent<HTMLUListElement>) {",
+      "  const items = Array.from(",
+      "    event.currentTarget.querySelectorAll<HTMLElement>('[role=\"menuitem\"]'),",
+      "  );",
+      "  const index = items.indexOf(document.activeElement as HTMLElement);",
+      "",
+      "  if (event.key === \"ArrowDown\") {",
+      "    event.preventDefault();",
+      "    items[(index + 1) % items.length]?.focus();",
+      "  }",
+      "",
+      "  if (event.key === \"ArrowUp\") {",
+      "    event.preventDefault();",
+      "    items[(index - 1 + items.length) % items.length]?.focus();",
+      "  }",
+      "}"
+    ],
+    "description": "React roving tabindex keyboard list navigation"
+  },
+  "React form wired to server action with pending state": {
+    "prefix": "rfserverform",
+    "body": [
+      "import { useFormStatus } from \"react-dom\";",
+      "import type { ReactNode } from \"react\";",
+      "",
+      "function SubmitButton() {",
+      "  const { pending } = useFormStatus();",
+      "  return (",
+      "    <button type=\"submit\" disabled={pending} aria-busy={pending}>",
+      "      {pending ? \"${1:Saving...}\" : \"${2:Save}\"}",
+      "    </button>",
+      "  );",
+      "}",
+      "",
+      "export function ${3:Form}({",
+      "  action,",
+      "  children,",
+      "}: {",
+      "  action: (formData: FormData) => void | Promise<void>;",
+      "  children: ReactNode;",
+      "}) {",
+      "  return (",
+      "    <form action={action}>",
+      "      {children}",
+      "      <SubmitButton />",
+      "    </form>",
+      "  );",
+      "}"
+    ],
+    "description": "React form wired to server action with pending state"
+  },
   "React optimistic UI update pattern": {
     "prefix": "rfoptimistic",
     "body": [
@@ -807,6 +975,261 @@
       "}"
     ],
     "description": "React optimistic UI update pattern"
+  },
+  "Next.js App Router page component": {
+    "prefix": "nxpage",
+    "body": [
+      "export default async function ${1:Page}() {",
+      "  const ${2:data}: ${5:DataType} = await ${3:fetchData}();",
+      "",
+      "  return (",
+      "    <main>",
+      "      <h1>${4:Page title}</h1>",
+      "      $0",
+      "    </main>",
+      "  );",
+      "}"
+    ],
+    "description": "Next.js App Router page component"
+  },
+  "Next.js App Router layout component": {
+    "prefix": "nxlayout",
+    "body": [
+      "import type { ReactNode } from \"react\";",
+      "",
+      "export default function ${1:Layout}({ children }: { children: ReactNode }) {",
+      "  return (",
+      "    <div className=\"${2:layout}\">",
+      "      $0",
+      "      {children}",
+      "    </div>",
+      "  );",
+      "}"
+    ],
+    "description": "Next.js App Router layout component"
+  },
+  "Next.js loading UI segment": {
+    "prefix": "nxloading",
+    "body": [
+      "export default function Loading() {",
+      "  return (",
+      "    <div role=\"status\" aria-live=\"polite\" className=\"${1:loading}\">",
+      "      Loading...",
+      "    </div>",
+      "  );",
+      "}"
+    ],
+    "description": "Next.js loading UI segment"
+  },
+  "Next.js error boundary UI segment": {
+    "prefix": "nxerror",
+    "body": [
+      "\"use client\";",
+      "",
+      "export default function Error({",
+      "  error,",
+      "  reset,",
+      "}: {",
+      "  error: Error & { digest?: string };",
+      "  reset: () => void;",
+      "}) {",
+      "  return (",
+      "    <div role=\"alert\" className=\"${1:error}\">",
+      "      <h2>Something went wrong</h2>",
+      "      <p>{error.message}</p>",
+      "      <button type=\"button\" onClick={() => reset()}>",
+      "        Try again",
+      "      </button>",
+      "    </div>",
+      "  );",
+      "}"
+    ],
+    "description": "Next.js error boundary UI segment"
+  },
+  "Vitest RTL render component": {
+    "prefix": "vtrender",
+    "body": [
+      "import { render, screen } from \"@testing-library/react\";",
+      "import userEvent from \"@testing-library/user-event\";",
+      "import { ${1:Component} } from \"./${1:Component}\";",
+      "",
+      "render(<${1:Component} ${2:defaultProps} />);",
+      "$0"
+    ],
+    "description": "Vitest RTL render component"
+  },
+  "Vitest RTL userEvent click interaction": {
+    "prefix": "vtclick",
+    "body": [
+      "const user = userEvent.setup();",
+      "await user.click(screen.getByRole(\"${1:button}\", { name: /${2:label}/i }));",
+      "$0"
+    ],
+    "description": "Vitest RTL userEvent click interaction"
+  },
+  "Vitest RTL waitFor async assertion": {
+    "prefix": "vtwait",
+    "body": [
+      "await waitFor(() => {",
+      "  expect(screen.getByText(/${1:expected}/i)).toBeInTheDocument();",
+      "});"
+    ],
+    "description": "Vitest RTL waitFor async assertion"
+  },
+  "Vitest RTL component test template": {
+    "prefix": "vtcmp",
+    "body": [
+      "import { render, screen } from \"@testing-library/react\";",
+      "import userEvent from \"@testing-library/user-event\";",
+      "import { ${1:Component} } from \"./${1:Component}\";",
+      "",
+      "describe(\"${1:Component}\", () => {",
+      "  it(\"${2:renders and responds to interaction}\", async () => {",
+      "    const user = userEvent.setup();",
+      "    render(<${1:Component} />);",
+      "",
+      "    expect(screen.getByRole(\"${3:heading}\", { name: /${4:Title}/i })).toBeInTheDocument();",
+      "    await user.click(screen.getByRole(\"${5:button}\", { name: /${6:Action}/i }));",
+      "    $0",
+      "  });",
+      "});"
+    ],
+    "description": "Vitest RTL component test template"
+  },
+  "Vitest React hook test with renderHook": {
+    "prefix": "vthook",
+    "body": [
+      "import { renderHook, act } from \"@testing-library/react\";",
+      "import { ${1:useHook} } from \"./${1:useHook}\";",
+      "",
+      "describe(\"${1:useHook}\", () => {",
+      "  it(\"${2:returns expected value}\", () => {",
+      "    const { result } = renderHook(() => ${1:useHook}(${3:args}));",
+      "",
+      "    act(() => {",
+      "      $0",
+      "    });",
+      "",
+      "    expect(result.current).toBe(${4:expected});",
+      "  });",
+      "});"
+    ],
+    "description": "Vitest React hook test with renderHook"
+  },
+  "TanStack Query useQuery hook": {
+    "prefix": "tquse",
+    "body": [
+      "const { data: ${1:data}, isLoading, isError, error } = useQuery<${4:DataType}>({",
+      "  queryKey: [\"${2:resource}\"],",
+      "  queryFn: async () => {",
+      "    const response = await fetch(\"${3:/api/resource}\");",
+      "    if (!response.ok) throw new Error(`Request failed: ${response.status}`);",
+      "    return response.json() as Promise<${4:DataType}>;",
+      "  },",
+      "});"
+    ],
+    "description": "TanStack Query useQuery hook"
+  },
+  "TanStack Query useMutation hook": {
+    "prefix": "tqmut",
+    "body": [
+      "const ${1:mutation} = useMutation<${5:ResponseType}, Error, ${6:PayloadType}>({",
+      "  mutationFn: async (${2:payload}) => {",
+      "    const response = await fetch(\"${3:/api/resource}\", {",
+      "      method: \"POST\",",
+      "      headers: { \"Content-Type\": \"application/json\" },",
+      "      body: JSON.stringify(${2:payload}),",
+      "    });",
+      "    if (!response.ok) throw new Error(`Request failed: ${response.status}`);",
+      "    return response.json() as Promise<${5:ResponseType}>;",
+      "  },",
+      "  onSuccess: () => {",
+      "    queryClient.invalidateQueries({ queryKey: [\"${4:resource}\"] });",
+      "    $0",
+      "  },",
+      "});"
+    ],
+    "description": "TanStack Query useMutation hook"
+  },
+  "TanStack Query provider wrapper": {
+    "prefix": "tqprovider",
+    "body": [
+      "import { QueryClient, QueryClientProvider } from \"@tanstack/react-query\";",
+      "import type { ReactNode } from \"react\";",
+      "",
+      "const queryClient = new QueryClient();",
+      "",
+      "export function QueryProvider({ children }: { children: ReactNode }) {",
+      "  return (",
+      "    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>",
+      "  );",
+      "}"
+    ],
+    "description": "TanStack Query provider wrapper"
+  },
+  "TanStack Query invalidateQueries": {
+    "prefix": "tqinv",
+    "body": "queryClient.invalidateQueries({ queryKey: [\"${1:resource}\"] });",
+    "description": "TanStack Query invalidateQueries"
+  },
+  "TanStack Query useInfiniteQuery": {
+    "prefix": "tqinf",
+    "body": [
+      "const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery<${4:PageType}>({",
+      "  queryKey: [\"${1:resource}\"],",
+      "  initialPageParam: ${2:0},",
+      "  queryFn: async ({ pageParam }) => {",
+      "    const response = await fetch(`${${3:baseUrl}}?page=${pageParam}`);",
+      "    if (!response.ok) throw new Error(`Request failed: ${response.status}`);",
+      "    return response.json() as Promise<${4:PageType}>;",
+      "  },",
+      "  getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,",
+      "});"
+    ],
+    "description": "TanStack Query useInfiniteQuery"
+  },
+  "TanStack Query optimistic update mutation": {
+    "prefix": "tqopt",
+    "body": [
+      "const ${1:mutation} = useMutation({",
+      "  mutationFn: ${2:updateItem},",
+      "  onMutate: async (newItem) => {",
+      "    await queryClient.cancelQueries({ queryKey: [\"${3:items}\"] });",
+      "    const previous = queryClient.getQueryData([\"${3:items}\"]);",
+      "    queryClient.setQueryData([\"${3:items}\"], (old) => [...(old ?? []), newItem]);",
+      "    return { previous };",
+      "  },",
+      "  onError: (_error, _newItem, context) => {",
+      "    queryClient.setQueryData([\"${3:items}\"], context?.previous);",
+      "  },",
+      "  onSettled: () => {",
+      "    queryClient.invalidateQueries({ queryKey: [\"${3:items}\"] });",
+      "  },",
+      "});"
+    ],
+    "description": "TanStack Query optimistic update mutation"
+  },
+  "TanStack Query useSuspenseQuery": {
+    "prefix": "tqsusp",
+    "body": [
+      "const { data: ${1:data} } = useSuspenseQuery<${4:DataType}>({",
+      "  queryKey: [\"${2:resource}\"],",
+      "  queryFn: () =>",
+      "    fetch(\"${3:/api/resource}\")",
+      "      .then((res) => res.json()) as Promise<${4:DataType}>,",
+      "});"
+    ],
+    "description": "TanStack Query useSuspenseQuery"
+  },
+  "TanStack Query loading and error UI states": {
+    "prefix": "tqui",
+    "body": [
+      "if (isLoading) return <div role=\"status\" aria-live=\"polite\">Loading...</div>;",
+      "if (isError) return <div role=\"alert\">{error?.message ?? \"Something went wrong.\"}</div>;",
+      "if (!${1:data}) return null;",
+      "$0"
+    ],
+    "description": "TanStack Query loading and error UI states"
   },
   "Creates a React Arrow Function Component with ES7 module system · rafc": {
     "prefix": "rafc",

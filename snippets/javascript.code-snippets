@@ -355,6 +355,576 @@
     "body": "`${1:text} ${${2:variable}}`",
     "description": "JavaScript template literal"
   },
+  "JavaScript Promise.allSettled parallel tasks": {
+    "prefix": "allsettled",
+    "body": [
+      "const results = await Promise.allSettled([",
+      "  ${1:taskA()},",
+      "  ${2:taskB()},",
+      "]);",
+      "",
+      "const fulfilled = results",
+      "  .filter((result) => result.status === \"fulfilled\")",
+      "  .map((result) => result.value);",
+      "$0"
+    ],
+    "description": "JavaScript Promise.allSettled parallel tasks"
+  },
+  "JavaScript structuredClone deep copy": {
+    "prefix": "clone",
+    "body": "const ${1:copy} = structuredClone(${2:original});",
+    "description": "JavaScript structuredClone deep copy"
+  },
+  "JavaScript immutable Array.toSorted": {
+    "prefix": "tosorted",
+    "body": "const ${1:sorted} = ${2:items}.toSorted((a, b) => a.localeCompare(b));",
+    "description": "JavaScript immutable Array.toSorted"
+  },
+  "JavaScript Iterator.from filter map": {
+    "prefix": "iterfilter",
+    "body": [
+      "const ${1:result} = Iterator.from(${2:items})",
+      "  .filter((${3:item}) => ${4:condition})",
+      "  .map((${3:item}) => ${5:transform})",
+      "  .toArray();"
+    ],
+    "description": "JavaScript Iterator.from filter map"
+  },
+  "JavaScript URLSearchParams builder": {
+    "prefix": "urlparams",
+    "body": [
+      "const params = new URLSearchParams({",
+      "  ${1:key}: ${2:value},",
+      "  $0",
+      "});",
+      "const query = params.toString();"
+    ],
+    "description": "JavaScript URLSearchParams builder"
+  },
+  "JavaScript WeakMap memoization cache": {
+    "prefix": "weakcache",
+    "body": [
+      "const cache = new WeakMap();",
+      "",
+      "function ${1:memoize}(key, compute) {",
+      "  if (cache.has(key)) return cache.get(key);",
+      "  const value = compute();",
+      "  cache.set(key, value);",
+      "  return value;",
+      "}"
+    ],
+    "description": "JavaScript WeakMap memoization cache"
+  },
+  "JavaScript process.env with fallback": {
+    "prefix": "env",
+    "body": "const ${1:PORT} = Number(process.env.${1:PORT} ?? ${2:3000});",
+    "description": "JavaScript process.env with fallback"
+  },
+  "JavaScript EventTarget pub/sub pattern": {
+    "prefix": "emitter",
+    "body": [
+      "const bus = new EventTarget();",
+      "",
+      "function on${1:Event}(handler) {",
+      "  bus.addEventListener(\"${1:event}\", handler);",
+      "  return () => bus.removeEventListener(\"${1:event}\", handler);",
+      "}",
+      "",
+      "function emit${1:Event}(detail) {",
+      "  bus.dispatchEvent(new CustomEvent(\"${1:event}\", { detail }));",
+      "}"
+    ],
+    "description": "JavaScript EventTarget pub/sub pattern"
+  },
+  "Next.js route handler GET": {
+    "prefix": "nxget",
+    "body": [
+      "export async function GET(request) {",
+      "  try {",
+      "    $0",
+      "    return Response.json({ ok: true });",
+      "  } catch (error) {",
+      "    console.error(error);",
+      "    return Response.json({ error: \"Internal server error\" }, { status: 500 });",
+      "  }",
+      "}"
+    ],
+    "description": "Next.js route handler GET"
+  },
+  "Next.js route handler POST with JSON body": {
+    "prefix": "nxpost",
+    "body": [
+      "export async function POST(request) {",
+      "  try {",
+      "    const body = await request.json();",
+      "    $0",
+      "    return Response.json({ ok: true }, { status: 201 });",
+      "  } catch (error) {",
+      "    console.error(error);",
+      "    return Response.json({ error: \"Invalid request\" }, { status: 400 });",
+      "  }",
+      "}"
+    ],
+    "description": "Next.js route handler POST with JSON body"
+  },
+  "Next.js middleware matcher": {
+    "prefix": "nxmw",
+    "body": [
+      "import { NextResponse } from \"next/server\";",
+      "",
+      "export function middleware(request) {",
+      "  $0",
+      "  return NextResponse.next();",
+      "}",
+      "",
+      "export const config = {",
+      "  matcher: [\"${1:/dashboard/:path*}\"],",
+      "};"
+    ],
+    "description": "Next.js middleware matcher"
+  },
+  "Next.js revalidatePath cache invalidation": {
+    "prefix": "nxreval",
+    "body": [
+      "import { revalidatePath } from \"next/cache\";",
+      "",
+      "revalidatePath(\"${1:/path}\");"
+    ],
+    "description": "Next.js revalidatePath cache invalidation"
+  },
+  "Next.js redirect in server component or action": {
+    "prefix": "nxredirect",
+    "body": [
+      "import { redirect } from \"next/navigation\";",
+      "",
+      "redirect(\"${1:/destination}\");"
+    ],
+    "description": "Next.js redirect in server component or action"
+  },
+  "Next.js generateStaticParams for dynamic routes": {
+    "prefix": "nxparams",
+    "body": [
+      "export async function generateStaticParams() {",
+      "  const ${1:items} = await ${2:fetchItems}();",
+      "",
+      "  return ${1:items}.map((${3:item}) => ({",
+      "    ${4:slug}: ${3:item}.${4:slug},",
+      "  }));",
+      "}"
+    ],
+    "description": "Next.js generateStaticParams for dynamic routes"
+  },
+  "Vitest describe suite": {
+    "prefix": "vtdesc",
+    "body": [
+      "describe(\"${1:Feature}\", () => {",
+      "  $0",
+      "});"
+    ],
+    "description": "Vitest describe suite"
+  },
+  "Vitest it test case": {
+    "prefix": "vtit",
+    "body": [
+      "it(\"${1:should behave as expected}\", () => {",
+      "  $0",
+      "});"
+    ],
+    "description": "Vitest it test case"
+  },
+  "Vitest async it test case": {
+    "prefix": "vtita",
+    "body": [
+      "it(\"${1:should behave as expected}\", async () => {",
+      "  $0",
+      "});"
+    ],
+    "description": "Vitest async it test case"
+  },
+  "Vitest beforeEach setup hook": {
+    "prefix": "vtbe",
+    "body": [
+      "beforeEach(() => {",
+      "  $0",
+      "});"
+    ],
+    "description": "Vitest beforeEach setup hook"
+  },
+  "Vitest afterEach cleanup hook": {
+    "prefix": "vtae",
+    "body": [
+      "afterEach(() => {",
+      "  $0",
+      "});"
+    ],
+    "description": "Vitest afterEach cleanup hook"
+  },
+  "Vitest vi.fn mock function": {
+    "prefix": "vtmock",
+    "body": "const ${1:mockFn} = vi.fn();",
+    "description": "Vitest vi.fn mock function"
+  },
+  "Vitest vi.mock module mock": {
+    "prefix": "vtmockmod",
+    "body": [
+      "vi.mock(\"${1:module}\", () => ({",
+      "  ${2:exportName}: vi.fn(),",
+      "}));"
+    ],
+    "description": "Vitest vi.mock module mock"
+  },
+  "Vitest expect to throw assertion": {
+    "prefix": "vtthrow",
+    "body": "await expect(${1:action}).rejects.toThrow(${2:Error});",
+    "description": "Vitest expect to throw assertion"
+  },
+  "MSW http.get request handler": {
+    "prefix": "vtmswget",
+    "body": [
+      "http.get(\"${1:/api/resource}\", () => {",
+      "  return HttpResponse.json({",
+      "    $0",
+      "  });"
+    ],
+    "description": "MSW http.get request handler"
+  },
+  "MSW http.post request handler": {
+    "prefix": "vtmswpost",
+    "body": [
+      "http.post(\"${1:/api/resource}\", async ({ request }) => {",
+      "  const body = await request.json();",
+      "  return HttpResponse.json({",
+      "    $0",
+      "  }, { status: ${2:201} });"
+    ],
+    "description": "MSW http.post request handler"
+  },
+  "MSW server setup for Vitest": {
+    "prefix": "vtmsw",
+    "body": [
+      "import { setupServer } from \"msw/node\";",
+      "import { http, HttpResponse } from \"msw\";",
+      "",
+      "const handlers = [",
+      "  http.get(\"${1:/api/health}\", () => HttpResponse.json({ ok: true })),",
+      "  $0",
+      "];",
+      "",
+      "export const server = setupServer(...handlers);",
+      "",
+      "beforeAll(() => server.listen({ onUnhandledRequest: \"error\" }));",
+      "afterEach(() => server.resetHandlers());",
+      "afterAll(() => server.close());"
+    ],
+    "description": "MSW server setup for Vitest"
+  },
+  "Zod object schema": {
+    "prefix": "zobject",
+    "body": [
+      "const ${1:Schema} = z.object({",
+      "  ${2:field}: z.${3|string()|}(),",
+      "  $0",
+      "});"
+    ],
+    "description": "Zod object schema"
+  },
+  "Zod safeParse with error handling": {
+    "prefix": "zsafe",
+    "body": [
+      "const result = ${1:Schema}.safeParse(${2:input});",
+      "",
+      "if (!result.success) {",
+      "  console.error(result.error.flatten());",
+      "  return { ok: false, errors: result.error.flatten().fieldErrors };",
+      "}",
+      "",
+      "return { ok: true, data: result.data };"
+    ],
+    "description": "Zod safeParse with error handling"
+  },
+  "Zod discriminated union schema": {
+    "prefix": "zdisc",
+    "body": [
+      "const ${1:Schema} = z.discriminatedUnion(\"type\", [",
+      "  z.object({ type: z.literal(\"${2:success}\"), data: z.${3|string()|}() }),",
+      "  z.object({ type: z.literal(\"${4:error}\"), message: z.string() }),",
+      "]);"
+    ],
+    "description": "Zod discriminated union schema"
+  },
+  "Zod array schema with constraints": {
+    "prefix": "zarray",
+    "body": "z.array(z.${1|string()|}()).min(${2:1}).max(${3:100})",
+    "description": "Zod array schema with constraints"
+  },
+  "Zod native enum schema": {
+    "prefix": "zenum",
+    "body": "z.enum([\"${1:option-a}\", \"${2:option-b}\"])",
+    "description": "Zod native enum schema"
+  },
+  "Zod union schema": {
+    "prefix": "zunion",
+    "body": "z.union([z.${1|string()|}(), z.${2|number()|}()])",
+    "description": "Zod union schema"
+  },
+  "Zod schema with refine validation": {
+    "prefix": "zrefine",
+    "body": [
+      "${1:Schema}.refine(",
+      "  (${2:value}) => ${3:condition},",
+      "  { message: \"${4:Validation failed}\" },",
+      ")"
+    ],
+    "description": "Zod schema with refine validation"
+  },
+  "Zod coerce number from string input": {
+    "prefix": "zcoerce",
+    "body": "z.coerce.number().int().positive()",
+    "description": "Zod coerce number from string input"
+  },
+  "Zod pick subset of object schema": {
+    "prefix": "zpick",
+    "body": "${1:Schema}.pick({ ${2:field}: true })",
+    "description": "Zod pick subset of object schema"
+  },
+  "Zod format validation errors for API response": {
+    "prefix": "zerrors",
+    "body": [
+      "function formatZodErrors(error) {",
+      "  return error.issues.map((issue) => ({",
+      "    path: issue.path.join(\".\"),",
+      "    message: issue.message,",
+      "  }));",
+      "}"
+    ],
+    "description": "Zod format validation errors for API response"
+  },
+  "TanStack Query client factory": {
+    "prefix": "tqclient",
+    "body": [
+      "export function createQueryClient() {",
+      "  return new QueryClient({",
+      "    defaultOptions: {",
+      "      queries: {",
+      "        staleTime: ${1:60_000},",
+      "        retry: ${2:1},",
+      "        refetchOnWindowFocus: false,",
+      "      },",
+      "    },",
+      "  });",
+      "}"
+    ],
+    "description": "TanStack Query client factory"
+  },
+  "TanStack Query invalidateQueries": {
+    "prefix": "tqinv",
+    "body": "queryClient.invalidateQueries({ queryKey: [\"${1:resource}\"] });",
+    "description": "TanStack Query invalidateQueries"
+  },
+  "TanStack Query prefetchQuery": {
+    "prefix": "tqprefetch",
+    "body": [
+      "await queryClient.prefetchQuery({",
+      "  queryKey: [\"${1:resource}\"],",
+      "  queryFn: () => fetch(\"${2:/api/resource}\").then((res) => res.json()),",
+      "});"
+    ],
+    "description": "TanStack Query prefetchQuery"
+  },
+  "Node.js native fetch API call with error handling": {
+    "prefix": "nodefetch",
+    "body": [
+      "const response = await fetch(\"${1:https://api.example.com/resource}\", {",
+      "  method: \"${2|GET,POST,PUT,PATCH,DELETE|}\",",
+      "  headers: {",
+      "    Accept: \"application/json\",",
+      "    \"Content-Type\": \"application/json\",",
+      "  },",
+      "  ${3:body: JSON.stringify(payload),}",
+      "});",
+      "",
+      "if (!response.ok) {",
+      "  throw new Error(`Upstream request failed: ${response.status}`);",
+      "}",
+      "",
+      "const ${4:data} = await response.json();",
+      "$0"
+    ],
+    "description": "Node.js native fetch API call with error handling"
+  },
+  "Node.js http.createServer handler": {
+    "prefix": "nodehttp",
+    "body": [
+      "import http from \"node:http\";",
+      "",
+      "const server = http.createServer(async (req, res) => {",
+      "  try {",
+      "    if (req.method === \"GET\" && req.url === \"${1:/health}\") {",
+      "      res.writeHead(200, { \"Content-Type\": \"application/json\" });",
+      "      res.end(JSON.stringify({ ok: true }));",
+      "      return;",
+      "    }",
+      "",
+      "    res.writeHead(404, { \"Content-Type\": \"application/json\" });",
+      "    res.end(JSON.stringify({ error: \"Not found\" }));",
+      "  } catch (error) {",
+      "    console.error(error);",
+      "    res.writeHead(500, { \"Content-Type\": \"application/json\" });",
+      "    res.end(JSON.stringify({ error: \"Internal server error\" }));",
+      "  }",
+      "});",
+      "",
+      "server.listen(${2:3000}, () => {",
+      "  console.log(\"Server listening on port ${2:3000}\");",
+      "});"
+    ],
+    "description": "Node.js http.createServer handler"
+  },
+  "Node.js Express app bootstrap": {
+    "prefix": "nodeexp",
+    "body": [
+      "import express from \"express\";",
+      "",
+      "const app = express();",
+      "app.use(express.json());",
+      "",
+      "app.get(\"${1:/health}\", (_req, res) => {",
+      "  res.json({ ok: true });",
+      "});",
+      "",
+      "$0",
+      "",
+      "app.listen(${2:3000}, () => {",
+      "  console.log(\"API listening on port ${2:3000}\");",
+      "});"
+    ],
+    "description": "Node.js Express app bootstrap"
+  },
+  "Node.js Express router module": {
+    "prefix": "nodeexpr",
+    "body": [
+      "import { Router } from \"express\";",
+      "",
+      "export const ${1:router} = Router();",
+      "",
+      "${1:router}.get(\"/\", async (_req, res, next) => {",
+      "  try {",
+      "    $0",
+      "    res.json({ ok: true });",
+      "  } catch (error) {",
+      "    next(error);",
+      "  }",
+      "});"
+    ],
+    "description": "Node.js Express router module"
+  },
+  "Node.js Express error handling middleware": {
+    "prefix": "nodeerr",
+    "body": [
+      "app.use((error, _req, res, _next) => {",
+      "  console.error(error);",
+      "  res.status(${1:500}).json({",
+      "    error: error instanceof Error ? error.message : \"Internal server error\",",
+      "  });",
+      "});"
+    ],
+    "description": "Node.js Express error handling middleware"
+  },
+  "Node.js Fastify route handler": {
+    "prefix": "nodefast",
+    "body": [
+      "fastify.get(\"${1:/resource}\", async (request, reply) => {",
+      "  try {",
+      "    $0",
+      "    return reply.code(200).send({ ok: true });",
+      "  } catch (error) {",
+      "    request.log.error(error);",
+      "    return reply.code(500).send({ error: \"Internal server error\" });",
+      "  }",
+      "});"
+    ],
+    "description": "Node.js Fastify route handler"
+  },
+  "Node.js Express CORS middleware": {
+    "prefix": "nodecors",
+    "body": [
+      "app.use((req, res, next) => {",
+      "  res.setHeader(\"Access-Control-Allow-Origin\", process.env.CORS_ORIGIN ?? \"*\");",
+      "  res.setHeader(\"Access-Control-Allow-Methods\", \"GET,POST,PUT,PATCH,DELETE,OPTIONS\");",
+      "  res.setHeader(\"Access-Control-Allow-Headers\", \"Content-Type, Authorization\");",
+      "",
+      "  if (req.method === \"OPTIONS\") {",
+      "    res.sendStatus(204);",
+      "    return;",
+      "  }",
+      "",
+      "  next();",
+      "});"
+    ],
+    "description": "Node.js Express CORS middleware"
+  },
+  "Node.js graceful shutdown on SIGTERM": {
+    "prefix": "nodesig",
+    "body": [
+      "function shutdown(signal) {",
+      "  console.log(`Received ${signal}, shutting down...`);",
+      "  $0",
+      "  process.exit(0);",
+      "}",
+      "",
+      "process.on(\"SIGTERM\", () => shutdown(\"SIGTERM\"));",
+      "process.on(\"SIGINT\", () => shutdown(\"SIGINT\"));"
+    ],
+    "description": "Node.js graceful shutdown on SIGTERM"
+  },
+  "Node.js read JSON file with fs/promises": {
+    "prefix": "nodejson",
+    "body": [
+      "import { readFile } from \"node:fs/promises\";",
+      "",
+      "const raw = await readFile(\"${1:./data.json}\", \"utf8\");",
+      "const ${2:data} = JSON.parse(raw);",
+      "$0"
+    ],
+    "description": "Node.js read JSON file with fs/promises"
+  },
+  "Node.js API JSON response helpers": {
+    "prefix": "nodeapi",
+    "body": [
+      "function jsonOk(data, status = 200) {",
+      "  return Response.json({ ok: true, data }, { status });",
+      "}",
+      "",
+      "function jsonError(message, status = 400) {",
+      "  return Response.json({ ok: false, error: message }, { status });",
+      "}"
+    ],
+    "description": "Node.js API JSON response helpers"
+  },
+  "Node.js Web Crypto SHA-256 hash": {
+    "prefix": "nodehash",
+    "body": [
+      "const encoded = new TextEncoder().encode(${1:input});",
+      "const digest = await crypto.subtle.digest(\"SHA-256\", encoded);",
+      "const ${2:hash} = Array.from(new Uint8Array(digest))",
+      "  .map((byte) => byte.toString(16).padStart(2, \"0\"))",
+      "  .join(\"\");"
+    ],
+    "description": "Node.js Web Crypto SHA-256 hash"
+  },
+  "Node.js stream pipeline with error handling": {
+    "prefix": "nodepipe",
+    "body": [
+      "import { pipeline } from \"node:stream/promises\";",
+      "import { createReadStream, createWriteStream } from \"node:fs\";",
+      "",
+      "await pipeline(",
+      "  createReadStream(\"${1:input.txt}\"),",
+      "  createWriteStream(\"${2:output.txt}\"),",
+      ");"
+    ],
+    "description": "Node.js stream pipeline with error handling"
+  },
   "Creates a React Arrow Function Component with ES7 module system · rafc": {
     "prefix": "rafc",
     "body": [

@@ -343,5 +343,79 @@
     "prefix": "fitcontent",
     "body": "width: fit-content; max-width: 100%;",
     "description": "CSS fit-content sizing"
+  },
+  "CSS :has() parent selector": {
+    "prefix": "has",
+    "body": [
+      "&:has(${1:> img}) {",
+      "  $0",
+      "}"
+    ],
+    "description": "CSS :has() parent selector"
+  },
+  "CSS oklch perceptual color": {
+    "prefix": "oklch",
+    "body": "color: oklch(${1:0.7} ${2:0.12} ${3:250});",
+    "description": "CSS oklch perceptual color"
+  },
+  "CSS color-mix function": {
+    "prefix": "colormix",
+    "body": "background-color: color-mix(in oklch, ${1:var(--accent)} ${2:80%}, ${3:white});",
+    "description": "CSS color-mix function"
+  },
+  "CSS native nesting block": {
+    "prefix": "nest",
+    "body": [
+      ".${1:block} {",
+      "  $2",
+      "",
+      "  & ${3:__element} {",
+      "    $0",
+      "  }",
+      "}"
+    ],
+    "description": "CSS native nesting block"
+  },
+  "CSS responsive auto-fit grid": {
+    "prefix": "gridfit",
+    "body": [
+      "display: grid;",
+      "grid-template-columns: repeat(auto-fit, minmax(min(${1:16rem}, 100%), 1fr));",
+      "gap: ${2:1rem};"
+    ],
+    "description": "CSS responsive auto-fit grid"
+  },
+  "CSS view transition name": {
+    "prefix": "viewtrans",
+    "body": "view-transition-name: ${1:hero-image};",
+    "description": "CSS view transition name"
+  },
+  "CSS print media query": {
+    "prefix": "print",
+    "body": [
+      "@media print {",
+      "  body {",
+      "    color: #000;",
+      "    background: #fff;",
+      "  }",
+      "",
+      "  a[href]::after {",
+      "    content: \" (\" attr(href) \")\";",
+      "  }",
+      "",
+      "  $0",
+      "}"
+    ],
+    "description": "CSS print media query"
+  },
+  "CSS focus-within ring for form groups": {
+    "prefix": "focuswithin",
+    "body": [
+      "&:focus-within {",
+      "  outline: 2px solid ${1:var(--focus-ring, currentColor)};",
+      "  outline-offset: 2px;",
+      "}"
+    ],
+    "description": "CSS focus-within ring for form groups"
   }
 }

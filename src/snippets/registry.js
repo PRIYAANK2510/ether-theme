@@ -9,7 +9,7 @@ export const SNIPPET_LANGUAGES = [
 ];
 
 /** Minimum catalog size enforced at build time. */
-export const MIN_SNIPPET_COUNT = 100;
+export const MIN_SNIPPET_COUNT = 450;
 
 /** @returns {Array<{ language: string, path: string }>} */
 export function buildSnippetContributions() {

@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [0.2.9] - 2026-06-05
+
+### Added
+
+- **104 new hand-authored snippets** — catalog grows from 392 to **496** definitions
+- **`testing-modern.js`** — Vitest suites, RTL `render`/`userEvent`, MSW handlers and server setup, `renderHook` tests
+- **`validation.js`** — Zod object schemas, `safeParse`, discriminated unions, FormData parsing, error formatting
+- **`data-fetching.js`** — TanStack Query `useQuery`/`useMutation`, infinite queries, optimistic updates, suspense
+- **`react-server.js`** — Next.js App Router pages, layouts, server actions, route handlers, middleware, metadata
+- **`node.js`** — Express/Fastify routes, env validation, CORS, graceful shutdown, streams, Web Crypto hashing
+- Modern **CSS** (`:has()`, `oklch`, `color-mix`, nesting, auto-fit grid), **HTML** (popover API, JSON-LD, live regions), **JS/TS**, and **React 19** hook/pattern snippets
+
+### Changed
+
+- README snippet docs updated with new counts, prefixes, and full-stack coverage
+- `MIN_SNIPPET_COUNT` raised to **450** to reflect the expanded catalog baseline
+- Theme preview generator refactored into modular `src/generator/preview-svg/` (compose, scene, assets, gallery, rasterize)
+
 ## [0.2.8] - 2026-06-04
 
 ### Changed

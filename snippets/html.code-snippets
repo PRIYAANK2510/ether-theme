@@ -335,5 +335,72 @@
       "</footer>"
     ],
     "description": "HTML semantic page layout"
+  },
+  "HTML popover API button and panel": {
+    "prefix": "popover",
+    "body": [
+      "<button type=\"button\" popovertarget=\"${1:menu-id}\" aria-expanded=\"false\" aria-controls=\"${1:menu-id}\">",
+      "  ${2:Open menu}",
+      "</button>",
+      "<div id=\"${1:menu-id}\" popover role=\"menu\">",
+      "  $0",
+      "</div>"
+    ],
+    "description": "HTML popover API button and panel"
+  },
+  "HTML search input with label": {
+    "prefix": "search",
+    "body": [
+      "<label for=\"${1:search-id}\">${2:Search}</label>",
+      "<input id=\"${1:search-id}\" type=\"search\" name=\"${3:q}\" placeholder=\"${4:Search...}\" autocomplete=\"off\" enterkeyhint=\"search\">"
+    ],
+    "description": "HTML search input with label"
+  },
+  "HTML progress element with label": {
+    "prefix": "progress",
+    "body": [
+      "<label for=\"${1:progress-id}\">${2:Upload progress}</label>",
+      "<progress id=\"${1:progress-id}\" value=\"${3:45}\" max=\"${4:100}\">${3:45}%</progress>"
+    ],
+    "description": "HTML progress element with label"
+  },
+  "HTML meter element": {
+    "prefix": "meter",
+    "body": "<meter value=\"${1:0.6}\" min=\"0\" max=\"1\" low=\"0.3\" high=\"0.7\" optimum=\"0.8\">${2:60%}</meter>",
+    "description": "HTML meter element"
+  },
+  "HTML time element with datetime": {
+    "prefix": "time",
+    "body": "<time datetime=\"${1:2026-06-05}\">${2:June 5, 2026}</time>",
+    "description": "HTML time element with datetime"
+  },
+  "HTML Twitter/X card meta tags": {
+    "prefix": "twitter",
+    "body": [
+      "<meta name=\"twitter:card\" content=\"${1|summary,summary_large_image|}\">",
+      "<meta name=\"twitter:title\" content=\"${2:Title}\">",
+      "<meta name=\"twitter:description\" content=\"${3:Description}\">",
+      "<meta name=\"twitter:image\" content=\"${4:https://example.com/card.jpg}\">"
+    ],
+    "description": "HTML Twitter/X card meta tags"
+  },
+  "HTML JSON-LD structured data": {
+    "prefix": "jsonld",
+    "body": [
+      "<script type=\"application/ld+json\">",
+      "{",
+      "  \"@context\": \"https://schema.org\",",
+      "  \"@type\": \"${1|WebSite,Article,Organization|}\",",
+      "  \"name\": \"${2:Name}\",",
+      "  \"url\": \"${3:https://example.com}\"",
+      "}",
+      "</script>"
+    ],
+    "description": "HTML JSON-LD structured data"
+  },
+  "HTML ARIA live region for announcements": {
+    "prefix": "live",
+    "body": "<div role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">${1:Status message}</div>",
+    "description": "HTML ARIA live region for announcements"
   }
 }
