@@ -4,7 +4,7 @@ import globals from "globals";
 export default [
   eslint.configs.recommended,
   {
-    ignores: ["themes/**", "releases/**", "node_modules/**"],
+    ignores: ["themes/**", "releases/**", "site/**", "preview/**", "node_modules/**"],
   },
   {
     files: ["**/*.{js,mjs}"],

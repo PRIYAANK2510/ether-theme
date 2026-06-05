@@ -262,7 +262,7 @@ High-DPI editor mockups — regenerated on `npm run build`.
 
 **496** production-ready templates across six editor scopes. Type a prefix, press **Tab**.
 
-📖 **[Browse the full snippet reference](https://PRIYAANK2510.github.io/ether-theme/)** — searchable catalog with prefixes, categories, and previews (GitHub Pages).
+📖 **[Snippet catalog — all 496 snippets](https://PRIYAANK2510.github.io/ether-theme/snippets/)** — searchable reference with prefixes, categories, and code previews.
 
 | Language | File types | Popular prefixes |
 | --- | --- | --- |

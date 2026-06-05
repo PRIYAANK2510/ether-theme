@@ -10,7 +10,7 @@ import { loadSnippetCatalogWithMeta } from "../src/snippets/catalog/index.js";
 import { SNIPPET_LANGUAGES } from "../src/snippets/registry.js";
 
 const rootDir = join(import.meta.dirname, "..");
-const siteDir = join(rootDir, "site");
+const siteDir = join(rootDir, "site", "snippets");
 
 describe("snippet docs site", () => {
   afterAll(() => {
@@ -23,7 +23,8 @@ describe("snippet docs site", () => {
 
     expect(result.catalogCount).toBe(catalog.length);
     expect(existsSync(join(siteDir, "index.html"))).toBe(true);
-    expect(existsSync(join(siteDir, ".nojekyll"))).toBe(true);
+    expect(existsSync(join(rootDir, "site", "index.html"))).toBe(true);
+    expect(existsSync(join(rootDir, "site", ".nojekyll"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "snippets.css"))).toBe(true);
 
     for (const { language } of SNIPPET_LANGUAGES) {

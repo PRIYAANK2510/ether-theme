@@ -102,7 +102,7 @@ Same steps as automatic release (check → bump → publish → tag). Useful whe
 
 ## Snippet docs (GitHub Pages)
 
-**Live site:** https://priyaank2510.github.io/ether-theme/
+**Live site:** https://priyaank2510.github.io/ether-theme/snippets/
 
 ### One-time setup
 
@@ -125,7 +125,7 @@ npm run docs:snippets
 npx serve preview -l 4173   # after copying site/ → preview/ether-theme/
 ```
 
-Open http://127.0.0.1:4173/ether-theme/
+Open http://127.0.0.1:4173/ether-theme/snippets/
 
 ---
 
@@ -141,5 +141,5 @@ Open http://127.0.0.1:4173/ether-theme/
 | Push to main, no publish  | Commit message includes `[skip release]`            |
 | Ship a release            | Push to `main` (source/themes/package.json changes) |
 | Publish from your machine | `npm run publish:local`                             |
-| Snippet docs site         | https://priyaank2510.github.io/ether-theme/         |
+| Snippet docs site         | https://priyaank2510.github.io/ether-theme/snippets/ |
 | Regenerate docs locally   | `npm run docs:snippets`                             |

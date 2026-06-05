@@ -5,11 +5,12 @@ import { loadSnippetCatalogWithMeta } from "../snippets/catalog/index.js";
 import { SNIPPET_LANGUAGES } from "../snippets/registry.js";
 
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "../..");
-const siteDir = join(rootDir, "site");
+const siteRootDir = join(rootDir, "site");
+const siteDir = join(siteRootDir, "snippets");
 
 /** @type {const} */
-export const PAGES_BASE = "/ether-theme";
-export const PAGES_URL = "https://PRIYAANK2510.github.io/ether-theme/";
+export const PAGES_BASE = "/ether-theme/snippets";
+export const PAGES_URL = "https://PRIYAANK2510.github.io/ether-theme/snippets/";
 
 /** @type {Record<string, { label: string, extensions: string, slug: string }>} */
 export const LANGUAGE_META = {
@@ -256,7 +257,7 @@ function renderPage({ title, description = "", active = "home", content }) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${escapeHtml(title)} · Ether Snippets</title>
+  <title>${escapeHtml(title)} · Ether Snippet Catalog</title>
   <meta name="description" content="${escapeHtml(description)}" />
   <link rel="stylesheet" href="${PAGES_BASE}/assets/snippets.css" />
 </head>
@@ -264,8 +265,8 @@ function renderPage({ title, description = "", active = "home", content }) {
   <div class="container">
     <header class="site-header">
       <div class="brand">
-        <strong>Ether Snippets</strong>
-        <span>VS Code &amp; Cursor · type a prefix, press Tab</span>
+        <strong>Ether Snippet Catalog</strong>
+        <span>496 snippets for VS Code &amp; Cursor · type a prefix, press Tab</span>
       </div>
       <nav class="nav" aria-label="Snippet languages">${nav}</nav>
     </header>
@@ -468,22 +469,48 @@ function buildIndexPage(catalog) {
 /**
  * @param {string} [outputDir]
  */
+function writeSiteRedirect() {
+  const redirectHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="refresh" content="0; url=${PAGES_BASE}/" />
+  <link rel="canonical" href="${PAGES_URL}" />
+  <title>Ether Snippet Catalog</title>
+</head>
+<body>
+  <p><a href="${PAGES_BASE}/">Ether Snippet Catalog</a> — all 496 snippets for VS Code &amp; Cursor.</p>
+</body>
+</html>`;
+  writeFileSync(join(siteRootDir, "index.html"), redirectHtml, "utf8");
+  writeFileSync(join(siteRootDir, ".nojekyll"), "", "utf8");
+}
+
+/**
+ * @param {string} [outputDir]
+ */
 export async function generateSnippetDocs(outputDir = siteDir) {
-  rmSync(outputDir, { recursive: true, force: true });
+  rmSync(siteRootDir, { recursive: true, force: true });
   mkdirSync(join(outputDir, "assets"), { recursive: true });
+  writeSiteRedirect();
 
   writeFileSync(join(outputDir, "assets", "snippets.css"), `${STYLES.trim()}\n`, "utf8");
   writeFileSync(join(outputDir, "assets", "snippets.js"), `${SEARCH_SCRIPT.trim()}\n`, "utf8");
-  writeFileSync(join(outputDir, ".nojekyll"), "", "utf8");
 
   const catalog = await loadSnippetCatalogWithMeta();
   buildIndexPage(catalog);
   const languageFiles = buildLanguagePages(catalog);
 
   return {
-    outputDir,
+    outputDir: siteRootDir,
     catalogCount: catalog.length,
-    files: ["index.html", ...languageFiles, "assets/snippets.css", "assets/snippets.js"],
+    files: [
+      "index.html",
+      "snippets/index.html",
+      ...languageFiles.map((file) => `snippets/${file}`),
+      "snippets/assets/snippets.css",
+      "snippets/assets/snippets.js",
+    ],
   };
 }
 
