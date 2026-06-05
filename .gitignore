@@ -1,6 +1,8 @@
 node_modules/
 releases/
 site/
+web/public/
+web/src/generated/
 preview/
 *.vsix
 .env

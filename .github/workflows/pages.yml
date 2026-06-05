@@ -8,6 +8,7 @@ on:
       - "src/docs/**"
       - "src/palettes/**"
       - "src/generator/**"
+      - "web/**"
       - "docs/previews/**"
       - "icon.png"
       - "package.json"
