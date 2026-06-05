@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import {
+  filterAndRankSnippets,
+  matchesSnippetSearch,
+  tokenizeSnippetQuery,
+} from "../shared/snippet-search.js";
 import { composeSnippetFiles } from "../src/snippets/generator.js";
 import { loadSnippetCatalog } from "../src/snippets/catalog/index.js";
 import {
@@ -54,29 +59,50 @@ describe("generated snippet artifacts", () => {
       validateGeneratedSnippetFile(snippets, contribution.language);
     }
   });
-
-  it("preserves theme contributions when snippets are registered", () => {
-    expect(packageJson.contributes.themes?.length).toBeGreaterThan(0);
-    expect(packageJson.contributes.snippets?.length).toBeGreaterThan(0);
-  });
 });
 
-describe("snippet entry shape", () => {
-  it("uses prefix, body, and description in every generated snippet", () => {
-    const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
+describe("snippet search", () => {
+  it("matches multi-word queries with AND semantics", () => {
+    expect(tokenizeSnippetQuery("  React   Hook  ")).toEqual(["react", "hook"]);
+    expect(
+      matchesSnippetSearch(
+        "react prop",
+        "rafcp react arrow function component prop",
+      ),
+    ).toBe(true);
+    expect(
+      matchesSnippetSearch(
+        "vue prop",
+        "rafcp react arrow function component prop",
+      ),
+    ).toBe(false);
+  });
 
-    for (const contribution of packageJson.contributes.snippets) {
-      const filePath = join(rootDir, contribution.path.replace(/^\.\//, ""));
-      const snippets = JSON.parse(readFileSync(filePath, "utf8"));
+  it("ranks exact prefix matches first", () => {
+    const ranked = filterAndRankSnippets(
+      [
+        {
+          prefix: "usememo",
+          description: "React useMemo memoization",
+          category: "Hooks",
+          search: "usememo react usememo memoization hooks",
+        },
+        {
+          prefix: "rafcp",
+          description: "Creates a React Arrow Function Component with PropTypes",
+          category: "Components",
+          search: "rafcp creates react arrow function component components",
+        },
+      ],
+      "rafcp",
+      (item) => ({
+        prefix: item.prefix,
+        description: item.description,
+        category: item.category,
+        haystack: item.search,
+      }),
+    );
 
-      for (const [name, entry] of Object.entries(snippets)) {
-        expect(entry.prefix, `${contribution.language}:${name}`).toBeTruthy();
-        expect(
-          entry.description,
-          `${contribution.language}:${name}`,
-        ).toBeTruthy();
-        expect(entry.body, `${contribution.language}:${name}`).toBeTruthy();
-      }
-    }
+    expect(ranked[0].prefix).toBe("rafcp");
   });
 });

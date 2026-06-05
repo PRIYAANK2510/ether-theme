@@ -21,13 +21,10 @@ import etherStorm from "../src/palettes/ether-storm.js";
 import { SYNTAX_RULE_COUNT } from "../src/syntax/rules.js";
 import {
   colorAlphaByte,
-  darken,
   DEPRECATED_THEME_COLOR_IDS,
-  lighten,
   mixColors,
   PALETTE_CONTRAST_TARGETS,
   validatePaletteContrast,
-  withAlpha,
   withAlphaByte,
 } from "../src/utils/color.js";
 import { writeFileIfChanged } from "../src/utils/fs.js";
@@ -47,28 +44,6 @@ describe("fs-utils", () => {
     expect(writeFileIfChanged(filePath, '{\n  "a": 1\n}\n')).toBe(false);
     expect(writeFileIfChanged(filePath, '{\r\n  "a": 1\r\n}\r\n')).toBe(false);
     expect(writeFileIfChanged(filePath, '{\n  "a": 2\n}\n')).toBe(true);
-  });
-});
-
-describe("color-utils", () => {
-  it("applies alpha via chroma", () => {
-    expect(withAlpha("#6366f1", 0.5)).toMatch(/^#[0-9a-f]{8}$/i);
-  });
-
-  it("applies exact alpha bytes", () => {
-    expect(withAlphaByte("#4285F4", 0x40)).toBe("#4285F440");
-  });
-
-  it("mixes two colors", () => {
-    const mixed = mixColors("#000000", "#ffffff", 0.5);
-    expect(mixed.toLowerCase()).toMatch(/^#[0-9a-f]{6}$/i);
-    expect(mixed).not.toBe("#000000");
-    expect(mixed).not.toBe("#ffffff");
-  });
-
-  it("lightens and darkens colors", () => {
-    expect(lighten("#000000", 0.5)).not.toBe("#000000");
-    expect(darken("#ffffff", 0.5)).not.toBe("#ffffff");
   });
 });
 

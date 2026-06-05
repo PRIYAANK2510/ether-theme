@@ -781,7 +781,7 @@
     "watch": "node --watch --watch-path=src src/build.js --skip-previews --skip-site",
     "watch:full": "node --watch --watch-path=src src/build.js",
     "test": "vitest run",
-    "test:fast": "vitest run tests/generator.test.js tests/snippets.test.js tests/grammars.test.js tests/snippet-search.test.js",
+    "test:fast": "vitest run tests/generator.test.js tests/snippets.test.js tests/grammars.test.js",
     "test:site": "vitest run tests/snippet-docs.test.js",
     "test:watch": "vitest",
     "lint": "eslint . && npm run stylelint",
