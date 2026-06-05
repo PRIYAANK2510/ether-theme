@@ -100,6 +100,35 @@ Same steps as automatic release (check → bump → publish → tag). Useful whe
 
 ---
 
+## Snippet docs (GitHub Pages)
+
+**Live site:** https://priyaank2510.github.io/ether-theme/
+
+### One-time setup
+
+If **Deploy Snippet Docs** fails with `Get Pages site failed`, enable Pages once:
+
+1. Repo **Settings → Pages**
+2. **Build and deployment → Source:** **GitHub Actions**
+
+### Deploy
+
+| Trigger | What runs |
+| --- | --- |
+| Push to `main` (snippet/docs paths) | **Deploy Snippet Docs** workflow |
+| Manual | **Actions → Deploy Snippet Docs → Run workflow** |
+
+Local preview:
+
+```bash
+npm run docs:snippets
+npx serve preview -l 4173   # after copying site/ → preview/ether-theme/
+```
+
+Open http://127.0.0.1:4173/ether-theme/
+
+---
+
 ## Quick reference
 
 
@@ -112,3 +141,5 @@ Same steps as automatic release (check → bump → publish → tag). Useful whe
 | Push to main, no publish  | Commit message includes `[skip release]`            |
 | Ship a release            | Push to `main` (source/themes/package.json changes) |
 | Publish from your machine | `npm run publish:local`                             |
+| Snippet docs site         | https://priyaank2510.github.io/ether-theme/         |
+| Regenerate docs locally   | `npm run docs:snippets`                             |
