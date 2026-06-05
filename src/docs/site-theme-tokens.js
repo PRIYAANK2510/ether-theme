@@ -28,6 +28,8 @@ export const SITE_THEME_CSS_VARS = [
   "--syn-number",
   "--syn-cyan",
   "--pill-code",
+  "--overlay-bg",
+  "--success",
 ];
 
 /**
@@ -63,6 +65,8 @@ export function paletteToSiteVars(palette) {
     "--syn-number": syntax.number,
     "--syn-cyan": syntax.cyan,
     "--pill-code": syntax.function,
+    "--overlay-bg": withAlpha(ui.surfaceShell, 0.9),
+    "--success": ui.gitAdded,
   };
 }
 

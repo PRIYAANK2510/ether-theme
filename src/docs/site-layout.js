@@ -77,18 +77,42 @@ try {
  * @param {import("../utils/color.js").Palette[]} palettes
  */
 export function renderThemePicker(palettes) {
-  const options = palettes
+  const items = palettes
     .map((palette) => {
-      const selected = palette.id === "ether-dusk" ? " selected" : "";
-      return `<option value="${escapeHtml(palette.id)}" data-color="${escapeHtml(palette.ui.surfaceShell)}"${selected}>${escapeHtml(palette.label)}</option>`;
+      const selected = palette.id === "ether-dusk" ? ' aria-selected="true"' : "";
+      return `<li role="presentation">
+  <button
+    type="button"
+    class="theme-switcher-option"
+    role="option"
+    data-theme-id="${escapeHtml(palette.id)}"
+    data-theme-label="${escapeHtml(palette.label)}"
+    data-theme-color="${escapeHtml(palette.ui.surfaceShell)}"
+    data-theme-accent="${escapeHtml(palette.ui.accent)}"${selected}
+  >
+    <span class="theme-swatch" style="background:${escapeHtml(palette.ui.accent)}"></span>
+    <span>${escapeHtml(palette.label)}</span>
+  </button>
+</li>`;
     })
     .join("");
 
-  return `<div class="theme-picker">
-  <label class="theme-picker-label" for="site-theme-select">Preview</label>
-  <select id="site-theme-select" class="theme-select" aria-label="Preview an Ether extension theme on this site">
-    ${options}
-  </select>
+  return `<div class="theme-switcher" id="theme-switcher">
+  <button
+    type="button"
+    class="theme-switcher-btn"
+    id="theme-switcher-btn"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-controls="theme-switcher-list"
+  >
+    <span class="theme-swatch" id="theme-switcher-swatch" aria-hidden="true"></span>
+    <span class="theme-switcher-text" id="theme-switcher-label">Ether Dusk</span>
+    <span class="theme-chevron" aria-hidden="true">▾</span>
+  </button>
+  <ul class="theme-switcher-list hidden" id="theme-switcher-list" role="listbox" aria-label="Preview Ether extension themes">
+    ${items}
+  </ul>
 </div>`;
 }
 
@@ -150,11 +174,11 @@ export function renderTopbar(active, palettes) {
         <span>VS Code &amp; Cursor extension</span>
       </div>
     </a>
-    <nav class="nav" aria-label="Primary">
-      ${nav}
+    <div class="topbar-actions">
+      <nav class="nav" aria-label="Primary">${nav}</nav>
       ${renderThemePicker(palettes)}
       <a class="nav-cta" href="${VS_MARKETPLACE}">Install</a>
-    </nav>
+    </div>
   </div>
 </header>`;
 }

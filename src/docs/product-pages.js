@@ -89,7 +89,7 @@ export function buildHomePage(palettes, snippetCount) {
     <span class="hero-eyebrow">VS Code &amp; Cursor extension</span>
     <h1>Dark themes built for long coding sessions</h1>
     <p class="lead">Twenty-five WCAG-validated palettes, ${snippetCount} production-ready snippets, and bundled grammars — one install, zero extra setup.</p>
-    <p class="lead" style="margin-top:12px">Use the <strong>Preview</strong> picker in the nav to try any Ether theme on this site.</p>
+    <p class="lead" style="margin-top:12px">Use the theme picker in the nav to preview any Ether palette across the whole site.</p>
     <div class="cta-row">
       <a class="cta cta-primary" href="${VS_MARKETPLACE}">Install on VS Code</a>
       <a class="cta" href="${OPEN_VSX}">Install on Cursor</a>

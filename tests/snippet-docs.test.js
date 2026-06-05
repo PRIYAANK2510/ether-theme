@@ -53,7 +53,8 @@ describe("product site", () => {
 
     expect(home).toContain(`${ASSETS_BASE}/site.css`);
     expect(home).toContain(`${ASSETS_BASE}/themes.css`);
-    expect(home).toContain('id="site-theme-select"');
+    expect(home).toContain('id="theme-switcher-btn"');
+    expect(home).toContain('id="theme-switcher-list"');
     expect(home).toContain('data-apply-theme="ether-dusk"');
     expect(home).toContain("syntax-preview");
     expect(home).toContain("ether-site-theme");
@@ -66,6 +67,7 @@ describe("product site", () => {
     expect(themesCss).toContain('html[data-ether-theme="ether-dusk"]');
     expect(themesCss).toContain('html[data-ether-theme="ether-aurora"]');
 
+    expect(themes).toContain('id="theme-switcher-btn"');
     expect(themes).toContain("theme-gallery");
     expect(themes).toContain(`${ASSETS_BASE}/previews/ether-dusk.png`);
 
