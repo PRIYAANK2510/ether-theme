@@ -286,6 +286,18 @@ tbody tr:hover td { background: rgba(56, 189, 248, 0.05); }
 .footer-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; }
 .empty-state { color: var(--muted); padding: 8px 0 16px; }
 .hidden { display: none !important; }
+.redirect-page {
+  min-height: 100vh; display: grid; place-items: center; padding: 24px;
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 55%), var(--bg);
+}
+.redirect-card {
+  width: min(100%, 420px); padding: 32px 28px; text-align: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+}
+.redirect-card h1 { margin: 16px 0 8px; font-size: 1.5rem; }
+.redirect-card p { color: var(--muted); margin: 0 0 16px; }
+.redirect-hint { font-size: 0.85rem; margin-bottom: 0 !important; }
 @media (max-width: 720px) {
   .topbar-inner { padding: 12px 16px; }
   .hero { padding: 22px 18px; }
@@ -666,8 +678,14 @@ function writeSiteRedirect() {
   ${renderHead("/", pageTitle, description)}
   <meta http-equiv="refresh" content="0; url=${PAGES_BASE}/" />
 </head>
-<body>
-  <p><a href="${PAGES_BASE}/">${SITE_NAME}</a> — all 496 snippets for VS Code &amp; Cursor.</p>
+<body class="redirect-page">
+  <main class="redirect-card">
+    <img src="${PAGES_BASE}/assets/icon.png" width="64" height="64" alt="" />
+    <h1>Snippet Documentation</h1>
+    <p>496 searchable snippets for VS Code and Cursor.</p>
+    <p><a class="cta cta-primary" href="${PAGES_BASE}/">Open snippet catalog</a></p>
+    <p class="redirect-hint">Redirecting… <a href="${PAGES_BASE}/">Continue</a></p>
+  </main>
 </body>
 </html>`;
   writeFileSync(join(siteRootDir, "index.html"), redirectHtml, "utf8");

@@ -17,6 +17,8 @@
   &nbsp;·&nbsp;
   <a href="https://open-vsx.org/extension/Priyaank/ether-theme"><strong>Install on Cursor</strong></a>
   &nbsp;·&nbsp;
+  <a href="https://PRIYAANK2510.github.io/ether-theme/snippets/"><strong>Snippet Documentation</strong></a>
+  &nbsp;·&nbsp;
   <a href="https://github.com/PRIYAANK2510/ether-theme"><strong>GitHub</strong></a>
   &nbsp;·&nbsp;
   <a href="CHANGELOG.md"><strong>Changelog</strong></a>
@@ -262,7 +264,7 @@ High-DPI editor mockups — regenerated on `npm run build`.
 
 **496** production-ready templates across six editor scopes. Type a prefix, press **Tab**.
 
-📖 **[Snippet catalog — all 496 snippets](https://PRIYAANK2510.github.io/ether-theme/snippets/)** — searchable reference with prefixes, categories, and code previews.
+📖 **[Snippet Documentation](https://PRIYAANK2510.github.io/ether-theme/snippets/)** — searchable reference for all 496 snippets with prefixes, categories, and code previews.
 
 | Language | File types | Popular prefixes |
 | --- | --- | --- |

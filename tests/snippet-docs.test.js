@@ -43,6 +43,10 @@ describe("snippet docs site", () => {
     expect(index).toContain('rel="icon"');
     expect(index).toContain("Complete snippet catalog");
     expect(index).toContain('id="snippet-search"');
+
+    const root = readFileSync(join(rootDir, "site", "index.html"), "utf8");
+    expect(root).toContain("<h1>Snippet Documentation</h1>");
+    expect(root).toContain(`href="${PAGES_BASE}/"`);
   });
 
   it("includes every catalog prefix on at least one language page", async () => {
