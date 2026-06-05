@@ -27,7 +27,7 @@ function renderGalleryCard(palette) {
 <strong>${escapeXml(palette.label)}</strong><br />
 <em>${escapeXml(character)}</em>
 </p>
-<img src="${src}" alt="${escapeXml(palette.label)}" style="display:block;width:100%;max-width:${w}px;height:auto;margin:0;border-radius:8px" />
+<img src="${src}" alt="${escapeXml(palette.label)} dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:${w}px;height:auto;margin:0;border-radius:8px" />
 </div>`;
 }
 

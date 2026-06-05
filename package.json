@@ -1,19 +1,25 @@
 {
   "name": "ether-theme",
   "displayName": "Ether Themes",
-  "description": "Token-driven color themes and web development snippets for VS Code and Cursor.",
+  "description": "Ether Themes — 25 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Kotlin, Android & Dotenv syntax highlighting for VS Code and Cursor.",
   "publisher": "PRIYAANK2510",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#101828",
+    "theme": "dark"
+  },
   "type": "module",
   "license": "MIT",
   "markdown": "github",
+  "qna": "marketplace",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Themes",
-    "Snippets"
+    "Snippets",
+    "Programming Languages"
   ],
   "repository": {
     "type": "git",
@@ -26,16 +32,51 @@
   "keywords": [
     "theme",
     "color-theme",
+    "dark-theme",
     "dark",
-    "ether",
+    "vscode-theme",
+    "cursor-theme",
+    "vscode",
+    "cursor",
+    "syntax-highlighting",
+    "semantic-highlighting",
     "snippets",
+    "code-snippets",
     "react",
+    "react-snippets",
+    "nextjs",
     "typescript",
     "javascript",
+    "tsx",
     "html",
     "css",
     "kotlin",
-    "android"
+    "android",
+    "gradle",
+    "dotenv",
+    "proguard",
+    "web-development",
+    "ether",
+    "wcag",
+    "dracula",
+    "catppuccin"
+  ],
+  "badges": [
+    {
+      "url": "https://img.shields.io/visual-studio-marketplace/v/Priyaank.ether-theme?style=flat-square&label=VS%20Marketplace",
+      "href": "https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme",
+      "description": "VS Code Marketplace version"
+    },
+    {
+      "url": "https://img.shields.io/visual-studio-marketplace/i/Priyaank.ether-theme?style=flat-square",
+      "href": "https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme",
+      "description": "Total installs"
+    },
+    {
+      "url": "https://img.shields.io/open-vsx/v/PRIYAANK2510/ether-theme?style=flat-square&label=Open%20VSX",
+      "href": "https://open-vsx.org/extension/PRIYAANK2510/ether-theme",
+      "description": "Open VSX version"
+    }
   ],
   "contributes": {
     "themes": [
