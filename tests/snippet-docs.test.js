@@ -26,6 +26,7 @@ describe("snippet docs site", () => {
     expect(existsSync(join(rootDir, "site", "index.html"))).toBe(true);
     expect(existsSync(join(rootDir, "site", ".nojekyll"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "snippets.css"))).toBe(true);
+    expect(existsSync(join(siteDir, "assets", "icon.png"))).toBe(true);
 
     for (const { language } of SNIPPET_LANGUAGES) {
       const slug = LANGUAGE_META[language].slug;
@@ -37,7 +38,10 @@ describe("snippet docs site", () => {
     await generateSnippetDocs(siteDir);
     const index = readFileSync(join(siteDir, "index.html"), "utf8");
     expect(index).toContain(`${PAGES_BASE}/assets/snippets.css`);
-    expect(index).toContain("Snippet reference");
+    expect(index).toContain(`${PAGES_BASE}/assets/icon.png`);
+    expect(index).toContain("<title>Ether Snippet Catalog — 496 VS Code &amp; Cursor Snippets</title>");
+    expect(index).toContain('rel="icon"');
+    expect(index).toContain("Complete snippet catalog");
     expect(index).toContain('id="snippet-search"');
   });
 

@@ -1,4 +1,4 @@
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { loadSnippetCatalogWithMeta } from "../snippets/catalog/index.js";
@@ -11,6 +11,12 @@ const siteDir = join(siteRootDir, "snippets");
 /** @type {const} */
 export const PAGES_BASE = "/ether-theme/snippets";
 export const PAGES_URL = "https://PRIYAANK2510.github.io/ether-theme/snippets/";
+const SITE_NAME = "Ether Snippet Catalog";
+const BRAND_COLOR = "#101828";
+const VS_MARKETPLACE =
+  "https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme";
+const OPEN_VSX = "https://open-vsx.org/extension/Priyaank/ether-theme";
+const GITHUB_REPO = "https://github.com/PRIYAANK2510/ether-theme";
 
 /** @type {Record<string, { label: string, extensions: string, slug: string }>} */
 export const LANGUAGE_META = {
@@ -94,115 +100,196 @@ function resolveSnippetForLanguage(snippet, language) {
 const STYLES = `
 :root {
   color-scheme: dark;
-  --bg: #0b1220;
+  --bg: #070d18;
   --surface: #101828;
-  --surface-2: #162033;
-  --border: #243044;
-  --text: #e8edf7;
-  --muted: #9aa8be;
+  --surface-2: #152238;
+  --surface-3: #1a2a42;
+  --border: #2a3a52;
+  --text: #eef2f9;
+  --muted: #94a3b8;
   --accent: #38bdf8;
   --accent-2: #22d3ee;
-  --code-bg: #0a101c;
-  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --radius: 12px;
-  --mono: "Cascadia Code", "Fira Code", Consolas, "Courier New", monospace;
-  --sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --accent-soft: rgba(56, 189, 248, 0.14);
+  --code-bg: #0a1220;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.38);
+  --radius: 14px;
+  --mono: "Cascadia Code", "Fira Code", "JetBrains Mono", Consolas, monospace;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 html, body { margin: 0; padding: 0; }
 body {
   font-family: var(--sans);
-  background: radial-gradient(1200px 600px at 10% -10%, #12203a 0%, var(--bg) 55%);
+  background:
+    radial-gradient(900px 480px at 0% -5%, rgba(56, 189, 248, 0.16), transparent 60%),
+    radial-gradient(700px 400px at 100% 0%, rgba(34, 211, 238, 0.08), transparent 55%),
+    var(--bg);
   color: var(--text);
-  line-height: 1.55;
+  line-height: 1.6;
+  min-height: 100vh;
 }
-a { color: var(--accent); text-decoration: none; }
-a:hover { color: var(--accent-2); text-decoration: underline; }
-.container { max-width: 1120px; margin: 0 auto; padding: 32px 20px 80px; }
-.site-header {
+a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
+a:hover { color: var(--accent-2); }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 20px 88px; }
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  backdrop-filter: blur(14px); background: rgba(7, 13, 24, 0.82);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.topbar-inner {
+  max-width: 1140px; margin: 0 auto; padding: 14px 20px;
   display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
-  margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
 }
-.brand { display: flex; flex-direction: column; gap: 4px; }
-.brand strong { font-size: 1.35rem; letter-spacing: 0.02em; }
-.brand span { color: var(--muted); font-size: 0.95rem; }
-.nav { display: flex; flex-wrap: wrap; gap: 10px; }
+.brand {
+  display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit;
+}
+.brand:hover { color: inherit; text-decoration: none; }
+.brand img {
+  width: 44px; height: 44px; border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.brand-text { display: flex; flex-direction: column; gap: 2px; }
+.brand-text strong { font-size: 1.12rem; letter-spacing: 0.01em; }
+.brand-text span { color: var(--muted); font-size: 0.84rem; }
+.nav { display: flex; flex-wrap: wrap; gap: 8px; }
 .nav a {
-  padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border);
-  background: var(--surface); color: var(--text); font-size: 0.9rem;
+  padding: 7px 12px; border-radius: 999px; border: 1px solid transparent;
+  background: transparent; color: var(--muted); font-size: 0.86rem; font-weight: 500;
 }
-.nav a.active { border-color: var(--accent); color: var(--accent); }
+.nav a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+.nav a.active {
+  border-color: rgba(56, 189, 248, 0.45); color: var(--accent);
+  background: var(--accent-soft);
+}
 .hero {
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(34, 211, 238, 0.05));
-  border: 1px solid var(--border); border-radius: var(--radius); padding: 28px;
-  box-shadow: var(--shadow); margin-bottom: 28px;
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.1), rgba(16, 24, 40, 0.9));
+  border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
+  padding: 32px 30px; box-shadow: var(--shadow); margin-bottom: 28px;
 }
-.hero h1 { margin: 0 0 10px; font-size: 2rem; }
-.hero p { margin: 0; color: var(--muted); max-width: 70ch; }
-.stats { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.hero-eyebrow {
+  display: inline-block; margin-bottom: 10px; padding: 4px 10px; border-radius: 999px;
+  background: var(--accent-soft); border: 1px solid rgba(56, 189, 248, 0.28);
+  color: var(--accent); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hero h1 {
+  margin: 0 0 12px; font-size: clamp(1.75rem, 4vw, 2.35rem); line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.hero p { margin: 0; color: var(--muted); max-width: 68ch; font-size: 1.02rem; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.cta {
+  display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px;
+  border-radius: 10px; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--border);
+  background: var(--surface-2); color: var(--text);
+}
+.cta:hover { border-color: rgba(56, 189, 248, 0.45); color: var(--accent); text-decoration: none; }
+.cta-primary {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(34, 211, 238, 0.12));
+  border-color: rgba(56, 189, 248, 0.4);
+}
+.stats { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
 .stat {
-  background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
-  padding: 10px 14px; min-width: 120px;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 12px 16px; min-width: 128px;
 }
-.stat strong { display: block; font-size: 1.2rem; }
-.stat span { color: var(--muted); font-size: 0.85rem; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.stat strong { display: block; font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.stat span { color: var(--muted); font-size: 0.82rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
 .card {
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 18px; box-shadow: var(--shadow);
+  padding: 20px; box-shadow: var(--shadow); transition: border-color 0.15s ease, transform 0.15s ease;
 }
-.card h2 { margin: 0 0 8px; font-size: 1.1rem; }
-.card p { margin: 0 0 14px; color: var(--muted); font-size: 0.92rem; }
+.card:hover { border-color: rgba(56, 189, 248, 0.35); transform: translateY(-2px); }
+.card h2 { margin: 0 0 6px; font-size: 1.08rem; }
+.card p { margin: 0 0 16px; color: var(--muted); font-size: 0.9rem; }
 .card a.button {
-  display: inline-block; padding: 8px 12px; border-radius: 8px;
-  background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35);
+  display: inline-block; padding: 8px 12px; border-radius: 8px; font-weight: 600; font-size: 0.88rem;
+  background: var(--accent-soft); border: 1px solid rgba(56, 189, 248, 0.35); color: var(--accent);
 }
+.card a.button:hover { text-decoration: none; color: var(--accent-2); }
+.search-wrap { position: relative; margin-bottom: 20px; }
 .search {
-  width: 100%; padding: 14px 16px; border-radius: var(--radius); border: 1px solid var(--border);
-  background: var(--surface); color: var(--text); font-size: 1rem; margin-bottom: 20px;
+  width: 100%; padding: 14px 16px 14px 42px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font-size: 1rem; font-family: var(--sans);
 }
-.search:focus { outline: 2px solid rgba(56, 189, 248, 0.45); outline-offset: 2px; }
-.section { margin-top: 36px; }
-.section h2 { margin: 0 0 14px; font-size: 1.35rem; }
-.howto ol { margin: 0; padding-left: 20px; color: var(--muted); }
-.howto li { margin-bottom: 8px; }
-.howto code, .snippet-prefix {
+.search:focus { outline: 2px solid rgba(56, 189, 248, 0.4); outline-offset: 2px; border-color: rgba(56, 189, 248, 0.45); }
+.search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--muted); pointer-events: none; font-size: 1rem;
+}
+.section { margin-top: 40px; }
+.section h2 { margin: 0 0 16px; font-size: 1.3rem; letter-spacing: -0.01em; }
+.howto {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px 24px;
+}
+.howto ol { margin: 0; padding-left: 22px; color: var(--muted); }
+.howto li { margin-bottom: 10px; }
+.howto li:last-child { margin-bottom: 0; }
+.howto code, .snippet-prefix, .prefix-pill code {
   font-family: var(--mono); background: var(--code-bg); border: 1px solid var(--border);
-  border-radius: 6px; padding: 2px 6px; color: #c7e6ff;
+  border-radius: 6px; padding: 2px 7px; color: #bfe7ff; font-size: 0.88em;
 }
-.category { margin-top: 28px; }
+.category { margin-top: 32px; }
 .category h3 {
-  margin: 0 0 12px; font-size: 1.05rem; color: var(--accent);
-  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  margin: 0 0 14px; font-size: 1.02rem; color: var(--accent); font-weight: 600;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
 }
 .snippet-list { display: grid; gap: 14px; }
 .snippet {
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  overflow: hidden;
+  overflow: hidden; transition: border-color 0.15s ease;
 }
+.snippet:hover { border-color: rgba(56, 189, 248, 0.28); }
 .snippet-head {
-  display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; justify-content: space-between;
-  padding: 14px 16px 10px; border-bottom: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border-bottom: 1px solid var(--border); background: var(--surface-2);
 }
-.snippet-head h4 { margin: 0; font-size: 1rem; }
-.snippet-meta { display: flex; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: 0.82rem; }
+.snippet-head h4 { margin: 0; font-size: 0.98rem; font-weight: 600; flex: 1 1 220px; }
+.snippet-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .snippet-meta .tag {
-  border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px;
-  background: var(--surface-2);
+  border: 1px solid var(--border); border-radius: 999px; padding: 3px 9px;
+  background: var(--surface-3); color: var(--muted); font-size: 0.78rem;
 }
+.prefix-pill {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 999px; padding: 4px 10px;
+  background: var(--accent-soft); color: var(--accent); font-size: 0.8rem; font-weight: 600;
+  font-family: var(--sans);
+}
+.prefix-pill:hover { border-color: var(--accent); }
+.prefix-pill.copied { border-color: #34d399; color: #34d399; background: rgba(52, 211, 153, 0.12); }
 pre {
-  margin: 0; padding: 14px 16px; overflow-x: auto; background: var(--code-bg);
-  font-family: var(--mono); font-size: 0.86rem; line-height: 1.5; color: #d7e3f4;
+  margin: 0; padding: 16px 18px; overflow-x: auto; background: var(--code-bg);
+  font-family: var(--mono); font-size: 0.84rem; line-height: 1.55; color: #d8e4f4;
 }
-.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
-th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
-th { background: var(--surface-2); color: var(--muted); font-weight: 600; }
-tr:hover td { background: rgba(56, 189, 248, 0.04); }
-.footer { margin-top: 48px; color: var(--muted); font-size: 0.88rem; }
+.table-wrap {
+  overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface);
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { padding: 11px 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+th {
+  background: var(--surface-2); color: var(--muted); font-weight: 600; font-size: 0.8rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: rgba(56, 189, 248, 0.05); }
+.footer {
+  margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border);
+  color: var(--muted); font-size: 0.88rem;
+}
+.footer-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; }
+.empty-state { color: var(--muted); padding: 8px 0 16px; }
 .hidden { display: none !important; }
-@media (max-width: 640px) {
-  .hero h1 { font-size: 1.55rem; }
+@media (max-width: 720px) {
+  .topbar-inner { padding: 12px 16px; }
+  .hero { padding: 22px 18px; }
+  .container { padding: 0 16px 72px; }
 }
 `;
 
@@ -220,22 +307,70 @@ function filterSnippets(query) {
   const empty = document.getElementById("search-empty");
   if (empty) empty.classList.toggle("hidden", visible > 0 || !q);
 }
+
+async function copyPrefix(button) {
+  const prefix = button.getAttribute("data-prefix");
+  if (!prefix) return;
+  try {
+    await navigator.clipboard.writeText(prefix);
+    button.classList.add("copied");
+    const label = button.querySelector("[data-copy-label]");
+    if (label) label.textContent = "Copied!";
+    setTimeout(() => {
+      button.classList.remove("copied");
+      if (label) label.textContent = "Copy prefix";
+    }, 1400);
+  } catch {
+    /* clipboard unavailable */
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("snippet-search");
-  if (!input) return;
-  input.addEventListener("input", () => filterSnippets(input.value));
+  if (input) input.addEventListener("input", () => filterSnippets(input.value));
+
+  document.querySelectorAll("[data-copy-prefix]").forEach((button) => {
+    button.addEventListener("click", () => copyPrefix(button));
+  });
 });
 `;
 
 /**
- * @param {{
- *   title: string,
- *   description?: string,
- *   active?: string,
- *   content: string,
- * }} options
+ * @param {string} canonicalPath
+ * @param {string} pageTitle
+ * @param {string} description
  */
-function renderPage({ title, description = "", active = "home", content }) {
+function renderHead(canonicalPath, pageTitle, description) {
+  const canonical = `${PAGES_URL}${canonicalPath === "/" ? "" : canonicalPath.replace(/^\//, "")}`;
+  const icon = `${PAGES_BASE}/assets/icon.png`;
+  return `<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${escapeHtml(pageTitle)}</title>
+  <meta name="description" content="${escapeHtml(description)}" />
+  <meta name="theme-color" content="${BRAND_COLOR}" />
+  <meta name="author" content="Priyaank" />
+  <link rel="canonical" href="${canonical}" />
+  <link rel="icon" href="${icon}" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="${icon}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="${SITE_NAME}" />
+  <meta property="og:title" content="${escapeHtml(pageTitle)}" />
+  <meta property="og:description" content="${escapeHtml(description)}" />
+  <meta property="og:url" content="${canonical}" />
+  <meta property="og:image" content="${icon}" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}" />
+  <meta name="twitter:description" content="${escapeHtml(description)}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="${PAGES_BASE}/assets/snippets.css" />`;
+}
+
+/**
+ * @param {string} active
+ */
+function renderTopbar(active) {
   const navItems = [
     { id: "home", href: `${PAGES_BASE}/`, label: "Overview" },
     ...SNIPPET_LANGUAGES.map(({ language }) => ({
@@ -252,30 +387,73 @@ function renderPage({ title, description = "", active = "home", content }) {
     )
     .join("");
 
+  return `<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="${PAGES_BASE}/">
+      <img src="${PAGES_BASE}/assets/icon.png" width="44" height="44" alt="Ether Themes icon" />
+      <div class="brand-text">
+        <strong>${SITE_NAME}</strong>
+        <span>496 snippets · VS Code &amp; Cursor</span>
+      </div>
+    </a>
+    <nav class="nav" aria-label="Snippet languages">${nav}</nav>
+  </div>
+</header>`;
+}
+
+function renderFooter() {
+  return `<footer class="footer">
+  <div>Part of <strong>Ether Themes</strong> — 25 dark palettes + 496 production-ready snippets.</div>
+  <div class="footer-links">
+    <a href="${VS_MARKETPLACE}">Install on VS Code</a>
+    <a href="${OPEN_VSX}">Install on Cursor</a>
+    <a href="${GITHUB_REPO}">GitHub</a>
+    <a href="${GITHUB_REPO}/blob/main/README.md#snippets">README</a>
+  </div>
+</footer>`;
+}
+
+function renderSearchInput(placeholder) {
+  return `<div class="search-wrap">
+  <span class="search-icon" aria-hidden="true">⌕</span>
+  <input id="snippet-search" class="search" type="search" placeholder="${escapeHtml(placeholder)}" aria-label="Search snippets" />
+</div>`;
+}
+
+function renderPrefixPill(prefix) {
+  return `<button type="button" class="prefix-pill" data-copy-prefix data-prefix="${escapeHtml(prefix)}" title="Copy prefix to clipboard">
+  <code>${escapeHtml(prefix)}</code>
+  <span data-copy-label>Copy</span>
+</button>`;
+}
+
+/**
+ * @param {{
+ *   pageTitle: string,
+ *   description?: string,
+ *   canonicalPath?: string,
+ *   active?: string,
+ *   content: string,
+ * }} options
+ */
+function renderPage({
+  pageTitle,
+  description = "",
+  canonicalPath = "/",
+  active = "home",
+  content,
+}) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${escapeHtml(title)} · Ether Snippet Catalog</title>
-  <meta name="description" content="${escapeHtml(description)}" />
-  <link rel="stylesheet" href="${PAGES_BASE}/assets/snippets.css" />
+  ${renderHead(canonicalPath, pageTitle, description)}
 </head>
 <body>
-  <div class="container">
-    <header class="site-header">
-      <div class="brand">
-        <strong>Ether Snippet Catalog</strong>
-        <span>496 snippets for VS Code &amp; Cursor · type a prefix, press Tab</span>
-      </div>
-      <nav class="nav" aria-label="Snippet languages">${nav}</nav>
-    </header>
+  ${renderTopbar(active)}
+  <main class="container">
     ${content}
-    <footer class="footer">
-      Generated from the Ether Themes extension catalog.
-      <a href="https://github.com/PRIYAANK2510/ether-theme">Source on GitHub</a>
-    </footer>
-  </div>
+    ${renderFooter()}
+  </main>
   <script src="${PAGES_BASE}/assets/snippets.js" defer></script>
 </body>
 </html>`;
@@ -336,7 +514,7 @@ function buildLanguagePages(catalog) {
   <div class="snippet-head">
     <h4>${escapeHtml(resolved.description)}</h4>
     <div class="snippet-meta">
-      <span class="tag">prefix: <code class="snippet-prefix">${escapeHtml(resolved.prefix)}</code></span>
+      ${renderPrefixPill(resolved.prefix)}
       <span class="tag">${escapeHtml(entry.category)}</span>
     </div>
   </div>
@@ -353,19 +531,21 @@ function buildLanguagePages(catalog) {
       .join("\n");
 
     const html = renderPage({
-      title: meta.label,
-      description: `${entries.length} Ether snippets for ${meta.label} (${meta.extensions})`,
+      pageTitle: `${meta.label} Snippets · Ether Themes — ${entries.length} Prefixes`,
+      description: `Browse ${entries.length} ${meta.label} snippets for ${meta.extensions}. React, Next.js, TypeScript, testing, and more — type a prefix and press Tab in VS Code or Cursor.`,
+      canonicalPath: `/${meta.slug}.html`,
       active: language,
       content: `<section class="hero">
-  <h1>${escapeHtml(meta.label)}</h1>
-  <p>${entries.length} snippets for <strong>${escapeHtml(meta.extensions)}</strong> files. Search by prefix or description, then type the prefix in your editor and press <strong>Tab</strong>.</p>
+  <span class="hero-eyebrow">${escapeHtml(meta.label)}</span>
+  <h1>${escapeHtml(meta.label)} snippet catalog</h1>
+  <p><strong>${entries.length}</strong> snippets for <strong>${escapeHtml(meta.extensions)}</strong> files. Search below, copy a prefix, type it in your editor, and press <strong>Tab</strong> to expand.</p>
   <div class="stats">
     <div class="stat"><strong>${entries.length}</strong><span>snippets</span></div>
     <div class="stat"><strong>${byCategory.size}</strong><span>categories</span></div>
   </div>
 </section>
-<input id="snippet-search" class="search" type="search" placeholder="Search ${escapeHtml(meta.label)} snippets…" aria-label="Search snippets" />
-<p id="search-empty" class="hidden" style="color:var(--muted)">No snippets match your search.</p>
+${renderSearchInput(`Search ${meta.label} snippets by prefix or description…`)}
+<p id="search-empty" class="empty-state hidden">No snippets match your search.</p>
 ${categorySections}`,
     });
 
@@ -419,27 +599,34 @@ function buildIndexPage(catalog) {
     .join("\n");
 
   const html = renderPage({
-    title: "Snippet Reference",
-    description: `${total} production-ready VS Code snippets for React, Next.js, TypeScript, HTML, and CSS.`,
+    pageTitle: "Ether Snippet Catalog — 496 VS Code & Cursor Snippets",
+    description: `Searchable reference for all ${total} Ether Themes snippets — React 19, Next.js, TypeScript, TanStack Query, Zod, Vitest, HTML, and CSS prefixes for VS Code and Cursor.`,
+    canonicalPath: "/",
     active: "home",
     content: `<section class="hero">
-  <h1>Snippet reference</h1>
-  <p>Ether ships <strong>${total}</strong> production-ready templates across six editor language scopes. Install the extension, type a <em>prefix</em> in a matching file, and press <strong>Tab</strong> to expand.</p>
+  <span class="hero-eyebrow">Ether Themes</span>
+  <h1>Complete snippet catalog</h1>
+  <p><strong>${total}</strong> production-ready templates across six editor scopes. Install the extension, type a <em>prefix</em> in a matching file, and press <strong>Tab</strong> to expand.</p>
+  <div class="cta-row">
+    <a class="cta cta-primary" href="${VS_MARKETPLACE}">Install on VS Code</a>
+    <a class="cta" href="${OPEN_VSX}">Install on Cursor</a>
+    <a class="cta" href="${GITHUB_REPO}">View on GitHub</a>
+  </div>
   <div class="stats">
-    <div class="stat"><strong>${total}</strong><span>catalog definitions</span></div>
+    <div class="stat"><strong>${total}</strong><span>snippets</span></div>
     <div class="stat"><strong>${categories}</strong><span>categories</span></div>
-    <div class="stat"><strong>6</strong><span>language scopes</span></div>
+    <div class="stat"><strong>6</strong><span>languages</span></div>
   </div>
 </section>
 
 <section class="section howto">
-  <h2>How to use</h2>
+  <h2>How to use snippets</h2>
   <ol>
-    <li>Install <strong>Ether Themes</strong> from VS Code Marketplace or Open VSX (Cursor).</li>
-    <li>Open a supported file (for example <code>.tsx</code> for React TSX snippets).</li>
+    <li>Install <strong>Ether Themes</strong> from the VS Code Marketplace or Open VSX (Cursor).</li>
+    <li>Open a supported file — for example <code>.tsx</code> for React TSX snippets.</li>
     <li>Type a prefix such as <code>rfc</code> or <code>usestate</code>.</li>
-    <li>Pick the snippet from IntelliSense or press <strong>Tab</strong> when it is the top suggestion.</li>
-    <li>Jump between placeholders with <strong>Tab</strong>; <code>█</code> in previews marks the final cursor stop.</li>
+    <li>Select the snippet from IntelliSense or press <strong>Tab</strong>.</li>
+    <li>Tab through placeholders; <code>█</code> in previews marks the final cursor position.</li>
   </ol>
 </section>
 
@@ -449,9 +636,9 @@ function buildIndexPage(catalog) {
 </section>
 
 <section class="section">
-  <h2>Full catalog</h2>
-  <input id="snippet-search" class="search" type="search" placeholder="Search all snippets by prefix, description, or category…" aria-label="Search all snippets" />
-  <p id="search-empty" class="hidden" style="color:var(--muted)">No snippets match your search.</p>
+  <h2>Search all snippets</h2>
+  ${renderSearchInput("Search by prefix, description, category, or language…")}
+  <p id="search-empty" class="empty-state hidden">No snippets match your search.</p>
   <div class="table-wrap">
     <table>
       <thead>
@@ -470,16 +657,17 @@ function buildIndexPage(catalog) {
  * @param {string} [outputDir]
  */
 function writeSiteRedirect() {
+  const pageTitle = "Ether Snippet Catalog — 496 VS Code & Cursor Snippets";
+  const description =
+    "Redirecting to the Ether Themes snippet reference — 496 searchable prefixes for VS Code and Cursor.";
   const redirectHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  ${renderHead("/", pageTitle, description)}
   <meta http-equiv="refresh" content="0; url=${PAGES_BASE}/" />
-  <link rel="canonical" href="${PAGES_URL}" />
-  <title>Ether Snippet Catalog</title>
 </head>
 <body>
-  <p><a href="${PAGES_BASE}/">Ether Snippet Catalog</a> — all 496 snippets for VS Code &amp; Cursor.</p>
+  <p><a href="${PAGES_BASE}/">${SITE_NAME}</a> — all 496 snippets for VS Code &amp; Cursor.</p>
 </body>
 </html>`;
   writeFileSync(join(siteRootDir, "index.html"), redirectHtml, "utf8");
@@ -496,6 +684,7 @@ export async function generateSnippetDocs(outputDir = siteDir) {
 
   writeFileSync(join(outputDir, "assets", "snippets.css"), `${STYLES.trim()}\n`, "utf8");
   writeFileSync(join(outputDir, "assets", "snippets.js"), `${SEARCH_SCRIPT.trim()}\n`, "utf8");
+  copyFileSync(join(rootDir, "icon.png"), join(outputDir, "assets", "icon.png"));
 
   const catalog = await loadSnippetCatalogWithMeta();
   buildIndexPage(catalog);
@@ -510,6 +699,7 @@ export async function generateSnippetDocs(outputDir = siteDir) {
       ...languageFiles.map((file) => `snippets/${file}`),
       "snippets/assets/snippets.css",
       "snippets/assets/snippets.js",
+      "snippets/assets/icon.png",
     ],
   };
 }
