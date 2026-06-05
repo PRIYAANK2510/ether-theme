@@ -3,7 +3,7 @@
   "displayName": "Ether Themes",
   "description": "Ether Themes — 25 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
   "publisher": "Priyaank",
-  "version": "0.2.16",
+  "version": "0.2.17",
   "icon": "icon.png",
   "galleryBanner": {
     "color": "#101828",
