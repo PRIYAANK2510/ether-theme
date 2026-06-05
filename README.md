@@ -58,8 +58,6 @@ Ether Aurora · Ether Clay · Ether Coral · Ether Dracula · Ether Dusk · Ethe
 
 ## Previews
 
-High-DPI editor mockups — regenerated on `npm run build`.
-
 <!-- PREVIEW_GALLERY_START -->
 <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;column-gap:48px;row-gap:0;max-width:100%">
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
