@@ -85,6 +85,30 @@ export function renderThemeCssBlock(selector, vars) {
  * @param {import("../utils/color.js").Palette[]} palettes
  * @param {string} [defaultId]
  */
+/**
+ * @param {import("../utils/color.js").Palette[]} palettes
+ */
+export function buildThemesData(palettes) {
+  /** @type {Record<string, { label: string, accent: string, color: string, vars: Record<string, string> }>} */
+  const data = {};
+  for (const palette of palettes) {
+    data[palette.id] = {
+      label: palette.label,
+      accent: palette.ui.accent,
+      color: palette.ui.surfaceShell,
+      vars: paletteToSiteVars(palette),
+    };
+  }
+  return data;
+}
+
+/**
+ * @param {import("../utils/color.js").Palette[]} palettes
+ */
+export function buildThemesDataScript(palettes) {
+  return `window.ETHER_SITE_THEMES=${JSON.stringify(buildThemesData(palettes))};\n`;
+}
+
 export function buildThemesStylesheet(palettes, defaultId = "ether-dusk") {
   const defaultPalette =
     palettes.find((palette) => palette.id === defaultId) ?? palettes[0];

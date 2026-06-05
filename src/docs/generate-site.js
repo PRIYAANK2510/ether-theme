@@ -57,6 +57,7 @@ export async function generateSite() {
       ...languageFiles.map((file) => `snippets/${file}`),
       "assets/site.css",
       "assets/themes.css",
+      "assets/themes-data.js",
       "assets/site.js",
       "assets/favicon-16.png",
       "assets/favicon-32.png",

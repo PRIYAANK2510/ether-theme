@@ -15,7 +15,10 @@ import {
   VS_MARKETPLACE,
 } from "./site-config.js";
 import { SITE_STYLES } from "./site-styles.js";
-import { buildThemesStylesheet } from "./site-theme-tokens.js";
+import {
+  buildThemesDataScript,
+  buildThemesStylesheet,
+} from "./site-theme-tokens.js";
 
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "../..");
 export const siteRootDir = join(rootDir, "site");
@@ -65,11 +68,30 @@ export async function writeBrandAssets(assetsDir) {
  * }} options
  */
 export function renderThemeBootScript() {
-  return `<script>
-try {
-  var savedTheme = localStorage.getItem("ether-site-theme");
-  if (savedTheme) document.documentElement.setAttribute("data-ether-theme", savedTheme);
-} catch (e) { /* storage unavailable */ }
+  return `<script src="${ASSETS_BASE}/themes-data.js"></script>
+<script>
+(function () {
+  function paintTheme(themeId) {
+    var themes = window.ETHER_SITE_THEMES;
+    if (!themes || !themes[themeId]) return;
+    var theme = themes[themeId];
+    var root = document.documentElement;
+    root.setAttribute("data-ether-theme", themeId);
+    for (var key in theme.vars) {
+      if (Object.prototype.hasOwnProperty.call(theme.vars, key)) {
+        root.style.setProperty(key, theme.vars[key]);
+      }
+    }
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta && theme.color) meta.setAttribute("content", theme.color);
+  }
+  try {
+    paintTheme(localStorage.getItem("ether-site-theme") || "ether-dusk");
+  } catch (e) {
+    paintTheme("ether-dusk");
+  }
+  window.__paintEtherTheme = paintTheme;
+})();
 </script>`;
 }
 
@@ -303,6 +325,11 @@ export function writeThemesStyles(assetsDir, palettes) {
   writeFileSync(
     join(assetsDir, "themes.css"),
     buildThemesStylesheet(palettes),
+    "utf8",
+  );
+  writeFileSync(
+    join(assetsDir, "themes-data.js"),
+    buildThemesDataScript(palettes),
     "utf8",
   );
 }

@@ -31,6 +31,7 @@ describe("product site", () => {
     expect(existsSync(join(siteDir, ".nojekyll"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "site.css"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "themes.css"))).toBe(true);
+    expect(existsSync(join(siteDir, "assets", "themes-data.js"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "site.js"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "favicon-16.png"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "favicon-32.png"))).toBe(true);
@@ -57,7 +58,11 @@ describe("product site", () => {
     expect(home).toContain('id="theme-switcher-list"');
     expect(home).toContain('data-apply-theme="ether-dusk"');
     expect(home).toContain("syntax-preview");
-    expect(home).toContain("ether-site-theme");
+    expect(home).toContain("themes-data.js");
+    expect(home).toContain("__paintEtherTheme");
+    const themesData = readFileSync(join(siteDir, "assets", "themes-data.js"), "utf8");
+    expect(themesData).toContain('"ether-sand"');
+    expect(themesData).toContain("#E8C070");
     expect(home).toContain("<title>Ether Themes — Dark Themes &amp; Snippets for VS Code and Cursor</title>");
     expect(home).toContain('href="' + SITE_BASE + '/"');
     expect(home).toContain('href="' + SNIPPETS_BASE + '/"');

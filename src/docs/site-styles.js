@@ -445,11 +445,26 @@ function updateThemeSwitcherUi(themeId) {
 
 function applySiteTheme(themeId) {
   if (!themeId) return;
-  document.documentElement.setAttribute("data-ether-theme", themeId);
+  if (typeof window.__paintEtherTheme === "function") {
+    window.__paintEtherTheme(themeId);
+  } else {
+    const theme = window.ETHER_SITE_THEMES?.[themeId];
+    if (theme) {
+      const root = document.documentElement;
+      root.setAttribute("data-ether-theme", themeId);
+      for (const [key, value] of Object.entries(theme.vars)) {
+        root.style.setProperty(key, value);
+      }
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta && theme.color) meta.setAttribute("content", theme.color);
+    }
+  }
   try {
     localStorage.setItem("ether-site-theme", themeId);
   } catch { /* storage unavailable */ }
   updateThemeSwitcherUi(themeId);
+  const legacySelect = document.getElementById("site-theme-select");
+  if (legacySelect && legacySelect.value !== themeId) legacySelect.value = themeId;
 }
 
 function closeThemeSwitcher() {
@@ -464,7 +479,7 @@ function closeThemeSwitcher() {
 function initSiteTheme() {
   const list = document.getElementById("theme-switcher-list");
   const button = document.getElementById("theme-switcher-btn");
-  if (!list || !button) return;
+  const legacySelect = document.getElementById("site-theme-select");
 
   let saved = "";
   try {
@@ -474,7 +489,17 @@ function initSiteTheme() {
   const defaultId =
     saved ||
     document.querySelector('.theme-switcher-option[aria-selected="true"]')?.getAttribute("data-theme-id") ||
+    legacySelect?.value ||
     "ether-dusk";
+
+  if (!list || !button) {
+    if (legacySelect) {
+      applySiteTheme(defaultId);
+      legacySelect.addEventListener("change", () => applySiteTheme(legacySelect.value));
+    }
+    return;
+  }
+
   applySiteTheme(defaultId);
 
   button.addEventListener("click", () => {
