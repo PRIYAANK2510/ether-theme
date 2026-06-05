@@ -1,10 +1,8 @@
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { generateAllThemes, loadPalettes } from "./generator/index.js";
-import {
-  generateAllPreviews,
-  syncReadmePreviewGallery,
-} from "./generator/preview-svg.js";
+import { generateAllPreviews } from "./generator/preview-svg/assets.js";
+import { syncReadmePreviewGallery } from "./generator/preview-svg/gallery.js";
 import { generateAllSnippets } from "./snippets/generator.js";
 
 const skipPreviews = process.argv.includes("--skip-previews");

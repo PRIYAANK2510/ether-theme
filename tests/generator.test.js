@@ -7,15 +7,15 @@ import {
   loadPalettes,
   removeOrphanedThemeFiles,
 } from "../src/generator/index.js";
+import { writePreviewAssets } from "../src/generator/preview-svg/assets.js";
+import { renderThemePreviewSvg } from "../src/generator/preview-svg/compose.js";
 import {
   PNG_RENDER_WIDTH,
   PREVIEW_README_EXT,
-  renderReadmePreviewGallery,
-  renderSvgToPng,
-  renderThemePreviewSvg,
-  THEME_CHARACTER,
-  writePreviewAssets,
-} from "../src/generator/preview-svg.js";
+} from "../src/generator/preview-svg/constants.js";
+import { renderReadmePreviewGallery } from "../src/generator/preview-svg/gallery.js";
+import { renderSvgToPng } from "../src/generator/preview-svg/rasterize.js";
+import { THEME_CHARACTER } from "../src/generator/preview-svg/theme-character.js";
 import etherGraphite from "../src/palettes/ether-graphite.js";
 import etherStorm from "../src/palettes/ether-storm.js";
 import { SYNTAX_RULE_COUNT } from "../src/syntax/rules.js";
