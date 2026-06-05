@@ -11,7 +11,6 @@
 
   &:hover,
   &:focus-within {
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
     transform: translateY(-3px);
     box-shadow:
       var(--shadow-lg),
