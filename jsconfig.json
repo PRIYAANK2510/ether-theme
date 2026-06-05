@@ -4,11 +4,13 @@
     "moduleResolution": "bundler",
     "target": "ES2022",
     "checkJs": false,
-    "maxNodeModuleJsDepth": 0
+    "maxNodeModuleJsDepth": 0,
+    "skipLibCheck": true,
+    "types": []
   },
   "typeAcquisition": {
     "enable": false
   },
-  "include": ["src/**/*.js", "tests/**/*.js"],
-  "exclude": ["node_modules", "themes", "releases"]
+  "include": ["src/**/*.js", "tests/**/*.js", "shared/**/*.js"],
+  "exclude": ["node_modules", "themes", "releases", "apps", "site"]
 }

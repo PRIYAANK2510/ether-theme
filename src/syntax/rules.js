@@ -150,19 +150,32 @@ const syntaxRuleDefinitions = [
   },
 
   {
-    name: "Number / CSS Unit",
+    name: "Number",
     scope: [
       "constant.numeric",
       "constant.numeric.integer",
       "constant.numeric.float",
       "constant.numeric.hex",
-      "keyword.other.unit",
-      "source.css keyword.other.unit",
       "meta.preprocessor.numeric",
       "keyword.operator.plus.exponent",
       "keyword.operator.minus.exponent",
     ],
     role: "number",
+  },
+
+  {
+    name: "CSS / SCSS Numeric Value",
+    scope: [
+      "source.css constant.numeric",
+      "source.css.scss constant.numeric",
+      "source.css.less constant.numeric",
+      "source.css keyword.other.unit",
+      "source.css.scss keyword.other.unit",
+      "source.css.less keyword.other.unit",
+      "keyword.other.unit.css",
+      "keyword.other.unit.scss",
+    ],
+    role: "sheetValueNumber",
   },
 
   {
@@ -312,17 +325,51 @@ const syntaxRuleDefinitions = [
       "entity.name.variable",
       "meta.definition.variable.name",
       "support.variable",
-      "source.css variable",
-      "source.css.scss variable",
-      "source.css.less variable",
-      "variable.scss",
-      "variable.parameter.scss",
       "variable.argument.css",
       "source.coffee.embedded",
       "variable.other.assignment.shell",
       "variable.other.normal.shell",
     ],
     role: "variable",
+  },
+
+  {
+    name: "SCSS / Sass Variable",
+    scope: [
+      "source.css.scss variable",
+      "source.css.less variable",
+      "variable.scss",
+      "variable.parameter.scss",
+      "variable.interpolation.scss",
+    ],
+    role: "sheetSassVariable",
+  },
+
+  {
+    name: "CSS Custom Property",
+    scope: [
+      "support.type.property-name.css.custom-property",
+      "support.type.vendored.property-name.css.custom-property",
+      "meta.property-list.css variable",
+      "meta.property-list.scss variable",
+      "source.css variable",
+      "source.css.scss variable",
+    ],
+    role: "sheetVariable",
+  },
+
+  {
+    name: "CSS / SCSS Property Name",
+    scope: [
+      "support.type.property-name.css",
+      "support.type.property-name.scss",
+      "support.type.property-name.less",
+      "support.type.property-name.stylus",
+      "support.type.vendored.property-name.css",
+      "support.type.vendored.property-name.scss",
+      "support.type.vendored.property-name.less",
+    ],
+    role: "sheetProperty",
   },
 
   {
@@ -346,10 +393,6 @@ const syntaxRuleDefinitions = [
       "variable.other.property",
       "variable.other.property.ts",
       "variable.other.property.tsx",
-      "support.type.property-name",
-      "support.type.vendored.property-name",
-      "support.type.property-name.css",
-      "support.type.property-name.scss",
     ],
     role: "number",
   },
@@ -392,7 +435,6 @@ const syntaxRuleDefinitions = [
       "support.function.construct",
       "support.function.construct.php",
       "support.constant.handlebars",
-      "source.css support.function",
       "source.php support.function",
       "support.function.git-rebase",
       "source.powershell variable.other.member",
@@ -513,20 +555,37 @@ const syntaxRuleDefinitions = [
   },
 
   {
-    name: "CSS HTML Tag",
+    name: "CSS / SCSS Function Call",
+    scope: [
+      "source.css support.function",
+      "source.css.scss support.function",
+      "source.css.less support.function",
+      "support.function.misc.css",
+      "support.function.misc.scss",
+      "support.function.set.css",
+      "support.function.set.scss",
+      "support.function.transform.css",
+      "support.function.url.css",
+      "support.function.var.css",
+    ],
+    role: "sheetFunction",
+  },
+
+  {
+    name: "CSS / SCSS Element Tag",
     scope: [
       "entity.name.tag.css",
       "entity.name.tag.less",
       "entity.name.tag.scss",
       "entity.name.tag.stylus",
+      "source.css entity.name.tag.reference",
     ],
-    role: "type",
+    role: "sheetSelectorTag",
   },
 
   {
-    name: "Attribute Name",
+    name: "HTML / XML Attribute Name",
     scope: [
-      "entity.other.attribute-name",
       "entity.other.attribute-name.jsx",
       "entity.other.attribute-name.tsx",
       "entity.other.attribute-name.html",
@@ -536,70 +595,179 @@ const syntaxRuleDefinitions = [
   },
 
   {
-    name: "CSS Selector — Class / Pseudo",
+    name: "CSS Selector — Class",
     scope: [
       "entity.other.attribute-name.class.css",
       "entity.other.attribute-name.class.scss",
       "entity.other.attribute-name.class.less",
       "source.css entity.other.attribute-name.class",
-      "source.css entity.other.attribute-name.pseudo-class",
-      "entity.other.attribute-name.pseudo-element.css",
-      "entity.other.attribute-name.parent-selector.css",
-      "entity.other.attribute-name.parent.less",
-      "source.css.less entity.other.attribute-name.id",
-      "entity.other.attribute-name.scss",
     ],
-    role: "type",
+    role: "sheetSelectorClass",
   },
 
   {
-    name: "CSS ID Selector",
+    name: "CSS Selector — Pseudo / Parent / Namespace",
+    scope: [
+      "source.css entity.other.attribute-name.pseudo-class",
+      "entity.other.attribute-name.pseudo-element.css",
+      "entity.other.attribute-name.pseudo-element.scss",
+      "entity.other.attribute-name.parent-selector.css",
+      "entity.other.attribute-name.parent.less",
+      "source.css entity.other.attribute-name.parent-selector",
+      "entity.other.attribute-name.namespace.css",
+      "entity.other.attribute-name.wildcard.css",
+      "entity.other.attribute-name.placeholder.css",
+      "entity.other.attribute-name.scss",
+    ],
+    role: "sheetSelectorPseudo",
+  },
+
+  {
+    name: "CSS / SCSS ID Selector",
     scope: [
       "entity.other.attribute-name.id",
       "entity.other.attribute-name.id.css",
+      "entity.other.attribute-name.id.scss",
+      "source.css.less entity.other.attribute-name.id",
     ],
-    role: "type",
+    role: "sheetSelectorId",
   },
 
   {
-    name: "CSS Tag / Parent Selector",
-    scope: [
-      "source.css entity.name.tag.reference",
-      "source.css entity.other.attribute-name.parent-selector",
-    ],
-    role: "red",
-  },
-
-  {
-    name: "CSS Property Value",
+    name: "CSS / SCSS Value Keyword",
     scope: [
       "support.constant.property-value",
+      "support.constant.property-value.css",
+      "support.constant.property-value.scss",
       "support.constant.font-name",
       "support.constant.media-type",
       "support.constant.media",
+      "constant.language.css",
+      "constant.language.scss",
+      "constant.language.less",
+    ],
+    role: "sheetValueKeyword",
+  },
+
+  {
+    name: "CSS / SCSS Color Literal",
+    scope: [
       "support.constant.color",
+      "constant.other.color",
       "constant.other.color.rgb-value",
       "constant.other.rgb-value",
+      "constant.other.color.hex.css",
+      "constant.other.color.hex.scss",
+      "constant.other.color.hex.less",
     ],
-    role: "string",
+    role: "sheetColorLiteral",
+  },
+
+  {
+    name: "CSS / SCSS Value Identifier",
+    scope: [
+      "meta.property-value.scss variable",
+      "meta.property-value.css variable",
+      "meta.property-value.scss support.type.vendor-prefix",
+      "meta.property-value.css support.type.vendor-prefix",
+      "support.type.property-name.animation-name.css",
+      "support.type.property-name.animation-name.scss",
+      "support.type.property-name.transition-timing-function.css",
+      "support.type.property-name.transition-timing-function.scss",
+      "entity.name.function.keyframe.css",
+      "entity.name.function.keyframe.scss",
+      "entity.other.keyframe-name.css",
+      "entity.other.keyframe-name.scss",
+    ],
+    role: "sheetValueIdentifier",
   },
 
   {
     name: "CSS Keyframe Offset",
     scope: ["entity.other.keyframe-offset.css"],
-    role: "number",
+    role: "sheetValueNumber",
   },
 
   {
-    name: "CSS At-Rule",
+    name: "SCSS Mixin / Include / Function Name",
     scope: [
-      "meta.at-rule",
-      "meta.at-rule.extend",
+      "meta.at-rule.mixin.scss entity.name.function.scss",
+      "meta.at-rule.include.scss entity.name.function.scss",
+      "meta.at-rule.function.scss entity.name.function.scss",
+      "entity.name.function.scss",
+    ],
+    role: "sheetMixin",
+  },
+
+  {
+    name: "SCSS Interpolation Delimiter",
+    scope: [
+      "punctuation.definition.interpolation.begin.bracket.curly.scss",
+      "punctuation.definition.interpolation.end.bracket.curly.scss",
+      "punctuation.definition.interpolation.begin.bracket.curly.sass",
+      "punctuation.definition.interpolation.end.bracket.curly.sass",
+    ],
+    role: "sheetDelimiter",
+  },
+
+  {
+    name: "CSS / SCSS At-Rule",
+    scope: [
+      "keyword.control.at-rule",
+      "keyword.control.at-rule.css",
+      "keyword.control.at-rule.scss",
+      "keyword.control.at-rule.less",
+      "keyword.control.at-rule.sass",
+      "keyword.control.at-rule.charset",
+      "keyword.control.at-rule.media",
+      "keyword.control.at-rule.import",
+      "keyword.control.at-rule.use",
+      "keyword.control.at-rule.forward",
+      "keyword.control.at-rule.mixin",
+      "keyword.control.at-rule.include",
+      "keyword.control.at-rule.extend",
+      "keyword.control.at-rule.function",
+      "keyword.control.at-rule.mixin.scss",
+      "keyword.control.at-rule.include.scss",
+      "keyword.control.at-rule.use.scss",
+      "keyword.control.at-rule.forward.scss",
+      "keyword.control.at-rule.extend.scss",
+      "keyword.control.at-rule.function.scss",
+      "keyword.control.at-rule.media.scss",
+      "keyword.control.at-rule.import.scss",
       "meta.at-rule.extend support.constant",
       "meta.preprocessor",
     ],
-    role: "keyword",
-    fontStyle: "italic",
+    role: "sheetAtRule",
+  },
+
+  {
+    name: "CSS / SCSS Selector Punctuation",
+    scope: [
+      "punctuation.definition.entity.css",
+      "punctuation.definition.entity.scss",
+      "punctuation.definition.entity.less",
+    ],
+    role: "sheetPunctuation",
+  },
+
+  {
+    name: "CSS / SCSS Block Punctuation",
+    scope: [
+      "punctuation.separator.key-value.css",
+      "punctuation.separator.key-value.scss",
+      "punctuation.terminator.rule.css",
+      "punctuation.terminator.rule.scss",
+      "punctuation.section.property-list.begin.bracket.curly.css",
+      "punctuation.section.property-list.end.bracket.curly.css",
+      "punctuation.section.property-list.begin.bracket.curly.scss",
+      "punctuation.section.property-list.end.bracket.curly.scss",
+      "punctuation.section.block.begin.bracket.curly.css",
+      "punctuation.section.block.end.bracket.curly.css",
+      "punctuation.section.block.begin.bracket.curly.scss",
+      "punctuation.section.block.end.bracket.curly.scss",
+    ],
+    role: "sheetPunctuation",
   },
 
   {

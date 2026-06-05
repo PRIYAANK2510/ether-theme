@@ -1,0 +1,29 @@
+@use "../styles/mixins.scss" as *;
+
+.footer {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
+  animation-delay: 0.12s;
+
+  strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 14px;
+
+  a {
+    font-weight: 500;
+    @include link-underline;
+  }
+}

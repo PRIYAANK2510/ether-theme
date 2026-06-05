@@ -8,18 +8,19 @@ alwaysApply: false
 
 Based on [VS Code Color Theme API](https://code.visualstudio.com/api/extension-guides/color-theme): workbench `colors` + TextMate `tokenColors`. Ether derives both from palette tokens — never patch generated theme JSON.
 
-## Current palettes (8 dark)
+## Current palettes (25 dark)
+
+All palette sources live in `src/palettes/ether-{name}.js`. Examples:
 
 | ID | Side panel (`surfacePanel`) | Editor (`surfaceEditor`) | Character |
 |----|----------------------------|--------------------------|-----------|
 | `ether-graphite` | `#161618` | `#1C1C1E` | Pure neutral gray |
 | `ether-storm` | `#181C22` | `#1C2028` | Cool blue-gray |
-| `ether-ember` | `#1A1816` | `#201E1A` | Warm charcoal |
-| `ether-luna` | `#0C0E14` | `#101218` | Deepest moonlit night — lunar silver accent |
-| `ether-moss` | `#181C18` | `#1C221E` | Forest gray-green |
 | `ether-dusk` | `#1A1820` | `#1E1C28` | Plum twilight |
-| `ether-ink` | `#141412` | `#1A1A18` | Warm sumi ink (neutral black, cinnabar accent) |
-| `ether-stone` | `#1C1A18` | `#22201C` | Warm stone |
+| `ether-clay` | — | — | Warm rose accent |
+| `ether-aurora` | — | — | Teal aurora accent |
+
+Run `npm run build:extension` after palette edits. Full list: `src/palettes/` (25 files).
 
 All palettes are **dark only** (`type: "dark"`, `uiTheme: "vs-dark"`). Each must feel unique via surface temperature and accent — not neon or oversaturated syntax.
 

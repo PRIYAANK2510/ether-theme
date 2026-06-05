@@ -1,9 +1,8 @@
 node_modules/
 releases/
 site/
-web/public/
-web/src/generated/
-preview/
+apps/website/public/
+apps/website/src/generated/
 *.vsix
 .env
 .DS_Store

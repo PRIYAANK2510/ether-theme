@@ -1,0 +1,98 @@
+@use "../styles/mixins.scss" as *;
+
+.root {
+  @include surface-card;
+  @include interactive-lift;
+  overflow: hidden;
+  padding: 0;
+  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
+  animation-delay: 0.06s;
+}
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+@mixin window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.dotRed {
+  @include window-dot;
+  background: var(--syn-variable);
+}
+
+.dotYellow {
+  @include window-dot;
+  background: var(--syn-number);
+}
+
+.dotGreen {
+  @include window-dot;
+  background: var(--syn-string);
+}
+
+.root:hover {
+  .dotRed,
+  .dotYellow,
+  .dotGreen {
+    transform: scale(1.08);
+  }
+}
+
+.file {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-family: var(--mono);
+}
+
+.code {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  background: var(--code-bg);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.keyword {
+  color: var(--syn-keyword);
+}
+
+.string {
+  color: var(--syn-string);
+}
+
+.function {
+  color: var(--syn-function);
+}
+
+.type {
+  color: var(--syn-type);
+}
+
+.variable {
+  color: var(--syn-variable);
+}
+
+.number {
+  color: var(--syn-number);
+}
+
+.comment {
+  color: var(--syn-comment);
+}
+
+.default {
+  color: var(--syn-default);
+}

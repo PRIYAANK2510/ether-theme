@@ -1,0 +1,35 @@
+{
+  "folders": [
+    {
+      "name": "Ether (extension)",
+      "path": "."
+    },
+    {
+      "name": "Website",
+      "path": "apps/website"
+    }
+  ],
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "eslint.workingDirectories": [
+      { "pattern": "./apps/website" },
+      { "mode": "auto" }
+    ],
+    "files.exclude": {
+      "site": true,
+      "releases": true,
+      "apps/website/public": true,
+      "apps/website/src/generated": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "stylelint.vscode-stylelint",
+      "vitest.explorer",
+      "syler.sass-indented",
+      "GitHub.vscode-pull-request-github"
+    ]
+  }
+}

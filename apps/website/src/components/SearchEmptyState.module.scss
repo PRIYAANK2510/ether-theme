@@ -1,0 +1,61 @@
+@use "../styles/mixins.scss" as *;
+
+.root {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 10px;
+  margin: 12px 0 32px;
+  padding: 36px 24px;
+  border: 1px dashed var(--border);
+  border-radius: calc(var(--radius) + 2px);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.hint {
+  margin: 0;
+  max-width: 36ch;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.clearButton {
+  @include pill-control;
+  margin-top: 4px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 600;
+
+  &:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

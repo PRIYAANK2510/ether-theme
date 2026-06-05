@@ -1,0 +1,15 @@
+@use "../styles/mixins.scss" as *;
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 36px 20px 88px;
+
+  @media (max-width: 720px) {
+    padding: 28px 16px 72px;
+  }
+}
+
+.page {
+  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
+}

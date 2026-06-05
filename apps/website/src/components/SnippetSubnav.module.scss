@@ -1,0 +1,44 @@
+@use "../styles/mixins.scss" as *;
+
+.subnav {
+  position: sticky;
+  top: var(--topbar-height);
+  z-index: var(--z-subnav);
+  border-bottom: 1px solid var(--border);
+  background: var(--topbar-bg);
+  backdrop-filter: blur(16px) saturate(1.2);
+  margin: -36px -20px 24px;
+  padding: 0 20px;
+
+  @media (max-width: 720px) {
+    margin: -28px -16px 24px;
+    padding: 0 16px;
+  }
+}
+
+.inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.link {
+  @include nav-pill;
+  flex-shrink: 0;
+  padding: 5px 11px;
+  font-size: 0.82rem;
+}
+
+.linkActive {
+  @include nav-pill-active;
+}

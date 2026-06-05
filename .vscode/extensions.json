@@ -1,6 +1,9 @@
 {
   "recommendations": [
     "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "vitest.explorer",
+    "syler.sass-indented",
     "GitHub.vscode-pull-request-github"
   ]
 }

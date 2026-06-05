@@ -2,10 +2,37 @@
 
 Basic git and publish flows for Ether Themes.
 
+## Project layout
+
+```
+Ether/
+├── src/                      # VS Code extension source
+│   ├── build.js              # Build orchestrator
+│   ├── palettes/             # Theme palette definitions
+│   ├── generator/            # Theme JSON + preview PNG pipeline
+│   ├── snippets/             # Snippet catalog + generator
+│   ├── grammars/             # Bundled TextMate grammars (partially shipped)
+│   ├── syntax/               # Syntax token rules
+│   ├── workbench/            # Workbench color derivation
+│   └── utils/                # Shared color utilities
+├── apps/
+│   └── website/              # React product site (GitHub Pages SPA)
+├── shared/                   # Build bridge (extension data → website)
+├── themes/                   # Generated *.color-theme.json (shipped)
+├── snippets/                 # Generated *.code-snippets (shipped)
+├── docs/previews/            # Theme preview PNGs (README + site)
+├── scripts/                  # Publish + version bump
+├── tests/                    # Vitest suites
+└── site/                     # Generated deploy output (gitignored)
+```
+
+The website reads palettes and snippets automatically at build time via `apps/website/scripts/prepare-data.mjs`. No manual site updates when adding themes or snippets.
+
 ## Before you push
 
 ```bash
-npm run check   # lint + test + build
+npm run check:fast   # lint + typecheck + fast tests + extension + site (daily)
+npm run check        # full pipeline including PNG previews (pre-release)
 ```
 
 Commit generated artifacts when you changed source:
@@ -44,7 +71,7 @@ Open a PR. CI runs `npm run check` only — no publish. When you merge to `main`
 
 ### Option 3 — Change files outside release paths
 
-Release only watches `src/**`, `themes/**`, and `package.json`. Pushing docs-only or test-only changes does not trigger publish:
+Release only watches `src/**`, `themes/**`, and `package.json` (not `README.md`). Pushing docs-only or test-only changes does not trigger publish:
 
 ```bash
 git add docs/ tests/
@@ -100,13 +127,13 @@ Same steps as automatic release (check → bump → publish → tag). Useful whe
 
 ---
 
-## Snippet docs (GitHub Pages)
+## Product site (GitHub Pages)
 
 **Live site:** https://priyaank2510.github.io/ether-theme/ (themes + snippets)
 
 ### One-time setup
 
-If **Deploy Snippet Docs** fails with `Get Pages site failed`, enable Pages once:
+If **Deploy Site** fails with `Get Pages site failed`, enable Pages once:
 
 1. Repo **Settings → Pages**
 2. **Build and deployment → Source:** **GitHub Actions**
@@ -115,32 +142,47 @@ If **Deploy Snippet Docs** fails with `Get Pages site failed`, enable Pages once
 
 | Trigger | What runs |
 | --- | --- |
-| Push to `main` (snippet/docs paths) | **Deploy Snippet Docs** workflow |
-| Manual | **Actions → Deploy Snippet Docs → Run workflow** |
+| Push to `main` (site/snippet/palette paths) | **Deploy Site** workflow |
+| Manual | **Actions → Deploy Site → Run workflow** |
 
 Local preview:
 
 ```bash
-npm run docs:snippets
-npx serve preview -l 4173   # after copying site/ → preview/ether-theme/
+npm run site:dev
 ```
 
-Open http://127.0.0.1:4173/ether-theme/snippets/
+Open http://localhost:4173/ether-theme/
 
 ---
 
+## Snippet sync (ES7+)
+
+Some catalog modules are regenerated from the ES7+ React snippets extension:
+
+```bash
+npm run snippets:sync
+```
+
+Set `ES7_EXTENSION_ROOT` in `.env` if the extension is not at the default Cursor path. See `.env.example`.
+
 ## Quick reference
 
-
-| Goal                      | Command / action                                    |
-| ------------------------- | --------------------------------------------------- |
-| Verify locally            | `npm run check`                                     |
-| Build only                | `npm run build`                                     |
-| Package VSIX (no upload)  | `npm run package` → `releases/*.vsix`               |
-| Install VSIX locally    | `cursor --install-extension releases/ether-theme-*.vsix` |
-| Push to main, no publish  | Commit message includes `[skip release]`            |
-| Ship a release            | Push to `main` (source/themes/package.json changes) |
-| Publish from your machine | `npm run publish:local`                             |
-| Product site              | https://priyaank2510.github.io/ether-theme/          |
-| Snippet catalog           | https://priyaank2510.github.io/ether-theme/snippets/ |
-| Regenerate site locally   | `npm run docs:site`                                  |
+| Goal | Command / action |
+| --- | --- |
+| Daily verify | `npm run check:fast` |
+| Pre-release verify | `npm run check` |
+| Extension rebuild loop | `npm run watch` |
+| Build only (full) | `npm run build` |
+| Extension build (F5) | `npm run build:extension` |
+| Website dev server | `npm run site:dev` |
+| Typecheck website | `npm run typecheck` |
+| Fast tests only | `npm run test:fast` |
+| Package VSIX (no upload) | `npm run package` → `releases/*.vsix` |
+| Install VSIX locally | `cursor --install-extension releases/ether-theme-*.vsix` |
+| Push to main, no publish | Commit message includes `[skip release]` |
+| Ship a release | Push to `main` (source/themes/package.json changes) |
+| Publish from your machine | `npm run publish:local` (see `.env.example`) |
+| Product site | https://priyaank2510.github.io/ether-theme/ |
+| Snippet catalog | https://priyaank2510.github.io/ether-theme/snippets/ |
+| Regenerate site locally | `npm run site:build` |
+| Open multi-root workspace | `ether.code-workspace` (extension + website TS) |

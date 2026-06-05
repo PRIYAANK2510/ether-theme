@@ -4,10 +4,11 @@ import { generateAllThemes, loadPalettes } from "./generator/index.js";
 import { generateAllPreviews } from "./generator/preview-svg/assets.js";
 import { syncReadmePreviewGallery } from "./generator/preview-svg/gallery.js";
 import { generateAllGrammars } from "./grammars/sync.js";
-import { buildWebsite } from "../web/scripts/build.mjs";
+import { buildWebsite } from "../apps/website/scripts/build.mjs";
 import { generateAllSnippets } from "./snippets/generator.js";
 
 const skipPreviews = process.argv.includes("--skip-previews");
+const skipSite = process.argv.includes("--skip-site");
 
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const docsDir = join(rootDir, "docs");
@@ -75,7 +76,9 @@ for (const file of snippetFiles) {
 
 console.log(`Synced ${snippetContributions.length} snippet contribution(s) to package.json`);
 
-const { paletteCount: sitePalettes, catalogCount: docsCount } = await buildWebsite();
-console.log(`Generated product site (${sitePalettes} themes, ${docsCount} snippets)`);
+if (!skipSite) {
+  const { paletteCount: sitePalettes, catalogCount: docsCount } = await buildWebsite();
+  console.log(`Generated product site (${sitePalettes} themes, ${docsCount} snippets)`);
+}
 
 console.log("Build complete.");

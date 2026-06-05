@@ -5,12 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-06-05
+
+### Added — Official V1 release
+
+- **React product website** (`apps/website/`) — theme gallery, live palette switcher, searchable snippet docs, and polished UI with motion and accessibility
+- **Industry-grade CSS/SCSS syntax highlighting** — dedicated `sheet*` token lanes with enforced hue separation across all 25 palettes (properties, selectors, values, variables, at-rules)
+- **Full SEO stack** — per-route meta, Open Graph, Twitter Cards, JSON-LD (`WebSite` + `SoftwareApplication`), `sitemap.xml`, `robots.txt`, OG share image, and prerendered HTML shells for every indexable route
+- **Developer experience** — `CONTRIBUTING.md`, `AGENTS.md`, `.editorconfig`, `.nvmrc`, `.env.example`, expanded VS Code workspace (tasks, launch, Stylelint), `check:fast` CI gate, and `ether.code-workspace`
+- **Bundled grammars** — Kotlin, AIDL, ProGuard/R8, Dotenv with 38 Android file associations
+- **496 snippets** — React 19, Next.js App Router, TanStack Query, Zod, Vitest, Node, HTML, CSS
+- **Website bridge modules** in `shared/` for theme tokens, snippets, brand assets, and SEO
+
+### Changed
+
+- Migrated from legacy `web/` and `src/docs/` static generators to the Vite + React site
+- Replaced CSS Modules `composes` with Sass mixins (Stylelint-clean SCSS modules)
+- Unified publisher **Priyaank** on VS Code Marketplace and Open VSX
+- Release workflow respects `release: v*` commit messages without auto patch-bump
+
+### Removed
+
+- Legacy `web/` duplicate app and stale `src/shared/` bridge copies
+- Retired `src/docs/` static site generator
 
 ## [0.2.17] - 2026-06-05
 
 ### Changed
 
 - Theme palette updates (auto-release)
+
 ## [0.2.16] - 2026-06-05
 
 ### Changed
@@ -248,6 +272,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PAT-based publishing via `VSCE_PAT` / `OVSX_PAT` (local `.env` or GitHub Secrets)
 - F5 Extension Development Host workflow for VS Code and Cursor
 
+[1.0.0]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v1.0.0
 [0.2.4]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.4
 [0.2.3]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.3
 [0.2.2]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.2

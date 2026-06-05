@@ -1,6 +1,10 @@
 # Ether Themes
 
 <p align="center">
+  <a href="https://github.com/PRIYAANK2510/ether-theme/releases/tag/v1.0.0"><img src="https://img.shields.io/badge/release-v1.0.0-6c63ff?style=flat-square" alt="Ether Themes v1.0.0" /></a>
+</p>
+
+<p align="center">
   <strong>25 dark color themes · 496 web-dev snippets · Kotlin &amp; Android syntax highlighting</strong><br />
   One extension for <strong>VS Code</strong> and <strong>Cursor</strong> — WCAG-validated palettes, zero extra setup.
 </p>
@@ -50,33 +54,7 @@ ext install Priyaank.ether-theme
 
 ## Theme catalog
 
-| Theme | Character |
-| --- | --- |
-| Ether Aurora | Deep navy, electric teal |
-| Ether Clay | Warm sumi ink, cinnabar |
-| Ether Coral | Dusty rose, soft magenta |
-| Ether Dracula | Charcoal, candy Dracula syntax |
-| Ether Dusk | Plum twilight, rose accent |
-| Ether Ember | Warm charcoal, copper |
-| Ether Flame | Ember red-orange glow |
-| Ether Frost | Arctic blue-gray frost |
-| Ether Graphite | Pure neutral gray, steel blue |
-| Ether Lichen | Forest floor, moss green |
-| Ether Luna | Moonlit night, silver |
-| Ether Mint | Cool mint-teal developer |
-| Ether Mirage | Desert dusk, mirage cyan |
-| Ether Mocha | Catppuccin-style cozy pastel |
-| Ether Moss | Sage forest gray-green |
-| Ether Noir | Near-monochrome noir |
-| Ether Opal | Opalescent violet-gray |
-| Ether Prism | Prism refraction, vivid syntax |
-| Ether Sage | Muted sage green |
-| Ether Sand | Warm parchment sand |
-| Ether Slate | Atom-style gunmetal slate |
-| Ether Stone | Terracotta warm stone |
-| Ether Storm | Cool blue-gray slate |
-| Ether Tide | Ocean tide teal |
-| Ether Velvet | Velvet plum wine |
+Ether Aurora · Ether Clay · Ether Coral · Ether Dracula · Ether Dusk · Ether Ember · Ether Flame · Ether Frost · Ether Graphite · Ether Lichen · Ether Luna · Ether Mint · Ether Mirage · Ether Mocha · Ether Moss · Ether Noir · Ether Opal · Ether Prism · Ether Sage · Ether Sand · Ether Slate · Ether Stone · Ether Storm · Ether Tide · Ether Velvet
 
 ## Previews
 
@@ -86,176 +64,151 @@ High-DPI editor mockups — regenerated on `npm run build`.
 <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;column-gap:48px;row-gap:0;max-width:100%">
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Aurora</strong><br />
-<em>Deep navy, electric teal</em>
+<strong>Ether Aurora</strong>
 </p>
 <img src="docs/previews/ether-aurora.png" alt="Ether Aurora dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Clay</strong><br />
-<em>Warm sumi ink, cinnabar</em>
+<strong>Ether Clay</strong>
 </p>
 <img src="docs/previews/ether-clay.png" alt="Ether Clay dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Coral</strong><br />
-<em>Dusty rose, soft magenta</em>
+<strong>Ether Coral</strong>
 </p>
 <img src="docs/previews/ether-coral.png" alt="Ether Coral dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Dracula</strong><br />
-<em>Charcoal, candy Dracula syntax</em>
+<strong>Ether Dracula</strong>
 </p>
 <img src="docs/previews/ether-dracula.png" alt="Ether Dracula dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Dusk</strong><br />
-<em>Plum twilight, rose accent</em>
+<strong>Ether Dusk</strong>
 </p>
 <img src="docs/previews/ether-dusk.png" alt="Ether Dusk dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Ember</strong><br />
-<em>Warm charcoal, copper</em>
+<strong>Ether Ember</strong>
 </p>
 <img src="docs/previews/ether-ember.png" alt="Ether Ember dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Flame</strong><br />
-<em>Ember red-orange glow</em>
+<strong>Ether Flame</strong>
 </p>
 <img src="docs/previews/ether-flame.png" alt="Ether Flame dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Frost</strong><br />
-<em>Arctic blue-gray frost</em>
+<strong>Ether Frost</strong>
 </p>
 <img src="docs/previews/ether-frost.png" alt="Ether Frost dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Graphite</strong><br />
-<em>Pure neutral gray, steel blue</em>
+<strong>Ether Graphite</strong>
 </p>
 <img src="docs/previews/ether-graphite.png" alt="Ether Graphite dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Lichen</strong><br />
-<em>Forest floor, moss green</em>
+<strong>Ether Lichen</strong>
 </p>
 <img src="docs/previews/ether-lichen.png" alt="Ether Lichen dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Luna</strong><br />
-<em>Moonlit night, silver</em>
+<strong>Ether Luna</strong>
 </p>
 <img src="docs/previews/ether-luna.png" alt="Ether Luna dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Mint</strong><br />
-<em>Cool mint-teal developer</em>
+<strong>Ether Mint</strong>
 </p>
 <img src="docs/previews/ether-mint.png" alt="Ether Mint dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Mirage</strong><br />
-<em>Desert dusk, mirage cyan</em>
+<strong>Ether Mirage</strong>
 </p>
 <img src="docs/previews/ether-mirage.png" alt="Ether Mirage dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Mocha</strong><br />
-<em>Catppuccin-style cozy pastel</em>
+<strong>Ether Mocha</strong>
 </p>
 <img src="docs/previews/ether-mocha.png" alt="Ether Mocha dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Moss</strong><br />
-<em>Sage forest gray-green</em>
+<strong>Ether Moss</strong>
 </p>
 <img src="docs/previews/ether-moss.png" alt="Ether Moss dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Noir</strong><br />
-<em>Near-monochrome noir</em>
+<strong>Ether Noir</strong>
 </p>
 <img src="docs/previews/ether-noir.png" alt="Ether Noir dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Opal</strong><br />
-<em>Opalescent violet-gray</em>
+<strong>Ether Opal</strong>
 </p>
 <img src="docs/previews/ether-opal.png" alt="Ether Opal dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Prism</strong><br />
-<em>Prism refraction, vivid syntax</em>
+<strong>Ether Prism</strong>
 </p>
 <img src="docs/previews/ether-prism.png" alt="Ether Prism dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Sage</strong><br />
-<em>Muted sage green</em>
+<strong>Ether Sage</strong>
 </p>
 <img src="docs/previews/ether-sage.png" alt="Ether Sage dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Sand</strong><br />
-<em>Warm parchment sand</em>
+<strong>Ether Sand</strong>
 </p>
 <img src="docs/previews/ether-sand.png" alt="Ether Sand dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Slate</strong><br />
-<em>Atom-style gunmetal slate</em>
+<strong>Ether Slate</strong>
 </p>
 <img src="docs/previews/ether-slate.png" alt="Ether Slate dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Stone</strong><br />
-<em>Terracotta warm stone</em>
+<strong>Ether Stone</strong>
 </p>
 <img src="docs/previews/ether-stone.png" alt="Ether Stone dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Storm</strong><br />
-<em>Cool blue-gray slate</em>
+<strong>Ether Storm</strong>
 </p>
 <img src="docs/previews/ether-storm.png" alt="Ether Storm dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Tide</strong><br />
-<em>Ocean tide teal</em>
+<strong>Ether Tide</strong>
 </p>
 <img src="docs/previews/ether-tide.png" alt="Ether Tide dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
-<strong>Ether Velvet</strong><br />
-<em>Velvet plum wine</em>
+<strong>Ether Velvet</strong>
 </p>
 <img src="docs/previews/ether-velvet.png" alt="Ether Velvet dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
@@ -279,7 +232,7 @@ High-DPI editor mockups — regenerated on `npm run build`.
 
 **Stacks covered:** React 19 hooks · Next.js server actions &amp; routes · TanStack Query · Zod validation · Vitest &amp; Testing Library · MSW · Express &amp; Fastify · modern CSS (`:has()`, nesting, `color-mix`)
 
-Regenerate docs locally: `npm run docs:snippets` (output in `site/`).
+Regenerate the product site locally: `npm run site:build` (output in `site/`).
 
 ## Language support
 
@@ -300,10 +253,16 @@ Bundled TextMate grammars and **38 file associations** tuned for Android Studio�
 git clone https://github.com/PRIYAANK2510/ether-theme.git
 cd ether-theme
 npm install
-npm run check   # lint + test + build
+npm run check:fast   # daily: lint + typecheck + tests + extension + site
 ```
 
-Palette sources live in `src/palettes/`. See [docs/WORKFLOW.md](docs/WORKFLOW.md) for release details.
+| Task | Command |
+|------|---------|
+| Extension rebuild loop | `npm run watch` |
+| Website dev server | `npm run site:dev` |
+| Full pre-release check | `npm run check` |
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide and [docs/WORKFLOW.md](docs/WORKFLOW.md) for release details.
 
 **Enjoying Ether?** [Star the repo](https://github.com/PRIYAANK2510/ether-theme) — it helps other developers discover these themes.
 

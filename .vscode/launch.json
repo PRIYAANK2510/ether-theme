@@ -12,6 +12,31 @@
         "group": "ether",
         "order": 1
       }
+    },
+    {
+      "name": "Website: Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4173/ether-theme/",
+      "webRoot": "${workspaceFolder}/apps/website",
+      "preLaunchTask": "site:dev",
+      "presentation": {
+        "group": "ether",
+        "order": 2
+      }
+    },
+    {
+      "name": "Website: Edge",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:4173/ether-theme/",
+      "webRoot": "${workspaceFolder}/apps/website",
+      "preLaunchTask": "site:dev",
+      "presentation": {
+        "group": "ether",
+        "order": 3
+      }
     }
-  ]
+  ],
+  "compounds": []
 }

@@ -29,9 +29,6 @@ const CATALOG = [
   { file: "typescript-react.js", label: "TypeScript React", synced: true },
 ];
 
-/** Catalog module filenames loaded by {@link loadSnippetCatalog}. */
-export const CATALOG_MODULES = CATALOG.map((entry) => entry.file);
-
 /** Modules regenerated from the ES7+ extension via `npm run snippets:sync`. */
 export const SYNCED_MODULES = new Set(
   CATALOG.filter((entry) => entry.synced).map((entry) => entry.file),

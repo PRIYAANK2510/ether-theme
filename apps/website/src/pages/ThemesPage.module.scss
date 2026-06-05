@@ -1,0 +1,13 @@
+@use "../styles/mixins.scss" as *;
+
+.toolbar {
+  display: grid;
+  gap: 28px;
+  margin-bottom: 28px;
+  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
+  animation-delay: 0.04s;
+}
+
+.searchCompact {
+  margin-bottom: 0;
+}

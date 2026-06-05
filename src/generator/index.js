@@ -8,6 +8,7 @@ import {
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { deriveUISemantics } from "../workbench/derive-core.js";
+import { deriveStylesheetSyntaxTokens } from "../syntax/derive-stylesheet.js";
 import { buildTokenColors } from "../syntax/rules.js";
 import {
   deriveCommentForeground,
@@ -47,6 +48,7 @@ export function composeTheme(palette) {
   const syntax = {
     ...palette.syntax,
     comment: deriveCommentForeground(palette.ui),
+    ...deriveStylesheetSyntaxTokens(palette.syntax, palette.ui),
   };
 
   return {

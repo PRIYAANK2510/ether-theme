@@ -1,0 +1,83 @@
+@use "../mixins.scss" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  @include stagger-children(9, 0.05s);
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 40px;
+  @include stagger-children(3, 0.08s);
+}
+
+.themeGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  @include stagger-children(12, 0.04s);
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.themeStrip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  @include stagger-children(8, 0.04s);
+}
+
+.landingGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 22px;
+  margin-bottom: 36px;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.landingHero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, var(--accent-glow), var(--surface));
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  padding: clamp(32px, 6vw, 56px) clamp(24px, 5vw, 48px);
+  box-shadow: var(--shadow-md);
+  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      color-mix(in srgb, var(--accent) 6%, transparent) 50%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 8s linear infinite;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  > * {
+    position: relative;
+  }
+
+  h1 {
+    margin: 0 0 14px;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+}

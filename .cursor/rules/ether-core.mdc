@@ -5,9 +5,9 @@ alwaysApply: true
 
 # Ether Themes — Core
 
-Token-driven **VS Code / Cursor extension**: **8 dark palettes** → generated color themes, 392 snippets → generated `.code-snippets`. No runtime extension code — everything is build-time generation.
+Token-driven **VS Code / Cursor extension**: **25 dark palettes** → generated color themes, **496 snippets** → generated `.code-snippets`. No runtime extension code — everything is build-time generation.
 
-Palette authoring uses an **anchor-first** workflow (`surfacePanel` + `surfaceEditor` first, then surfaces → foreground → accent → syntax). See `ether-themes.mdc` for the full convention and current theme table.
+Palette authoring uses an **anchor-first** workflow (`surfacePanel` + `surfaceEditor` first, then surfaces → foreground → accent → syntax). See `ether-themes.mdc` for conventions.
 
 ## Architecture
 
@@ -18,7 +18,10 @@ src/palettes/*.js          → src/generator/ + src/workbench/ + src/syntax/
 src/snippets/catalog/*.js  → src/snippets/generator.js + validate.js
                            → snippets/*.code-snippets
 
-src/build.js               → runs both pipelines, syncs package.json contributes
+shared/*.js                → apps/website/scripts/prepare-data.mjs
+                           → apps/website/src/generated/site-data.ts
+
+src/build.js               → runs pipelines, syncs package.json contributes
 ```
 
 ## Source of truth vs generated
@@ -27,17 +30,18 @@ src/build.js               → runs both pipelines, syncs package.json contribut
 |------------|-----------------|
 | `src/palettes/`, `src/workbench/`, `src/syntax/`, `src/utils/` | `themes/*.color-theme.json` |
 | `src/snippets/catalog/` (non-synced modules) | `snippets/*.code-snippets` |
-| `src/generator/`, `src/snippets/generator.js`, tests | `package.json` → `contributes.themes` / `contributes.snippets` |
+| `src/generator/`, `src/snippets/generator.js`, tests | `package.json` → `contributes` |
+| `apps/website/src/` | `site/`, `apps/website/src/generated/` |
 
-After any source change, run `npm run build`. Use `npm run check` (lint + test + build) before claiming work is complete.
+After source changes: `npm run build:extension` (fast) or `npm run build` (full). Use `npm run check:fast` before claiming work complete; `npm run check` for palette/preview changes.
 
 ## Code style
 
-- **ESM only** (`import`/`export`), Node 20+, plain JavaScript with JSDoc types (no TypeScript).
-- Match existing naming: `ether-{name}` palette ids (8 dark themes: graphite, storm, ember, luna, moss, dusk, ink, stone), kebab-case snippet keys, 4-space indent in palettes.
-- **Minimal diffs** — reuse `src/utils/color.js` helpers and existing derivation patterns; don't duplicate logic.
-- **JSDoc** on exported functions/types: `@param`, `@returns`, `@throws` when relevant; skip trivial one-liners and data-only exports.
-- **Tests**: Vitest in `tests/` — add coverage for new validation rules, derivation keys, or catalog invariants.
+- **ESM only** (`import`/`export`), Node 20+, plain JavaScript with JSDoc types in extension source.
+- **Website**: TypeScript + React in `apps/website/`.
+- Palette ids: `ether-{name}` kebab-case; snippet keys kebab-case.
+- **Minimal diffs** — reuse `src/utils/color.js` and existing patterns.
+- **Tests**: Vitest in `tests/` — add coverage for new validation rules.
 
 ## Agent constraints
 
@@ -45,3 +49,4 @@ After any source change, run `npm run build`. Use `npm run check` (lint + test +
 - Do not skip CI hooks or force-push.
 - README/CHANGELOG updates only when the user requests docs changes.
 - Preview themes via **F5** (Extension Development Host), not by editing generated JSON.
+- See `AGENTS.md` and `CONTRIBUTING.md` for full workflow.

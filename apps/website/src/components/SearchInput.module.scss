@@ -1,0 +1,92 @@
+@use "../styles/mixins.scss" as *;
+
+.wrap {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 48px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.2;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+
+  &::placeholder {
+    color: color-mix(in srgb, var(--muted) 80%, transparent);
+  }
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--surface) 90%, var(--accent-soft));
+  }
+}
+
+.icon,
+.clear {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--muted);
+  pointer-events: none;
+  transition: color var(--duration-fast) var(--ease-out);
+
+  svg {
+    display: block;
+  }
+}
+
+.icon {
+  left: 16px;
+}
+
+.wrap:focus-within .icon {
+  color: var(--accent);
+}
+
+.clear {
+  right: 14px;
+  pointer-events: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 6px;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--text);
+    background: var(--surface-2);
+    transform: translateY(-50%) scale(1.05);
+    outline: none;
+  }
+}

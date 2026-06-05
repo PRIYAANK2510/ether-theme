@@ -6,8 +6,10 @@ on:
     paths:
       - "src/**"
       - "themes/**"
+      - "snippets/**"
+      - "apps/**"
+      - "shared/**"
       - "package.json"
-      - "README.md"
   workflow_dispatch:
 
 permissions:
@@ -31,10 +33,21 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - name: Bump patch version
+      - name: Resolve release version
         id: bump
-        run: echo "version=$(node scripts/bump-version.js)" >> "$GITHUB_OUTPUT"
+        run: |
+          MSG="${{ github.event.head_commit.message }}"
+          if echo "$MSG" | grep -qiE 'release:.*v[0-9]'; then
+            VERSION=$(node -p "require('./package.json').version")
+            echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+            echo "skip_bump=true" >> "$GITHUB_OUTPUT"
+          else
+            VERSION=$(node scripts/bump-version.js)
+            echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+            echo "skip_bump=false" >> "$GITHUB_OUTPUT"
+          fi
       - name: Commit version bump
+        if: steps.bump.outputs.skip_bump == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

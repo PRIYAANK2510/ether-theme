@@ -3,7 +3,7 @@
   "displayName": "Ether Themes",
   "description": "Ether Themes — 25 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
   "publisher": "Priyaank",
-  "version": "0.2.17",
+  "version": "1.0.0",
   "icon": "icon.png",
   "galleryBanner": {
     "color": "#101828",
@@ -14,6 +14,7 @@
   "markdown": "github",
   "qna": "marketplace",
   "engines": {
+    "node": ">=20",
     "vscode": "^1.85.0"
   },
   "categories": [
@@ -770,17 +771,24 @@
   },
   "scripts": {
     "build": "node src/build.js",
-    "build:extension": "node src/build.js --skip-previews",
-    "web:prepare": "node web/scripts/prepare-data.mjs",
-    "web:dev": "npm run web:prepare && vite --config web/vite.config.ts",
-    "web:build": "node web/scripts/build.mjs",
-    "docs:site": "npm run web:build",
-    "docs:snippets": "npm run docs:site",
+    "build:extension": "node src/build.js --skip-previews --skip-site",
+    "site:prepare": "node apps/website/scripts/prepare-data.mjs",
+    "site:dev": "npm run site:prepare && vite --config apps/website/vite.config.ts",
+    "site:build": "node apps/website/scripts/build.mjs",
     "snippets:sync": "node src/snippets/catalog/sync-es7-extension.mjs",
-    "watch": "node --watch --watch-path=src src/build.js",
+    "watch": "node --watch --watch-path=src src/build.js --skip-previews --skip-site",
+    "watch:full": "node --watch --watch-path=src src/build.js",
     "test": "vitest run",
-    "lint": "eslint .",
-    "check": "npm run lint && npm run test && npm run build",
+    "test:fast": "vitest run tests/generator.test.js tests/snippets.test.js tests/grammars.test.js",
+    "test:site": "vitest run tests/snippet-docs.test.js",
+    "test:watch": "vitest",
+    "lint": "eslint . && npm run stylelint",
+    "lint:fix": "eslint . --fix",
+    "stylelint": "stylelint \"apps/website/**/*.scss\"",
+    "stylelint:fix": "stylelint \"apps/website/**/*.scss\" --fix",
+    "typecheck": "tsc -p apps/website/tsconfig.json --noEmit",
+    "check:fast": "npm run lint && npm run typecheck && npm run test:fast && npm run build:extension && npm run site:build",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "vscode:prepublish": "npm run build",
     "prepackage": "node --input-type=module -e \"import { mkdirSync } from 'node:fs'; mkdirSync('releases', { recursive: true });\"",
     "package": "vsce package --out releases/",
@@ -795,6 +803,7 @@
     "@eslint/js": "^9.27.0",
     "@reduxjs/toolkit": "^2.8.2",
     "@resvg/resvg-js": "2.6.2",
+    "@types/classnames": "2.3.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
@@ -809,8 +818,15 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.2",
     "sharp": "0.34.5",
+    "stylelint": "17.12.0",
+    "stylelint-config-standard-scss": "17.0.0",
     "typescript": "^5.8.3",
+    "typescript-eslint": "8.60.1",
     "vite": "^6.3.5",
     "vitest": "^3.1.4"
+  },
+  "dependencies": {
+    "classnames": "2.5.1",
+    "sass": "1.100.0"
   }
 }

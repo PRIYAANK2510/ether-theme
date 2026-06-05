@@ -1,0 +1,126 @@
+@use "../styles/mixins.scss" as *;
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-topbar);
+  backdrop-filter: blur(16px) saturate(1.2);
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--border);
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+
+  @media (max-width: 720px) {
+    gap: 6px;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    opacity: 0.92;
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: 12px;
+  }
+
+  img {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  &:hover img {
+    transform: scale(1.03);
+  }
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  strong {
+    font-size: 1.12rem;
+    letter-spacing: -0.01em;
+  }
+
+  span {
+    color: var(--muted);
+    font-size: 0.84rem;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+
+  @media (max-width: 640px) {
+    overflow-x: auto;
+    max-width: min(42vw, 200px);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.navLink {
+  @include nav-pill;
+}
+
+.navLinkActive {
+  @include nav-pill-active;
+}
+
+.navCta {
+  @include nav-pill;
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface-2));
+  color: var(--text);
+  font-weight: 600;
+
+  &:hover {
+    border-color: var(--accent-2);
+    color: var(--accent);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 18%, transparent);
+    transform: translateY(-1px);
+  }
+}

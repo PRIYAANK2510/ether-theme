@@ -1,0 +1,127 @@
+@use "../styles/mixins.scss" as *;
+
+.card {
+  @include surface-card;
+  overflow: hidden;
+  padding: 0;
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+
+  &:hover,
+  &:focus-within {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    transform: translateY(-3px);
+    box-shadow:
+      var(--shadow-lg),
+      0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+
+    .previewImage {
+      transform: scale(1.03);
+    }
+
+    .previewOverlay {
+      opacity: 1;
+    }
+  }
+}
+
+.preview {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: var(--code-bg);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.previewImage {
+  width: 100%;
+  display: block;
+  transition: transform var(--duration-slow) var(--ease-out);
+
+  @media (prefers-reduced-motion: no-preference) {
+    will-change: transform;
+  }
+}
+
+.previewOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 35%,
+    color-mix(in srgb, var(--bg) 55%, transparent) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  pointer-events: none;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+}
+
+.title {
+  margin: 0;
+  min-width: 0;
+  flex: 1 1 auto;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.tryPill,
+.previewPill {
+  @include pill-control;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.tryPill {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: var(--border);
+    @include focus-ring;
+  }
+}
+
+.previewPill {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--accent);
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent-2);
+    @include focus-ring;
+  }
+}

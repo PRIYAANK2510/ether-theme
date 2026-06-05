@@ -1,3 +1,4 @@
+import chroma from "chroma-js";
 import { existsSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -15,7 +16,6 @@ import {
 } from "../src/generator/preview-svg/constants.js";
 import { renderReadmePreviewGallery } from "../src/generator/preview-svg/gallery.js";
 import { renderSvgToPng } from "../src/generator/preview-svg/rasterize.js";
-import { THEME_CHARACTER } from "../src/generator/preview-svg/theme-character.js";
 import etherGraphite from "../src/palettes/ether-graphite.js";
 import etherStorm from "../src/palettes/ether-storm.js";
 import { SYNTAX_RULE_COUNT } from "../src/syntax/rules.js";
@@ -81,6 +81,63 @@ describe("theme generator", () => {
   it("uses unique syntax rule names", () => {
     const names = theme.tokenColors.slice(1).map((rule) => rule.name);
     expect(new Set(names).size).toBe(names.length);
+  });
+
+  it("derives distinct stylesheet syntax colors for CSS/SCSS rules", () => {
+    const cssPropertyRule = theme.tokenColors.find(
+      (rule) => rule.name === "CSS / SCSS Property Name",
+    );
+    const classRule = theme.tokenColors.find((rule) => rule.name === "CSS Selector — Class");
+    const valueRule = theme.tokenColors.find((rule) => rule.name === "CSS / SCSS Value Keyword");
+    const objectPropertyRule = theme.tokenColors.find(
+      (rule) => rule.name === "Object Property",
+    );
+
+    expect(cssPropertyRule).toBeDefined();
+    expect(cssPropertyRule.scope).toContain("support.type.property-name.scss");
+    expect(objectPropertyRule.scope).not.toContain("support.type.property-name");
+
+    const property = cssPropertyRule.settings.foreground;
+    const selector = classRule.settings.foreground;
+    const value = valueRule.settings.foreground;
+
+    expect(property.toLowerCase()).not.toBe(selector.toLowerCase());
+    expect(property.toLowerCase()).not.toBe(value.toLowerCase());
+    expect(selector.toLowerCase()).not.toBe(value.toLowerCase());
+  });
+
+  it("keeps stylesheet hues separated across every palette", async () => {
+    const palettes = await loadPalettes();
+
+    for (const entry of palettes) {
+      const composed = composeTheme(entry);
+      const property = composed.tokenColors.find(
+        (rule) => rule.name === "CSS / SCSS Property Name",
+      );
+      const selector = composed.tokenColors.find(
+        (rule) => rule.name === "CSS Selector — Class",
+      );
+      const number = composed.tokenColors.find(
+        (rule) => rule.name === "CSS / SCSS Numeric Value",
+      );
+      const keyword = composed.tokenColors.find(
+        (rule) => rule.name === "CSS / SCSS Value Keyword",
+      );
+
+      const hues = [
+        property.settings.foreground,
+        selector.settings.foreground,
+        number.settings.foreground,
+        keyword.settings.foreground,
+      ].map((hex) => chroma(hex).get("hsl.h"));
+
+      for (let i = 0; i < hues.length; i += 1) {
+        for (let j = i + 1; j < hues.length; j += 1) {
+          const delta = Math.abs(((hues[i] - hues[j] + 540) % 360) - 180);
+          expect(delta).toBeGreaterThanOrEqual(18);
+        }
+      }
+    }
   });
 
   it("composes a complete theme from palette tokens", () => {
@@ -344,9 +401,6 @@ describe("theme generator", () => {
     expect(svg).not.toContain("syntaxGlow");
     expect(svg).toContain('class="title"');
 
-    for (const palette of palettes) {
-      expect(THEME_CHARACTER[palette.id]).toBeTruthy();
-    }
   });
 
   it("keeps editor and sidebar independent when palette defines them separately", () => {

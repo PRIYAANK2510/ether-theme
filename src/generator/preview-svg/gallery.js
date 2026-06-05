@@ -9,7 +9,6 @@ import {
   PREVIEW_README_DIR,
   PREVIEW_README_EXT,
 } from "./constants.js";
-import { THEME_CHARACTER } from "./theme-character.js";
 import { escapeXml } from "./text.js";
 
 /**
@@ -17,15 +16,12 @@ import { escapeXml } from "./text.js";
  * @returns {string}
  */
 function renderGalleryCard(palette) {
-  const character =
-    THEME_CHARACTER[palette.id] ?? "Token-driven dark theme";
   const src = `${PREVIEW_README_DIR}/${palette.id}.${PREVIEW_README_EXT}`;
   const w = PREVIEW_DISPLAY_WIDTH;
 
   return `<div style="flex:0 1 ${w}px;max-width:100%;box-sizing:border-box;margin:0 0 ${PREVIEW_CARD_GAP}px">
 <p style="margin:0 0 ${PREVIEW_CAPTION_GAP}px;text-align:left;line-height:1.45">
-<strong>${escapeXml(palette.label)}</strong><br />
-<em>${escapeXml(character)}</em>
+<strong>${escapeXml(palette.label)}</strong>
 </p>
 <img src="${src}" alt="${escapeXml(palette.label)} dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:${w}px;height:auto;margin:0;border-radius:8px" />
 </div>`;

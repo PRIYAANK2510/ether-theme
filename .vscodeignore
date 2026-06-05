@@ -1,6 +1,10 @@
 src/**
 !src/grammars/syntaxes/**
 !src/grammars/language-configs/**
+apps/**
+shared/**
+site/**
+docs/previews/**
 .cursor/**
 docs/WORKFLOW.md
 tests/**

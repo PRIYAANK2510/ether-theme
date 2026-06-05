@@ -1,0 +1,93 @@
+@use "../mixins.scss" as *;
+
+.pageHeader {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted);
+    max-width: 62ch;
+    line-height: 1.6;
+  }
+}
+
+.heroEyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lead {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  max-width: 58ch;
+  line-height: 1.55;
+}
+
+.leadSpaced {
+  margin-top: 12px;
+}
+
+@mixin section-base {
+  animation: fade-in-up var(--duration-slow) var(--ease-out) both;
+  animation-delay: 0.08s;
+
+  h2 {
+    margin: 0 0 16px;
+    font-size: 1.3rem;
+  }
+}
+
+.section {
+  @include section-base;
+  margin-top: 40px;
+}
+
+.sectionFlush {
+  @include section-base;
+  margin-top: 0;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    @include link-underline;
+  }
+}
+
+.resultMeta {
+  margin: -8px 0 16px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.emptyState {
+  color: var(--muted);
+  padding: 8px 0 16px;
+  font-size: 0.92rem;
+}
