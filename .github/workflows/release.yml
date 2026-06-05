@@ -10,6 +10,8 @@ on:
       - "apps/**"
       - "shared/**"
       - "package.json"
+      - "README.md"
+      - "CHANGELOG.md"
   workflow_dispatch:
     branches: [main]
 

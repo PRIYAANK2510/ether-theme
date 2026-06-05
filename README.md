@@ -1,7 +1,7 @@
 # Ether Themes
 
 <p align="center">
-  <img src="icon.png" alt="Ether Themes logo" width="128" />
+  <img src="https://github.com/PRIYAANK2510/ether-theme/raw/HEAD/icon.png" alt="Ether Themes logo" width="128" />
 </p>
 
 <p align="center">
