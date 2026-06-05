@@ -37,7 +37,7 @@ jobs:
       - run: npm run docs:snippets
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
       - id: deployment
