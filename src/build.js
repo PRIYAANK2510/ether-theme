@@ -4,7 +4,7 @@ import { generateAllThemes, loadPalettes } from "./generator/index.js";
 import { generateAllPreviews } from "./generator/preview-svg/assets.js";
 import { syncReadmePreviewGallery } from "./generator/preview-svg/gallery.js";
 import { generateAllGrammars } from "./grammars/sync.js";
-import { generateSnippetDocs } from "./docs/snippet-docs.js";
+import { generateSite } from "./docs/generate-site.js";
 import { generateAllSnippets } from "./snippets/generator.js";
 
 const skipPreviews = process.argv.includes("--skip-previews");
@@ -75,7 +75,13 @@ for (const file of snippetFiles) {
 
 console.log(`Synced ${snippetContributions.length} snippet contribution(s) to package.json`);
 
-const { catalogCount: docsCount, files: docsFiles } = await generateSnippetDocs();
-console.log(`Generated snippet docs site (${docsCount} definitions, ${docsFiles.length} files)`);
+const {
+  paletteCount: sitePalettes,
+  catalogCount: docsCount,
+  files: docsFiles,
+} = await generateSite();
+console.log(
+  `Generated product site (${sitePalettes} themes, ${docsCount} snippets, ${docsFiles.length} artifacts)`,
+);
 
 console.log("Build complete.");

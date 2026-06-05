@@ -1,4 +1,4 @@
-name: Deploy Snippet Docs
+name: Deploy Site
 
 on:
   push:
@@ -6,6 +6,10 @@ on:
     paths:
       - "src/snippets/**"
       - "src/docs/**"
+      - "src/palettes/**"
+      - "src/generator/**"
+      - "docs/previews/**"
+      - "icon.png"
       - "package.json"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
@@ -34,7 +38,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run docs:snippets
+      - run: npm run docs:site
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5

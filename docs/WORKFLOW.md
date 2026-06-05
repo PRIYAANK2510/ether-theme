@@ -102,7 +102,7 @@ Same steps as automatic release (check → bump → publish → tag). Useful whe
 
 ## Snippet docs (GitHub Pages)
 
-**Live site:** https://priyaank2510.github.io/ether-theme/snippets/
+**Live site:** https://priyaank2510.github.io/ether-theme/ (themes + snippets)
 
 ### One-time setup
 
@@ -141,5 +141,6 @@ Open http://127.0.0.1:4173/ether-theme/snippets/
 | Push to main, no publish  | Commit message includes `[skip release]`            |
 | Ship a release            | Push to `main` (source/themes/package.json changes) |
 | Publish from your machine | `npm run publish:local`                             |
-| Snippet docs site         | https://priyaank2510.github.io/ether-theme/snippets/ |
-| Regenerate docs locally   | `npm run docs:snippets`                             |
+| Product site              | https://priyaank2510.github.io/ether-theme/          |
+| Snippet catalog           | https://priyaank2510.github.io/ether-theme/snippets/ |
+| Regenerate site locally   | `npm run docs:site`                                  |

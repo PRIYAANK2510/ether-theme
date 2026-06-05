@@ -17,6 +17,8 @@
   &nbsp;·&nbsp;
   <a href="https://open-vsx.org/extension/Priyaank/ether-theme"><strong>Install on Cursor</strong></a>
   &nbsp;·&nbsp;
+  <a href="https://PRIYAANK2510.github.io/ether-theme/"><strong>Website</strong></a>
+  &nbsp;·&nbsp;
   <a href="https://PRIYAANK2510.github.io/ether-theme/snippets/"><strong>Snippet Documentation</strong></a>
   &nbsp;·&nbsp;
   <a href="https://github.com/PRIYAANK2510/ether-theme"><strong>GitHub</strong></a>
