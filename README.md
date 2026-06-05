@@ -40,7 +40,7 @@ ext install Priyaank.ether-theme
 
 - **25 dark themes** — Distinct palettes from navy-teal to warm stone, including Dracula-style and Catppuccin-style options
 - **496 snippets** — React 19, Next.js App Router, TanStack Query, Zod, Vitest, Node/Express — type a prefix, press Tab
-- **Built-in grammars** — Kotlin (`.kt`, `.kts`), ProGuard/R8, and Dotenv — no separate language extensions required
+- **Built-in grammars** — Kotlin, AIDL, ProGuard/R8, and Dotenv — no separate Android language extensions required
 - **Readable by design** — WCAG contrast checks at build time; comments tuned to match active gutter line numbers
 - **Works everywhere** — Published on the VS Code Marketplace and Open VSX for Cursor
 
@@ -275,15 +275,16 @@ High-DPI editor mockups — regenerated on `npm run build`.
 
 ## Language support
 
-Bundled TextMate grammars and **37 file associations** for Android, JVM, and everyday config files.
+Bundled TextMate grammars and **38 file associations** tuned for Android Studio–style projects.
 
-| Grammar | Extensions |
+| Grammar | Extensions &amp; files |
 | --- | --- |
-| **Kotlin** | `.kt`, `.kts`, `*.gradle.kts` |
-| **ProGuard / R8** | `.pro`, `.keep` |
+| **Kotlin** | `.kt`, `.kts`, `build.gradle.kts`, `settings.gradle.kts` — Compose &amp; Android annotations |
+| **AIDL** | `.aidl` — interfaces, parcelables, enums, unions |
+| **ProGuard / R8** | `.pro`, `.keep`, `proguard-rules.pro`, `consumer-rules.pro` |
 | **Dotenv** | `.env`, `.env.*` |
 
-Also maps Groovy Gradle scripts, Java AIDL, properties, YAML, Docker, Makefile, and more to built-in VS Code languages.
+**Android associations:** `AndroidManifest.xml`, `res/layout|values|drawable|navigation|xml|menu|color|anim/**`, `libs.versions.toml`, `google-services.json`, Gradle wrapper properties, Groovy `.gradle` scripts, and more.
 
 ## Contributing
 

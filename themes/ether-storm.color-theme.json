@@ -1029,10 +1029,38 @@
         "keyword.operator.logical.kotlin",
         "keyword.operator.increment-decrement.kotlin",
         "keyword.operator.range.kotlin",
+        "keyword.operator.elvis.kotlin",
+        "keyword.operator.safe-access.kotlin",
+        "keyword.operator.not-null.kotlin",
         "variable.language.wildcard.kotlin"
       ],
       "settings": {
         "foreground": "#9898E8",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Kotlin — Annotation & Compose",
+      "scope": [
+        "entity.name.type.annotation.kotlin",
+        "entity.name.type.annotation-site.kotlin",
+        "entity.name.type.annotation.compose.kotlin",
+        "entity.name.type.annotation.android.kotlin"
+      ],
+      "settings": {
+        "foreground": "#88B4F0",
+        "fontStyle": "italic underline"
+      }
+    },
+    {
+      "name": "Kotlin — Parameter & Receiver",
+      "scope": [
+        "variable.parameter.kotlin",
+        "variable.language.this.kotlin",
+        "variable.string-escape.kotlin"
+      ],
+      "settings": {
+        "foreground": "#6898D8",
         "fontStyle": "italic"
       }
     },
@@ -1066,6 +1094,69 @@
       "settings": {
         "foreground": "#5E6470",
         "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "ProGuard — Directive & Rule",
+      "scope": [
+        "keyword.control.directive.proguard",
+        "keyword.control.keep.proguard",
+        "keyword.declaration.proguard",
+        "keyword.other.member.proguard",
+        "constant.character.wildcard.proguard",
+        "comment.line.number-sign.proguard"
+      ],
+      "settings": {
+        "foreground": "#9898E8",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "ProGuard — Type & Member",
+      "scope": [
+        "storage.modifier.proguard",
+        "storage.type.primitive.proguard",
+        "storage.type.annotation.proguard",
+        "entity.name.type.class.proguard",
+        "entity.name.function.constructor.proguard",
+        "meta.rule.body.proguard"
+      ],
+      "settings": {
+        "foreground": "#E0C878"
+      }
+    },
+    {
+      "name": "AIDL — Keyword & Modifier",
+      "scope": [
+        "keyword.aidl",
+        "storage.modifier.aidl",
+        "storage.type.constant.aidl",
+        "storage.type.interface.aidl",
+        "storage.type.parcelable.aidl",
+        "storage.type.enum.aidl",
+        "storage.type.union.aidl",
+        "storage.type.annotation.aidl"
+      ],
+      "settings": {
+        "foreground": "#9898E8",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "AIDL — Type & Declaration",
+      "scope": [
+        "entity.name.type.aidl",
+        "entity.name.type.interface.aidl",
+        "entity.name.type.parcelable.aidl",
+        "entity.name.type.enum.aidl",
+        "entity.name.type.union.aidl",
+        "entity.name.function.aidl",
+        "entity.name.constant.aidl",
+        "entity.name.namespace.aidl",
+        "support.class.aidl"
+      ],
+      "settings": {
+        "foreground": "#E0C878"
       }
     },
     {

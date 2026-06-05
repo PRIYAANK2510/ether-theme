@@ -11,9 +11,14 @@
 export const LANGUAGE_CATALOG = [
     {
         id: "kotlin",
-        aliases: ["Kotlin"],
+        aliases: ["Kotlin", "Kotlin DSL", "Gradle Kotlin DSL"],
         extensions: [".kt", ".kts"],
-        filenamePatterns: ["*.gradle.kts"],
+        filenamePatterns: [
+            "*.gradle.kts",
+            "build.gradle.kts",
+            "settings.gradle.kts",
+            "init.gradle.kts",
+        ],
         configuration: "./src/grammars/language-configs/kotlin-language-configuration.json",
         grammar: {
             scopeName: "source.kotlin",
@@ -21,10 +26,27 @@ export const LANGUAGE_CATALOG = [
         },
     },
     {
+        id: "aidl",
+        aliases: ["AIDL", "Android Interface Definition Language"],
+        extensions: [".aidl"],
+        configuration: "./src/grammars/language-configs/aidl-language-configuration.json",
+        grammar: {
+            scopeName: "source.aidl",
+            path: "./src/grammars/syntaxes/aidl.tmLanguage.json",
+        },
+    },
+    {
         id: "proguard",
-        aliases: ["ProGuard", "R8"],
+        aliases: ["ProGuard", "R8", "Shrinker Rules"],
         extensions: [".pro", ".keep"],
-        filenamePatterns: ["proguard-rules.pro", "**/proguard-rules.pro"],
+        filenamePatterns: [
+            "proguard-rules.pro",
+            "**/proguard-rules.pro",
+            "consumer-rules.pro",
+            "**/consumer-rules.pro",
+            "proguard-android-optimize.pro",
+            "**/proguard-android-optimize.pro",
+        ],
         configuration: "./src/grammars/language-configs/proguard-language-configuration.json",
         grammar: {
             scopeName: "source.proguard",
@@ -42,22 +64,23 @@ export const LANGUAGE_CATALOG = [
         },
     },
 
-    // Android / JVM — built-in grammars
+    // Android / JVM — built-in grammars + file associations
     {
         id: "groovy",
         aliases: ["Groovy", "Gradle"],
-        filenamePatterns: ["build.gradle", "settings.gradle"],
+        filenamePatterns: ["build.gradle", "settings.gradle", "gradle.gradle", "*.gradle"],
     },
     {
         id: "java",
         aliases: ["Java"],
-        extensions: [".aidl"],
+        extensions: [".java"],
     },
     {
         id: "properties",
-        aliases: ["Properties"],
+        aliases: ["Properties", "Gradle Properties"],
         extensions: [".properties"],
-        filenames: ["gradle.properties", "local.properties"],
+        filenames: ["gradle.properties", "local.properties", "gradle-wrapper.properties"],
+        filenamePatterns: ["**/gradle/wrapper/gradle-wrapper.properties"],
     },
 
     // Config & markup — built-in grammars
@@ -68,9 +91,10 @@ export const LANGUAGE_CATALOG = [
     },
     {
         id: "toml",
-        aliases: ["TOML"],
+        aliases: ["TOML", "Version Catalog"],
         extensions: [".toml"],
-        filenames: ["Cargo.toml", "pyproject.toml"],
+        filenames: ["Cargo.toml", "pyproject.toml", "libs.versions.toml"],
+        filenamePatterns: ["**/gradle/libs.versions.toml"],
     },
     {
         id: "yaml",
@@ -80,15 +104,44 @@ export const LANGUAGE_CATALOG = [
     },
     {
         id: "xml",
-        aliases: ["XML"],
+        aliases: ["XML", "Android Resources"],
         extensions: [".svg", ".plist", ".xaml", ".csproj", ".vbproj", ".proj", ".wxs", ".wxi"],
-        filenames: ["AndroidManifest.xml"],
+        filenames: [
+            "AndroidManifest.xml",
+            "lint.xml",
+            "network_security_config.xml",
+            "backup_rules.xml",
+            "data_extraction_rules.xml",
+            "file_paths.xml",
+            "shortcuts.xml",
+        ],
+        filenamePatterns: [
+            "**/AndroidManifest.xml",
+            "**/res/layout/**/*.xml",
+            "**/res/layout-*/**/*.xml",
+            "**/res/values/**/*.xml",
+            "**/res/values-*/**/*.xml",
+            "**/res/drawable/**/*.xml",
+            "**/res/drawable-*/**/*.xml",
+            "**/res/navigation/**/*.xml",
+            "**/res/xml/**/*.xml",
+            "**/res/menu/**/*.xml",
+            "**/res/color/**/*.xml",
+            "**/res/anim/**/*.xml",
+            "**/res/raw/**/*.xml",
+            "**/res/mipmap/**/*.xml",
+        ],
     },
     {
         id: "json",
         aliases: ["JSON"],
         extensions: [".jsonc", ".json5", ".webmanifest", ".code-workspace"],
-        filenames: ["package-lock.json", "composer.lock"],
+        filenames: [
+            "package-lock.json",
+            "composer.lock",
+            "google-services.json",
+            "google-services-plugin.json",
+        ],
     },
     {
         id: "markdown",
@@ -233,8 +286,8 @@ export const LANGUAGE_CATALOG = [
     },
 ];
 
-/** Number of language catalog entries. */
-export const LANGUAGE_CATALOG_COUNT = LANGUAGE_CATALOG.length;
+/** Number of language catalog entries (must match {@link LANGUAGE_CATALOG}.length). */
+export const LANGUAGE_CATALOG_COUNT = 38;
 
 /**
  * @param {LanguageDefinition[]} catalog

@@ -1,9 +1,9 @@
 {
   "name": "ether-theme",
   "displayName": "Ether Themes",
-  "description": "Ether Themes — 25 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Kotlin, Android & Dotenv syntax highlighting for VS Code and Cursor.",
+  "description": "Ether Themes — 25 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
   "publisher": "PRIYAANK2510",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "icon": "icon.png",
   "galleryBanner": {
     "color": "#101828",
@@ -234,6 +234,17 @@
     ],
     "languages": [
       {
+        "id": "aidl",
+        "aliases": [
+          "AIDL",
+          "Android Interface Definition Language"
+        ],
+        "extensions": [
+          ".aidl"
+        ],
+        "configuration": "./src/grammars/language-configs/aidl-language-configuration.json"
+      },
+      {
         "id": "bat",
         "aliases": [
           "Batch"
@@ -349,7 +360,9 @@
         ],
         "filenamePatterns": [
           "build.gradle",
-          "settings.gradle"
+          "settings.gradle",
+          "gradle.gradle",
+          "*.gradle"
         ]
       },
       {
@@ -401,7 +414,7 @@
           "Java"
         ],
         "extensions": [
-          ".aidl"
+          ".java"
         ]
       },
       {
@@ -427,20 +440,27 @@
         ],
         "filenames": [
           "package-lock.json",
-          "composer.lock"
+          "composer.lock",
+          "google-services.json",
+          "google-services-plugin.json"
         ]
       },
       {
         "id": "kotlin",
         "aliases": [
-          "Kotlin"
+          "Kotlin",
+          "Kotlin DSL",
+          "Gradle Kotlin DSL"
         ],
         "extensions": [
           ".kt",
           ".kts"
         ],
         "filenamePatterns": [
-          "*.gradle.kts"
+          "*.gradle.kts",
+          "build.gradle.kts",
+          "settings.gradle.kts",
+          "init.gradle.kts"
         ],
         "configuration": "./src/grammars/language-configs/kotlin-language-configuration.json"
       },
@@ -521,7 +541,8 @@
         "id": "proguard",
         "aliases": [
           "ProGuard",
-          "R8"
+          "R8",
+          "Shrinker Rules"
         ],
         "extensions": [
           ".pro",
@@ -529,21 +550,30 @@
         ],
         "filenamePatterns": [
           "proguard-rules.pro",
-          "**/proguard-rules.pro"
+          "**/proguard-rules.pro",
+          "consumer-rules.pro",
+          "**/consumer-rules.pro",
+          "proguard-android-optimize.pro",
+          "**/proguard-android-optimize.pro"
         ],
         "configuration": "./src/grammars/language-configs/proguard-language-configuration.json"
       },
       {
         "id": "properties",
         "aliases": [
-          "Properties"
+          "Properties",
+          "Gradle Properties"
         ],
         "extensions": [
           ".properties"
         ],
         "filenames": [
           "gradle.properties",
-          "local.properties"
+          "local.properties",
+          "gradle-wrapper.properties"
+        ],
+        "filenamePatterns": [
+          "**/gradle/wrapper/gradle-wrapper.properties"
         ]
       },
       {
@@ -634,14 +664,19 @@
       {
         "id": "toml",
         "aliases": [
-          "TOML"
+          "TOML",
+          "Version Catalog"
         ],
         "extensions": [
           ".toml"
         ],
         "filenames": [
           "Cargo.toml",
-          "pyproject.toml"
+          "pyproject.toml",
+          "libs.versions.toml"
+        ],
+        "filenamePatterns": [
+          "**/gradle/libs.versions.toml"
         ]
       },
       {
@@ -657,7 +692,8 @@
       {
         "id": "xml",
         "aliases": [
-          "XML"
+          "XML",
+          "Android Resources"
         ],
         "extensions": [
           ".svg",
@@ -670,7 +706,29 @@
           ".wxi"
         ],
         "filenames": [
-          "AndroidManifest.xml"
+          "AndroidManifest.xml",
+          "lint.xml",
+          "network_security_config.xml",
+          "backup_rules.xml",
+          "data_extraction_rules.xml",
+          "file_paths.xml",
+          "shortcuts.xml"
+        ],
+        "filenamePatterns": [
+          "**/AndroidManifest.xml",
+          "**/res/layout/**/*.xml",
+          "**/res/layout-*/**/*.xml",
+          "**/res/values/**/*.xml",
+          "**/res/values-*/**/*.xml",
+          "**/res/drawable/**/*.xml",
+          "**/res/drawable-*/**/*.xml",
+          "**/res/navigation/**/*.xml",
+          "**/res/xml/**/*.xml",
+          "**/res/menu/**/*.xml",
+          "**/res/color/**/*.xml",
+          "**/res/anim/**/*.xml",
+          "**/res/raw/**/*.xml",
+          "**/res/mipmap/**/*.xml"
         ]
       },
       {
@@ -688,6 +746,11 @@
       }
     ],
     "grammars": [
+      {
+        "language": "aidl",
+        "scopeName": "source.aidl",
+        "path": "./src/grammars/syntaxes/aidl.tmLanguage.json"
+      },
       {
         "language": "dotenv",
         "scopeName": "source.dotenv",

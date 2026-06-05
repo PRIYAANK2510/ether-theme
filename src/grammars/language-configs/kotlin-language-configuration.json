@@ -21,5 +21,15 @@
         ["(", ")"],
         ["\"", "\""],
         ["'", "'"]
-    ]
+    ],
+    "folding": {
+        "markers": {
+            "start": "^\\s*//\\s*<editor-fold\\b",
+            "end": "^\\s*//\\s*</editor-fold\\b"
+        }
+    },
+    "indentationRules": {
+        "increaseIndentPattern": "^((?!//).)*(\\{[^}\"'`]*|\\([^)\"'`]*|\\[[^\\]\"'`]*)$",
+        "decreaseIndentPattern": "^\\s*(\\}|\\)|\\])\\s*(//.*)?$"
+    }
 }

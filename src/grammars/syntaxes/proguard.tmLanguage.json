@@ -1,56 +1,78 @@
 {
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "ProGuard",
     "scopeName": "source.proguard",
-    "fileTypes": ["pro", "proguard"],
+    "fileTypes": ["pro", "proguard", "keep"],
     "patterns": [
-        {
-            "begin": "#",
-            "end": "$",
-            "name": "comment"
+        { "include": "#comments" },
+        { "include": "#directives" },
+        { "include": "#class-spec" }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "begin": "#",
+                    "end": "$",
+                    "name": "comment.line.number-sign.proguard"
+                }
+            ]
         },
-        {
-            "match": "^-(?:[a-z]+,?)+",
-            "name": "string"
+        "directives": {
+            "patterns": [
+                {
+                    "match": "^-(include|injars|outjars|libraryjars|keepdirectories|keepdirectories|printmapping|printseeds|printusage|printconfiguration|dump|addconfigurationdebugging|dontskipnonpubliclibraryclasses|dontskipnonpubliclibraryclassmembers|dontpreverify|verbose|dontnote|dontwarn|ignorewarnings|allowaccessmodification|repackageclasses|flattenpackagehierarchy|adaptclassstrings|adaptresourcefilenames|adaptresourcefilecontents|keeppackagenames|renamesourcefileattribute|keepparameternames|keepattributes|assumenosideeffects|assumevalues|optimizations|optimizationpasses|dontoptimize|dontobfuscate|dontshrink|if|else|then)\\b",
+                    "name": "keyword.control.directive.proguard"
+                },
+                {
+                    "match": "^-(keep(?:classmembers|classeswithmembers|names|classmembernames)?)\\b",
+                    "name": "keyword.control.keep.proguard"
+                },
+                {
+                    "match": "<init>",
+                    "name": "entity.name.function.constructor.proguard"
+                },
+                {
+                    "match": "\\*",
+                    "name": "constant.character.wildcard.proguard"
+                }
+            ]
         },
-        {
-            "match": "-(optimizations|dontwarn|assumenosideeffects)\\>",
-            "name": "keyword.control"
-        },
-        {
-            "match": "-(dontshrink|dontoptimize|dontobfuscate)\\>",
-            "name": "keyword.control"
-        },
-        {
-            "match": "\\*",
-            "name": "keyword"
-        },
-        {
-            "match": "<(fields|methods)>",
-            "name": "keyword"
-        },
-        {
-            "match": "\\b(boolean|char|byte|short|int|long|float|double|void)\\b",
-            "name": "storage.type"
-        },
-        {
-            "match": "\\b(static|transient|final|native)\\b",
-            "name": "storage"
-        },
-        {
-            "match": "\\b(public|protected|private|abstract)\\b",
-            "name": "storage.modifier"
-        },
-        {
-            "match": "\\b(class|enum|extends|implements|interface)\\b",
-            "name": "support.class"
-        },
-        {
-            "match": "@([_$a-zA-Z][_$a-zA-Z0-9]*\\.)*[_$a-zA-Z][_$a-zA-Z0-9]*\\>",
-            "name": "string"
-        },
-        {
-            "match": "<[^\\>]+\\>",
-            "name": "storage.type"
+        "class-spec": {
+            "patterns": [
+                {
+                    "match": "\\b(public|protected|private|abstract|static|final|native|synchronized|transient|volatile|strictfp|bridge|varargs|enum)\\b",
+                    "name": "storage.modifier.proguard"
+                },
+                {
+                    "match": "\\b(class|interface|enum|extends|implements|annotation)\\b",
+                    "name": "keyword.declaration.proguard"
+                },
+                {
+                    "match": "\\b(boolean|byte|char|short|int|long|float|double|void)\\b",
+                    "name": "storage.type.primitive.proguard"
+                },
+                {
+                    "match": "<(clinit|fields|methods|init|init\\s*\\([^)]*\\))>",
+                    "name": "keyword.other.member.proguard"
+                },
+                {
+                    "match": "@[_$a-zA-Z][_$a-zA-Z0-9]*(\\.[_$a-zA-Z][_$a-zA-Z0-9]*)*",
+                    "name": "storage.type.annotation.proguard"
+                },
+                {
+                    "match": "\\b[_$a-zA-Z][_$a-zA-Z0-9]*(\\.[_$a-zA-Z][_$a-zA-Z0-9$]*)*\\b",
+                    "name": "entity.name.type.class.proguard"
+                },
+                {
+                    "match": "\\{[^}]*\\}",
+                    "name": "meta.rule.body.proguard"
+                },
+                {
+                    "match": ";",
+                    "name": "punctuation.terminator.proguard"
+                }
+            ]
         }
-    ]
+    }
 }

@@ -735,9 +735,35 @@ const syntaxRuleDefinitions = [
       "keyword.operator.logical.kotlin",
       "keyword.operator.increment-decrement.kotlin",
       "keyword.operator.range.kotlin",
+      "keyword.operator.elvis.kotlin",
+      "keyword.operator.safe-access.kotlin",
+      "keyword.operator.not-null.kotlin",
       "variable.language.wildcard.kotlin",
     ],
     role: "keyword",
+    fontStyle: "italic",
+  },
+
+  {
+    name: "Kotlin — Annotation & Compose",
+    scope: [
+      "entity.name.type.annotation.kotlin",
+      "entity.name.type.annotation-site.kotlin",
+      "entity.name.type.annotation.compose.kotlin",
+      "entity.name.type.annotation.android.kotlin",
+    ],
+    role: "function",
+    fontStyle: "italic underline",
+  },
+
+  {
+    name: "Kotlin — Parameter & Receiver",
+    scope: [
+      "variable.parameter.kotlin",
+      "variable.language.this.kotlin",
+      "variable.string-escape.kotlin",
+    ],
+    role: "variable",
     fontStyle: "italic",
   },
 
@@ -769,6 +795,65 @@ const syntaxRuleDefinitions = [
     ],
     role: "comment",
     fontStyle: "italic",
+  },
+
+  {
+    name: "ProGuard — Directive & Rule",
+    scope: [
+      "keyword.control.directive.proguard",
+      "keyword.control.keep.proguard",
+      "keyword.declaration.proguard",
+      "keyword.other.member.proguard",
+      "constant.character.wildcard.proguard",
+      "comment.line.number-sign.proguard",
+    ],
+    role: "keyword",
+    fontStyle: "italic",
+  },
+
+  {
+    name: "ProGuard — Type & Member",
+    scope: [
+      "storage.modifier.proguard",
+      "storage.type.primitive.proguard",
+      "storage.type.annotation.proguard",
+      "entity.name.type.class.proguard",
+      "entity.name.function.constructor.proguard",
+      "meta.rule.body.proguard",
+    ],
+    role: "type",
+  },
+
+  {
+    name: "AIDL — Keyword & Modifier",
+    scope: [
+      "keyword.aidl",
+      "storage.modifier.aidl",
+      "storage.type.constant.aidl",
+      "storage.type.interface.aidl",
+      "storage.type.parcelable.aidl",
+      "storage.type.enum.aidl",
+      "storage.type.union.aidl",
+      "storage.type.annotation.aidl",
+    ],
+    role: "keyword",
+    fontStyle: "italic",
+  },
+
+  {
+    name: "AIDL — Type & Declaration",
+    scope: [
+      "entity.name.type.aidl",
+      "entity.name.type.interface.aidl",
+      "entity.name.type.parcelable.aidl",
+      "entity.name.type.enum.aidl",
+      "entity.name.type.union.aidl",
+      "entity.name.function.aidl",
+      "entity.name.constant.aidl",
+      "entity.name.namespace.aidl",
+      "support.class.aidl",
+    ],
+    role: "type",
   },
 
   {

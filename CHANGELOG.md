@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.14] - 2026-06-05
+
+### Added
+
+- **AIDL grammar** — bundled Android Interface Definition Language highlighting (`.aidl`)
+- **38 Android file associations** — `res/**` XML, `libs.versions.toml`, `google-services.json`, Gradle wrapper properties, `consumer-rules.pro`, and more
+
+### Changed
+
+- **Kotlin grammar** — Compose & Android annotations, `expect`/`actual`, `?.` / `!!` / `?:`, `where` constraints, folding, and indentation
+- **ProGuard / R8 grammar** — rewritten with proper `.proguard` scopes for keep rules, directives, and member specs
+- **Theme syntax rules** expanded from **61** to **67** — Kotlin annotations, ProGuard, and AIDL token colors across all 25 palettes
+
 ## [0.2.13] - 2026-06-05
 
 ### Changed
@@ -233,6 +246,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.7]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.7
 [0.2.8]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.8
 [0.2.10]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.10
+[0.2.14]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.14
 [0.2.13]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.13
 [0.2.12]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.12
 [0.2.11]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.11

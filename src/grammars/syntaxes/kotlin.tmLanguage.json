@@ -66,6 +66,12 @@
                     "include": "#keywords"
                 },
                 {
+                    "include": "#compose-annotations"
+                },
+                {
+                    "include": "#android-annotations"
+                },
+                {
                     "include": "#annotation-simple"
                 },
                 {
@@ -259,8 +265,20 @@
             "name": "keyword.soft.kotlin"
         },
         "hard-keywords": {
-            "match": "\\b(as|typeof|is|in)\\b",
+            "match": "\\b(as|typeof|is|in|expect|actual|import|package)\\b",
             "name": "keyword.hard.kotlin"
+        },
+        "type-constraint": {
+            "match": "\\bwhere\\b",
+            "name": "keyword.control.kotlin"
+        },
+        "compose-annotations": {
+            "match": "@(Composable|Preview|PreviewScreen|PreviewLightDark|PreviewFontScale|Stable|Immutable|UiComposable|GlanceComposable|JvmStatic|JvmOverloads|JvmField|Parcelize|Serializable|Suppress|Deprecated|SinceKotlin|OptIn)\\b",
+            "name": "entity.name.type.annotation.compose.kotlin"
+        },
+        "android-annotations": {
+            "match": "@(SuppressLint|Keep|RequiresApi|TargetApi|IntDef|StringDef|RestrictTo|VisibleForTesting|CheckResult|CallSuper|UiThread|MainThread|WorkerThread|BinderThread|AnyThread|NonNull|Nullable|Size|IntRange|FloatRange|Dimension|Px|GuardedBy|RequiresPermission|RequiresFeature)\\b",
+            "name": "entity.name.type.annotation.android.kotlin"
         },
         "control-keywords": {
             "match": "\\b(if|else|while|do|when|try|throw|break|continue|return|for)\\b",
@@ -569,6 +587,18 @@
                 {
                     "match": "(\\.\\.)",
                     "name": "keyword.operator.range.kotlin"
+                },
+                {
+                    "match": "\\?\\:",
+                    "name": "keyword.operator.elvis.kotlin"
+                },
+                {
+                    "match": "\\?\\.",
+                    "name": "keyword.operator.safe-access.kotlin"
+                },
+                {
+                    "match": "!!",
+                    "name": "keyword.operator.not-null.kotlin"
                 }
             ]
         },

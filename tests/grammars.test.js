@@ -17,11 +17,11 @@ describe("grammar catalog", () => {
         expect(LANGUAGE_CATALOG).toHaveLength(LANGUAGE_CATALOG_COUNT);
     });
 
-    it("bundles kotlin, proguard, and dotenv grammars", () => {
+    it("bundles kotlin, aidl, proguard, and dotenv grammars", () => {
         const grammars = buildGrammarContributions(LANGUAGE_CATALOG);
         const languages = new Set(grammars.map((entry) => entry.language));
 
-        expect(languages).toEqual(new Set(["dotenv", "kotlin", "proguard"]));
+        expect(languages).toEqual(new Set(["aidl", "dotenv", "kotlin", "proguard"]));
     });
 
     it("maps android project file patterns to the right languages", () => {
@@ -29,11 +29,18 @@ describe("grammar catalog", () => {
         const byId = Object.fromEntries(languages.map((entry) => [entry.id, entry]));
 
         expect(byId.kotlin.extensions).toContain(".kts");
-        expect(byId.kotlin.filenamePatterns).toContain("*.gradle.kts");
+        expect(byId.kotlin.filenamePatterns).toContain("build.gradle.kts");
+        expect(byId.aidl.extensions).toContain(".aidl");
         expect(byId.proguard.extensions).toContain(".keep");
+        expect(byId.proguard.filenamePatterns).toContain("consumer-rules.pro");
         expect(byId.groovy.filenamePatterns).toContain("build.gradle");
-        expect(byId.java.extensions).toContain(".aidl");
+        expect(byId.java.extensions).toContain(".java");
         expect(byId.properties.filenames).toContain("gradle.properties");
+        expect(byId.properties.filenamePatterns).toContain("**/gradle/wrapper/gradle-wrapper.properties");
+        expect(byId.toml.filenamePatterns).toContain("**/gradle/libs.versions.toml");
+        expect(byId.xml.filenamePatterns).toContain("**/res/layout/**/*.xml");
+        expect(byId.xml.filenames).toContain("network_security_config.xml");
+        expect(byId.json.filenames).toContain("google-services.json");
     });
 
     it("references grammar files that exist on disk", () => {
@@ -58,7 +65,7 @@ describe("grammar catalog", () => {
 
         expect(first).toEqual(second);
         expect(first.languages.length).toBeGreaterThan(20);
-        expect(first.grammars).toHaveLength(3);
+        expect(first.grammars).toHaveLength(4);
     });
 
     it("keeps bundled grammars in the published VSIX", () => {
