@@ -26,7 +26,11 @@ describe("snippet docs site", () => {
     expect(existsSync(join(rootDir, "site", "index.html"))).toBe(true);
     expect(existsSync(join(rootDir, "site", ".nojekyll"))).toBe(true);
     expect(existsSync(join(siteDir, "assets", "snippets.css"))).toBe(true);
-    expect(existsSync(join(siteDir, "assets", "icon.png"))).toBe(true);
+    expect(existsSync(join(siteDir, "assets", "favicon-16.png"))).toBe(true);
+    expect(existsSync(join(siteDir, "assets", "favicon-32.png"))).toBe(true);
+    expect(existsSync(join(siteDir, "assets", "apple-touch-icon.png"))).toBe(true);
+    expect(existsSync(join(siteDir, "assets", "logo.png"))).toBe(true);
+    expect(existsSync(join(rootDir, "site", "favicon.png"))).toBe(true);
 
     for (const { language } of SNIPPET_LANGUAGES) {
       const slug = LANGUAGE_META[language].slug;
@@ -38,9 +42,12 @@ describe("snippet docs site", () => {
     await generateSnippetDocs(siteDir);
     const index = readFileSync(join(siteDir, "index.html"), "utf8");
     expect(index).toContain(`${PAGES_BASE}/assets/snippets.css`);
-    expect(index).toContain(`${PAGES_BASE}/assets/icon.png`);
+    expect(index).toContain(`${PAGES_BASE}/assets/favicon-32.png`);
+    expect(index).toContain(`${PAGES_BASE}/assets/favicon-16.png`);
+    expect(index).toContain(`${PAGES_BASE}/assets/logo.png`);
     expect(index).toContain("<title>Ether Snippet Catalog — 496 VS Code &amp; Cursor Snippets</title>");
     expect(index).toContain('rel="icon"');
+    expect(index).toContain('rel="apple-touch-icon"');
     expect(index).toContain("Complete snippet catalog");
     expect(index).toContain('id="snippet-search"');
 

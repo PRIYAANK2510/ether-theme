@@ -1,6 +1,7 @@
 import { copyFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import sharp from "sharp";
 import { loadSnippetCatalogWithMeta } from "../snippets/catalog/index.js";
 import { SNIPPET_LANGUAGES } from "../snippets/registry.js";
 
@@ -17,6 +18,15 @@ const VS_MARKETPLACE =
   "https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme";
 const OPEN_VSX = "https://open-vsx.org/extension/Priyaank/ether-theme";
 const GITHUB_REPO = "https://github.com/PRIYAANK2510/ether-theme";
+const THEME_ICON = join(rootDir, "icon.png");
+
+/** @type {const} */
+const BRAND_ASSETS = [
+  { name: "favicon-16.png", size: 16 },
+  { name: "favicon-32.png", size: 32 },
+  { name: "apple-touch-icon.png", size: 180 },
+  { name: "logo.png", size: 128 },
+];
 
 /** @type {Record<string, { label: string, extensions: string, slug: string }>} */
 export const LANGUAGE_META = {
@@ -354,7 +364,10 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function renderHead(canonicalPath, pageTitle, description) {
   const canonical = `${PAGES_URL}${canonicalPath === "/" ? "" : canonicalPath.replace(/^\//, "")}`;
-  const icon = `${PAGES_BASE}/assets/icon.png`;
+  const favicon16 = `${PAGES_BASE}/assets/favicon-16.png`;
+  const favicon32 = `${PAGES_BASE}/assets/favicon-32.png`;
+  const appleTouchIcon = `${PAGES_BASE}/assets/apple-touch-icon.png`;
+  const ogImage = `${PAGES_URL}assets/apple-touch-icon.png`;
   return `<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escapeHtml(pageTitle)}</title>
@@ -362,14 +375,15 @@ function renderHead(canonicalPath, pageTitle, description) {
   <meta name="theme-color" content="${BRAND_COLOR}" />
   <meta name="author" content="Priyaank" />
   <link rel="canonical" href="${canonical}" />
-  <link rel="icon" href="${icon}" type="image/png" sizes="32x32" />
-  <link rel="apple-touch-icon" href="${icon}" />
+  <link rel="icon" href="${favicon32}" type="image/png" sizes="32x32" />
+  <link rel="icon" href="${favicon16}" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="${appleTouchIcon}" sizes="180x180" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="${SITE_NAME}" />
   <meta property="og:title" content="${escapeHtml(pageTitle)}" />
   <meta property="og:description" content="${escapeHtml(description)}" />
   <meta property="og:url" content="${canonical}" />
-  <meta property="og:image" content="${icon}" />
+  <meta property="og:image" content="${ogImage}" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="${escapeHtml(pageTitle)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
@@ -402,7 +416,7 @@ function renderTopbar(active) {
   return `<header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="${PAGES_BASE}/">
-      <img src="${PAGES_BASE}/assets/icon.png" width="44" height="44" alt="Ether Themes icon" />
+      <img src="${PAGES_BASE}/assets/logo.png" width="44" height="44" alt="Ether Themes logo" />
       <div class="brand-text">
         <strong>${SITE_NAME}</strong>
         <span>496 snippets · VS Code &amp; Cursor</span>
@@ -666,6 +680,21 @@ function buildIndexPage(catalog) {
 }
 
 /**
+ * @param {string} assetsDir
+ */
+async function writeBrandAssets(assetsDir) {
+  await Promise.all(
+    BRAND_ASSETS.map(({ name, size }) =>
+      sharp(THEME_ICON)
+        .resize(size, size, { fit: "contain", background: "#000000" })
+        .png()
+        .toFile(join(assetsDir, name)),
+    ),
+  );
+  copyFileSync(join(assetsDir, "favicon-32.png"), join(siteRootDir, "favicon.png"));
+}
+
+/**
  * @param {string} [outputDir]
  */
 function writeSiteRedirect() {
@@ -680,7 +709,7 @@ function writeSiteRedirect() {
 </head>
 <body class="redirect-page">
   <main class="redirect-card">
-    <img src="${PAGES_BASE}/assets/icon.png" width="64" height="64" alt="" />
+    <img src="${PAGES_BASE}/assets/logo.png" width="64" height="64" alt="" />
     <h1>Snippet Documentation</h1>
     <p>496 searchable snippets for VS Code and Cursor.</p>
     <p><a class="cta cta-primary" href="${PAGES_BASE}/">Open snippet catalog</a></p>
@@ -702,7 +731,7 @@ export async function generateSnippetDocs(outputDir = siteDir) {
 
   writeFileSync(join(outputDir, "assets", "snippets.css"), `${STYLES.trim()}\n`, "utf8");
   writeFileSync(join(outputDir, "assets", "snippets.js"), `${SEARCH_SCRIPT.trim()}\n`, "utf8");
-  copyFileSync(join(rootDir, "icon.png"), join(outputDir, "assets", "icon.png"));
+  await writeBrandAssets(join(outputDir, "assets"));
 
   const catalog = await loadSnippetCatalogWithMeta();
   buildIndexPage(catalog);
@@ -717,7 +746,11 @@ export async function generateSnippetDocs(outputDir = siteDir) {
       ...languageFiles.map((file) => `snippets/${file}`),
       "snippets/assets/snippets.css",
       "snippets/assets/snippets.js",
-      "snippets/assets/icon.png",
+      "snippets/assets/favicon-16.png",
+      "snippets/assets/favicon-32.png",
+      "snippets/assets/apple-touch-icon.png",
+      "snippets/assets/logo.png",
+      "favicon.png",
     ],
   };
 }
