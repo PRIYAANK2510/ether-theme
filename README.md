@@ -1,8 +1,6 @@
-
-
 # Ether Themes
 
-**25 dark token-driven color themes** and **496 web development snippets** for VS Code and Cursor.
+**25 dark token-driven color themes**, **496 web development snippets**, and **bundled grammars** for Kotlin, ProGuard/R8, and Dotenv for VS Code and Cursor.
 
 
 
@@ -15,6 +13,16 @@
 Search **Ether Themes** in the Extensions panel, or use the links above.
 
 **Quick pick:** `Ctrl+K Ctrl+T` (Windows/Linux) · `Cmd+K Cmd+T` (macOS)
+
+## Language support
+
+Bundled TextMate grammars ship with the extension — no separate Kotlin or ProGuard extensions required:
+
+- **Kotlin** — `.kt`, `.kts`, `*.gradle.kts`
+- **ProGuard / R8** — `.pro`, `.keep`
+- **Dotenv** — `.env`, `.env.*`
+
+**37 file associations** also map Android/JVM and common config formats (Groovy Gradle scripts, properties, YAML, Docker, and more) to built-in VS Code languages.
 
 ## Themes
 
@@ -212,7 +220,7 @@ Previews below are **high-DPI VS Code–style miniatures** (responsive gallery, 
 - **Token-driven build** — palette files in `src/palettes/` generate full `.color-theme.json` files
 - **Contrast-aware** — WCAG validation on syntax roles and critical UI tokens at build time
 - **Subdued comments** — comment foreground matches active line numbers in the gutter
-- **58 shared syntax rules** — broad language coverage with semantic highlighting enabled
+- **61 shared syntax rules** — broad language coverage including Kotlin, Java, and Android formats
 - **Polished workbench** — consistent list, tab, status bar, and button hover/selection states
 - **Works in Cursor** — published on Open VSX and the VS Code Marketplace
 

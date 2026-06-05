@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -59,5 +59,12 @@ describe("grammar catalog", () => {
         expect(first).toEqual(second);
         expect(first.languages.length).toBeGreaterThan(20);
         expect(first.grammars).toHaveLength(3);
+    });
+
+    it("keeps bundled grammars in the published VSIX", () => {
+        const vscodeignore = readFileSync(join(rootDir, ".vscodeignore"), "utf8");
+
+        expect(vscodeignore).toMatch(/!src\/grammars\/syntaxes\/\*\*/);
+        expect(vscodeignore).toMatch(/!src\/grammars\/language-configs\/\*\*/);
     });
 });

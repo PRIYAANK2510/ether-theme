@@ -1,4 +1,8 @@
 src/**
+!src/grammars/syntaxes/**
+!src/grammars/language-configs/**
+.cursor/**
+docs/WORKFLOW.md
 tests/**
 scripts/**
 .github/**

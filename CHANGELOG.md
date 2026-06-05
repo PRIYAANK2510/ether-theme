@@ -7,15 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [0.2.12] - 2026-06-05
 
+### Fixed
 
+- **Kotlin, ProGuard, and Dotenv grammars** were excluded from the published VSIX because `.vscodeignore` ignored all of `src/**` — `.kt` files appeared uncolored in installed builds while F5 Extension Development Host worked correctly
 
+### Changed
+
+- `.vscodeignore` now ships `src/grammars/syntaxes/` and `src/grammars/language-configs/` in marketplace packages
+- Dev-only `.cursor/` rules and `docs/WORKFLOW.md` are excluded from the VSIX
+- Packaging regression test ensures bundled grammars stay included in future releases
 
 ## [0.2.11] - 2026-06-05
 
 ### Changed
 
 - Theme palette updates (auto-release)
+
 ## [0.2.10] - 2026-06-05
 
 ### Changed
@@ -218,4 +227,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.7]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.7
 [0.2.8]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.8
 [0.2.10]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.10
+[0.2.12]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.12
 [0.2.11]: https://github.com/PRIYAANK2510/ether-theme/releases/tag/v0.2.11
