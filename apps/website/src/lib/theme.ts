@@ -9,7 +9,7 @@ export function paintTheme(themeId: string) {
   const root = document.documentElement;
   root.setAttribute("data-ether-theme", themeId);
   for (const [key, value] of Object.entries(theme.vars)) {
-    root.style.setProperty(key, value);
+    root.style.setProperty(key, String(value));
   }
 
   const meta = document.querySelector('meta[name="theme-color"]');

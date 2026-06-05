@@ -786,7 +786,7 @@
     "lint:fix": "eslint . --fix",
     "stylelint": "stylelint \"apps/website/**/*.scss\"",
     "stylelint:fix": "stylelint \"apps/website/**/*.scss\" --fix",
-    "typecheck": "tsc -p apps/website/tsconfig.json --noEmit",
+    "typecheck": "npm run site:prepare && tsc -p apps/website/tsconfig.json --noEmit",
     "check:fast": "npm run lint && npm run typecheck && npm run test:fast && npm run build:extension && npm run site:build",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "vscode:prepublish": "npm run build",
