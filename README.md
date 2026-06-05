@@ -262,6 +262,8 @@ High-DPI editor mockups — regenerated on `npm run build`.
 
 **496** production-ready templates across six editor scopes. Type a prefix, press **Tab**.
 
+📖 **[Browse the full snippet reference](https://PRIYAANK2510.github.io/ether-theme/)** — searchable catalog with prefixes, categories, and previews (GitHub Pages).
+
 | Language | File types | Popular prefixes |
 | --- | --- | --- |
 | JavaScript | `.js`, `.mjs`, `.cjs` | `fn`, `fetch`, `debounce`, `nodeexp`, `allsettled` |
@@ -272,6 +274,8 @@ High-DPI editor mockups — regenerated on `npm run build`.
 | CSS | `.css` | `has`, `oklch`, `colormix`, `gridfit`, `modernreset` |
 
 **Stacks covered:** React 19 hooks · Next.js server actions &amp; routes · TanStack Query · Zod validation · Vitest &amp; Testing Library · MSW · Express &amp; Fastify · modern CSS (`:has()`, nesting, `color-mix`)
+
+Regenerate docs locally: `npm run docs:snippets` (output in `site/`).
 
 ## Language support
 
