@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
+import { writeFileIfChanged } from "../../utils/fs.js";
 import {
   GALLERY_END,
   GALLERY_START,
@@ -59,5 +60,5 @@ export function syncReadmePreviewGallery(readmePath, palettes) {
     `${GALLERY_START}[\\s\\S]*?${GALLERY_END}`,
     "m",
   );
-  writeFileSync(readmePath, readme.replace(pattern, block), "utf8");
+  writeFileIfChanged(readmePath, readme.replace(pattern, block), "utf8");
 }

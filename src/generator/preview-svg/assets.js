@@ -1,4 +1,5 @@
-import { mkdirSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, unlinkSync } from "node:fs";
+import { writeFileIfChanged } from "../../utils/fs.js";
 import { join } from "node:path";
 import { renderThemePreviewSvg } from "./compose.js";
 import { renderSvgToPng } from "./rasterize.js";
@@ -11,7 +12,7 @@ import { renderSvgToPng } from "./rasterize.js";
 export function writePreviewAssets(palette, outputDir) {
   mkdirSync(outputDir, { recursive: true });
   const pngPath = join(outputDir, `${palette.id}.png`);
-  writeFileSync(pngPath, renderSvgToPng(renderThemePreviewSvg(palette)));
+  writeFileIfChanged(pngPath, renderSvgToPng(renderThemePreviewSvg(palette)));
   return { pngPath };
 }
 

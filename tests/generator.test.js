@@ -30,9 +30,22 @@ import {
   withAlpha,
   withAlphaByte,
 } from "../src/utils/color.js";
+import { writeFileIfChanged } from "../src/utils/fs.js";
 import { EXPECTED_SYNTAX_RULE_COUNT, WORKBENCH_COLOR_IDS } from "../src/workbench/constants.js";
 import { CORE_WORKBENCH_COLOR_IDS } from "../src/workbench/core-catalog.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "../src/workbench/extension-catalog.js";
+
+describe("fs-utils", () => {
+  it("skips writes when LF-normalized text is unchanged", () => {
+    const dir = mkdtempSync(join(tmpdir(), "ether-fs-"));
+    const filePath = join(dir, "sample.json");
+    writeFileSync(filePath, "{\n  \"a\": 1\n}\n");
+
+    expect(writeFileIfChanged(filePath, "{\n  \"a\": 1\n}\n")).toBe(false);
+    expect(writeFileIfChanged(filePath, "{\r\n  \"a\": 1\r\n}\r\n")).toBe(false);
+    expect(writeFileIfChanged(filePath, "{\n  \"a\": 2\n}\n")).toBe(true);
+  });
+});
 
 describe("color-utils", () => {
   it("applies alpha via chroma", () => {

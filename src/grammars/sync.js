@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
+import { writeFileIfChanged } from "../utils/fs.js";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -30,7 +31,7 @@ export function syncGrammarContributions(contributions) {
         languages: contributions.languages,
         grammars: contributions.grammars,
     };
-    writeFileSync(
+    writeFileIfChanged(
         packageJsonPath,
         `${JSON.stringify(packageJson, null, 2)}\n`,
         "utf8",

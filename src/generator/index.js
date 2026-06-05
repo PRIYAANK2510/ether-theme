@@ -1,10 +1,10 @@
 import {
   readFileSync,
-  writeFileSync,
   mkdirSync,
   readdirSync,
   unlinkSync,
 } from "node:fs";
+import { writeFileIfChanged } from "../utils/fs.js";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { deriveUISemantics } from "../workbench/derive-core.js";
@@ -68,7 +68,7 @@ export function composeTheme(palette) {
 export function writeThemeFile(id, theme) {
   mkdirSync(themesDir, { recursive: true });
   const filePath = join(themesDir, `${id}.color-theme.json`);
-  writeFileSync(filePath, `${JSON.stringify(theme, null, 2)}\n`, "utf8");
+  writeFileIfChanged(filePath, `${JSON.stringify(theme, null, 2)}\n`, "utf8");
   return filePath;
 }
 
@@ -81,7 +81,7 @@ export function syncPackageContributions(contributions) {
     ...packageJson.contributes,
     themes: contributions,
   };
-  writeFileSync(
+  writeFileIfChanged(
     packageJsonPath,
     `${JSON.stringify(packageJson, null, 2)}\n`,
     "utf8",
