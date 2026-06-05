@@ -1,9 +1,8 @@
 import { execSync } from "node:child_process";
-import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 const PKG_PATH = "package.json";
-const VSCE_PUBLISHER = "Priyaank";
 const RELEASES_DIR = "releases";
 
 for (const key of ["OVSX_PAT", "VSCE_PAT"]) {
@@ -58,10 +57,6 @@ function readPackage() {
   return JSON.parse(readFileSync(PKG_PATH, "utf8"));
 }
 
-function writePackage(pkg) {
-  writeFileSync(PKG_PATH, `${JSON.stringify(pkg, null, 2)}\n`);
-}
-
 function latestVsix() {
   const packageJson = readPackage();
   const expected = `ether-theme-${packageJson.version}.vsix`;
@@ -85,18 +80,7 @@ if (!vsix) {
 }
 
 const vsixPath = join(RELEASES_DIR, vsix);
-const pkg = readPackage();
-const openVsxPublisher = pkg.publisher;
-
-let vsceOk = false;
-if (openVsxPublisher !== VSCE_PUBLISHER) {
-  writePackage({ ...pkg, publisher: VSCE_PUBLISHER });
-  vsceOk = tryRun("npx vsce publish");
-  writePackage(pkg);
-} else {
-  vsceOk = tryRun("npx vsce publish");
-}
-
+const vsceOk = tryRun("npx vsce publish");
 const ovsxOk = tryRun(`npx ovsx publish ${vsixPath}`);
 
 if (!vsceOk && !ovsxOk) {

@@ -2,7 +2,7 @@
   "name": "ether-theme",
   "displayName": "Ether Themes",
   "description": "Ether Themes — 25 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
-  "publisher": "PRIYAANK2510",
+  "publisher": "Priyaank",
   "version": "0.2.15",
   "icon": "icon.png",
   "galleryBanner": {
@@ -68,13 +68,13 @@
       "description": "Install on VS Code Marketplace"
     },
     {
-      "url": "https://img.shields.io/open-vsx/v/PRIYAANK2510/ether-theme?style=flat-square&label=Open%20VSX",
-      "href": "https://open-vsx.org/extension/PRIYAANK2510/ether-theme",
+      "url": "https://img.shields.io/open-vsx/v/Priyaank/ether-theme?style=flat-square&label=Open%20VSX",
+      "href": "https://open-vsx.org/extension/Priyaank/ether-theme",
       "description": "Open VSX version"
     },
     {
-      "url": "https://img.shields.io/open-vsx/dt/PRIYAANK2510/ether-theme?style=flat-square&label=downloads",
-      "href": "https://open-vsx.org/extension/PRIYAANK2510/ether-theme",
+      "url": "https://img.shields.io/open-vsx/dt/Priyaank/ether-theme?style=flat-square&label=downloads",
+      "href": "https://open-vsx.org/extension/Priyaank/ether-theme",
       "description": "Open VSX downloads"
     }
   ],
