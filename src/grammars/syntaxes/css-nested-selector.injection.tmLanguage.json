@@ -1,0 +1,34 @@
+{
+  "scopeName": "ether.nested-selector.injection",
+  "injectionSelector": "L:source.css.scss meta.property-list, L:source.css meta.property-list, L:source.css.less meta.property-list",
+  "patterns": [
+    {
+      "include": "#nested-type-selector"
+    },
+    {
+      "include": "#nested-pseudo-selector"
+    }
+  ],
+  "repository": {
+    "nested-pseudo-selector": {
+      "begin": "(?xi)\\b(hover|focus|focus-visible|focus-within|active|disabled|first-child|last-child|only-child|empty|root|target|checked|enabled)(?=\\s*\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.other.attribute-name.pseudo-class.css"
+        }
+      },
+      "end": "(?=\\{)",
+      "patterns": []
+    },
+    "nested-type-selector": {
+      "begin": "(?xi)^[ \\t]*(h[1-6]|a|abbr|address|article|aside|audio|b|blockquote|body|button|canvas|caption|cite|code|col|colgroup|data|dd|del|details|dfn|div|dl|dt|em|embed|fieldset|figcaption|figure|footer|form|header|hr|html|i|iframe|img|input|ins|kbd|label|legend|li|main|mark|nav|ol|optgroup|option|p|picture|pre|progress|q|rp|rt|ruby|s|samp|section|select|small|span|strong|sub|summary|sup|svg|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|u|ul|var|video|wbr)(?=[ \\t]*\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.tag.custom.css"
+        }
+      },
+      "end": "(?=\\{)",
+      "patterns": []
+    }
+  }
+}

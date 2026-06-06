@@ -17,13 +17,26 @@ describe("grammar catalog", () => {
     expect(LANGUAGE_CATALOG).toHaveLength(LANGUAGE_CATALOG_COUNT);
   });
 
-  it("bundles kotlin, aidl, proguard, and dotenv grammars", () => {
+  it("bundles kotlin, aidl, proguard, dotenv, and css selector injection", () => {
     const grammars = buildGrammarContributions(LANGUAGE_CATALOG);
-    const languages = new Set(grammars.map((entry) => entry.language));
+    const languages = new Set(
+      grammars.map((entry) => entry.language).filter(Boolean),
+    );
 
     expect(languages).toEqual(
       new Set(["aidl", "dotenv", "kotlin", "proguard"]),
     );
+    expect(grammars).toHaveLength(7);
+    expect(
+      grammars.some(
+        (entry) => entry.scopeName === "ether.nested-selector.injection",
+      ),
+    ).toBe(true);
+    expect(
+      grammars.find(
+        (entry) => entry.scopeName === "ether.nested-selector.injection",
+      )?.injectTo,
+    ).toEqual(["source.css.scss", "source.css", "source.css.less"]);
   });
 
   it("maps android project file patterns to the right languages", () => {
@@ -51,6 +64,49 @@ describe("grammar catalog", () => {
     expect(byId.json.filenames).toContain("google-services.json");
   });
 
+  it("patches built-in CSS grammars for selectors, values, and functions", () => {
+    const nested = JSON.parse(
+      readFileSync(
+        join(
+          rootDir,
+          "src/grammars/syntaxes/css-nested-selector.injection.tmLanguage.json",
+        ),
+        "utf8",
+      ),
+    );
+    const values = JSON.parse(
+      readFileSync(
+        join(
+          rootDir,
+          "src/grammars/syntaxes/css-value-patches.injection.tmLanguage.json",
+        ),
+        "utf8",
+      ),
+    );
+    const functions = JSON.parse(
+      readFileSync(
+        join(
+          rootDir,
+          "src/grammars/syntaxes/css-function-patches.injection.tmLanguage.json",
+        ),
+        "utf8",
+      ),
+    );
+
+    expect(nested.repository["nested-type-selector"].beginCaptures["1"].name).toBe(
+      "entity.name.tag.custom.css",
+    );
+    expect(values.repository["transition-sub-property"].beginCaptures["1"].name).toBe(
+      "support.type.property-name.transition-sub.css",
+    );
+    expect(functions.repository["modern-css-functions"].beginCaptures["1"].name).toBe(
+      "support.function.var.css",
+    );
+    expect(nested.injectionSelector).toContain("meta.property-list");
+    expect(values.injectionSelector).toContain("meta.property-value");
+    expect(functions.injectionSelector).toContain("meta.property-list");
+  });
+
   it("references grammar files that exist on disk", () => {
     const grammars = buildGrammarContributions(LANGUAGE_CATALOG);
 
@@ -71,6 +127,9 @@ describe("grammar catalog", () => {
     expect(new Set(grammars.map((entry) => entry.scopeName)).size).toBe(
       grammars.length,
     );
+    expect(
+      grammars.filter((entry) => entry.injectTo).length,
+    ).toBeGreaterThanOrEqual(1);
   });
 
   it("composes stable package.json contributions", () => {
@@ -79,7 +138,7 @@ describe("grammar catalog", () => {
 
     expect(first).toEqual(second);
     expect(first.languages.length).toBeGreaterThan(20);
-    expect(first.grammars).toHaveLength(4);
+    expect(first.grammars).toHaveLength(7);
   });
 
   it("keeps bundled grammars in the published VSIX", () => {

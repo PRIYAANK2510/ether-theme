@@ -1,4 +1,4 @@
-/** @typedef {{ scopeName: string, path: string, embeddedLanguages?: Record<string, string> }} GrammarDefinition */
+/** @typedef {{ scopeName: string, path: string, embeddedLanguages?: Record<string, string>, injectTo?: string[] }} GrammarDefinition */
 
 /** @typedef {{ id: string, aliases: string[], extensions?: string[], filenames?: string[], filenamePatterns?: string[], configuration?: string, grammar?: GrammarDefinition }} LanguageDefinition */
 
@@ -319,6 +319,29 @@ export const LANGUAGE_CATALOG = [
   },
 ];
 
+/**
+ * TextMate injections that patch built-in VS Code grammars (no standalone language).
+ *
+ * @type {GrammarDefinition[]}
+ */
+export const GRAMMAR_INJECTIONS = [
+  {
+    scopeName: "ether.nested-selector.injection",
+    path: "./src/grammars/syntaxes/css-nested-selector.injection.tmLanguage.json",
+    injectTo: ["source.css.scss", "source.css", "source.css.less"],
+  },
+  {
+    scopeName: "ether.css-value.injection",
+    path: "./src/grammars/syntaxes/css-value-patches.injection.tmLanguage.json",
+    injectTo: ["source.css.scss", "source.css", "source.css.less"],
+  },
+  {
+    scopeName: "ether.css-function.injection",
+    path: "./src/grammars/syntaxes/css-function-patches.injection.tmLanguage.json",
+    injectTo: ["source.css.scss", "source.css", "source.css.less"],
+  },
+];
+
 /** Number of language catalog entries (must match {@link LANGUAGE_CATALOG}.length). */
 export const LANGUAGE_CATALOG_COUNT = 38;
 
@@ -375,7 +398,7 @@ export function buildLanguageContributions(catalog) {
  * @returns {Array<{ language: string, scopeName: string, path: string, embeddedLanguages?: Record<string, string> }>}
  */
 export function buildGrammarContributions(catalog) {
-  return catalog
+  const bundled = catalog
     .filter((entry) => entry.grammar)
     .map((entry) => ({
       language: entry.id,
@@ -384,6 +407,20 @@ export function buildGrammarContributions(catalog) {
       ...(entry.grammar.embeddedLanguages
         ? { embeddedLanguages: entry.grammar.embeddedLanguages }
         : {}),
-    }))
-    .sort((a, b) => a.language.localeCompare(b.language));
+    }));
+
+  const injections = GRAMMAR_INJECTIONS.map((grammar) => ({
+    scopeName: grammar.scopeName,
+    path: grammar.path,
+    injectTo: grammar.injectTo,
+    ...(grammar.embeddedLanguages
+      ? { embeddedLanguages: grammar.embeddedLanguages }
+      : {}),
+  }));
+
+  return [...bundled, ...injections].sort((a, b) => {
+    const aKey = a.language ?? a.scopeName;
+    const bKey = b.language ?? b.scopeName;
+    return aKey.localeCompare(bKey);
+  });
 }

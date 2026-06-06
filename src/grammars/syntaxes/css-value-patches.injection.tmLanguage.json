@@ -1,0 +1,21 @@
+{
+  "scopeName": "ether.css-value.injection",
+  "injectionSelector": "L:source.css.scss meta.property-list.scss meta.property-value.scss, L:source.css meta.property-list meta.property-value, L:source.css.less meta.property-list meta.property-value",
+  "patterns": [
+    {
+      "include": "#transition-sub-property"
+    }
+  ],
+  "repository": {
+    "transition-sub-property": {
+      "begin": "(?xi)\\b(background|border|border-color|border-radius|box-shadow|color|fill|filter|flex|font|gap|height|left|margin|mask|opacity|outline|padding|right|stroke|top|transform|visibility|width)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "support.type.property-name.transition-sub.css"
+        }
+      },
+      "end": "(?=$|[,;\\s])",
+      "patterns": []
+    }
+  }
+}

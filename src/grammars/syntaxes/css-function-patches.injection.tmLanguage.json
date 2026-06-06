@@ -1,0 +1,34 @@
+{
+  "scopeName": "ether.css-function.injection",
+  "injectionSelector": "L:source.css.scss meta.property-list, L:source.css meta.property-list, L:source.css.less meta.property-list",
+  "patterns": [
+    {
+      "include": "#modern-css-functions"
+    }
+  ],
+  "repository": {
+    "modern-css-functions": {
+      "begin": "(?xi)\\b(calc|clamp|min|max|color-mix|rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|var|url|linear-gradient|radial-gradient|conic-gradient|repeating-linear-gradient|repeating-radial-gradient)\\s*\\(",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.var.css"
+        }
+      },
+      "end": "\\)",
+      "patterns": [
+        {
+          "match": "(?xi)\\b(in|srgb|srgb-linear|hsl|hwb|lab|lch|oklab|oklch|xyz|xyz-d50|xyz-d65|display-p3|a98-rgb|prophoto-rgb|rec2020|from)\\b",
+          "name": "constant.language.css"
+        },
+        {
+          "match": "(?x)(--[\\w-]+)",
+          "captures": {
+            "1": {
+              "name": "variable.other.property-name.css"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

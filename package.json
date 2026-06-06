@@ -758,6 +758,33 @@
         "path": "./src/grammars/syntaxes/dotenv.tmLanguage.json"
       },
       {
+        "scopeName": "ether.css-function.injection",
+        "path": "./src/grammars/syntaxes/css-function-patches.injection.tmLanguage.json",
+        "injectTo": [
+          "source.css.scss",
+          "source.css",
+          "source.css.less"
+        ]
+      },
+      {
+        "scopeName": "ether.css-value.injection",
+        "path": "./src/grammars/syntaxes/css-value-patches.injection.tmLanguage.json",
+        "injectTo": [
+          "source.css.scss",
+          "source.css",
+          "source.css.less"
+        ]
+      },
+      {
+        "scopeName": "ether.nested-selector.injection",
+        "path": "./src/grammars/syntaxes/css-nested-selector.injection.tmLanguage.json",
+        "injectTo": [
+          "source.css.scss",
+          "source.css",
+          "source.css.less"
+        ]
+      },
+      {
         "language": "kotlin",
         "scopeName": "source.kotlin",
         "path": "./src/grammars/syntaxes/kotlin.tmLanguage.json"

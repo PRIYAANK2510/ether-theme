@@ -431,7 +431,20 @@
         "source.css.scss keyword.other.unit",
         "source.css.less keyword.other.unit",
         "keyword.other.unit.css",
-        "keyword.other.unit.scss"
+        "keyword.other.unit.scss",
+        "keyword.other.unit.px.css",
+        "keyword.other.unit.rem.css",
+        "keyword.other.unit.em.css",
+        "keyword.other.unit.s.css",
+        "keyword.other.unit.ms.css",
+        "keyword.other.unit.fr.css",
+        "keyword.other.unit.ch.css",
+        "keyword.other.unit.deg.css",
+        "keyword.other.unit.vw.css",
+        "keyword.other.unit.vh.css",
+        "keyword.other.unit.percent.css",
+        "meta.property-value.scss constant.numeric.css",
+        "meta.property-value.media-query.scss constant.numeric.css"
       ],
       "settings": {
         "foreground": "#da8b58"
@@ -455,8 +468,7 @@
     {
       "name": "Constant — Language & Built-in",
       "scope": [
-        "constant.language",
-        "support.constant",
+        "constant.language -constant.language.css -constant.language.scss -constant.language.less",
         "constant.other.php",
         "support.constant.ext.php",
         "constant.other.class.php",
@@ -510,7 +522,7 @@
     {
       "name": "Keyword / Control",
       "scope": [
-        "keyword.control",
+        "keyword.control -keyword.control.at-rule",
         "keyword.control.flow",
         "keyword.control.import",
         "keyword.control.module",
@@ -603,11 +615,13 @@
     {
       "name": "SCSS / Sass Variable",
       "scope": [
-        "source.css.scss variable",
-        "source.css.less variable",
-        "variable.scss",
+        "meta.definition.variable.scss variable.scss",
+        "meta.definition.variable.sass variable.sass",
+        "variable.interpolation.scss",
+        "variable.interpolation.sass",
         "variable.parameter.scss",
-        "variable.interpolation.scss"
+        "meta.at-rule.mixin.scss variable",
+        "meta.at-rule.function.scss variable"
       ],
       "settings": {
         "foreground": "#60b9d2"
@@ -618,10 +632,14 @@
       "scope": [
         "support.type.property-name.css.custom-property",
         "support.type.vendored.property-name.css.custom-property",
-        "meta.property-list.css variable",
-        "meta.property-list.scss variable",
-        "source.css variable",
-        "source.css.scss variable"
+        "meta.property-list.css variable.other.property-name",
+        "meta.property-list.scss variable.other.property-name",
+        "meta.property-value.css variable.other.property-name",
+        "meta.property-value.scss variable.other.property-name",
+        "meta.property-value.scss variable.scss",
+        "meta.property-value.css variable.scss",
+        "meta.property-list.scss meta.property-value.scss variable.scss",
+        "variable.other.property-name.css"
       ],
       "settings": {
         "foreground": "#60c9d2"
@@ -630,10 +648,22 @@
     {
       "name": "CSS / SCSS Property Name",
       "scope": [
+        "meta.property-list.css meta.property-name support.type.property-name.css",
+        "meta.property-list.scss meta.property-name support.type.property-name.scss",
+        "meta.property-list.css meta.property-name support.type.property-name.scss",
+        "meta.property-list.scss meta.property-name support.type.property-name.css",
+        "meta.property-list.css meta.property-name.scss",
+        "meta.property-list.scss meta.property-name.scss",
+        "meta.property-list.css support.type.property-name.css",
+        "meta.property-list.scss support.type.property-name.css",
+        "meta.property-list.scss support.type.property-name.scss",
+        "meta.property-list.media-query.scss meta.property-name.media-query.scss",
+        "meta.property-list.media-query.scss support.type.property-name.media.css",
         "support.type.property-name.css",
         "support.type.property-name.scss",
         "support.type.property-name.less",
         "support.type.property-name.stylus",
+        "support.type.property-name.media.css",
         "support.type.vendored.property-name.css",
         "support.type.vendored.property-name.scss",
         "support.type.vendored.property-name.less"
@@ -686,7 +716,7 @@
     {
       "name": "Function / Method",
       "scope": [
-        "entity.name.function",
+        "entity.name.function -entity.name.function.scss -entity.name.function.keyframe.css -entity.name.function.keyframe.scss",
         "entity.name.function.member",
         "entity.name.function.call",
         "entity.name.function.constructor",
@@ -734,6 +764,7 @@
     {
       "name": "Type / Class / Interface",
       "scope": [
+        "support.type -support.type.property-name",
         "entity.name.type",
         "entity.name.type.class",
         "entity.name.type.interface",
@@ -752,7 +783,6 @@
         "support.class",
         "support.class.builtin",
         "support.class.php",
-        "support.type",
         "support.type.object.js",
         "support.type.object.ts",
         "support.type.type-parameter",
@@ -821,7 +851,7 @@
     {
       "name": "HTML / JSX Tag",
       "scope": [
-        "entity.name.tag",
+        "entity.name.tag -entity.name.tag.css -entity.name.tag.scss -entity.name.tag.custom.css -entity.name.tag.custom.scss -entity.name.tag.reference.css -entity.name.tag.reference.scss -entity.name.tag.wildcard.css -entity.name.tag.wildcard.scss",
         "entity.name.tag.jsx",
         "entity.name.tag.tsx",
         "entity.name.tag.html",
@@ -850,7 +880,7 @@
         "support.function.var.css"
       ],
       "settings": {
-        "foreground": "#8cc2ec"
+        "foreground": "#94b9d3"
       }
     },
     {
@@ -860,10 +890,16 @@
         "entity.name.tag.less",
         "entity.name.tag.scss",
         "entity.name.tag.stylus",
-        "source.css entity.name.tag.reference"
+        "source.css entity.name.tag.reference",
+        "meta.selector.css entity.name.tag.css",
+        "meta.selector.scss entity.name.tag.css",
+        "meta.rule.css entity.name.tag.css",
+        "meta.rule.scss entity.name.tag.css",
+        "meta.rules.css entity.name.tag.css",
+        "meta.rules.scss entity.name.tag.css"
       ],
       "settings": {
-        "foreground": "#e07b70"
+        "foreground": "#e08570"
       }
     },
     {
@@ -884,7 +920,11 @@
         "entity.other.attribute-name.class.css",
         "entity.other.attribute-name.class.scss",
         "entity.other.attribute-name.class.less",
-        "source.css entity.other.attribute-name.class"
+        "source.css entity.other.attribute-name.class",
+        "meta.selector.css entity.other.attribute-name.class.css",
+        "meta.selector.scss entity.other.attribute-name.class.css",
+        "meta.rule.css entity.other.attribute-name.class.css",
+        "meta.rule.scss entity.other.attribute-name.class.css"
       ],
       "settings": {
         "foreground": "#e0cd78"
@@ -902,7 +942,11 @@
         "entity.other.attribute-name.namespace.css",
         "entity.other.attribute-name.wildcard.css",
         "entity.other.attribute-name.placeholder.css",
-        "entity.other.attribute-name.scss"
+        "entity.other.attribute-name.scss",
+        "entity.other.attribute-name.attribute.css",
+        "entity.other.attribute-name.attribute.scss",
+        "meta.attribute-selector.scss entity.other.attribute-name.attribute.scss",
+        "meta.at-rule.keyframes.scss entity.other.attribute-name.scss"
       ],
       "settings": {
         "foreground": "#60d2cf"
@@ -926,15 +970,34 @@
         "support.constant.property-value",
         "support.constant.property-value.css",
         "support.constant.property-value.scss",
-        "support.constant.font-name",
+        "meta.property-value.css support.constant.property-value.css",
+        "meta.property-value.scss support.constant.property-value.css",
+        "meta.property-value.css support.constant.property-value.scss",
+        "meta.property-value.scss support.constant.property-value.scss",
+        "meta.property-value.css support.constant.font-name",
+        "meta.property-value.scss support.constant.font-name",
+        "meta.property-value.media-query.scss support.constant.property-value.css",
         "support.constant.media-type",
         "support.constant.media",
         "constant.language.css",
         "constant.language.scss",
-        "constant.language.less"
+        "constant.language.less",
+        "meta.property-value.css constant.language.css",
+        "meta.property-value.scss constant.language.scss",
+        "meta.property-list.media-query.scss meta.property-value.media-query.scss"
       ],
       "settings": {
         "foreground": "#60d2c1"
+      }
+    },
+    {
+      "name": "CSS / SCSS Shorthand Value Identifier",
+      "scope": [
+        "meta.property-list.scss meta.property-value.scss",
+        "meta.property-list.css meta.property-value.css"
+      ],
+      "settings": {
+        "foreground": "#8cb8ec"
       }
     },
     {
@@ -987,7 +1050,7 @@
         "meta.at-rule.mixin.scss entity.name.function.scss",
         "meta.at-rule.include.scss entity.name.function.scss",
         "meta.at-rule.function.scss entity.name.function.scss",
-        "entity.name.function.scss"
+        "meta.at-rule.keyframes.scss entity.name.function.scss"
       ],
       "settings": {
         "foreground": "#90a9e8"
@@ -1011,6 +1074,15 @@
         "keyword.control.at-rule",
         "keyword.control.at-rule.css",
         "keyword.control.at-rule.scss",
+        "meta.at-rule.use.scss keyword.control.at-rule.use.scss",
+        "meta.at-rule.include.scss keyword.control.at-rule.include.scss",
+        "meta.at-rule.mixin.scss keyword.control.at-rule.mixin.scss",
+        "meta.at-rule.media.scss keyword.control.at-rule.media.scss",
+        "meta.at-rule.keyframes.scss keyword.control.at-rule.keyframes.scss",
+        "meta.at-rule.import.scss keyword.control.at-rule.import.scss",
+        "meta.at-rule.forward.scss keyword.control.at-rule.forward.scss",
+        "meta.at-rule.function.scss keyword.control.at-rule.function.scss",
+        "meta.at-rule.extend.scss keyword.control.at-rule.extend.scss",
         "keyword.control.at-rule.less",
         "keyword.control.at-rule.sass",
         "keyword.control.at-rule.charset",
@@ -1494,6 +1566,163 @@
       ],
       "settings": {
         "foreground": "#E0C878"
+      }
+    },
+    {
+      "name": "CSS Property — Tag Name Collision",
+      "scope": [
+        "meta.property-list.css entity.name.tag.css",
+        "meta.property-list.scss entity.name.tag.css",
+        "meta.property-list.css entity.name.tag.scss",
+        "meta.property-list.scss entity.name.tag.scss",
+        "meta.property-list.css meta.property-name entity.name.tag.css",
+        "meta.property-list.scss meta.property-name entity.name.tag.css"
+      ],
+      "settings": {
+        "foreground": "#8cb4ec"
+      }
+    },
+    {
+      "name": "CSS Value — Sub-Property Name",
+      "scope": [
+        "meta.property-value.css support.type.property-name.css",
+        "meta.property-value.scss support.type.property-name.css",
+        "meta.property-value.css support.type.property-name.scss",
+        "meta.property-value.scss support.type.property-name.scss",
+        "meta.property-value.css invalid.deprecated.color.system.css",
+        "meta.property-value.scss invalid.deprecated.color.system.css",
+        "meta.property-value.css invalid.deprecated.color.system.scss",
+        "meta.property-value.scss invalid.deprecated.color.system.scss",
+        "meta.property-value.scss support.type.property-name.transition-sub.css",
+        "meta.property-value.css support.type.property-name.transition-sub.css",
+        "support.type.property-name.transition-sub.css"
+      ],
+      "settings": {
+        "foreground": "#8cb8ec"
+      }
+    },
+    {
+      "name": "CSS Attribute Selector Value",
+      "scope": [
+        "meta.attribute-selector.scss string.quoted.double.attribute-value.scss",
+        "meta.attribute-selector.scss string.quoted.single.attribute-value.scss",
+        "meta.attribute-selector.css string.quoted.double.attribute-value.css",
+        "meta.attribute-selector.css string.quoted.single.attribute-value.css"
+      ],
+      "settings": {
+        "foreground": "#60d2c1"
+      }
+    },
+    {
+      "name": "CSS Attribute Selector Brackets",
+      "scope": [
+        "meta.attribute-selector.scss",
+        "meta.attribute-selector.css",
+        "punctuation.definition.attribute-selector.begin.bracket.square.css",
+        "punctuation.definition.attribute-selector.end.bracket.square.css",
+        "punctuation.definition.attribute-selector.begin.bracket.square.scss",
+        "punctuation.definition.attribute-selector.end.bracket.square.scss"
+      ],
+      "settings": {
+        "foreground": "#5E6470"
+      }
+    },
+    {
+      "name": "CSS / SCSS Map Key",
+      "scope": [
+        "support.type.map.key.scss",
+        "support.type.map.key.sass"
+      ],
+      "settings": {
+        "foreground": "#8cb4ec"
+      }
+    },
+    {
+      "name": "CSS / SCSS Operator",
+      "scope": [
+        "source.css keyword.operator",
+        "source.css.scss keyword.operator",
+        "keyword.operator.css",
+        "keyword.operator.css.scss",
+        "keyword.operator.logical.scss",
+        "keyword.operator.comparison.scss",
+        "keyword.control.operator.css.scss"
+      ],
+      "settings": {
+        "foreground": "#5E6470"
+      }
+    },
+    {
+      "name": "CSS / SCSS Custom Tag Selector",
+      "scope": [
+        "entity.name.tag.custom.scss",
+        "entity.name.tag.custom.css",
+        "meta.property-list.scss entity.name.tag.custom.css",
+        "meta.property-list.scss entity.name.tag.custom.scss",
+        "entity.name.tag.wildcard.scss",
+        "entity.name.tag.wildcard.css"
+      ],
+      "settings": {
+        "foreground": "#e08570"
+      }
+    },
+    {
+      "name": "CSS / SCSS Parent Selector",
+      "scope": [
+        "entity.other.attribute-name.parent-selector.css",
+        "entity.other.attribute-name.parent-selector.scss",
+        "entity.other.attribute-name.parent-selector-suffix.css",
+        "entity.other.attribute-name.parent.less",
+        "entity.name.tag.reference.scss",
+        "entity.name.tag.reference.css",
+        "meta.property-list.scss entity.name.tag.reference.scss",
+        "meta.property-list.scss entity.name.tag.reference.css"
+      ],
+      "settings": {
+        "foreground": "#60d2cf"
+      }
+    },
+    {
+      "name": "CSS / SCSS Combinator",
+      "scope": [
+        "keyword.operator.combinator.css",
+        "keyword.operator.combinator.scss",
+        "entity.other.attribute-name.css"
+      ],
+      "settings": {
+        "foreground": "#5E6470"
+      }
+    },
+    {
+      "name": "CSS / SCSS Module Reference",
+      "scope": [
+        "entity.other.attribute-name.module.scss",
+        "punctuation.access.module.scss",
+        "punctuation.definition.wildcard.scss"
+      ],
+      "settings": {
+        "foreground": "#d197c0"
+      }
+    },
+    {
+      "name": "CSS / SCSS Parameter Name",
+      "scope": [
+        "variable.parameter.url.scss",
+        "variable.parameter.style-name.css",
+        "variable.parameter.style-name.scss"
+      ],
+      "settings": {
+        "foreground": "#d197c0"
+      }
+    },
+    {
+      "name": "CSS / SCSS Pseudo Selector Keyword",
+      "scope": [
+        "constant.other.scss",
+        "constant.other.css"
+      ],
+      "settings": {
+        "foreground": "#60d2c1"
       }
     }
   ]

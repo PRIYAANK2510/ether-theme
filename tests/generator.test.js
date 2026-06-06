@@ -83,12 +83,38 @@ describe("theme generator", () => {
     const valueRule = theme.tokenColors.find(
       (rule) => rule.name === "CSS / SCSS Value Keyword",
     );
+    const valuePropertyRule = theme.tokenColors.find(
+      (rule) => rule.name === "CSS Value — Sub-Property Name",
+    );
+    const shorthandValueRule = theme.tokenColors.find(
+      (rule) => rule.name === "CSS / SCSS Shorthand Value Identifier",
+    );
+    const tagCollisionRule = theme.tokenColors.find(
+      (rule) => rule.name === "CSS Property — Tag Name Collision",
+    );
+    const nestedTagRule = theme.tokenColors.find(
+      (rule) => rule.name === "CSS / SCSS Custom Tag Selector",
+    );
     const objectPropertyRule = theme.tokenColors.find(
       (rule) => rule.name === "Object Property",
     );
 
     expect(cssPropertyRule).toBeDefined();
     expect(cssPropertyRule.scope).toContain("support.type.property-name.scss");
+    expect(tagCollisionRule).toBeDefined();
+    expect(tagCollisionRule.scope).toContain(
+      "meta.property-list.scss entity.name.tag.css",
+    );
+    expect(nestedTagRule).toBeDefined();
+    expect(nestedTagRule.scope).toContain("entity.name.tag.custom.css");
+    expect(valuePropertyRule).toBeDefined();
+    expect(valuePropertyRule.scope).toContain(
+      "meta.property-value.scss invalid.deprecated.color.system.css",
+    );
+    expect(shorthandValueRule).toBeDefined();
+    expect(shorthandValueRule.scope).toContain(
+      "meta.property-list.scss meta.property-value.scss",
+    );
     expect(objectPropertyRule.scope).not.toContain(
       "support.type.property-name",
     );
@@ -96,10 +122,16 @@ describe("theme generator", () => {
     const property = cssPropertyRule.settings.foreground;
     const selector = classRule.settings.foreground;
     const value = valueRule.settings.foreground;
+    const valueProperty = valuePropertyRule.settings.foreground;
+    const tagCollision = tagCollisionRule.settings.foreground;
+    const nestedTag = nestedTagRule.settings.foreground;
 
     expect(property.toLowerCase()).not.toBe(selector.toLowerCase());
     expect(property.toLowerCase()).not.toBe(value.toLowerCase());
+    expect(property.toLowerCase()).not.toBe(nestedTag.toLowerCase());
     expect(selector.toLowerCase()).not.toBe(value.toLowerCase());
+    expect(tagCollision.toLowerCase()).toBe(property.toLowerCase());
+    expect(valueProperty.toLowerCase()).not.toBe(value.toLowerCase());
   });
 
   it("keeps stylesheet hues separated across every palette", async () => {

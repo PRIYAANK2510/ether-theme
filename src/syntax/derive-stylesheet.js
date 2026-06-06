@@ -4,6 +4,7 @@ import { contrastRatio, deriveCommentForeground } from "../utils/color.js";
 /** Target hues (degrees) for stylesheet tokens — tuned for perceptual separation. */
 const SHEET_HUES = {
   property: 215,
+  valueProperty: 212,
   function: 205,
   selectorClass: 50,
   selectorTag: 12,
@@ -23,15 +24,23 @@ const SHEET_HUES = {
 /** Roles that must stay visually distinct in every palette (min circular hue delta). */
 const HUE_SEPARATION_PAIRS = [
   ["sheetProperty", "sheetSelectorClass", 48],
+  ["sheetProperty", "sheetSelectorTag", 52],
   ["sheetProperty", "sheetValueKeyword", 32],
   ["sheetProperty", "sheetValueNumber", 42],
+  ["sheetProperty", "sheetFunction", 36],
+  ["sheetValueProperty", "sheetValueNumber", 40],
+  ["sheetValueProperty", "sheetValueKeyword", 28],
+  ["sheetSelectorClass", "sheetSelectorTag", 32],
   ["sheetSelectorClass", "sheetValueNumber", 24],
   ["sheetValueKeyword", "sheetValueNumber", 28],
 ];
 
 const ROLE_HUE_KEYS = {
   sheetProperty: "property",
+  sheetValueProperty: "valueProperty",
   sheetSelectorClass: "selectorClass",
+  sheetSelectorTag: "selectorTag",
+  sheetFunction: "function",
   sheetValueKeyword: "valueKeyword",
   sheetValueNumber: "valueNumber",
 };
@@ -181,13 +190,23 @@ export function deriveStylesheetSyntaxTokens(syntax, ui) {
         hueWeight: 0.95,
       },
     ),
-    sheetFunction: tuneSyntaxToken(
+    sheetValueProperty: tuneSyntaxToken(
       syntax.function,
+      SHEET_HUES.valueProperty,
+      editor,
+      {
+        hueWeight: 0.92,
+        light: [0.58, 0.78],
+      },
+    ),
+    sheetFunction: tuneSyntaxToken(
+      syntax.pink,
       SHEET_HUES.function,
       editor,
       {
-        hueWeight: 0.88,
-        light: [0.64, 0.84],
+        hueWeight: 0.9,
+        sat: [0.42, 0.7],
+        light: [0.62, 0.8],
       },
     ),
     sheetSelectorClass: tuneSyntaxToken(
@@ -204,7 +223,9 @@ export function deriveStylesheetSyntaxTokens(syntax, ui) {
       SHEET_HUES.selectorTag,
       editor,
       {
-        sat: [0.48, 0.72],
+        hueWeight: 0.94,
+        sat: [0.55, 0.82],
+        light: [0.62, 0.8],
       },
     ),
     sheetSelectorPseudo: tuneSyntaxToken(
