@@ -23,4 +23,8 @@
   grid-template-columns: repeat(auto-fill, minmax(356px, 1fr));
   gap: 14px;
   @include stagger-children(8, 0.04s);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }

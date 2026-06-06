@@ -4,6 +4,14 @@
   position: relative;
 }
 
+.rootBlock {
+  width: 100%;
+}
+
+.rootOpen {
+  z-index: var(--z-dropdown);
+}
+
 .button {
   @include pill-control;
   display: inline-flex;
@@ -15,6 +23,7 @@
   color: var(--text);
   font-size: 0.86rem;
   font-weight: 600;
+  max-width: 100%;
 
   &[aria-expanded="true"],
   &:hover {
@@ -28,8 +37,16 @@
   }
 }
 
+.label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .chevron {
   display: inline-flex;
+  flex-shrink: 0;
   transition: transform var(--duration-fast) var(--ease-out);
 }
 
@@ -45,6 +62,13 @@
   flex-shrink: 0;
 }
 
+.buttonBlock {
+  width: 100%;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 10px 12px;
+}
+
 .list {
   position: absolute;
   top: calc(100% + 8px);
@@ -56,11 +80,18 @@
   margin: 0;
   padding: 6px;
   list-style: none;
-  background: var(--surface);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
   animation: dropdown-in var(--duration-normal) var(--ease-out) both;
+}
+
+.listBlock {
+  top: auto;
+  right: auto;
+  min-width: 0;
+  margin: 0;
 }
 
 .option {

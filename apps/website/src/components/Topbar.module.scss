@@ -1,5 +1,7 @@
 @use "../styles/mixins.scss" as *;
 
+$nav-break: 768px;
+
 .topbar {
   position: sticky;
   top: 0;
@@ -9,35 +11,43 @@
   border-bottom: 1px solid var(--border);
   transition:
     border-color var(--duration-normal) var(--ease-out),
-    box-shadow var(--duration-normal) var(--ease-out);
+    box-shadow var(--duration-normal) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+}
+
+.topbarMenuOpen {
+  background: var(--bg);
+  backdrop-filter: none;
+  border-bottom-color: var(--border);
+  box-shadow: none;
+}
+
+.topbarThemeOpen {
+  z-index: var(--z-dropdown);
 }
 
 .inner {
+  position: relative;
+  z-index: calc(var(--z-topbar) + 2);
   max-width: 1180px;
   margin: 0 auto;
-  padding: 14px 20px;
+  padding: 14px max(16px, env(safe-area-inset-right, 0px)) 14px
+    max(16px, env(safe-area-inset-left, 0px));
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  flex-wrap: nowrap;
-}
+  gap: 16px;
 
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-
-  @media (max-width: 720px) {
-    gap: 6px;
+  @media (max-width: $nav-break) {
+    padding-block: 10px;
   }
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  min-width: 0;
   color: inherit;
   text-decoration: none;
   transition: opacity var(--duration-fast) var(--ease-out);
@@ -58,6 +68,7 @@
 }
 
 .brandLogo {
+  flex-shrink: 0;
   border-radius: 12px;
   box-shadow: var(--shadow-sm);
   transition: transform var(--duration-normal) var(--ease-out);
@@ -67,15 +78,22 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 
   strong {
-    font-size: 1.12rem;
+    font-size: 1.08rem;
     letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   span {
     color: var(--muted);
-    font-size: 0.84rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @media (max-width: 900px) {
       display: none;
@@ -83,21 +101,61 @@
   }
 }
 
+.menuBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    color: var(--accent);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &[aria-expanded="true"] {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  @media (max-width: $nav-break) {
+    display: inline-flex;
+  }
+}
+
+.menuIcon {
+  display: block;
+}
+
+.desktopActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+
+  @media (max-width: $nav-break) {
+    display: none;
+  }
+}
+
 .nav {
   display: flex;
   gap: 4px;
   align-items: center;
-
-  @media (max-width: 640px) {
-    overflow-x: auto;
-    max-width: min(42vw, 200px);
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
 }
 
 .navLink {
@@ -120,5 +178,114 @@
     color: var(--accent);
     box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 18%, transparent);
     transform: translateY(-1px);
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: var(--topbar-height) 0 0;
+  z-index: calc(var(--z-topbar) + 1);
+  border: none;
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  cursor: pointer;
+  animation: overlay-in var(--duration-fast) var(--ease-out) both;
+}
+
+.mobilePanel {
+  position: fixed;
+  inset: var(--topbar-height) 0 0;
+  z-index: calc(var(--z-topbar) + 2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px max(16px, env(safe-area-inset-right, 0px)) max(24px, env(safe-area-inset-bottom, 0px))
+    max(16px, env(safe-area-inset-left, 0px));
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: var(--shadow-lg);
+  animation: dropdown-in var(--duration-normal) var(--ease-out) both;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    background: var(--surface-2);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.mobileNavLinkActive {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.mobileTools {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobileToolsThemeOpen {
+  overflow: visible;
+}
+
+.mobileCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface-2));
+  color: var(--text);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    border-color: var(--accent-2);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
   }
 }

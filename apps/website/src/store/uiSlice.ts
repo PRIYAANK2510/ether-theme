@@ -11,6 +11,7 @@ export const uiSlice = createSlice({
   initialState: {
     lightbox: null as LightboxState,
     themeMenuOpen: false,
+    mobileNavOpen: false,
   },
   reducers: {
     openLightbox(state, action: PayloadAction<{ src: string; label: string }>) {
@@ -22,8 +23,12 @@ export const uiSlice = createSlice({
     setThemeMenuOpen(state, action: PayloadAction<boolean>) {
       state.themeMenuOpen = action.payload;
     },
+    setMobileNavOpen(state, action: PayloadAction<boolean>) {
+      state.mobileNavOpen = action.payload;
+      if (action.payload) state.themeMenuOpen = false;
+    },
   },
 });
 
-export const { openLightbox, closeLightbox, setThemeMenuOpen } =
+export const { openLightbox, closeLightbox, setThemeMenuOpen, setMobileNavOpen } =
   uiSlice.actions;
