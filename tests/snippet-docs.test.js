@@ -13,7 +13,7 @@ describe("product site (React)", () => {
     const result = await buildWebsite();
 
     expect(result.catalogCount).toBe(catalog.length);
-    expect(result.paletteCount).toBe(25);
+    expect(result.paletteCount).toBe(35);
 
     for (const relativePath of [
       "index.html",

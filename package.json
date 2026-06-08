@@ -1,7 +1,7 @@
 {
   "name": "ether-theme",
   "displayName": "Ether Themes",
-  "description": "Ether Themes — 25 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
+  "description": "Ether Themes — 35 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Astro, Vue, Svelte, MDX, Angular, Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
   "publisher": "Priyaank",
   "version": "1.0.7",
   "icon": "icon.png",
@@ -56,6 +56,12 @@
     "gradle",
     "dotenv",
     "proguard",
+    "astro",
+    "vue",
+    "svelte",
+    "mdx",
+    "angular",
+    "preact",
     "web-development",
     "ether",
     "wcag",
@@ -82,14 +88,29 @@
   "contributes": {
     "themes": [
       {
+        "label": "Ether Amethyst",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-amethyst.color-theme.json"
+      },
+      {
         "label": "Ether Aurora",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-aurora.color-theme.json"
       },
       {
+        "label": "Ether Cedar",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-cedar.color-theme.json"
+      },
+      {
         "label": "Ether Clay",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-clay.color-theme.json"
+      },
+      {
+        "label": "Ether Copper",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-copper.color-theme.json"
       },
       {
         "label": "Ether Coral",
@@ -122,9 +143,19 @@
         "path": "./themes/ether-frost.color-theme.json"
       },
       {
+        "label": "Ether Glacier",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-glacier.color-theme.json"
+      },
+      {
         "label": "Ether Graphite",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-graphite.color-theme.json"
+      },
+      {
+        "label": "Ether Harbor",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-harbor.color-theme.json"
       },
       {
         "label": "Ether Lichen",
@@ -135,6 +166,16 @@
         "label": "Ether Luna",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-luna.color-theme.json"
+      },
+      {
+        "label": "Ether Meadow",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-meadow.color-theme.json"
+      },
+      {
+        "label": "Ether Midnight",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-midnight.color-theme.json"
       },
       {
         "label": "Ether Mint",
@@ -162,9 +203,19 @@
         "path": "./themes/ether-noir.color-theme.json"
       },
       {
+        "label": "Ether Obsidian",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-obsidian.color-theme.json"
+      },
+      {
         "label": "Ether Opal",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-opal.color-theme.json"
+      },
+      {
+        "label": "Ether Petal",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-petal.color-theme.json"
       },
       {
         "label": "Ether Prism",
@@ -185,6 +236,11 @@
         "label": "Ether Slate",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-slate.color-theme.json"
+      },
+      {
+        "label": "Ether Solstice",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-solstice.color-theme.json"
       },
       {
         "label": "Ether Stone",
@@ -244,6 +300,16 @@
           ".aidl"
         ],
         "configuration": "./src/grammars/language-configs/aidl-language-configuration.json"
+      },
+      {
+        "id": "astro",
+        "aliases": [
+          "Astro"
+        ],
+        "extensions": [
+          ".astro"
+        ],
+        "configuration": "./src/grammars/language-configs/astro-language-configuration.json"
       },
       {
         "id": "bat",
@@ -425,7 +491,19 @@
         ],
         "extensions": [
           ".mjs",
-          ".cjs"
+          ".cjs",
+          ".js"
+        ]
+      },
+      {
+        "id": "javascriptreact",
+        "aliases": [
+          "JavaScript React",
+          "JSX",
+          "Preact"
+        ],
+        "extensions": [
+          ".jsx"
         ]
       },
       {
@@ -510,11 +588,20 @@
           "Markdown"
         ],
         "extensions": [
-          ".mdx",
           ".mdown",
           ".mkd",
           ".markdown"
         ]
+      },
+      {
+        "id": "mdx",
+        "aliases": [
+          "MDX"
+        ],
+        "extensions": [
+          ".mdx"
+        ],
+        "configuration": "./src/grammars/language-configs/mdx-language-configuration.json"
       },
       {
         "id": "perl",
@@ -654,6 +741,16 @@
         ]
       },
       {
+        "id": "svelte",
+        "aliases": [
+          "Svelte"
+        ],
+        "extensions": [
+          ".svelte"
+        ],
+        "configuration": "./src/grammars/language-configs/svelte-language-configuration.json"
+      },
+      {
         "id": "swift",
         "aliases": [
           "Swift"
@@ -687,8 +784,29 @@
         ],
         "extensions": [
           ".mts",
-          ".cts"
+          ".cts",
+          ".ts"
         ]
+      },
+      {
+        "id": "typescriptreact",
+        "aliases": [
+          "TypeScript React",
+          "TSX"
+        ],
+        "extensions": [
+          ".tsx"
+        ]
+      },
+      {
+        "id": "vue",
+        "aliases": [
+          "Vue"
+        ],
+        "extensions": [
+          ".vue"
+        ],
+        "configuration": "./src/grammars/language-configs/vue-language-configuration.json"
       },
       {
         "id": "xml",
@@ -753,6 +871,36 @@
         "path": "./src/grammars/syntaxes/aidl.tmLanguage.json"
       },
       {
+        "language": "astro",
+        "scopeName": "source.astro",
+        "path": "./src/grammars/syntaxes/astro.tmLanguage.json",
+        "embeddedLanguages": {
+          "text.html": "html",
+          "text.html.markdown": "markdown",
+          "source.css": "css",
+          "source.css.less": "less",
+          "source.css.scss": "scss",
+          "source.sass": "sass",
+          "source.stylus": "stylus",
+          "source.js": "javascript",
+          "source.ts": "typescript",
+          "source.json": "json",
+          "source.tsx": "typescriptreact",
+          "meta.tag.tsx": "jsx-tags",
+          "meta.tag.without-attributes.tsx": "jsx-tags",
+          "meta.tag.attributes.tsx": "typescriptreact",
+          "meta.embedded.expression.tsx": "typescriptreact"
+        },
+        "unbalancedBracketScopes": [
+          "keyword.operator.relational",
+          "storage.type.function.arrow",
+          "keyword.operator.bitwise.shift",
+          "meta.brace.angle",
+          "punctuation.definition.tag",
+          "keyword.operator.assignment.compound.bitwise.ts"
+        ]
+      },
+      {
         "language": "dotenv",
         "scopeName": "source.dotenv",
         "path": "./src/grammars/syntaxes/dotenv.tmLanguage.json"
@@ -785,20 +933,418 @@
         ]
       },
       {
+        "scopeName": "expression.ng",
+        "path": "./src/grammars/syntaxes/angular-expression.json"
+      },
+      {
+        "scopeName": "host-object-literal.ng",
+        "path": "./src/grammars/syntaxes/angular-host-object-literal.json",
+        "injectTo": [
+          "source.ts"
+        ],
+        "embeddedLanguages": {
+          "text.html.derivative": "html",
+          "expression.ng": "javascript",
+          "source.ts": "typescript"
+        }
+      },
+      {
+        "scopeName": "inline-styles.ng",
+        "path": "./src/grammars/syntaxes/angular-inline-styles.json",
+        "injectTo": [
+          "source.ts"
+        ],
+        "embeddedLanguages": {
+          "source.css.scss": "scss"
+        }
+      },
+      {
+        "scopeName": "inline-template.ng",
+        "path": "./src/grammars/syntaxes/angular-inline-template.json",
+        "injectTo": [
+          "source.ts"
+        ],
+        "embeddedLanguages": {
+          "text.html.derivative": "html",
+          "source.css": "css",
+          "source.js": "javascript"
+        }
+      },
+      {
         "language": "kotlin",
         "scopeName": "source.kotlin",
         "path": "./src/grammars/syntaxes/kotlin.tmLanguage.json"
       },
       {
+        "scopeName": "markdown.svelte.codeblock",
+        "path": "./src/grammars/syntaxes/markdown-svelte.json",
+        "injectTo": [
+          "text.html.markdown",
+          "source.mdx"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.svelte": "svelte"
+        }
+      },
+      {
+        "scopeName": "markdown.svelte.codeblock.script",
+        "path": "./src/grammars/syntaxes/markdown-svelte-js.json",
+        "injectTo": [
+          "text.html.markdown",
+          "source.mdx"
+        ]
+      },
+      {
+        "scopeName": "markdown.svelte.codeblock.style",
+        "path": "./src/grammars/syntaxes/markdown-svelte-css.json",
+        "injectTo": [
+          "text.html.markdown",
+          "source.mdx"
+        ]
+      },
+      {
+        "scopeName": "markdown.vue.codeblock",
+        "path": "./src/grammars/syntaxes/markdown-vue.json",
+        "injectTo": [
+          "text.html.markdown"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.vue": "vue",
+          "text.html.vue": "vue",
+          "text": "plaintext",
+          "text.html.derivative": "html",
+          "text.html.markdown": "markdown",
+          "text.pug": "jade",
+          "source.css": "css",
+          "source.css.scss": "scss",
+          "source.css.less": "less",
+          "source.sass": "sass",
+          "source.stylus": "stylus",
+          "source.postcss": "postcss",
+          "source.js": "javascript",
+          "source.ts": "typescript",
+          "source.js.jsx": "javascriptreact",
+          "source.tsx": "typescriptreact",
+          "source.coffee": "coffeescript",
+          "meta.tag.js": "jsx-tags",
+          "meta.tag.tsx": "jsx-tags",
+          "meta.tag.without-attributes.js": "jsx-tags",
+          "meta.tag.without-attributes.tsx": "jsx-tags",
+          "source.json": "json",
+          "source.json.comments": "jsonc",
+          "source.json5": "json5",
+          "source.yaml": "yaml",
+          "source.toml": "toml",
+          "source.graphql": "graphql"
+        }
+      },
+      {
+        "language": "mdx",
+        "scopeName": "source.mdx",
+        "path": "./src/grammars/syntaxes/source.mdx.tmLanguage",
+        "embeddedLanguages": {
+          "meta.embedded.c": "c",
+          "meta.embedded.cpp": "cpp",
+          "meta.embedded.cs": "csharp",
+          "meta.embedded.css": "css",
+          "meta.embedded.diff": "diff",
+          "meta.embedded.go": "go",
+          "meta.embedded.graphql": "graphql",
+          "meta.embedded.html": "html",
+          "meta.embedded.ini": "ini",
+          "meta.embedded.java": "java",
+          "meta.embedded.js": "javascriptreact",
+          "meta.embedded.json": "json",
+          "meta.embedded.kotlin": "kotlin",
+          "meta.embedded.less": "less",
+          "meta.embedded.lua": "lua",
+          "meta.embedded.makefile": "makefile",
+          "meta.embedded.md": "markdown",
+          "meta.embedded.mdx": "mdx",
+          "meta.embedded.objc": "objective-c",
+          "meta.embedded.perl": "perl",
+          "meta.embedded.php": "php",
+          "meta.embedded.python": "python",
+          "meta.embedded.r": "r",
+          "meta.embedded.ruby": "ruby",
+          "meta.embedded.rust": "rust",
+          "meta.embedded.scss": "scss",
+          "meta.embedded.shell": "shellscript",
+          "meta.embedded.sql": "sql",
+          "meta.embedded.svg": "xml",
+          "meta.embedded.swift": "swift",
+          "meta.embedded.toml": "toml",
+          "meta.embedded.ts": "typescriptreact",
+          "meta.embedded.tsx": "typescriptreact",
+          "meta.embedded.vbnet": "vb",
+          "meta.embedded.xml": "xml",
+          "meta.embedded.yaml": "yaml"
+        }
+      },
+      {
+        "scopeName": "mdx.vue.codeblock",
+        "path": "./src/grammars/syntaxes/mdx-vue.json",
+        "injectTo": [
+          "source.mdx"
+        ],
+        "embeddedLanguages": {
+          "mdx.embedded.vue": "vue",
+          "text.html.vue": "vue",
+          "text": "plaintext",
+          "text.html.derivative": "html",
+          "text.html.markdown": "markdown",
+          "text.pug": "jade",
+          "source.css": "css",
+          "source.css.scss": "scss",
+          "source.css.less": "less",
+          "source.sass": "sass",
+          "source.stylus": "stylus",
+          "source.postcss": "postcss",
+          "source.js": "javascript",
+          "source.ts": "typescript",
+          "source.js.jsx": "javascriptreact",
+          "source.tsx": "typescriptreact",
+          "source.coffee": "coffeescript",
+          "meta.tag.js": "jsx-tags",
+          "meta.tag.tsx": "jsx-tags",
+          "meta.tag.without-attributes.js": "jsx-tags",
+          "meta.tag.without-attributes.tsx": "jsx-tags",
+          "source.json": "json",
+          "source.json.comments": "jsonc",
+          "source.json5": "json5",
+          "source.yaml": "yaml",
+          "source.toml": "toml",
+          "source.graphql": "graphql"
+        }
+      },
+      {
         "language": "proguard",
         "scopeName": "source.proguard",
         "path": "./src/grammars/syntaxes/proguard.tmLanguage.json"
+      },
+      {
+        "scopeName": "source.css.postcss",
+        "path": "./src/grammars/syntaxes/svelte-postcss.json",
+        "injectTo": [
+          "source.svelte"
+        ]
+      },
+      {
+        "scopeName": "source.markdown.mdx.codeblock",
+        "path": "./src/grammars/syntaxes/mdx.markdown.tmLanguage.json",
+        "injectTo": [
+          "text.html.markdown"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.mdx": "mdx"
+        }
+      },
+      {
+        "scopeName": "source.mdx.astro",
+        "path": "./src/grammars/syntaxes/mdx.astro.tmLanguage.json",
+        "injectTo": [
+          "source.mdx"
+        ]
+      },
+      {
+        "language": "svelte",
+        "scopeName": "source.svelte",
+        "path": "./src/grammars/syntaxes/svelte.tmLanguage.json",
+        "embeddedLanguages": {
+          "text.html.basic": "html",
+          "text.html.markdown": "markdown",
+          "text.pug": "jade",
+          "meta.tag.start.svelte": "svelte",
+          "punctuation.definition.tag.begin.svelte": "svelte",
+          "source.css": "css",
+          "source.css.less": "less",
+          "source.css.scss": "scss",
+          "source.css.postcss": "postcss",
+          "source.sass": "sass",
+          "source.stylus": "stylus",
+          "source.js": "javascript",
+          "source.ts": "typescript",
+          "source.coffee": "coffeescript"
+        },
+        "unbalancedBracketScopes": [
+          "keyword.operator.relational",
+          "storage.type.function.arrow",
+          "keyword.operator.bitwise.shift",
+          "meta.brace.angle",
+          "punctuation.definition.tag",
+          "keyword.operator.assignment.compound.bitwise.ts"
+        ],
+        "tokenTypes": {
+          "punctuation.definition.template-expression": "other",
+          "entity.name.type.instance.jsdoc": "other",
+          "entity.name.function.tagged-template": "other",
+          "meta.import string.quoted": "other",
+          "variable.other.jsdoc": "other"
+        }
+      },
+      {
+        "scopeName": "svelte.pug",
+        "path": "./src/grammars/syntaxes/pug-svelte.json",
+        "injectTo": [
+          "source.svelte"
+        ],
+        "embeddedLanguages": {
+          "source.ts": "typescript",
+          "text.pug": "jade"
+        }
+      },
+      {
+        "scopeName": "svelte.pug.dotblock",
+        "path": "./src/grammars/syntaxes/pug-svelte-dotblock.json",
+        "injectTo": [
+          "source.svelte"
+        ],
+        "embeddedLanguages": {
+          "source.ts": "typescript"
+        }
+      },
+      {
+        "scopeName": "svelte.pug.tags",
+        "path": "./src/grammars/syntaxes/pug-svelte-tags.json",
+        "injectTo": [
+          "source.svelte"
+        ],
+        "embeddedLanguages": {
+          "source.ts": "typescript",
+          "text.pug": "jade"
+        }
+      },
+      {
+        "scopeName": "template.blocks.ng",
+        "path": "./src/grammars/syntaxes/angular-template-blocks.json",
+        "injectTo": [
+          "text.html.derivative",
+          "source.ts"
+        ],
+        "embeddedLanguages": {
+          "text.html": "html",
+          "control.block.expression.ng": "javascript",
+          "control.block.body.ng": "html"
+        }
+      },
+      {
+        "scopeName": "template.let.ng",
+        "path": "./src/grammars/syntaxes/angular-let-declaration.json",
+        "injectTo": [
+          "text.html.derivative",
+          "source.ts"
+        ]
+      },
+      {
+        "scopeName": "template.ng",
+        "path": "./src/grammars/syntaxes/angular-template.json",
+        "injectTo": [
+          "text.html.derivative",
+          "source.ts"
+        ],
+        "embeddedLanguages": {
+          "text.html": "html",
+          "source.css": "css",
+          "expression.ng": "javascript"
+        }
+      },
+      {
+        "scopeName": "template.tag.ng",
+        "path": "./src/grammars/syntaxes/angular-template-tag.json",
+        "injectTo": [
+          "text.html.derivative",
+          "source.ts"
+        ]
+      },
+      {
+        "scopeName": "text.html.markdown.astro",
+        "path": "./src/grammars/syntaxes/markdown.astro.tmLanguage.json",
+        "injectTo": [
+          "text.html.markdown",
+          "source.astro"
+        ]
+      },
+      {
+        "language": "vue",
+        "scopeName": "text.html.vue",
+        "path": "./src/grammars/syntaxes/vue.tmLanguage.json",
+        "embeddedLanguages": {
+          "text.html.vue": "vue",
+          "text": "plaintext",
+          "text.html.derivative": "html",
+          "text.html.markdown": "markdown",
+          "text.pug": "jade",
+          "source.css": "css",
+          "source.css.scss": "scss",
+          "source.css.less": "less",
+          "source.sass": "sass",
+          "source.stylus": "stylus",
+          "source.postcss": "postcss",
+          "source.js": "javascript",
+          "source.ts": "typescript",
+          "source.js.jsx": "javascriptreact",
+          "source.tsx": "typescriptreact",
+          "source.coffee": "coffeescript",
+          "meta.tag.js": "jsx-tags",
+          "meta.tag.tsx": "jsx-tags",
+          "meta.tag.without-attributes.js": "jsx-tags",
+          "meta.tag.without-attributes.tsx": "jsx-tags",
+          "source.json": "json",
+          "source.json.comments": "jsonc",
+          "source.json5": "json5",
+          "source.yaml": "yaml",
+          "source.toml": "toml",
+          "source.graphql": "graphql"
+        },
+        "unbalancedBracketScopes": [
+          "keyword.operator.relational",
+          "storage.type.function.arrow",
+          "keyword.operator.bitwise.shift",
+          "meta.brace.angle",
+          "punctuation.definition.tag",
+          "keyword.operator.assignment.compound.bitwise.ts"
+        ]
+      },
+      {
+        "scopeName": "vue.directives",
+        "path": "./src/grammars/syntaxes/vue-directives.json",
+        "injectTo": [
+          "text.html.vue",
+          "text.html.markdown",
+          "text.html.derivative",
+          "text.pug"
+        ]
+      },
+      {
+        "scopeName": "vue.interpolations",
+        "path": "./src/grammars/syntaxes/vue-interpolations.json",
+        "injectTo": [
+          "text.html.vue",
+          "text.html.markdown",
+          "text.html.derivative",
+          "text.pug"
+        ]
+      },
+      {
+        "scopeName": "vue.sfc.script.leading-operator-fix",
+        "path": "./src/grammars/syntaxes/vue-sfc-script-leading-operator-fix.json",
+        "injectTo": [
+          "text.html.vue"
+        ]
+      },
+      {
+        "scopeName": "vue.sfc.style.variable.injection",
+        "path": "./src/grammars/syntaxes/vue-sfc-style-variable-injection.json",
+        "injectTo": [
+          "text.html.vue"
+        ]
       }
     ]
   },
   "scripts": {
     "build": "node src/build.js",
     "build:extension": "node src/build.js --skip-previews --skip-site",
+    "grammars:sync": "node scripts/sync-framework-grammars.mjs",
     "site:prepare": "node apps/website/scripts/prepare-data.mjs",
     "presite:dev": "node apps/website/scripts/ensure-site-data.mjs",
     "site:dev": "vite --config apps/website/vite.config.ts",
@@ -840,6 +1386,7 @@
     "dotenv-cli": "^11.0.0",
     "eslint": "^10.4.1",
     "globals": "^17.6.0",
+    "js-yaml": "4.2.0",
     "ovsx": "^1.0.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",

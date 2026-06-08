@@ -1,4 +1,12 @@
-/** @typedef {{ scopeName: string, path: string, embeddedLanguages?: Record<string, string>, injectTo?: string[] }} GrammarDefinition */
+import {
+  FRAMEWORK_UNBALANCED_BRACKET_SCOPES,
+  MDX_EMBEDDED_LANGUAGES,
+  SVELTE_EMBEDDED_LANGUAGES,
+  SVELTE_TOKEN_TYPES,
+  VUE_EMBEDDED_LANGUAGES,
+} from "./web-framework-meta.js";
+
+/** @typedef {{ scopeName: string, path: string, embeddedLanguages?: Record<string, string>, injectTo?: string[], unbalancedBracketScopes?: string[], tokenTypes?: Record<string, string> }} GrammarDefinition */
 
 /** @typedef {{ id: string, aliases: string[], extensions?: string[], filenames?: string[], filenamePatterns?: string[], configuration?: string, grammar?: GrammarDefinition }} LanguageDefinition */
 
@@ -70,6 +78,74 @@ export const LANGUAGE_CATALOG = [
     grammar: {
       scopeName: "source.dotenv",
       path: "./src/grammars/syntaxes/dotenv.tmLanguage.json",
+    },
+  },
+  {
+    id: "astro",
+    aliases: ["Astro"],
+    extensions: [".astro"],
+    configuration:
+      "./src/grammars/language-configs/astro-language-configuration.json",
+    grammar: {
+      scopeName: "source.astro",
+      path: "./src/grammars/syntaxes/astro.tmLanguage.json",
+      embeddedLanguages: {
+        "text.html": "html",
+        "text.html.markdown": "markdown",
+        "source.css": "css",
+        "source.css.less": "less",
+        "source.css.scss": "scss",
+        "source.sass": "sass",
+        "source.stylus": "stylus",
+        "source.js": "javascript",
+        "source.ts": "typescript",
+        "source.json": "json",
+        "source.tsx": "typescriptreact",
+        "meta.tag.tsx": "jsx-tags",
+        "meta.tag.without-attributes.tsx": "jsx-tags",
+        "meta.tag.attributes.tsx": "typescriptreact",
+        "meta.embedded.expression.tsx": "typescriptreact",
+      },
+      unbalancedBracketScopes: FRAMEWORK_UNBALANCED_BRACKET_SCOPES,
+    },
+  },
+  {
+    id: "vue",
+    aliases: ["Vue"],
+    extensions: [".vue"],
+    configuration:
+      "./src/grammars/language-configs/vue-language-configuration.json",
+    grammar: {
+      scopeName: "text.html.vue",
+      path: "./src/grammars/syntaxes/vue.tmLanguage.json",
+      embeddedLanguages: VUE_EMBEDDED_LANGUAGES,
+      unbalancedBracketScopes: FRAMEWORK_UNBALANCED_BRACKET_SCOPES,
+    },
+  },
+  {
+    id: "svelte",
+    aliases: ["Svelte"],
+    extensions: [".svelte"],
+    configuration:
+      "./src/grammars/language-configs/svelte-language-configuration.json",
+    grammar: {
+      scopeName: "source.svelte",
+      path: "./src/grammars/syntaxes/svelte.tmLanguage.json",
+      embeddedLanguages: SVELTE_EMBEDDED_LANGUAGES,
+      unbalancedBracketScopes: FRAMEWORK_UNBALANCED_BRACKET_SCOPES,
+      tokenTypes: SVELTE_TOKEN_TYPES,
+    },
+  },
+  {
+    id: "mdx",
+    aliases: ["MDX"],
+    extensions: [".mdx"],
+    configuration:
+      "./src/grammars/language-configs/mdx-language-configuration.json",
+    grammar: {
+      scopeName: "source.mdx",
+      path: "./src/grammars/syntaxes/source.mdx.tmLanguage",
+      embeddedLanguages: MDX_EMBEDDED_LANGUAGES,
     },
   },
 
@@ -173,7 +249,19 @@ export const LANGUAGE_CATALOG = [
   {
     id: "markdown",
     aliases: ["Markdown"],
-    extensions: [".mdx", ".mdown", ".mkd", ".markdown"],
+    extensions: [".mdown", ".mkd", ".markdown"],
+  },
+
+  // React / Preact — built-in JSX grammars + file associations
+  {
+    id: "javascriptreact",
+    aliases: ["JavaScript React", "JSX", "Preact"],
+    extensions: [".jsx"],
+  },
+  {
+    id: "typescriptreact",
+    aliases: ["TypeScript React", "TSX"],
+    extensions: [".tsx"],
   },
 
   // Systems & build — built-in grammars
@@ -308,14 +396,14 @@ export const LANGUAGE_CATALOG = [
     extensions: [".htm", ".xhtml", ".ejs", ".erb"],
   },
   {
-    id: "typescript",
-    aliases: ["TypeScript"],
-    extensions: [".mts", ".cts"],
-  },
-  {
     id: "javascript",
     aliases: ["JavaScript"],
-    extensions: [".mjs", ".cjs"],
+    extensions: [".mjs", ".cjs", ".js"],
+  },
+  {
+    id: "typescript",
+    aliases: ["TypeScript"],
+    extensions: [".mts", ".cts", ".ts"],
   },
 ];
 
@@ -325,6 +413,186 @@ export const LANGUAGE_CATALOG = [
  * @type {GrammarDefinition[]}
  */
 export const GRAMMAR_INJECTIONS = [
+  // Astro
+  {
+    scopeName: "text.html.markdown.astro",
+    path: "./src/grammars/syntaxes/markdown.astro.tmLanguage.json",
+    injectTo: ["text.html.markdown", "source.astro"],
+  },
+  {
+    scopeName: "source.mdx.astro",
+    path: "./src/grammars/syntaxes/mdx.astro.tmLanguage.json",
+    injectTo: ["source.mdx"],
+  },
+
+  // Vue (Official)
+  {
+    scopeName: "markdown.vue.codeblock",
+    path: "./src/grammars/syntaxes/markdown-vue.json",
+    injectTo: ["text.html.markdown"],
+    embeddedLanguages: {
+      "meta.embedded.block.vue": "vue",
+      ...VUE_EMBEDDED_LANGUAGES,
+    },
+  },
+  {
+    scopeName: "mdx.vue.codeblock",
+    path: "./src/grammars/syntaxes/mdx-vue.json",
+    injectTo: ["source.mdx"],
+    embeddedLanguages: {
+      "mdx.embedded.vue": "vue",
+      ...VUE_EMBEDDED_LANGUAGES,
+    },
+  },
+  {
+    scopeName: "vue.directives",
+    path: "./src/grammars/syntaxes/vue-directives.json",
+    injectTo: [
+      "text.html.vue",
+      "text.html.markdown",
+      "text.html.derivative",
+      "text.pug",
+    ],
+  },
+  {
+    scopeName: "vue.interpolations",
+    path: "./src/grammars/syntaxes/vue-interpolations.json",
+    injectTo: [
+      "text.html.vue",
+      "text.html.markdown",
+      "text.html.derivative",
+      "text.pug",
+    ],
+  },
+  {
+    scopeName: "vue.sfc.script.leading-operator-fix",
+    path: "./src/grammars/syntaxes/vue-sfc-script-leading-operator-fix.json",
+    injectTo: ["text.html.vue"],
+  },
+  {
+    scopeName: "vue.sfc.style.variable.injection",
+    path: "./src/grammars/syntaxes/vue-sfc-style-variable-injection.json",
+    injectTo: ["text.html.vue"],
+  },
+
+  // Svelte
+  {
+    scopeName: "svelte.pug",
+    path: "./src/grammars/syntaxes/pug-svelte.json",
+    injectTo: ["source.svelte"],
+    embeddedLanguages: {
+      "source.ts": "typescript",
+      "text.pug": "jade",
+    },
+  },
+  {
+    scopeName: "svelte.pug.tags",
+    path: "./src/grammars/syntaxes/pug-svelte-tags.json",
+    injectTo: ["source.svelte"],
+    embeddedLanguages: {
+      "source.ts": "typescript",
+      "text.pug": "jade",
+    },
+  },
+  {
+    scopeName: "svelte.pug.dotblock",
+    path: "./src/grammars/syntaxes/pug-svelte-dotblock.json",
+    injectTo: ["source.svelte"],
+    embeddedLanguages: { "source.ts": "typescript" },
+  },
+  {
+    scopeName: "markdown.svelte.codeblock",
+    path: "./src/grammars/syntaxes/markdown-svelte.json",
+    injectTo: ["text.html.markdown", "source.mdx"],
+    embeddedLanguages: { "meta.embedded.block.svelte": "svelte" },
+  },
+  {
+    scopeName: "markdown.svelte.codeblock.script",
+    path: "./src/grammars/syntaxes/markdown-svelte-js.json",
+    injectTo: ["text.html.markdown", "source.mdx"],
+  },
+  {
+    scopeName: "markdown.svelte.codeblock.style",
+    path: "./src/grammars/syntaxes/markdown-svelte-css.json",
+    injectTo: ["text.html.markdown", "source.mdx"],
+  },
+  {
+    scopeName: "source.css.postcss",
+    path: "./src/grammars/syntaxes/svelte-postcss.json",
+    injectTo: ["source.svelte"],
+  },
+
+  // MDX
+  {
+    scopeName: "source.markdown.mdx.codeblock",
+    path: "./src/grammars/syntaxes/mdx.markdown.tmLanguage.json",
+    injectTo: ["text.html.markdown"],
+    embeddedLanguages: { "meta.embedded.block.mdx": "mdx" },
+  },
+
+  // Angular templates (inject into HTML + TypeScript)
+  {
+    scopeName: "inline-template.ng",
+    path: "./src/grammars/syntaxes/angular-inline-template.json",
+    injectTo: ["source.ts"],
+    embeddedLanguages: {
+      "text.html.derivative": "html",
+      "source.css": "css",
+      "source.js": "javascript",
+    },
+  },
+  {
+    scopeName: "inline-styles.ng",
+    path: "./src/grammars/syntaxes/angular-inline-styles.json",
+    injectTo: ["source.ts"],
+    embeddedLanguages: { "source.css.scss": "scss" },
+  },
+  {
+    scopeName: "template.ng",
+    path: "./src/grammars/syntaxes/angular-template.json",
+    injectTo: ["text.html.derivative", "source.ts"],
+    embeddedLanguages: {
+      "text.html": "html",
+      "source.css": "css",
+      "expression.ng": "javascript",
+    },
+  },
+  {
+    scopeName: "template.blocks.ng",
+    path: "./src/grammars/syntaxes/angular-template-blocks.json",
+    injectTo: ["text.html.derivative", "source.ts"],
+    embeddedLanguages: {
+      "text.html": "html",
+      "control.block.expression.ng": "javascript",
+      "control.block.body.ng": "html",
+    },
+  },
+  {
+    scopeName: "template.let.ng",
+    path: "./src/grammars/syntaxes/angular-let-declaration.json",
+    injectTo: ["text.html.derivative", "source.ts"],
+  },
+  {
+    scopeName: "host-object-literal.ng",
+    path: "./src/grammars/syntaxes/angular-host-object-literal.json",
+    injectTo: ["source.ts"],
+    embeddedLanguages: {
+      "text.html.derivative": "html",
+      "expression.ng": "javascript",
+      "source.ts": "typescript",
+    },
+  },
+  {
+    scopeName: "template.tag.ng",
+    path: "./src/grammars/syntaxes/angular-template-tag.json",
+    injectTo: ["text.html.derivative", "source.ts"],
+  },
+  {
+    scopeName: "expression.ng",
+    path: "./src/grammars/syntaxes/angular-expression.json",
+  },
+
+  // CSS patches (built-in grammars)
   {
     scopeName: "ether.nested-selector.injection",
     path: "./src/grammars/syntaxes/css-nested-selector.injection.tmLanguage.json",
@@ -343,7 +611,13 @@ export const GRAMMAR_INJECTIONS = [
 ];
 
 /** Number of language catalog entries (must match {@link LANGUAGE_CATALOG}.length). */
-export const LANGUAGE_CATALOG_COUNT = 38;
+export const LANGUAGE_CATALOG_COUNT = 44;
+
+/** Bundled language grammars (must match catalog entries with `grammar`). */
+export const BUNDLED_GRAMMAR_LANGUAGE_COUNT = 8;
+
+/** Total grammar contributions (bundled languages + injections). */
+export const GRAMMAR_CONTRIBUTION_COUNT = 35;
 
 /**
  * @param {LanguageDefinition[]} catalog
@@ -407,14 +681,23 @@ export function buildGrammarContributions(catalog) {
       ...(entry.grammar.embeddedLanguages
         ? { embeddedLanguages: entry.grammar.embeddedLanguages }
         : {}),
+      ...(entry.grammar.unbalancedBracketScopes
+        ? { unbalancedBracketScopes: entry.grammar.unbalancedBracketScopes }
+        : {}),
+      ...(entry.grammar.tokenTypes
+        ? { tokenTypes: entry.grammar.tokenTypes }
+        : {}),
     }));
 
   const injections = GRAMMAR_INJECTIONS.map((grammar) => ({
     scopeName: grammar.scopeName,
     path: grammar.path,
-    injectTo: grammar.injectTo,
+    ...(grammar.injectTo ? { injectTo: grammar.injectTo } : {}),
     ...(grammar.embeddedLanguages
       ? { embeddedLanguages: grammar.embeddedLanguages }
+      : {}),
+    ...(grammar.unbalancedBracketScopes
+      ? { unbalancedBracketScopes: grammar.unbalancedBracketScopes }
       : {}),
   }));
 

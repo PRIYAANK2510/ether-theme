@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>25 dark color themes · 496 web-dev snippets · Kotlin &amp; Android syntax highlighting</strong><br />
+  <strong>35 dark color themes · 496 web-dev snippets · Astro, Vue, Svelte, MDX &amp; Android grammars</strong><br />
   One extension for <strong>VS Code</strong> and <strong>Cursor</strong> — WCAG-validated palettes, zero extra setup.
 </p>
 
@@ -46,20 +46,26 @@ ext install Priyaank.ether-theme
 
 ## Why developers pick Ether
 
-- **25 dark themes** — Distinct palettes from navy-teal to warm stone, including Dracula-style and Catppuccin-style options
+- **35 dark themes** — Distinct palettes from navy-teal Harbor to blush Petal, jewel Amethyst, volcanic Obsidian, and more
 - **496 snippets** — React 19, Next.js App Router, TanStack Query, Zod, Vitest, Node/Express — type a prefix, press Tab
-- **Built-in grammars** — Kotlin, AIDL, ProGuard/R8, and Dotenv — no separate Android language extensions required
+- **Bundled grammars** — Astro, Vue, Svelte, MDX, Angular templates, Kotlin, AIDL, ProGuard/R8, and Dotenv — no extra language extensions required
 - **Readable by design** — WCAG contrast checks at build time; comments tuned to match active gutter line numbers
 - **Works everywhere** — Published on the VS Code Marketplace and Open VSX for Cursor
 
 ## Theme catalog
 
-Ether Aurora · Ether Clay · Ether Coral · Ether Dracula · Ether Dusk · Ether Ember · Ether Flame · Ether Frost · Ether Graphite · Ether Lichen · Ether Luna · Ether Mint · Ether Mirage · Ether Mocha · Ether Moss · Ether Noir · Ether Opal · Ether Prism · Ether Sage · Ether Sand · Ether Slate · Ether Stone · Ether Storm · Ether Tide · Ether Velvet
+Ether Amethyst · Ether Aurora · Ether Cedar · Ether Clay · Ether Copper · Ether Coral · Ether Dracula · Ether Dusk · Ether Ember · Ether Flame · Ether Frost · Ether Glacier · Ether Graphite · Ether Harbor · Ether Lichen · Ether Luna · Ether Meadow · Ether Midnight · Ether Mint · Ether Mirage · Ether Mocha · Ether Moss · Ether Noir · Ether Obsidian · Ether Opal · Ether Petal · Ether Prism · Ether Sage · Ether Sand · Ether Slate · Ether Solstice · Ether Stone · Ether Storm · Ether Tide · Ether Velvet
 
 ## Previews
 
 <!-- PREVIEW_GALLERY_START -->
 <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;column-gap:48px;row-gap:0;max-width:100%">
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Amethyst</strong>
+</p>
+<img src="docs/previews/ether-amethyst.png" alt="Ether Amethyst dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Aurora</strong>
@@ -68,9 +74,21 @@ Ether Aurora · Ether Clay · Ether Coral · Ether Dracula · Ether Dusk · Ethe
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Cedar</strong>
+</p>
+<img src="docs/previews/ether-cedar.png" alt="Ether Cedar dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Clay</strong>
 </p>
 <img src="docs/previews/ether-clay.png" alt="Ether Clay dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Copper</strong>
+</p>
+<img src="docs/previews/ether-copper.png" alt="Ether Copper dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
@@ -110,9 +128,21 @@ Ether Aurora · Ether Clay · Ether Coral · Ether Dracula · Ether Dusk · Ethe
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Glacier</strong>
+</p>
+<img src="docs/previews/ether-glacier.png" alt="Ether Glacier dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Graphite</strong>
 </p>
 <img src="docs/previews/ether-graphite.png" alt="Ether Graphite dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Harbor</strong>
+</p>
+<img src="docs/previews/ether-harbor.png" alt="Ether Harbor dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
@@ -125,6 +155,18 @@ Ether Aurora · Ether Clay · Ether Coral · Ether Dracula · Ether Dusk · Ethe
 <strong>Ether Luna</strong>
 </p>
 <img src="docs/previews/ether-luna.png" alt="Ether Luna dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Meadow</strong>
+</p>
+<img src="docs/previews/ether-meadow.png" alt="Ether Meadow dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Midnight</strong>
+</p>
+<img src="docs/previews/ether-midnight.png" alt="Ether Midnight dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
@@ -158,9 +200,21 @@ Ether Aurora · Ether Clay · Ether Coral · Ether Dracula · Ether Dusk · Ethe
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Obsidian</strong>
+</p>
+<img src="docs/previews/ether-obsidian.png" alt="Ether Obsidian dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Opal</strong>
 </p>
 <img src="docs/previews/ether-opal.png" alt="Ether Opal dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Petal</strong>
+</p>
+<img src="docs/previews/ether-petal.png" alt="Ether Petal dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
@@ -185,6 +239,12 @@ Ether Aurora · Ether Clay · Ether Coral · Ether Dracula · Ether Dusk · Ethe
 <strong>Ether Slate</strong>
 </p>
 <img src="docs/previews/ether-slate.png" alt="Ether Slate dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Solstice</strong>
+</p>
+<img src="docs/previews/ether-solstice.png" alt="Ether Solstice dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
@@ -234,16 +294,21 @@ Regenerate the product site locally: `npm run site:build` (output in `site/`).
 
 ## Language support
 
-Bundled TextMate grammars and **38 file associations** tuned for Android Studio–style projects.
+Bundled TextMate grammars and **44 language associations** for modern web and Android projects.
 
-| Grammar           | Extensions &amp; files                                                                       |
-| ----------------- | -------------------------------------------------------------------------------------------- |
-| **Kotlin**        | `.kt`, `.kts`, `build.gradle.kts`, `settings.gradle.kts` — Compose &amp; Android annotations |
-| **AIDL**          | `.aidl` — interfaces, parcelables, enums, unions                                             |
-| **ProGuard / R8** | `.pro`, `.keep`, `proguard-rules.pro`, `consumer-rules.pro`                                  |
-| **Dotenv**        | `.env`, `.env.*`                                                                             |
+| Grammar              | Extensions &amp; files                                                          |
+| -------------------- | ------------------------------------------------------------------------------- |
+| **Astro**            | `.astro` — frontmatter TypeScript, HTML, JSX expressions                        |
+| **Vue**              | `.vue` — SFC template, script, style blocks                                     |
+| **Svelte**           | `.svelte` — markup, script, style, directives                                   |
+| **MDX**              | `.mdx` — Markdown + JSX                                                         |
+| **Angular templates**| `{{ }}` bindings, `@if` / `@for` blocks in HTML &amp; inline TS templates      |
+| **Kotlin**           | `.kt`, `.kts`, `build.gradle.kts` — Compose &amp; Android annotations           |
+| **AIDL**             | `.aidl` — interfaces, parcelables, enums, unions                                |
+| **ProGuard / R8**    | `.pro`, `.keep`, `proguard-rules.pro`, `consumer-rules.pro`                     |
+| **Dotenv**           | `.env`, `.env.*`                                                                |
 
-**Android associations:** `AndroidManifest.xml`, `res/layout|values|drawable|navigation|xml|menu|color|anim/**`, `libs.versions.toml`, `google-services.json`, Gradle wrapper properties, Groovy `.gradle` scripts, and more.
+**Also associated:** `.jsx`, `.tsx`, `.js`, `.ts`, `AndroidManifest.xml`, `res/**` XML, Gradle files, and more. React / Preact use VS Code’s built-in JSX grammars with Ether theme colors.
 
 ## Contributing
 

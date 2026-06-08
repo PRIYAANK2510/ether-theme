@@ -26,7 +26,7 @@ export function HomeHero() {
             <strong>{SITE_DATA.catalogCount}</strong> snippets
           </span>
           <span>
-            <strong>4</strong> grammars
+            <strong>8</strong> grammars
           </span>
           <span>
             <strong>WCAG AA</strong>

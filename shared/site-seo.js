@@ -14,15 +14,15 @@ export const HOME_SEO = {
   path: "/",
   title: "Ether Themes — Dark Themes & Snippets for VS Code and Cursor",
   description:
-    "Install Ether Themes: 25 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
+    "Install Ether Themes: 35 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Astro, Vue, Svelte, MDX, Angular, Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
 };
 
 /** @type {PageSeo} */
 export const THEMES_SEO = {
   path: "/themes/",
-  title: "Ether Themes Gallery — 25 Dark Color Themes",
+  title: "Ether Themes Gallery — 35 Dark Color Themes",
   description:
-    "Browse all 25 Ether dark themes with live previews. WCAG-validated palettes from navy-teal Aurora to warm Clay and Dusk — install one extension for VS Code and Cursor.",
+    "Browse all 35 Ether dark themes with live previews. WCAG-validated palettes from Harbor and Glacier to Midnight and Obsidian — install one extension for VS Code and Cursor.",
 };
 
 /** @type {PageSeo} */
@@ -67,7 +67,7 @@ export function canonicalUrl(path) {
  * @returns {PageSeo[]}
  */
 export function allPageSeo(languages, counts = {}) {
-  const paletteCount = counts.paletteCount ?? 25;
+  const paletteCount = counts.paletteCount ?? 35;
   const catalogCount = counts.catalogCount ?? 496;
 
   return [

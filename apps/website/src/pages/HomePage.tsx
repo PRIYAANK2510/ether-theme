@@ -9,7 +9,16 @@ import { SITE_DATA } from "@/generated/site-data";
 import gridStyles from "@/styles/ui/grid.module.scss";
 import styles from "./HomePage.module.scss";
 
-const GRAMMARS = ["Kotlin", "AIDL", "ProGuard", "Dotenv"] as const;
+const GRAMMARS = [
+  "Astro",
+  "Vue",
+  "Svelte",
+  "MDX",
+  "Angular",
+  "Kotlin",
+  "AIDL",
+  "ProGuard",
+] as const;
 
 export function HomePage() {
   usePageSeo(HOME_SEO);
@@ -61,10 +70,11 @@ export function HomePage() {
             </span>
           </Link>
           <div className={styles.capabilityStatic}>
-            <span className={styles.capValue}>4</span>
+            <span className={styles.capValue}>8</span>
             <span className={styles.capTitle}>Bundled grammars</span>
             <span className={styles.capDesc}>
-              No extra extensions required after install.
+              Astro, Vue, Svelte, MDX, Angular, and Android — no extra
+              extensions required.
             </span>
             <div className={styles.capTags}>
               {GRAMMARS.map((grammar) => (

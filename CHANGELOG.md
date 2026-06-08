@@ -10,6 +10,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.8] - 2026-06-05
+
+### Added
+
+- **9 new dark palettes** — Harbor, Petal, Cedar, Solstice, Glacier, Amethyst, Copper, Meadow, and Obsidian (35 themes total)
+- **Web framework grammars** — official Astro, Vue, Svelte, and MDX TextMate grammars bundled in the extension (no separate language extensions required)
+- **Angular template injections** — `{{ }}` bindings, control-flow blocks, and inline templates in HTML and TypeScript
+- **Framework syntax rules** — Astro/Vue/Svelte tag and directive colors, unified fat-arrow operator styling, bracket-pair fixes for `=>` in `.astro` files
+- **`npm run grammars:sync`** — script to refresh framework grammar files from upstream language-tools repos
+
+### Changed
+
+- **Ether Midnight** — unified violet-slate surfaces and coral accent for a cohesive sidebar/editor look
+- Expanded language associations to **44** (`.jsx`, `.tsx`, `.js`, `.ts`, `.mdx`, and more)
+- README preview gallery, website SEO copy, and theme counts updated for 35 palettes
+- All existing themes regenerated with expanded syntax token rules
+
 ## [1.0.7] - 2026-06-06
 
 ### Changed

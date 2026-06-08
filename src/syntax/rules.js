@@ -258,6 +258,23 @@ const syntaxRuleDefinitions = [
   },
 
   {
+    name: "Arrow Function Operator",
+    scope: ["storage.type.function.arrow", "keyword.operator.arrow"],
+    role: "cyan",
+  },
+
+  {
+    name: "Svelte / Vue Directive",
+    scope: [
+      "meta.directive.svelte",
+      "keyword.control.directive.vue",
+      "entity.other.attribute-name.directive.vue",
+    ],
+    role: "keyword",
+    fontStyle: "italic",
+  },
+
+  {
     name: "Keyword / Control",
     scope: [
       "keyword.control -keyword.control.at-rule",
@@ -287,7 +304,6 @@ const syntaxRuleDefinitions = [
       "keyword.operator.logical.python",
       "keyword.operator.wordlike",
       "keyword.operator.noexcept",
-      "keyword.operator.arrow",
       "keyword.control.heredoc-shell",
     ],
     role: "keyword",
@@ -298,7 +314,7 @@ const syntaxRuleDefinitions = [
     name: "Keyword / Storage & Modifier",
     scope: [
       "keyword",
-      "storage",
+      "storage -storage.type.function.arrow",
       "storage.modifier",
       "storage.modifier.import",
       "storage.modifier.package",
@@ -565,6 +581,8 @@ const syntaxRuleDefinitions = [
       "support.class.component.tsx",
       "support.class.component.jsx",
       "support.class.component.ts",
+      "support.class.component.vue",
+      "entity.name.type.class.vue",
     ],
     role: "type",
   },
@@ -576,6 +594,8 @@ const syntaxRuleDefinitions = [
       "entity.name.tag.jsx",
       "entity.name.tag.tsx",
       "entity.name.tag.html",
+      "entity.name.tag.astro",
+      "entity.name.tag.svelte",
       "entity.name.tag.xml",
       "entity.name.tag.namespace.tsx",
       "entity.name.tag.namespace.jsx",
@@ -626,6 +646,9 @@ const syntaxRuleDefinitions = [
       "entity.other.attribute-name.jsx",
       "entity.other.attribute-name.tsx",
       "entity.other.attribute-name.html",
+      "entity.other.attribute-name.astro",
+      "entity.other.attribute-name.svelte",
+      "entity.other.attribute-name.html.vue",
       "meta.attribute-with-value",
     ],
     role: "number",
@@ -911,6 +934,8 @@ const syntaxRuleDefinitions = [
       "punctuation.section.embedded.end.jsx",
       "punctuation.section.embedded.begin.js",
       "punctuation.section.embedded.end.js",
+      "punctuation.section.embedded.begin.astro",
+      "punctuation.section.embedded.end.astro",
       "punctuation.definition.generic.begin",
       "punctuation.definition.generic.end",
     ],

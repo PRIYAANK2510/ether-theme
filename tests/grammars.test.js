@@ -3,8 +3,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
+  BUNDLED_GRAMMAR_LANGUAGE_COUNT,
   buildGrammarContributions,
   buildLanguageContributions,
+  GRAMMAR_CONTRIBUTION_COUNT,
+  GRAMMAR_INJECTIONS,
   LANGUAGE_CATALOG,
   LANGUAGE_CATALOG_COUNT,
 } from "../src/grammars/catalog.js";
@@ -17,16 +20,26 @@ describe("grammar catalog", () => {
     expect(LANGUAGE_CATALOG).toHaveLength(LANGUAGE_CATALOG_COUNT);
   });
 
-  it("bundles kotlin, aidl, proguard, dotenv, and css selector injection", () => {
+  it("bundles web framework and android grammars", () => {
     const grammars = buildGrammarContributions(LANGUAGE_CATALOG);
     const languages = new Set(
       grammars.map((entry) => entry.language).filter(Boolean),
     );
 
     expect(languages).toEqual(
-      new Set(["aidl", "dotenv", "kotlin", "proguard"]),
+      new Set([
+        "aidl",
+        "astro",
+        "dotenv",
+        "kotlin",
+        "mdx",
+        "proguard",
+        "svelte",
+        "vue",
+      ]),
     );
-    expect(grammars).toHaveLength(7);
+    expect(languages.size).toBe(BUNDLED_GRAMMAR_LANGUAGE_COUNT);
+    expect(grammars).toHaveLength(GRAMMAR_CONTRIBUTION_COUNT);
     expect(
       grammars.some(
         (entry) => entry.scopeName === "ether.nested-selector.injection",
@@ -39,12 +52,32 @@ describe("grammar catalog", () => {
     ).toEqual(["source.css.scss", "source.css", "source.css.less"]);
   });
 
-  it("maps android project file patterns to the right languages", () => {
+  it("maps framework and android file patterns to the right languages", () => {
     const languages = buildLanguageContributions(LANGUAGE_CATALOG);
     const byId = Object.fromEntries(
       languages.map((entry) => [entry.id, entry]),
     );
 
+    expect(byId.astro.extensions).toContain(".astro");
+    expect(byId.vue.extensions).toContain(".vue");
+    expect(byId.svelte.extensions).toContain(".svelte");
+    expect(byId.mdx.extensions).toContain(".mdx");
+    expect(byId.javascriptreact.extensions).toContain(".jsx");
+    expect(byId.typescriptreact.extensions).toContain(".tsx");
+    expect(byId.javascript.extensions).toContain(".js");
+    expect(byId.typescript.extensions).toContain(".ts");
+    const astroGrammar = buildGrammarContributions(LANGUAGE_CATALOG).find(
+      (entry) => entry.language === "astro",
+    );
+    expect(astroGrammar?.unbalancedBracketScopes).toContain(
+      "storage.type.function.arrow",
+    );
+    const vueGrammar = buildGrammarContributions(LANGUAGE_CATALOG).find(
+      (entry) => entry.language === "vue",
+    );
+    expect(vueGrammar?.embeddedLanguages?.["source.tsx"]).toBe(
+      "typescriptreact",
+    );
     expect(byId.kotlin.extensions).toContain(".kts");
     expect(byId.kotlin.filenamePatterns).toContain("build.gradle.kts");
     expect(byId.aidl.extensions).toContain(".aidl");
@@ -127,9 +160,10 @@ describe("grammar catalog", () => {
     expect(new Set(grammars.map((entry) => entry.scopeName)).size).toBe(
       grammars.length,
     );
+    expect(GRAMMAR_INJECTIONS.length).toBeGreaterThan(20);
     expect(
       grammars.filter((entry) => entry.injectTo).length,
-    ).toBeGreaterThanOrEqual(1);
+    ).toBeGreaterThanOrEqual(20);
   });
 
   it("composes stable package.json contributions", () => {
@@ -137,8 +171,8 @@ describe("grammar catalog", () => {
     const second = composeGrammarContributions();
 
     expect(first).toEqual(second);
-    expect(first.languages.length).toBeGreaterThan(20);
-    expect(first.grammars).toHaveLength(7);
+    expect(first.languages.length).toBeGreaterThan(40);
+    expect(first.grammars).toHaveLength(GRAMMAR_CONTRIBUTION_COUNT);
   });
 
   it("keeps bundled grammars in the published VSIX", () => {

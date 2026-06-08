@@ -4,7 +4,7 @@ Single entry point for AI assistants working in this repo.
 
 ## What this is
 
-VS Code/Cursor extension: **25 dark palettes**, **496 snippets**, **4 bundled grammars**. Build-time generation only — no runtime extension code. React product site at `apps/website/`.
+VS Code/Cursor extension: **35 dark palettes**, **496 snippets**, **8 bundled language grammars** (35 grammar contributions including injections). Build-time generation only — no runtime extension code. React product site at `apps/website/`.
 
 ## Source of truth
 
