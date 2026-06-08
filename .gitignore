@@ -7,6 +7,7 @@ apps/website/src/generated/
 .env
 .DS_Store
 Thumbs.db
+.readme-github.bak
 
 # Previews are PNG-only; SVG is rasterized in memory at build time
 docs/previews/*.svg

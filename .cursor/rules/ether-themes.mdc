@@ -8,7 +8,7 @@ alwaysApply: false
 
 Based on [VS Code Color Theme API](https://code.visualstudio.com/api/extension-guides/color-theme): workbench `colors` + TextMate `tokenColors`. Ether derives both from palette tokens — never patch generated theme JSON.
 
-## Current palettes (25 dark)
+## Current palettes (50 dark)
 
 All palette sources live in `src/palettes/ether-{name}.js`. Examples:
 
@@ -20,7 +20,7 @@ All palette sources live in `src/palettes/ether-{name}.js`. Examples:
 | `ether-clay` | — | — | Warm rose accent |
 | `ether-aurora` | — | — | Teal aurora accent |
 
-Run `npm run build:extension` after palette edits. Full list: `src/palettes/` (25 files).
+Run `npm run build:extension` after palette edits. Full list: `src/palettes/` (50 files).
 
 All palettes are **dark only** (`type: "dark"`, `uiTheme: "vs-dark"`). Each must feel unique via surface temperature and accent — not neon or oversaturated syntax.
 

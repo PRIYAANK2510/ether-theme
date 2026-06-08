@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.12] - 2026-06-08
+
+### Changed
+
+- README license badge uses a static MIT shield (fixes Shields.io GitHub token pool errors)
+- README logo is stripped during `npm run package` so marketplace listings stay clean; GitHub repo README keeps the logo
+
 ## [1.0.11] - 2026-06-08
 
 ### Added
@@ -390,4 +397,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.8]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.8
 [1.0.9]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.9
 [1.0.11]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.11
+[1.0.12]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.12
 [1.0.10]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.10

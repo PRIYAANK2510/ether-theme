@@ -12,6 +12,7 @@ on:
       - "package.json"
       - "README.md"
       - "CHANGELOG.md"
+      - "scripts/**"
   workflow_dispatch:
     branches: [main]
 

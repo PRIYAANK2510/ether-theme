@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Ether Themes — Core
 
-Token-driven **VS Code / Cursor extension**: **25 dark palettes** → generated color themes, **496 snippets** → generated `.code-snippets`. No runtime extension code — everything is build-time generation.
+Token-driven **VS Code / Cursor extension**: **50 dark palettes** → generated color themes, **496 snippets** → generated `.code-snippets`. No runtime extension code — everything is build-time generation.
 
 Palette authoring uses an **anchor-first** workflow (`surfacePanel` + `surfaceEditor` first, then surfaces → foreground → accent → syntax). See `ether-themes.mdc` for conventions.
 

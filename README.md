@@ -1,8 +1,10 @@
 # Ether Themes
 
+<!-- marketplace-omit-start -->
 <p align="center">
-  <img src="https://github.com/PRIYAANK2510/ether-theme/raw/HEAD/icon.png" alt="Ether Themes logo" width="128" />
+  <img src="icon.png" alt="Ether Themes logo" width="128" />
 </p>
+<!-- marketplace-omit-end -->
 
 <p align="center">
   <strong>50 dark color themes · 496 web-dev snippets · Astro, Vue, Svelte, MDX &amp; Android grammars</strong><br />
@@ -13,7 +15,7 @@
   <a href="https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme"><img src="https://img.shields.io/badge/VS%20Marketplace-install-0078d7?style=flat-square&logo=visualstudiocode" alt="Install on VS Marketplace" /></a>
   <a href="https://open-vsx.org/extension/Priyaank/ether-theme"><img src="https://img.shields.io/open-vsx/v/Priyaank/ether-theme?style=flat-square&label=Open%20VSX" alt="Open VSX version" /></a>
   <a href="https://open-vsx.org/extension/Priyaank/ether-theme"><img src="https://img.shields.io/open-vsx/dt/Priyaank/ether-theme?style=flat-square&label=downloads" alt="Open VSX downloads" /></a>
-  <a href="https://github.com/PRIYAANK2510/ether-theme/blob/main/LICENSE"><img src="https://img.shields.io/github/license/PRIYAANK2510/ether-theme?style=flat-square" alt="MIT License" /></a>
+  <a href="https://github.com/PRIYAANK2510/ether-theme/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT License" /></a>
 </p>
 
 <p align="center">
