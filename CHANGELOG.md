@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+
+## [1.0.10] - 2026-06-08
+
+### Changed
+
+- Theme palette updates (auto-release)
 ## [1.0.9] - 2026-06-08
 
 ### Changed
@@ -373,3 +379,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.7]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.7
 [1.0.8]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.8
 [1.0.9]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.9
+[1.0.10]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.10
