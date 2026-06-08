@@ -1,8 +1,9 @@
 import { mixColors, withAlphaByte } from "../utils/color.js";
 
 /**
- * Diff editor chrome — panel-toned file headers and breadcrumbs sit above the
- * editor surface, with a visible border between chrome and diff content.
+ * Diff editor chrome — panel-toned file headers sit above the editor surface,
+ * with breadcrumbs matching the editor background and a visible border between
+ * chrome and diff content.
  *
  * @param {import("../utils/color.js").PaletteUITokens} base
  * @returns {Record<string, string>}
@@ -34,7 +35,7 @@ export function deriveDiffEditorColors(base) {
     "multiDiffEditor.border": border,
     "editorGroupHeader.border": border,
     "breadcrumb.foreground": base.fgMuted,
-    "breadcrumb.background": header,
+    "breadcrumb.background": content,
     "breadcrumb.focusForeground": base.fgPrimary,
     "breadcrumb.activeSelectionForeground": base.accent,
   };

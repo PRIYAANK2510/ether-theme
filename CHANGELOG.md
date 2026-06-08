@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.9] - 2026-06-08
 
+### Changed
 
+- **Breadcrumb bar** — background now matches the editor surface across all 35 themes (was panel-toned header color)
+- Theme preview PNGs regenerated to reflect the breadcrumb fix
 
 ## [1.0.8] - 2026-06-05
 
@@ -367,3 +371,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.5]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.5
 [1.0.6]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.6
 [1.0.7]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.7
+[1.0.8]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.8
+[1.0.9]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.9

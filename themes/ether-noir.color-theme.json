@@ -218,7 +218,7 @@
     "multiDiffEditor.border": "#252421C8",
     "editorGroupHeader.border": "#252421C8",
     "breadcrumb.foreground": "#9A9488",
-    "breadcrumb.background": "#080808",
+    "breadcrumb.background": "#0C0C0C",
     "breadcrumb.focusForeground": "#F0ECE4",
     "breadcrumb.activeSelectionForeground": "#D4B060",
     "sideBarSectionHeader.foreground": "#F0ECE4",

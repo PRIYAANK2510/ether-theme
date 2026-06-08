@@ -339,7 +339,7 @@ describe("theme generator", () => {
       }
       expect(headerBg).not.toBe(editorBg);
       expect(theme.colors["breadcrumb.background"].toLowerCase()).toBe(
-        headerBg,
+        editorBg,
       );
       expect(foldedBg).not.toBe(headerBg);
       expect(foldedBg).not.toBe(editorBg);

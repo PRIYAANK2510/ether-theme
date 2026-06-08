@@ -114,7 +114,7 @@ export function renderBreadcrumb(ui, accent) {
     return parts;
   }).join("");
 
-  return `<rect x="${EDITOR_X}" y="${y}" width="${WIN_W}" height="${BREADCRUMB_H}" fill="${ui.surfacePanel}" opacity="0.45"/>
+  return `<rect x="${EDITOR_X}" y="${y}" width="${WIN_W}" height="${BREADCRUMB_H}" fill="${ui.surfaceEditor}"/>
   <rect x="${EDITOR_X}" y="${y + BREADCRUMB_H - 1}" width="${WIN_W}" height="1" fill="${ui.surfaceBorder}" opacity="0.35"/>
   <text x="${textX}" y="${textY}" class="crumb">${tspans}</text>`;
 }
