@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>35 dark color themes · 496 web-dev snippets · Astro, Vue, Svelte, MDX &amp; Android grammars</strong><br />
+  <strong>50 dark color themes · 496 web-dev snippets · Astro, Vue, Svelte, MDX &amp; Android grammars</strong><br />
   One extension for <strong>VS Code</strong> and <strong>Cursor</strong> — WCAG-validated palettes, zero extra setup.
 </p>
 
@@ -46,7 +46,7 @@ ext install Priyaank.ether-theme
 
 ## Why developers pick Ether
 
-- **35 dark themes** — Distinct palettes from navy-teal Harbor to blush Petal, jewel Amethyst, volcanic Obsidian, and more
+- **50 dark themes** — Distinct palettes from navy-teal Harbor to bioluminescent Abyss, sakura Bloom, cosmic Nebula, and more
 - **496 snippets** — React 19, Next.js App Router, TanStack Query, Zod, Vitest, Node/Express — type a prefix, press Tab
 - **Bundled grammars** — Astro, Vue, Svelte, MDX, Angular templates, Kotlin, AIDL, ProGuard/R8, and Dotenv — no extra language extensions required
 - **Readable by design** — WCAG contrast checks at build time; comments tuned to match active gutter line numbers
@@ -54,12 +54,18 @@ ext install Priyaank.ether-theme
 
 ## Theme catalog
 
-Ether Amethyst · Ether Aurora · Ether Cedar · Ether Clay · Ether Copper · Ether Coral · Ether Dracula · Ether Dusk · Ether Ember · Ether Flame · Ether Frost · Ether Glacier · Ether Graphite · Ether Harbor · Ether Lichen · Ether Luna · Ether Meadow · Ether Midnight · Ether Mint · Ether Mirage · Ether Mocha · Ether Moss · Ether Noir · Ether Obsidian · Ether Opal · Ether Petal · Ether Prism · Ether Sage · Ether Sand · Ether Slate · Ether Solstice · Ether Stone · Ether Storm · Ether Tide · Ether Velvet
+Ether Abyss · Ether Amethyst · Ether Aurora · Ether Bloom · Ether Cedar · Ether Cipher · Ether Clay · Ether Copper · Ether Coral · Ether Dracula · Ether Dune · Ether Dusk · Ether Eclipse · Ether Ember · Ether Flame · Ether Fjord · Ether Frost · Ether Glacier · Ether Graphite · Ether Grove · Ether Harbor · Ether Heath · Ether Inkwell · Ether Jade · Ether Kelp · Ether Lichen · Ether Lotus · Ether Luna · Ether Magma · Ether Meadow · Ether Midnight · Ether Mint · Ether Mirage · Ether Mocha · Ether Moss · Ether Nebula · Ether Noir · Ether Obsidian · Ether Onyx · Ether Opal · Ether Petal · Ether Prism · Ether Sage · Ether Sand · Ether Slate · Ether Solstice · Ether Stone · Ether Storm · Ether Tide · Ether Velvet
 
 ## Previews
 
 <!-- PREVIEW_GALLERY_START -->
 <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;column-gap:48px;row-gap:0;max-width:100%">
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Abyss</strong>
+</p>
+<img src="docs/previews/ether-abyss.png" alt="Ether Abyss dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Amethyst</strong>
@@ -74,9 +80,21 @@ Ether Amethyst · Ether Aurora · Ether Cedar · Ether Clay · Ether Copper · E
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Bloom</strong>
+</p>
+<img src="docs/previews/ether-bloom.png" alt="Ether Bloom dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Cedar</strong>
 </p>
 <img src="docs/previews/ether-cedar.png" alt="Ether Cedar dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Cipher</strong>
+</p>
+<img src="docs/previews/ether-cipher.png" alt="Ether Cipher dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
@@ -104,15 +122,33 @@ Ether Amethyst · Ether Aurora · Ether Cedar · Ether Clay · Ether Copper · E
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Dune</strong>
+</p>
+<img src="docs/previews/ether-dune.png" alt="Ether Dune dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Dusk</strong>
 </p>
 <img src="docs/previews/ether-dusk.png" alt="Ether Dusk dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Eclipse</strong>
+</p>
+<img src="docs/previews/ether-eclipse.png" alt="Ether Eclipse dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Ember</strong>
 </p>
 <img src="docs/previews/ether-ember.png" alt="Ether Ember dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Fjord</strong>
+</p>
+<img src="docs/previews/ether-fjord.png" alt="Ether Fjord dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
@@ -140,9 +176,39 @@ Ether Amethyst · Ether Aurora · Ether Cedar · Ether Clay · Ether Copper · E
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Grove</strong>
+</p>
+<img src="docs/previews/ether-grove.png" alt="Ether Grove dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Harbor</strong>
 </p>
 <img src="docs/previews/ether-harbor.png" alt="Ether Harbor dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Heath</strong>
+</p>
+<img src="docs/previews/ether-heath.png" alt="Ether Heath dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Inkwell</strong>
+</p>
+<img src="docs/previews/ether-inkwell.png" alt="Ether Inkwell dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Jade</strong>
+</p>
+<img src="docs/previews/ether-jade.png" alt="Ether Jade dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Kelp</strong>
+</p>
+<img src="docs/previews/ether-kelp.png" alt="Ether Kelp dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
@@ -152,9 +218,21 @@ Ether Amethyst · Ether Aurora · Ether Cedar · Ether Clay · Ether Copper · E
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Lotus</strong>
+</p>
+<img src="docs/previews/ether-lotus.png" alt="Ether Lotus dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Luna</strong>
 </p>
 <img src="docs/previews/ether-luna.png" alt="Ether Luna dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Magma</strong>
+</p>
+<img src="docs/previews/ether-magma.png" alt="Ether Magma dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
@@ -194,6 +272,12 @@ Ether Amethyst · Ether Aurora · Ether Cedar · Ether Clay · Ether Copper · E
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Nebula</strong>
+</p>
+<img src="docs/previews/ether-nebula.png" alt="Ether Nebula dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
 <strong>Ether Noir</strong>
 </p>
 <img src="docs/previews/ether-noir.png" alt="Ether Noir dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
@@ -203,6 +287,12 @@ Ether Amethyst · Ether Aurora · Ether Cedar · Ether Clay · Ether Copper · E
 <strong>Ether Obsidian</strong>
 </p>
 <img src="docs/previews/ether-obsidian.png" alt="Ether Obsidian dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
+</div>
+<div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
+<p style="margin:0 0 10px;text-align:left;line-height:1.45">
+<strong>Ether Onyx</strong>
+</p>
+<img src="docs/previews/ether-onyx.png" alt="Ether Onyx dark VS Code and Cursor theme preview" style="display:block;width:100%;max-width:420px;height:auto;margin:0;border-radius:8px" />
 </div>
 <div style="flex:0 1 420px;max-width:100%;box-sizing:border-box;margin:0 0 64px">
 <p style="margin:0 0 10px;text-align:left;line-height:1.45">

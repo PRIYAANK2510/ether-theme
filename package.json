@@ -1,7 +1,7 @@
 {
   "name": "ether-theme",
   "displayName": "Ether Themes",
-  "description": "Ether Themes — 35 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Astro, Vue, Svelte, MDX, Angular, Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
+  "description": "Ether Themes — 50 WCAG-validated dark color themes, 496 React/Next.js/TypeScript snippets, and bundled Astro, Vue, Svelte, MDX, Angular, Kotlin, AIDL, ProGuard & Dotenv syntax highlighting for VS Code and Cursor.",
   "publisher": "Priyaank",
   "version": "1.0.10",
   "icon": "icon.png",
@@ -88,6 +88,11 @@
   "contributes": {
     "themes": [
       {
+        "label": "Ether Abyss",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-abyss.color-theme.json"
+      },
+      {
         "label": "Ether Amethyst",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-amethyst.color-theme.json"
@@ -98,9 +103,19 @@
         "path": "./themes/ether-aurora.color-theme.json"
       },
       {
+        "label": "Ether Bloom",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-bloom.color-theme.json"
+      },
+      {
         "label": "Ether Cedar",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-cedar.color-theme.json"
+      },
+      {
+        "label": "Ether Cipher",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-cipher.color-theme.json"
       },
       {
         "label": "Ether Clay",
@@ -123,14 +138,29 @@
         "path": "./themes/ether-dracula.color-theme.json"
       },
       {
+        "label": "Ether Dune",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-dune.color-theme.json"
+      },
+      {
         "label": "Ether Dusk",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-dusk.color-theme.json"
       },
       {
+        "label": "Ether Eclipse",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-eclipse.color-theme.json"
+      },
+      {
         "label": "Ether Ember",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-ember.color-theme.json"
+      },
+      {
+        "label": "Ether Fjord",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-fjord.color-theme.json"
       },
       {
         "label": "Ether Flame",
@@ -153,9 +183,34 @@
         "path": "./themes/ether-graphite.color-theme.json"
       },
       {
+        "label": "Ether Grove",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-grove.color-theme.json"
+      },
+      {
         "label": "Ether Harbor",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-harbor.color-theme.json"
+      },
+      {
+        "label": "Ether Heath",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-heath.color-theme.json"
+      },
+      {
+        "label": "Ether Inkwell",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-inkwell.color-theme.json"
+      },
+      {
+        "label": "Ether Jade",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-jade.color-theme.json"
+      },
+      {
+        "label": "Ether Kelp",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-kelp.color-theme.json"
       },
       {
         "label": "Ether Lichen",
@@ -163,9 +218,19 @@
         "path": "./themes/ether-lichen.color-theme.json"
       },
       {
+        "label": "Ether Lotus",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-lotus.color-theme.json"
+      },
+      {
         "label": "Ether Luna",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-luna.color-theme.json"
+      },
+      {
+        "label": "Ether Magma",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-magma.color-theme.json"
       },
       {
         "label": "Ether Meadow",
@@ -198,6 +263,11 @@
         "path": "./themes/ether-moss.color-theme.json"
       },
       {
+        "label": "Ether Nebula",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-nebula.color-theme.json"
+      },
+      {
         "label": "Ether Noir",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-noir.color-theme.json"
@@ -206,6 +276,11 @@
         "label": "Ether Obsidian",
         "uiTheme": "vs-dark",
         "path": "./themes/ether-obsidian.color-theme.json"
+      },
+      {
+        "label": "Ether Onyx",
+        "uiTheme": "vs-dark",
+        "path": "./themes/ether-onyx.color-theme.json"
       },
       {
         "label": "Ether Opal",

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.11] - 2026-06-08
+
+### Added
+
+- **15 new dark palettes** — Abyss, Bloom, Cipher, Dune, Eclipse, Fjord, Grove, Heath, Inkwell, Jade, Kelp, Lotus, Magma, Nebula, and Onyx (50 themes total)
+
+### Changed
+
+- README preview gallery, website SEO copy, Footer, and theme counts updated for 50 palettes
+- Theme preview PNGs and VS Code color theme JSON regenerated for all new palettes
 
 ## [1.0.10] - 2026-06-08
 
@@ -379,4 +389,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.7]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.7
 [1.0.8]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.8
 [1.0.9]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.9
+[1.0.11]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.11
 [1.0.10]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.10

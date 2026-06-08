@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div>
-        <strong>{SITE_NAME}</strong> — 35 WCAG-validated dark themes, 496
+        <strong>{SITE_NAME}</strong> — 50 WCAG-validated dark themes, 496
         snippets, and bundled Astro, Vue, Svelte, MDX, and Android grammars.
       </div>
       <div className={styles.links}>

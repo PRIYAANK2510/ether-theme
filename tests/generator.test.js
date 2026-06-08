@@ -369,7 +369,7 @@ describe("theme generator", () => {
   it("loads only dark palettes", async () => {
     const palettes = await loadPalettes();
 
-    expect(palettes).toHaveLength(35);
+    expect(palettes).toHaveLength(50);
     expect(palettes.every((p) => p.type === "dark")).toBe(true);
     expect(palettes.every((p) => p.uiTheme === "vs-dark")).toBe(true);
   });
