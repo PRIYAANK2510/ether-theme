@@ -1,10 +1,9 @@
-# Ether Themes
-
 <!-- marketplace-omit-start -->
 <p align="center">
-  <img src="icon.png" alt="Ether Themes logo" width="128" />
+  <img src="icon.png" alt="Ether Themes logo" width="96" />
 </p>
-<!-- marketplace-omit-end -->
+
+<h1 align="center">Ether Themes</h1>
 
 <p align="center">
   <strong>50 dark color themes · 496 web-dev snippets · Astro, Vue, Svelte, MDX &amp; Android grammars</strong><br />
@@ -31,6 +30,7 @@
   &nbsp;·&nbsp;
   <a href="CHANGELOG.md"><strong>Changelog</strong></a>
 </p>
+<!-- marketplace-omit-end -->
 
 ---
 

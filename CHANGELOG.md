@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.13] - 2026-06-08
+
+### Changed
+
+- README hero (logo, title, tagline, badges, links) is GitHub-only and center-aligned; marketplace README starts at Install
+- Publish uses the packaged VSIX so VS Marketplace and Open VSX share the stripped README
+
 ## [1.0.12] - 2026-06-08
 
 ### Changed
@@ -398,4 +405,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.9]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.9
 [1.0.11]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.11
 [1.0.12]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.12
+[1.0.13]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.13
 [1.0.10]: https://github.com/PRIYAANK2510/ether-theme/tree/v1.0.10

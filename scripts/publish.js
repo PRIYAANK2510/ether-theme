@@ -98,8 +98,8 @@ if (!vsix) {
 }
 
 const vsixPath = join(RELEASES_DIR, vsix);
-const vsceOk = tryRun("npx vsce publish");
-const ovsxOk = tryRun(`npx ovsx publish ${vsixPath}`);
+const vsceOk = tryRun(`npx vsce publish --packagePath "${vsixPath}"`);
+const ovsxOk = tryRun(`npx ovsx publish "${vsixPath}"`);
 
 if (!vsceOk && !ovsxOk) {
   console.error("Publish failed on both VS Code Marketplace and Open VSX.");

@@ -10,7 +10,7 @@ const backupPath = join(rootDir, ".readme-github.bak");
 const START = "<!-- marketplace-omit-start -->";
 const END = "<!-- marketplace-omit-end -->";
 
-function stripReadmeLogo() {
+function stripReadmeForMarketplace() {
   const readme = readFileSync(readmePath, "utf8");
   const start = readme.indexOf(START);
   const end = readme.indexOf(END);
@@ -21,15 +21,16 @@ function stripReadmeLogo() {
 
   writeFileSync(backupPath, readme, "utf8");
 
-  const stripped =
-    readme.slice(0, start).replace(/\n$/, "") +
-    readme.slice(end + END.length).replace(/^\n/, "\n");
+  const body = readme
+    .slice(end + END.length)
+    .replace(/^\n+/, "")
+    .replace(/^---\n\n?/, "");
 
-  writeFileSync(readmePath, stripped, "utf8");
+  writeFileSync(readmePath, body, "utf8");
   return true;
 }
 
-function restoreReadmeLogo() {
+function restoreReadmeForGitHub() {
   if (!existsSync(backupPath)) {
     return false;
   }
@@ -42,11 +43,11 @@ function restoreReadmeLogo() {
 const mode = process.argv[2];
 
 if (mode === "strip") {
-  stripReadmeLogo();
+  stripReadmeForMarketplace();
 } else if (mode === "restore") {
-  restoreReadmeLogo();
+  restoreReadmeForGitHub();
 } else if (mode === "package") {
-  stripReadmeLogo();
+  stripReadmeForMarketplace();
   try {
     execSync("npx vsce package --out releases/", {
       stdio: "inherit",
@@ -54,9 +55,11 @@ if (mode === "strip") {
       cwd: rootDir,
     });
   } finally {
-    restoreReadmeLogo();
+    restoreReadmeForGitHub();
   }
 } else {
-  console.error("Usage: node scripts/strip-readme-logo.js <strip|restore|package>");
+  console.error(
+    "Usage: node scripts/strip-readme-logo.js <strip|restore|package>",
+  );
   process.exit(1);
 }
