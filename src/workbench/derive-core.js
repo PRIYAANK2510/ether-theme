@@ -37,6 +37,11 @@ export function deriveUISemantics(base) {
   const interactive = deriveInteractiveOverlays(base);
   const scrollbar = deriveScrollbarVariants(base.scrollbar);
   const composerInput = deriveComposerInputColors(base, accent);
+  const inlayHintForeground = deriveCommentForeground(base);
+  const inlayHintBackground = withAlphaByte(
+    base.surfaceLineHighlight,
+    UI_ALPHA.a77,
+  );
 
   const colors = {
     focusBorder: accent.aBB,
@@ -130,6 +135,16 @@ export function deriveUISemantics(base) {
     "editorIndentGuide.activeBackground1": base.indentGuideActive,
     "editorRuler.foreground": base.ruler,
     "editorCodeLens.foreground": base.fgMuted,
+    "editorInlayHint.background": inlayHintBackground,
+    "editorInlayHint.foreground": inlayHintForeground,
+    "editorInlayHint.parameterBackground": inlayHintBackground,
+    "editorInlayHint.parameterForeground": inlayHintForeground,
+    "editorInlayHint.typeBackground": inlayHintBackground,
+    "editorInlayHint.typeForeground": mixColors(
+      inlayHintForeground,
+      base.accent,
+      0.28,
+    ),
     "editorBracketMatch.background": accent.a30,
     "editorBracketMatch.border": base.accent,
     "editorOverviewRuler.border": base.surfaceBorder,
