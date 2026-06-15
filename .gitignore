@@ -1,6 +1,7 @@
 node_modules/
 releases/
 site/
+*.tsbuildinfo
 apps/website/public/
 apps/website/src/generated/
 *.vsix
