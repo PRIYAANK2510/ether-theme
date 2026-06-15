@@ -43,10 +43,12 @@ export async function prepareWebsiteData() {
 
   const languages = SNIPPET_LANGUAGES.map(({ language }) => {
     const meta = LANGUAGE_META[language];
-    const count = catalog.filter((entry) =>
+    const entries = catalog.filter((entry) =>
       entry.languages.includes(language),
-    ).length;
-    return { ...meta, count };
+    );
+    const count = entries.length;
+    const categoryCount = new Set(entries.map((entry) => entry.category)).size;
+    return { ...meta, count, categoryCount };
   });
 
   const defaultThemePath = join(
@@ -119,6 +121,13 @@ export async function prepareWebsiteData() {
   const themeDataDir = join(publicDir, "data", "themes");
   mkdirSync(themeDataDir, { recursive: true });
 
+  const snippetIndexPath = join(publicDir, "data", "snippet-index.json");
+  writeFileSync(
+    snippetIndexPath,
+    `${JSON.stringify(snippetIndex)}\n`,
+    "utf8",
+  );
+
   for (const [themeId, theme] of Object.entries(themes)) {
     writeFileSync(
       join(themeDataDir, `${themeId}.json`),
@@ -150,7 +159,6 @@ export async function prepareWebsiteData() {
     palettes: paletteSummaries,
     defaultTheme,
     languages,
-    snippets: snippetIndex,
     categories,
     defaultThemeId: "ether-dusk",
   };

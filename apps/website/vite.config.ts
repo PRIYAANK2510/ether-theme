@@ -41,8 +41,16 @@ export default defineConfig({
             return "vendor-redux";
           }
 
-          if (id.includes("/shiki/") || id.includes("/@shikijs/")) {
-            return "vendor-shiki";
+          if (id.includes("/@shikijs/langs/")) {
+            const lang = id.match(/@shikijs\/langs\/(?:dist\/)?([^/.]+)/)?.[1];
+            return lang ? `vendor-shiki-lang-${lang}` : "vendor-shiki-lang";
+          }
+
+          if (
+            id.includes("/shiki/") ||
+            id.includes("/@shikijs/")
+          ) {
+            return "vendor-shiki-core";
           }
         },
       },
@@ -58,15 +66,6 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: [
-      "shiki/core",
-      "shiki/engine/javascript",
-      "@shikijs/langs/javascript",
-      "@shikijs/langs/typescript",
-      "@shikijs/langs/jsx",
-      "@shikijs/langs/tsx",
-      "@shikijs/langs/html",
-      "@shikijs/langs/css",
-    ],
+    include: ["shiki/core", "shiki/engine/javascript"],
   },
 });

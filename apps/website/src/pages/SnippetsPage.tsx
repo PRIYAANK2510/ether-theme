@@ -18,7 +18,9 @@ import { useSnippetTabScroll } from "@/hooks/useSnippetTabScroll";
 import { resetSnippetTabScroll } from "@/lib/snippet-tab-scroll";
 import {
   getCachedLanguageBundle,
+  getCachedSnippetIndex,
   loadLanguageSnippets,
+  loadSnippetIndex,
   type LanguageSnippet,
 } from "@/lib/snippet-data";
 import {
@@ -53,12 +55,8 @@ function readSnippetsForSlug(
   return bundles[slug] ?? getCachedLanguageBundle(slug)?.snippets ?? null;
 }
 
-function categoryCountForSlug(slug: string) {
-  const categories = new Set<string>();
-  for (const entry of SITE_DATA.snippets) {
-    if (entry.languageSlug === slug) categories.add(entry.category);
-  }
-  return categories.size;
+function categoryCountForLanguage(language: LanguageMeta) {
+  return language.categoryCount;
 }
 
 function snippetRowId(snippet: { key: string; language: string }) {
@@ -107,6 +105,8 @@ function indexToTableItems(
 
 type AllSnippetsPanelProps = {
   query: string;
+  snippetIndex: SnippetIndexEntry[] | null;
+  indexError: boolean;
   bundles: Record<string, LanguageSnippet[]>;
   onBundleLoaded: (slug: string, snippets: LanguageSnippet[]) => void;
   onClearQuery: () => void;
@@ -114,13 +114,15 @@ type AllSnippetsPanelProps = {
 
 function AllSnippetsPanel({
   query,
+  snippetIndex,
+  indexError,
   bundles,
   onBundleLoaded,
   onClearQuery,
 }: AllSnippetsPanelProps) {
   const filtered = useMemo(
-    () => filterIndexSnippets(SITE_DATA.snippets, query),
-    [query],
+    () => (snippetIndex ? filterIndexSnippets(snippetIndex, query) : []),
+    [snippetIndex, query],
   );
   const items = useMemo(
     () => indexToTableItems(filtered, bundles),
@@ -134,6 +136,19 @@ function AllSnippetsPanel({
     void loadLanguageSnippets(entry.languageSlug)
       .then((bundle) => onBundleLoaded(entry.languageSlug, bundle.snippets))
       .catch(() => {});
+  }
+
+  if (snippetIndex === null && !indexError) {
+    return <p className={pageStyles.resultMeta}>Loading snippet catalog…</p>;
+  }
+
+  if (indexError) {
+    return (
+      <SearchEmptyState
+        title="Could not load snippet catalog"
+        hint="Refresh the page or try again in a moment."
+      />
+    );
   }
 
   if (filtered.length === 0) {
@@ -239,10 +254,32 @@ export function SnippetsPage() {
   const tabAnchorRef = useRef<HTMLDivElement>(null);
   const [bundleBySlug, setBundleBySlug] = useState(seedBundlesFromCache);
   const [errorSlugs, setErrorSlugs] = useState<Set<string>>(() => new Set());
+  const [snippetIndex, setSnippetIndex] = useState<SnippetIndexEntry[] | null>(
+    () => getCachedSnippetIndex(),
+  );
+  const [indexError, setIndexError] = useState(false);
 
   const languageCategoryCount = language
-    ? categoryCountForSlug(language.slug)
+    ? categoryCountForLanguage(language)
     : 0;
+
+  useEffect(() => {
+    if (snippetIndex) return;
+
+    let cancelled = false;
+
+    loadSnippetIndex()
+      .then((entries) => {
+        if (!cancelled) setSnippetIndex(entries);
+      })
+      .catch(() => {
+        if (!cancelled) setIndexError(true);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [snippetIndex]);
 
   useEffect(() => {
     let cancelled = false;
@@ -370,6 +407,8 @@ export function SnippetsPage() {
         <TabsContent value="all" className={pageStyles.snippetsPanel}>
           <AllSnippetsPanel
             query={query}
+            snippetIndex={snippetIndex}
+            indexError={indexError}
             bundles={bundleBySlug}
             onBundleLoaded={mergeBundle}
             onClearQuery={clearQuery}

@@ -12,6 +12,9 @@ const hasSnippetBundles =
   existsSync(snippetDataDir) &&
   existsSync(join(snippetDataDir, "react-jsx.json"));
 
-if (!hasGeneratedData || !hasSnippetBundles) {
+const snippetIndexPath = join(websiteDir, "public", "data", "snippet-index.json");
+const hasSnippetIndex = existsSync(snippetIndexPath);
+
+if (!hasGeneratedData || !hasSnippetBundles || !hasSnippetIndex) {
   await prepareWebsiteData();
 }

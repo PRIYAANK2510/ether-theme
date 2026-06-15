@@ -1,4 +1,5 @@
 import { SITE_BASE } from "@/lib/config";
+import type { SnippetIndexEntry } from "@/lib/snippet-search";
 
 export type LanguageSnippet = {
   key: string;
@@ -19,6 +20,38 @@ export type LanguageSnippetBundle = {
 
 const bundleCache = new Map<string, Promise<LanguageSnippetBundle>>();
 const resolvedCache = new Map<string, LanguageSnippetBundle>();
+let snippetIndexPromise: Promise<SnippetIndexEntry[]> | null = null;
+let snippetIndexCache: SnippetIndexEntry[] | null = null;
+
+export function getCachedSnippetIndex() {
+  return snippetIndexCache;
+}
+
+export function loadSnippetIndex() {
+  if (snippetIndexCache) {
+    return Promise.resolve(snippetIndexCache);
+  }
+
+  if (!snippetIndexPromise) {
+    snippetIndexPromise = fetch(`${SITE_BASE}/data/snippet-index.json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load snippet index");
+        }
+        return response.json() as Promise<SnippetIndexEntry[]>;
+      })
+      .then((entries) => {
+        snippetIndexCache = entries;
+        return entries;
+      })
+      .catch((error) => {
+        snippetIndexPromise = null;
+        throw error;
+      });
+  }
+
+  return snippetIndexPromise;
+}
 
 export function getCachedLanguageBundle(slug: string) {
   return resolvedCache.get(slug) ?? null;

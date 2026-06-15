@@ -17,6 +17,18 @@ const LANGUAGE_MAP = {
 
 type ShikiLanguage = (typeof LANGUAGE_MAP)[keyof typeof LANGUAGE_MAP];
 
+const LANG_IMPORTERS: Record<
+  ShikiLanguage,
+  () => Promise<{ default: LanguageInput }>
+> = {
+  javascript: () => import("@shikijs/langs/javascript"),
+  typescript: () => import("@shikijs/langs/typescript"),
+  jsx: () => import("@shikijs/langs/jsx"),
+  tsx: () => import("@shikijs/langs/tsx"),
+  html: () => import("@shikijs/langs/html"),
+  css: () => import("@shikijs/langs/css"),
+};
+
 import { splitSnippetForHighlight } from "../../../../shared/snippet-display.js";
 
 const themeModules = import.meta.glob(
@@ -26,12 +38,12 @@ const themeModules = import.meta.glob(
 let corePromise: Promise<{
   createHighlighterCore: typeof import("shiki/core").createHighlighterCore;
   createJavaScriptRegexEngine: typeof import("shiki/engine/javascript").createJavaScriptRegexEngine;
-  langs: Record<ShikiLanguage, () => Promise<LanguageInput>>;
 }> | null = null;
 
 let highlighterPromise: Promise<HighlighterCore> | null = null;
 let loadedThemeId: string | null = null;
 let loadedThemeName: string | null = null;
+const loadedLangs = new Set<ShikiLanguage>();
 
 function escapeHtml(value: string) {
   return value
@@ -61,23 +73,9 @@ async function loadShikiCore() {
     corePromise = Promise.all([
       import("shiki/core"),
       import("shiki/engine/javascript"),
-      import("@shikijs/langs/javascript"),
-      import("@shikijs/langs/typescript"),
-      import("@shikijs/langs/jsx"),
-      import("@shikijs/langs/tsx"),
-      import("@shikijs/langs/html"),
-      import("@shikijs/langs/css"),
-    ]).then(([core, engine, javascript, typescript, jsx, tsx, html, css]) => ({
+    ]).then(([core, engine]) => ({
       createHighlighterCore: core.createHighlighterCore,
       createJavaScriptRegexEngine: engine.createJavaScriptRegexEngine,
-      langs: {
-        javascript: () => Promise.resolve(javascript.default as LanguageInput),
-        typescript: () => Promise.resolve(typescript.default as LanguageInput),
-        jsx: () => Promise.resolve(jsx.default as LanguageInput),
-        tsx: () => Promise.resolve(tsx.default as LanguageInput),
-        html: () => Promise.resolve(html.default as LanguageInput),
-        css: () => Promise.resolve(css.default as LanguageInput),
-      },
     }));
   }
   return corePromise;
@@ -92,10 +90,21 @@ async function loadThemeJson(themeId: string) {
   return (await importer()).default;
 }
 
+async function ensureLanguage(
+  highlighter: HighlighterCore,
+  shikiLang: ShikiLanguage,
+) {
+  if (loadedLangs.has(shikiLang)) return;
+
+  const mod = await LANG_IMPORTERS[shikiLang]();
+  await highlighter.loadLanguage(mod.default);
+  loadedLangs.add(shikiLang);
+}
+
 async function getHighlighter() {
   if (!highlighterPromise) {
     const [
-      { createHighlighterCore, createJavaScriptRegexEngine, langs },
+      { createHighlighterCore, createJavaScriptRegexEngine },
       defaultTheme,
     ] = await Promise.all([
       loadShikiCore(),
@@ -104,14 +113,7 @@ async function getHighlighter() {
 
     highlighterPromise = createHighlighterCore({
       themes: [defaultTheme],
-      langs: [
-        await langs.javascript(),
-        await langs.typescript(),
-        await langs.jsx(),
-        await langs.tsx(),
-        await langs.html(),
-        await langs.css(),
-      ],
+      langs: [],
       engine: createJavaScriptRegexEngine(),
     });
     loadedThemeId = SITE_DATA.defaultThemeId;
@@ -144,6 +146,7 @@ async function renderHighlightedCode(
   const shikiLang =
     LANGUAGE_MAP[language as keyof typeof LANGUAGE_MAP] ?? "javascript";
   const { highlighter, themeName } = await ensureTheme(themeId);
+  await ensureLanguage(highlighter, shikiLang);
 
   const highlighted = splitSnippetForHighlight(code).map((part: string) => {
     if (!part) return "";
