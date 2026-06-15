@@ -13,3 +13,7 @@ Thumbs.db
 # Previews are PNG-only; SVG is rasterized in memory at build time
 docs/previews/*.svg
 docs/previews/gallery-row-*.png
+
+# Graphify knowledge graph (local dev tooling)
+.graphify/
+graphify-out/

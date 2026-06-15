@@ -1443,7 +1443,10 @@
     "prepackage": "node --input-type=module -e \"import { mkdirSync } from 'node:fs'; mkdirSync('releases', { recursive: true });\"",
     "package": "node scripts/strip-readme-logo.js package",
     "publish": "node scripts/publish.js",
-    "publish:local": "dotenv -e .env -- npm run publish"
+    "publish:local": "dotenv -e .env -- npm run publish",
+    "graphify": "graphify update . --no-description --no-label",
+    "graphify:install": "graphify cursor install",
+    "graphify:serve": "graphify serve .graphify/graph.json"
   },
   "vsce": {
     "yarn": false,
@@ -1453,6 +1456,8 @@
     "@eslint/js": "^10.0.1",
     "@reduxjs/toolkit": "^2.12.0",
     "@resvg/resvg-js": "2.6.2",
+    "@sentropic/graphify": "0.14.0",
+    "@types/node": "^22.15.0",
     "@types/react": "^19.2.16",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
@@ -1471,7 +1476,6 @@
     "stylelint": "17.12.0",
     "stylelint-config-standard-scss": "17.0.0",
     "typescript": "^6.0.3",
-    "@types/node": "^22.15.0",
     "typescript-eslint": "8.60.1",
     "typescript-plugin-css-modules": "5.2.0",
     "vite": "^8.0.16",

@@ -1,0 +1,18 @@
+# Dependencies and build output
+node_modules/
+site/
+releases/
+*.vsix
+
+# Generated extension artifacts (edit src/, not these)
+themes/
+snippets/
+apps/website/public/
+apps/website/src/generated/
+
+# Large preview assets
+docs/previews/
+
+# Graphify local state
+.graphify/
+graphify-out/
