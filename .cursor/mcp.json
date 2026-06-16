@@ -1,8 +1,12 @@
 {
   "mcpServers": {
     "graphify": {
-      "command": "npx",
-      "args": ["graphify", "serve", ".graphify/graph.json"]
+      "command": "node",
+      "args": [
+        "./node_modules/@sentropic/graphify/dist/cli.js",
+        "serve",
+        ".graphify/graph.json"
+      ]
     }
   }
 }

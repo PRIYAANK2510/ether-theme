@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "node .cursor/hooks/graphify-rebuild.mjs",
+        "timeout": 10
+      }
+    ],
+    "stop": [
+      {
+        "command": "node .cursor/hooks/graphify-rebuild.mjs",
+        "timeout": 120
+      }
+    ]
+  }
+}

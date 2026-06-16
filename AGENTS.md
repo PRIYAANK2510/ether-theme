@@ -2,6 +2,23 @@
 
 Single entry point for AI assistants working in this repo.
 
+## Graphify (default navigation)
+
+This repo uses [Graphify](https://github.com/rhanka/graphify) as the **default** way to understand structure. Prefer graph queries over grepping or reading raw files for architecture, flow, and relationship questions.
+
+```bash
+npm run graphify          # full AST graph rebuild
+npm run graphify:rebuild  # fast hook rebuild (also runs automatically via Cursor hook)
+npm run graphify:serve    # MCP server for live graph queries
+npx graphify query "..." --graph .graphify/graph.json
+npx graphify explain "generateAllThemes"
+```
+
+- Graph artifacts: `.graphify/graph.json`, `.graphify/GRAPH_REPORT.md`, `.graphify/graph.html`
+- Cursor: `.cursor/rules/graphify.mdc` (always-on) + `.cursor/mcp.json` (graphify MCP)
+- **Auto-update:** `.cursor/hooks.json` rebuilds the graph after agent edits (on successful `stop`)
+- Start each session with `.graphify/GRAPH_REPORT.md` when the graph exists
+
 ## What this is
 
 VS Code/Cursor extension: **50 dark palettes**, **496 snippets**, **8 bundled language grammars** (35 grammar contributions including injections). Build-time generation only — no runtime extension code. React product site at `apps/website/`.
@@ -47,6 +64,7 @@ src/build.js  →  orchestrates all + optional site build
 
 Detailed conventions in `.cursor/rules/`:
 
+- `graphify.mdc` — **default** Graphify-first navigation (always-on)
 - `ether-core.mdc` — architecture, build workflow
 - `ether-themes.mdc` — palette authoring (anchor-first)
 - `ether-snippets.mdc` — snippet catalog shape

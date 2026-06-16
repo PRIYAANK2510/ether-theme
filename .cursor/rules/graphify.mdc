@@ -1,13 +1,50 @@
 ---
-description: graphify knowledge graph context
+description: Graphify-first codebase navigation (mandatory default)
 alwaysApply: true
 ---
 
-This project has a graphify knowledge graph at .graphify/.
+# Graphify-first navigation (DEFAULT)
 
-- For codebase or architecture questions, when `.graphify/graph.json` exists, first run `graphify query "<question>"` (or `graphify path "<A>" "<B>"` / `graphify explain "<concept>"`); these return a scoped subgraph, usually much smaller than `GRAPH_REPORT.md` or raw grep output
-- If .graphify/wiki/index.md exists, navigate it instead of reading raw files
-- If .graphify/graph.json is missing but graphify-out/graph.json exists, run `graphify migrate-state --dry-run` first; if tracked legacy artifacts are reported, ask before using the recommended `git mv -f graphify-out .graphify` and commit message
-- If .graphify/needs_update exists or .graphify/branch.json has stale=true, warn before relying on semantic results and run /graphify . --update when appropriate
-- Read `.graphify/GRAPH_REPORT.md` only for broad architecture review or when `query` / `path` / `explain` do not surface enough context
-- After modifying code files in this session, run `npx graphify hook-rebuild` to keep the graph current
+This repo maintains a knowledge graph at `.graphify/`. **Use Graphify by default** for architecture, flow, relationships, and "where/how/why" questions — before SemanticSearch, Grep, or reading raw source files.
+
+## Session start (when `.graphify/graph.json` exists)
+
+1. Read `.graphify/GRAPH_REPORT.md` for god nodes, communities, and suggested questions.
+2. Prefer the **graphify MCP server** when enabled: `query_graph`, `get_node`, `get_neighbors`, `shortest_path`, and read-only resources (`graphify://report`, `graphify://god-nodes`).
+
+## Before exploring the codebase
+
+Use scoped graph commands first:
+
+```bash
+npx graphify query "<question>" --graph .graphify/graph.json
+npx graphify path "<symbol A>" "<symbol B>"
+npx graphify explain "<symbol or concept>"
+npx graphify summary --graph .graphify/graph.json
+```
+
+If `.graphify/wiki/index.md` exists, navigate the wiki instead of ad-hoc file reads.
+
+**Fallback only:** use Grep, SemanticSearch, or file reads when graph output is empty, the task is a precise line edit, or the user names an exact file path.
+
+## After modifying code (mandatory)
+
+A **Cursor hook** (`.cursor/hooks.json`) auto-rebuilds the graph when the agent finishes:
+
+1. `afterFileEdit` — queues rebuild when `src/`, `shared/`, `apps/website/src/`, or `tests/` source files change
+2. `stop` — runs `npm run graphify:rebuild` when the agent completes successfully
+
+**Agent duty:** if you edited relevant source and the hook may not have run (aborted session, hook disabled), run `npm run graphify:rebuild` before ending. Never answer architecture questions from a stale graph after your own edits.
+
+## Stale or missing graph
+
+| Signal | Action |
+|--------|--------|
+| `.graphify/graph.json` missing | `npm run graphify` |
+| `.graphify/needs_update` exists | Warn user; run `npm run graphify` |
+| `.graphify/branch.json` has `stale: true` | Warn user; run `npm run graphify` |
+| Legacy `graphify-out/graph.json` only | `npx graphify migrate-state --dry-run`, then migrate if safe |
+
+## Deep rebuild (docs + semantic edges)
+
+For markdown/docs semantic extraction beyond the AST graph, use `/graphify . --update` in chat.

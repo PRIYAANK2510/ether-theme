@@ -1445,6 +1445,7 @@
     "publish": "node scripts/publish.js",
     "publish:local": "dotenv -e .env -- npm run publish",
     "graphify": "graphify update . --no-description --no-label",
+    "graphify:rebuild": "graphify hook-rebuild",
     "graphify:install": "graphify cursor install",
     "graphify:serve": "graphify serve .graphify/graph.json"
   },
