@@ -14,7 +14,7 @@ pnpm exec graphify explain "generateAllThemes"
 ```
 
 - Graph artifacts: `.graphify/graph.json`, `.graphify/GRAPH_REPORT.md`, `.graphify/graph.html`
-- Cursor: `.cursor/rules/graphify.mdc` (always-on) + `.cursor/mcp.json` (graphify MCP)
+- Cursor: `.cursor/rules/graphify.mdc` (project); graphify + cavemem MCP, caveman skills/rules/hooks live in user-global `~/.cursor/`
 - **Auto-update:** `.cursor/hooks.json` rebuilds the graph after agent edits (on successful `stop`)
 - Start each session with `.graphify/GRAPH_REPORT.md` when the graph exists
 
