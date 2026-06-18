@@ -565,6 +565,7 @@ const syntaxRuleDefinitions = [
       "storage.modifier.lifetime",
     ],
     role: "type",
+    fontStyle: "italic",
   },
 
   {
@@ -585,6 +586,7 @@ const syntaxRuleDefinitions = [
       "entity.name.type.class.vue",
     ],
     role: "type",
+    fontStyle: "italic",
   },
 
   {
@@ -1135,7 +1137,7 @@ const syntaxRuleDefinitions = [
       "entity.name.section.markdown",
     ],
     role: "variable",
-    fontStyle: "bold",
+    fontStyle: "bold italic",
   },
 
   {

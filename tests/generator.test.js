@@ -359,7 +359,7 @@ describe("theme generator", () => {
   it("loads only dark palettes", async () => {
     const palettes = await loadPalettes();
 
-    expect(palettes).toHaveLength(50);
+    expect(palettes).toHaveLength(25);
     expect(palettes.every((p) => p.type === "dark")).toBe(true);
     expect(palettes.every((p) => p.uiTheme === "vs-dark")).toBe(true);
   });
@@ -390,7 +390,7 @@ describe("theme generator", () => {
 
     expect(PREVIEW_README_EXT).toBe("png");
     expect(gallery).toContain(
-      `<img src="docs/previews/ether-aurora.${PREVIEW_README_EXT}"`,
+      `<img src="docs/previews/ether-abyss.${PREVIEW_README_EXT}"`,
     );
     expect(gallery).toContain("max-width:420px");
     expect(gallery).toContain("display:flex");
@@ -399,7 +399,7 @@ describe("theme generator", () => {
     expect(gallery).toContain("margin:0 0 10px");
     expect(gallery).toContain("margin:0 0 64px");
     expect(gallery).toMatch(
-      /<strong>Ether Aurora<\/strong>[\s\S]*docs\/previews\/ether-aurora\.png/,
+      /<strong>Ether Abyss<\/strong>[\s\S]*docs\/previews\/ether-abyss\.png/,
     );
     expect(gallery).not.toContain("<table>");
     expect(gallery).not.toContain("data:image");
@@ -419,14 +419,14 @@ describe("theme generator", () => {
 
   it("renders SVG previews with palette surfaces and syntax colors", async () => {
     const palettes = await loadPalettes();
-    const aurora = palettes.find((item) => item.id === "ether-aurora");
-    expect(aurora).toBeDefined();
+    const abyss = palettes.find((item) => item.id === "ether-abyss");
+    expect(abyss).toBeDefined();
 
-    const svg = renderThemePreviewSvg(aurora);
+    const svg = renderThemePreviewSvg(abyss);
     expect(svg).toContain('<?xml version="1.0"');
-    expect(svg).toContain(aurora.ui.surfaceEditor);
-    expect(svg).toContain(aurora.syntax.keyword);
-    expect(svg).toContain(`aria-label="${aurora.label} theme preview"`);
+    expect(svg).toContain(abyss.ui.surfaceEditor);
+    expect(svg).toContain(abyss.syntax.keyword);
+    expect(svg).toContain(`aria-label="${abyss.label} theme preview"`);
     expect(svg).toContain("<tspan");
     expect(svg).toContain("normalizeId");
     expect(svg).toContain("syncRecords");

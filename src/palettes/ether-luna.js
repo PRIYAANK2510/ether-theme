@@ -61,14 +61,14 @@ export default {
 
   syntax: {
     default: "#E4E8F0",
-    string: "#88C8B0",
-    number: "#DCC888",
-    cyan: "#78D0E0",
-    keyword: "#B8C0E0",
-    variable: "#A8B4CC",
-    function: "#C0D0E8",
-    type: "#E8D8A8",
-    red: "#E08088",
+    string: "#80D4B0",
+    number: "#E8D080",
+    cyan: "#68D8F0",
+    keyword: "#C4B0FF",
+    variable: "#90B4D0",
+    function: "#A8C4E8",
+    type: "#F0D888",
+    red: "#E88090",
     pink: "#D0A0B8",
   },
 };

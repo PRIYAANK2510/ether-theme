@@ -319,7 +319,7 @@
         "keyword.operator.control.jsdoc"
       ],
       "settings": {
-        "foreground": "#A898D8",
+        "foreground": "#B0A0E0",
         "fontStyle": "italic"
       }
     },
@@ -335,7 +335,7 @@
         "meta.example.jsdoc"
       ],
       "settings": {
-        "foreground": "#E0C070"
+        "foreground": "#E0CA70"
       }
     },
     {
@@ -381,7 +381,7 @@
         "string.quoted.single.shell"
       ],
       "settings": {
-        "foreground": "#90B890"
+        "foreground": "#90C090"
       }
     },
     {
@@ -526,7 +526,7 @@
         "entity.other.attribute-name.directive.vue"
       ],
       "settings": {
-        "foreground": "#A898D8",
+        "foreground": "#B0A0E0",
         "fontStyle": "italic"
       }
     },
@@ -563,7 +563,7 @@
         "keyword.control.heredoc-shell"
       ],
       "settings": {
-        "foreground": "#A898D8",
+        "foreground": "#B0A0E0",
         "fontStyle": "italic"
       }
     },
@@ -582,7 +582,7 @@
         "keyword.other.declaration.swift"
       ],
       "settings": {
-        "foreground": "#A898D8",
+        "foreground": "#B0A0E0",
         "fontStyle": "italic"
       }
     },
@@ -679,7 +679,7 @@
         "support.type.vendored.property-name.less"
       ],
       "settings": {
-        "foreground": "#88abdc"
+        "foreground": "#78a3e0"
       }
     },
     {
@@ -753,7 +753,7 @@
         "source.powershell variable.other.member"
       ],
       "settings": {
-        "foreground": "#88B0DC"
+        "foreground": "#78C0E0"
       }
     },
     {
@@ -767,7 +767,7 @@
         "storage.type.annotation"
       ],
       "settings": {
-        "foreground": "#88B0DC",
+        "foreground": "#78C0E0",
         "fontStyle": "italic underline"
       }
     },
@@ -833,7 +833,8 @@
         "storage.modifier.lifetime"
       ],
       "settings": {
-        "foreground": "#E0C070"
+        "foreground": "#E0CA70",
+        "fontStyle": "italic"
       }
     },
     {
@@ -842,7 +843,7 @@
         "entity.other.inherited-class"
       ],
       "settings": {
-        "foreground": "#E0C070",
+        "foreground": "#E0CA70",
         "fontStyle": "italic underline"
       }
     },
@@ -857,7 +858,8 @@
         "entity.name.type.class.vue"
       ],
       "settings": {
-        "foreground": "#E0C070"
+        "foreground": "#E0CA70",
+        "fontStyle": "italic"
       }
     },
     {
@@ -944,7 +946,7 @@
         "meta.rule.scss entity.other.attribute-name.class.css"
       ],
       "settings": {
-        "foreground": "#e0cb70"
+        "foreground": "#e0cd70"
       }
     },
     {
@@ -1014,7 +1016,7 @@
         "meta.property-list.css meta.property-value.css"
       ],
       "settings": {
-        "foreground": "#88afdc"
+        "foreground": "#78aae0"
       }
     },
     {
@@ -1070,7 +1072,7 @@
         "meta.at-rule.keyframes.scss entity.name.function.scss"
       ],
       "settings": {
-        "foreground": "#88a2dc"
+        "foreground": "#78a0e0"
       }
     },
     {
@@ -1123,7 +1125,7 @@
         "meta.preprocessor"
       ],
       "settings": {
-        "foreground": "#b198d8"
+        "foreground": "#b9a0e0"
       }
     },
     {
@@ -1170,7 +1172,7 @@
         "entity.name.section.markdown"
       ],
       "settings": {
-        "foreground": "#88B0DC"
+        "foreground": "#78C0E0"
       }
     },
     {
@@ -1274,7 +1276,7 @@
         "variable.language.wildcard.java"
       ],
       "settings": {
-        "foreground": "#A898D8",
+        "foreground": "#B0A0E0",
         "fontStyle": "italic"
       }
     },
@@ -1305,7 +1307,7 @@
         "variable.language.wildcard.kotlin"
       ],
       "settings": {
-        "foreground": "#A898D8",
+        "foreground": "#B0A0E0",
         "fontStyle": "italic"
       }
     },
@@ -1318,7 +1320,7 @@
         "entity.name.type.annotation.android.kotlin"
       ],
       "settings": {
-        "foreground": "#88B0DC",
+        "foreground": "#78C0E0",
         "fontStyle": "italic underline"
       }
     },
@@ -1350,7 +1352,7 @@
         "meta.class.kotlin"
       ],
       "settings": {
-        "foreground": "#E0C070"
+        "foreground": "#E0CA70"
       }
     },
     {
@@ -1377,7 +1379,7 @@
         "comment.line.number-sign.proguard"
       ],
       "settings": {
-        "foreground": "#A898D8",
+        "foreground": "#B0A0E0",
         "fontStyle": "italic"
       }
     },
@@ -1392,7 +1394,7 @@
         "meta.rule.body.proguard"
       ],
       "settings": {
-        "foreground": "#E0C070"
+        "foreground": "#E0CA70"
       }
     },
     {
@@ -1408,7 +1410,7 @@
         "storage.type.annotation.aidl"
       ],
       "settings": {
-        "foreground": "#A898D8",
+        "foreground": "#B0A0E0",
         "fontStyle": "italic"
       }
     },
@@ -1426,7 +1428,7 @@
         "support.class.aidl"
       ],
       "settings": {
-        "foreground": "#E0C070"
+        "foreground": "#E0CA70"
       }
     },
     {
@@ -1449,7 +1451,7 @@
       ],
       "settings": {
         "foreground": "#6E8EB8",
-        "fontStyle": "bold"
+        "fontStyle": "bold italic"
       }
     },
     {
@@ -1470,7 +1472,7 @@
         "emphasis"
       ],
       "settings": {
-        "foreground": "#A898D8",
+        "foreground": "#B0A0E0",
         "fontStyle": "italic"
       }
     },
@@ -1530,7 +1532,7 @@
         "markup.inserted"
       ],
       "settings": {
-        "foreground": "#90B890"
+        "foreground": "#90C090"
       }
     },
     {
@@ -1584,7 +1586,7 @@
         "constant.name.attribute.tag.jade"
       ],
       "settings": {
-        "foreground": "#E0C070"
+        "foreground": "#E0CA70"
       }
     },
     {
@@ -1598,7 +1600,7 @@
         "meta.property-list.scss meta.property-name entity.name.tag.css"
       ],
       "settings": {
-        "foreground": "#88abdc"
+        "foreground": "#78a3e0"
       }
     },
     {
@@ -1617,7 +1619,7 @@
         "support.type.property-name.transition-sub.css"
       ],
       "settings": {
-        "foreground": "#88afdc"
+        "foreground": "#78aae0"
       }
     },
     {
@@ -1653,7 +1655,7 @@
         "support.type.map.key.sass"
       ],
       "settings": {
-        "foreground": "#88abdc"
+        "foreground": "#78a3e0"
       }
     },
     {

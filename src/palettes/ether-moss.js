@@ -61,10 +61,10 @@ export default {
 
   syntax: {
     default: "#E2E8E2",
-    string: "#88C878",
+    string: "#80D890",
     number: "#D8A848",
     cyan: "#58C0B8",
-    keyword: "#C8A878",
+    keyword: "#C8A8E8",
     variable: "#78A878",
     function: "#88B8D8",
     type: "#E0C878",

@@ -319,7 +319,7 @@
         "keyword.operator.control.jsdoc"
       ],
       "settings": {
-        "foreground": "#C8A078",
+        "foreground": "#C8A0E8",
         "fontStyle": "italic"
       }
     },
@@ -526,7 +526,7 @@
         "entity.other.attribute-name.directive.vue"
       ],
       "settings": {
-        "foreground": "#C8A078",
+        "foreground": "#C8A0E8",
         "fontStyle": "italic"
       }
     },
@@ -563,7 +563,7 @@
         "keyword.control.heredoc-shell"
       ],
       "settings": {
-        "foreground": "#C8A078",
+        "foreground": "#C8A0E8",
         "fontStyle": "italic"
       }
     },
@@ -582,7 +582,7 @@
         "keyword.other.declaration.swift"
       ],
       "settings": {
-        "foreground": "#C8A078",
+        "foreground": "#C8A0E8",
         "fontStyle": "italic"
       }
     },
@@ -833,7 +833,8 @@
         "storage.modifier.lifetime"
       ],
       "settings": {
-        "foreground": "#E0C878"
+        "foreground": "#E0C878",
+        "fontStyle": "italic"
       }
     },
     {
@@ -857,7 +858,8 @@
         "entity.name.type.class.vue"
       ],
       "settings": {
-        "foreground": "#E0C878"
+        "foreground": "#E0C878",
+        "fontStyle": "italic"
       }
     },
     {
@@ -1123,7 +1125,7 @@
         "meta.preprocessor"
       ],
       "settings": {
-        "foreground": "#c878b5"
+        "foreground": "#c4a0e8"
       }
     },
     {
@@ -1274,7 +1276,7 @@
         "variable.language.wildcard.java"
       ],
       "settings": {
-        "foreground": "#C8A078",
+        "foreground": "#C8A0E8",
         "fontStyle": "italic"
       }
     },
@@ -1305,7 +1307,7 @@
         "variable.language.wildcard.kotlin"
       ],
       "settings": {
-        "foreground": "#C8A078",
+        "foreground": "#C8A0E8",
         "fontStyle": "italic"
       }
     },
@@ -1377,7 +1379,7 @@
         "comment.line.number-sign.proguard"
       ],
       "settings": {
-        "foreground": "#C8A078",
+        "foreground": "#C8A0E8",
         "fontStyle": "italic"
       }
     },
@@ -1408,7 +1410,7 @@
         "storage.type.annotation.aidl"
       ],
       "settings": {
-        "foreground": "#C8A078",
+        "foreground": "#C8A0E8",
         "fontStyle": "italic"
       }
     },
@@ -1449,7 +1451,7 @@
       ],
       "settings": {
         "foreground": "#B88868",
-        "fontStyle": "bold"
+        "fontStyle": "bold italic"
       }
     },
     {
@@ -1470,7 +1472,7 @@
         "emphasis"
       ],
       "settings": {
-        "foreground": "#C8A078",
+        "foreground": "#C8A0E8",
         "fontStyle": "italic"
       }
     },

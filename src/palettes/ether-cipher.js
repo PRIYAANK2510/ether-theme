@@ -62,13 +62,13 @@ export default {
 
   syntax: {
     default: "#D8F0D8",
-    string: "#80F0A8",
+    string: "#70E498",
     number: "#E8C050",
     cyan: "#40E8C8",
-    keyword: "#A8E878",
+    keyword: "#C8F070",
     variable: "#30F068",
-    function: "#98E8B8",
-    type: "#F0E070",
+    function: "#80F0C0",
+    type: "#F4E060",
     red: "#F07060",
     pink: "#E8A8C0",
   },

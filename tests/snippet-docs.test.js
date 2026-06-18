@@ -19,7 +19,7 @@ describe("product site (React)", () => {
     }
 
     expect(catalog.length).toBeGreaterThan(0);
-    expect(palettes.length).toBe(50);
+    expect(palettes.length).toBe(25);
 
     for (const relativePath of [
       "index.html",

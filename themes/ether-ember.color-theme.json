@@ -319,7 +319,7 @@
         "keyword.operator.control.jsdoc"
       ],
       "settings": {
-        "foreground": "#D89878",
+        "foreground": "#E09070",
         "fontStyle": "italic"
       }
     },
@@ -335,7 +335,7 @@
         "meta.example.jsdoc"
       ],
       "settings": {
-        "foreground": "#E0C878"
+        "foreground": "#E8C870"
       }
     },
     {
@@ -381,7 +381,7 @@
         "string.quoted.single.shell"
       ],
       "settings": {
-        "foreground": "#98C088"
+        "foreground": "#98C080"
       }
     },
     {
@@ -526,7 +526,7 @@
         "entity.other.attribute-name.directive.vue"
       ],
       "settings": {
-        "foreground": "#D89878",
+        "foreground": "#E09070",
         "fontStyle": "italic"
       }
     },
@@ -563,7 +563,7 @@
         "keyword.control.heredoc-shell"
       ],
       "settings": {
-        "foreground": "#D89878",
+        "foreground": "#E09070",
         "fontStyle": "italic"
       }
     },
@@ -582,7 +582,7 @@
         "keyword.other.declaration.swift"
       ],
       "settings": {
-        "foreground": "#D89878",
+        "foreground": "#E09070",
         "fontStyle": "italic"
       }
     },
@@ -833,7 +833,8 @@
         "storage.modifier.lifetime"
       ],
       "settings": {
-        "foreground": "#E0C878"
+        "foreground": "#E8C870",
+        "fontStyle": "italic"
       }
     },
     {
@@ -842,7 +843,7 @@
         "entity.other.inherited-class"
       ],
       "settings": {
-        "foreground": "#E0C878",
+        "foreground": "#E8C870",
         "fontStyle": "italic underline"
       }
     },
@@ -857,7 +858,8 @@
         "entity.name.type.class.vue"
       ],
       "settings": {
-        "foreground": "#E0C878"
+        "foreground": "#E8C870",
+        "fontStyle": "italic"
       }
     },
     {
@@ -944,7 +946,7 @@
         "meta.rule.scss entity.other.attribute-name.class.css"
       ],
       "settings": {
-        "foreground": "#e0cd78"
+        "foreground": "#e8d270"
       }
     },
     {
@@ -1123,7 +1125,7 @@
         "meta.preprocessor"
       ],
       "settings": {
-        "foreground": "#d878c7"
+        "foreground": "#e070ce"
       }
     },
     {
@@ -1274,7 +1276,7 @@
         "variable.language.wildcard.java"
       ],
       "settings": {
-        "foreground": "#D89878",
+        "foreground": "#E09070",
         "fontStyle": "italic"
       }
     },
@@ -1305,7 +1307,7 @@
         "variable.language.wildcard.kotlin"
       ],
       "settings": {
-        "foreground": "#D89878",
+        "foreground": "#E09070",
         "fontStyle": "italic"
       }
     },
@@ -1350,7 +1352,7 @@
         "meta.class.kotlin"
       ],
       "settings": {
-        "foreground": "#E0C878"
+        "foreground": "#E8C870"
       }
     },
     {
@@ -1377,7 +1379,7 @@
         "comment.line.number-sign.proguard"
       ],
       "settings": {
-        "foreground": "#D89878",
+        "foreground": "#E09070",
         "fontStyle": "italic"
       }
     },
@@ -1392,7 +1394,7 @@
         "meta.rule.body.proguard"
       ],
       "settings": {
-        "foreground": "#E0C878"
+        "foreground": "#E8C870"
       }
     },
     {
@@ -1408,7 +1410,7 @@
         "storage.type.annotation.aidl"
       ],
       "settings": {
-        "foreground": "#D89878",
+        "foreground": "#E09070",
         "fontStyle": "italic"
       }
     },
@@ -1426,7 +1428,7 @@
         "support.class.aidl"
       ],
       "settings": {
-        "foreground": "#E0C878"
+        "foreground": "#E8C870"
       }
     },
     {
@@ -1449,7 +1451,7 @@
       ],
       "settings": {
         "foreground": "#C89068",
-        "fontStyle": "bold"
+        "fontStyle": "bold italic"
       }
     },
     {
@@ -1470,7 +1472,7 @@
         "emphasis"
       ],
       "settings": {
-        "foreground": "#D89878",
+        "foreground": "#E09070",
         "fontStyle": "italic"
       }
     },
@@ -1530,7 +1532,7 @@
         "markup.inserted"
       ],
       "settings": {
-        "foreground": "#98C088"
+        "foreground": "#98C080"
       }
     },
     {
@@ -1584,7 +1586,7 @@
         "constant.name.attribute.tag.jade"
       ],
       "settings": {
-        "foreground": "#E0C878"
+        "foreground": "#E8C870"
       }
     },
     {

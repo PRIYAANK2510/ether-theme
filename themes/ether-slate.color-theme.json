@@ -833,7 +833,8 @@
         "storage.modifier.lifetime"
       ],
       "settings": {
-        "foreground": "#E5C07B"
+        "foreground": "#E5C07B",
+        "fontStyle": "italic"
       }
     },
     {
@@ -857,7 +858,8 @@
         "entity.name.type.class.vue"
       ],
       "settings": {
-        "foreground": "#E5C07B"
+        "foreground": "#E5C07B",
+        "fontStyle": "italic"
       }
     },
     {
@@ -1449,7 +1451,7 @@
       ],
       "settings": {
         "foreground": "#82CFFF",
-        "fontStyle": "bold"
+        "fontStyle": "bold italic"
       }
     },
     {

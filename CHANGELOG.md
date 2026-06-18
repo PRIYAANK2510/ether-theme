@@ -11,6 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
+## [1.0.19] - 2026-06-18
+
+### Added
+
+- **9 new unique themes** — Arctic, Celestial, Crimson, Cyber, Forest, Rust, Sapphire, Sepia, Wine — bringing the total to 25 dark palettes; each occupies a distinct surface-color family and accent hue
+- **Italic syntax styling** — type/class/interface names and React components now render in italic; Markdown headings in bold-italic across all themes
+
+### Changed
+
+- **Theme curation** — reduced from 50 themes to 16 by removing redundant palette families; surviving themes refined for maximum visual distinction
+- **Syntax color perfection** — resolved keyword/function/variable/number/type overlaps in all 16 original themes for cleaner, more readable code highlighting
+
 ## [1.0.18] - 2026-06-16
 
 ### Changed

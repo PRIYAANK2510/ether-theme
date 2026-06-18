@@ -319,7 +319,7 @@
         "keyword.operator.control.jsdoc"
       ],
       "settings": {
-        "foreground": "#F0C878",
+        "foreground": "#D0A8F8",
         "fontStyle": "italic"
       }
     },
@@ -335,7 +335,7 @@
         "meta.example.jsdoc"
       ],
       "settings": {
-        "foreground": "#F0D878"
+        "foreground": "#F4E068"
       }
     },
     {
@@ -526,7 +526,7 @@
         "entity.other.attribute-name.directive.vue"
       ],
       "settings": {
-        "foreground": "#F0C878",
+        "foreground": "#D0A8F8",
         "fontStyle": "italic"
       }
     },
@@ -563,7 +563,7 @@
         "keyword.control.heredoc-shell"
       ],
       "settings": {
-        "foreground": "#F0C878",
+        "foreground": "#D0A8F8",
         "fontStyle": "italic"
       }
     },
@@ -582,7 +582,7 @@
         "keyword.other.declaration.swift"
       ],
       "settings": {
-        "foreground": "#F0C878",
+        "foreground": "#D0A8F8",
         "fontStyle": "italic"
       }
     },
@@ -833,7 +833,8 @@
         "storage.modifier.lifetime"
       ],
       "settings": {
-        "foreground": "#F0D878"
+        "foreground": "#F4E068",
+        "fontStyle": "italic"
       }
     },
     {
@@ -842,7 +843,7 @@
         "entity.other.inherited-class"
       ],
       "settings": {
-        "foreground": "#F0D878",
+        "foreground": "#F4E068",
         "fontStyle": "italic underline"
       }
     },
@@ -857,7 +858,8 @@
         "entity.name.type.class.vue"
       ],
       "settings": {
-        "foreground": "#F0D878"
+        "foreground": "#F4E068",
+        "fontStyle": "italic"
       }
     },
     {
@@ -944,7 +946,7 @@
         "meta.rule.scss entity.other.attribute-name.class.css"
       ],
       "settings": {
-        "foreground": "#efda79"
+        "foreground": "#edd96f"
       }
     },
     {
@@ -1123,7 +1125,7 @@
         "meta.preprocessor"
       ],
       "settings": {
-        "foreground": "#e583c7"
+        "foreground": "#cbabed"
       }
     },
     {
@@ -1274,7 +1276,7 @@
         "variable.language.wildcard.java"
       ],
       "settings": {
-        "foreground": "#F0C878",
+        "foreground": "#D0A8F8",
         "fontStyle": "italic"
       }
     },
@@ -1305,7 +1307,7 @@
         "variable.language.wildcard.kotlin"
       ],
       "settings": {
-        "foreground": "#F0C878",
+        "foreground": "#D0A8F8",
         "fontStyle": "italic"
       }
     },
@@ -1350,7 +1352,7 @@
         "meta.class.kotlin"
       ],
       "settings": {
-        "foreground": "#F0D878"
+        "foreground": "#F4E068"
       }
     },
     {
@@ -1377,7 +1379,7 @@
         "comment.line.number-sign.proguard"
       ],
       "settings": {
-        "foreground": "#F0C878",
+        "foreground": "#D0A8F8",
         "fontStyle": "italic"
       }
     },
@@ -1392,7 +1394,7 @@
         "meta.rule.body.proguard"
       ],
       "settings": {
-        "foreground": "#F0D878"
+        "foreground": "#F4E068"
       }
     },
     {
@@ -1408,7 +1410,7 @@
         "storage.type.annotation.aidl"
       ],
       "settings": {
-        "foreground": "#F0C878",
+        "foreground": "#D0A8F8",
         "fontStyle": "italic"
       }
     },
@@ -1426,7 +1428,7 @@
         "support.class.aidl"
       ],
       "settings": {
-        "foreground": "#F0D878"
+        "foreground": "#F4E068"
       }
     },
     {
@@ -1449,7 +1451,7 @@
       ],
       "settings": {
         "foreground": "#F05830",
-        "fontStyle": "bold"
+        "fontStyle": "bold italic"
       }
     },
     {
@@ -1470,7 +1472,7 @@
         "emphasis"
       ],
       "settings": {
-        "foreground": "#F0C878",
+        "foreground": "#D0A8F8",
         "fontStyle": "italic"
       }
     },
@@ -1584,7 +1586,7 @@
         "constant.name.attribute.tag.jade"
       ],
       "settings": {
-        "foreground": "#F0D878"
+        "foreground": "#F4E068"
       }
     },
     {
