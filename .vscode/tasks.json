@@ -5,35 +5,51 @@
       "label": "build",
       "type": "shell",
       "command": "pnpm run build:extension",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PATH": "${env:PATH};${env:ProgramFiles}\\nodejs;${env:APPDATA}\\npm"
+        }
+      },
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "presentation": {
-        "reveal": "silent",
+        "reveal": "always",
         "panel": "shared",
         "showReuseMessage": false,
         "clear": false,
         "close": true
-      },
-      "problemMatcher": []
+      }
     },
     {
       "label": "build:full",
       "type": "shell",
       "command": "pnpm run build",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PATH": "${env:PATH};${env:ProgramFiles}\\nodejs;${env:APPDATA}\\npm"
+        }
+      },
       "group": "build",
       "presentation": {
         "reveal": "always",
         "panel": "shared",
         "close": true
-      },
-      "problemMatcher": []
+      }
     },
     {
       "label": "watch",
       "type": "shell",
       "command": "pnpm run watch",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PATH": "${env:PATH};${env:ProgramFiles}\\nodejs;${env:APPDATA}\\npm"
+        }
+      },
       "isBackground": true,
       "presentation": {
         "reveal": "always",
@@ -46,6 +62,12 @@
       "label": "site:dev",
       "type": "shell",
       "command": "pnpm run site:dev",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PATH": "${env:PATH};${env:ProgramFiles}\\nodejs;${env:APPDATA}\\npm"
+        }
+      },
       "group": "none",
       "isBackground": true,
       "presentation": {
@@ -72,6 +94,12 @@
       "label": "lint",
       "type": "shell",
       "command": "pnpm run lint",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PATH": "${env:PATH};${env:ProgramFiles}\\nodejs;${env:APPDATA}\\npm"
+        }
+      },
       "presentation": {
         "reveal": "always",
         "panel": "shared",
@@ -83,6 +111,12 @@
       "label": "check",
       "type": "shell",
       "command": "pnpm run check",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PATH": "${env:PATH};${env:ProgramFiles}\\nodejs;${env:APPDATA}\\npm"
+        }
+      },
       "group": {
         "kind": "test",
         "isDefault": true

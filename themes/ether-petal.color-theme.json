@@ -159,23 +159,6 @@
     "pickerGroup.foreground": "#9A9098",
     "debugToolBar.background": "#18141C",
     "walkThrough.embeddedEditorBackground": "#1A161A",
-    "chat.requestBackground": "#1D1920",
-    "chat.requestBorder": "#100E1040",
-    "chat.slashCommandBackground": "#F0E8EC15",
-    "chat.slashCommandForeground": "#FAF4F6",
-    "chat.avatarBackground": "#D8A0B040",
-    "chat.avatarForeground": "#141014",
-    "chat.editedFileForeground": "#DCC880",
-    "inlineChat.background": "#1E1A22",
-    "inlineChat.border": "#100E1028",
-    "inlineChat.foreground": "#F0E8EC",
-    "inlineChat.shadow": "#08060855",
-    "inlineChatDiff.inserted": "#88C0A020",
-    "inlineChatDiff.removed": "#E0809020",
-    "inlineChatInput.background": "#1E1A22",
-    "inlineChatInput.border": "#100E1035",
-    "inlineChatInput.focusBorder": "#D8A0B0BB",
-    "inlineChatInput.placeholderForeground": "#9A9098",
     "descriptionForeground": "#9A9098",
     "textLink.foreground": "#D8A0B0",
     "textLink.activeForeground": "#E4B0C0",
@@ -409,7 +392,7 @@
         "constant.other.option"
       ],
       "settings": {
-        "foreground": "#E0A8C0"
+        "foreground": "#BB86A2"
       }
     },
     {
@@ -424,7 +407,7 @@
         "keyword.operator.minus.exponent"
       ],
       "settings": {
-        "foreground": "#D8B878"
+        "foreground": "#E9AF7D"
       }
     },
     {
@@ -453,7 +436,7 @@
         "meta.property-value.media-query.scss constant.numeric.css"
       ],
       "settings": {
-        "foreground": "#d89e78"
+        "foreground": "#e9a57d"
       }
     },
     {
@@ -723,7 +706,7 @@
         "variable.other.property.tsx"
       ],
       "settings": {
-        "foreground": "#D8B878"
+        "foreground": "#E9AF7D"
       }
     },
     {
@@ -737,7 +720,7 @@
         "meta.key-value.key"
       ],
       "settings": {
-        "foreground": "#D8B878"
+        "foreground": "#E9AF7D"
       }
     },
     {
@@ -911,7 +894,7 @@
         "support.function.var.css"
       ],
       "settings": {
-        "foreground": "#a8c9e0"
+        "foreground": "#79a7c8"
       }
     },
     {
@@ -945,7 +928,7 @@
         "meta.attribute-with-value"
       ],
       "settings": {
-        "foreground": "#D8B878"
+        "foreground": "#E9AF7D"
       }
     },
     {
@@ -1046,7 +1029,7 @@
         "constant.other.color.hex.less"
       ],
       "settings": {
-        "foreground": "#e0a8c4"
+        "foreground": "#bf82a2"
       }
     },
     {
@@ -1066,7 +1049,7 @@
         "entity.other.keyframe-name.scss"
       ],
       "settings": {
-        "foreground": "#e0a8cd"
+        "foreground": "#c47daf"
       }
     },
     {
@@ -1075,7 +1058,7 @@
         "entity.other.keyframe-offset.css"
       ],
       "settings": {
-        "foreground": "#d89e78"
+        "foreground": "#e9a57d"
       }
     },
     {
@@ -1099,7 +1082,7 @@
         "punctuation.definition.interpolation.end.bracket.curly.sass"
       ],
       "settings": {
-        "foreground": "#e0a8d3"
+        "foreground": "#bd84b2"
       }
     },
     {
@@ -1228,7 +1211,7 @@
         "support.other.parenthesis.regexp"
       ],
       "settings": {
-        "foreground": "#E0A8C0"
+        "foreground": "#BB86A2"
       }
     },
     {
@@ -1257,7 +1240,7 @@
         "punctuation.definition.generic.end"
       ],
       "settings": {
-        "foreground": "#E0A8C0"
+        "foreground": "#BB86A2"
       }
     },
     {
@@ -1476,7 +1459,7 @@
         "strong"
       ],
       "settings": {
-        "foreground": "#D8B878",
+        "foreground": "#E9AF7D",
         "fontStyle": "bold"
       }
     },
@@ -1527,7 +1510,7 @@
         "punctuation.definition.list.begin.markdown"
       ],
       "settings": {
-        "foreground": "#D8B878"
+        "foreground": "#E9AF7D"
       }
     },
     {
@@ -1566,7 +1549,7 @@
         "meta.diff.header"
       ],
       "settings": {
-        "foreground": "#D8B878"
+        "foreground": "#E9AF7D"
       }
     },
     {
@@ -1579,7 +1562,7 @@
         "fenced_code.block.language.markdown"
       ],
       "settings": {
-        "foreground": "#D8B878"
+        "foreground": "#E9AF7D"
       }
     },
     {
@@ -1737,7 +1720,7 @@
         "punctuation.definition.wildcard.scss"
       ],
       "settings": {
-        "foreground": "#e0a8cd"
+        "foreground": "#c47daf"
       }
     },
     {
@@ -1748,7 +1731,7 @@
         "variable.parameter.style-name.scss"
       ],
       "settings": {
-        "foreground": "#e0a8cd"
+        "foreground": "#c47daf"
       }
     },
     {

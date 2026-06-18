@@ -159,23 +159,6 @@
     "pickerGroup.foreground": "#9A9488",
     "debugToolBar.background": "#060606",
     "walkThrough.embeddedEditorBackground": "#080808",
-    "chat.requestBackground": "#0B0B0B",
-    "chat.requestBorder": "#00000040",
-    "chat.slashCommandBackground": "#F0ECE015",
-    "chat.slashCommandForeground": "#FAF8F4",
-    "chat.avatarBackground": "#F0B84040",
-    "chat.avatarForeground": "#0C0C0C",
-    "chat.editedFileForeground": "#F0D060",
-    "inlineChat.background": "#0C0C0C",
-    "inlineChat.border": "#00000028",
-    "inlineChat.foreground": "#F0ECE0",
-    "inlineChat.shadow": "#00000055",
-    "inlineChatDiff.inserted": "#88C08820",
-    "inlineChatDiff.removed": "#E8706820",
-    "inlineChatInput.background": "#0C0C0C",
-    "inlineChatInput.border": "#00000035",
-    "inlineChatInput.focusBorder": "#F0B840BB",
-    "inlineChatInput.placeholderForeground": "#9A9488",
     "descriptionForeground": "#9A9488",
     "textLink.foreground": "#F0B840",
     "textLink.activeForeground": "#FFD050",
@@ -336,7 +319,7 @@
         "keyword.operator.control.jsdoc"
       ],
       "settings": {
-        "foreground": "#E8C878",
+        "foreground": "#C7A5F8",
         "fontStyle": "italic"
       }
     },
@@ -543,7 +526,7 @@
         "entity.other.attribute-name.directive.vue"
       ],
       "settings": {
-        "foreground": "#E8C878",
+        "foreground": "#C7A5F8",
         "fontStyle": "italic"
       }
     },
@@ -580,7 +563,7 @@
         "keyword.control.heredoc-shell"
       ],
       "settings": {
-        "foreground": "#E8C878",
+        "foreground": "#C7A5F8",
         "fontStyle": "italic"
       }
     },
@@ -599,7 +582,7 @@
         "keyword.other.declaration.swift"
       ],
       "settings": {
-        "foreground": "#E8C878",
+        "foreground": "#C7A5F8",
         "fontStyle": "italic"
       }
     },
@@ -1140,7 +1123,7 @@
         "meta.preprocessor"
       ],
       "settings": {
-        "foreground": "#e37dc2"
+        "foreground": "#c8abed"
       }
     },
     {
@@ -1291,7 +1274,7 @@
         "variable.language.wildcard.java"
       ],
       "settings": {
-        "foreground": "#E8C878",
+        "foreground": "#C7A5F8",
         "fontStyle": "italic"
       }
     },
@@ -1322,7 +1305,7 @@
         "variable.language.wildcard.kotlin"
       ],
       "settings": {
-        "foreground": "#E8C878",
+        "foreground": "#C7A5F8",
         "fontStyle": "italic"
       }
     },
@@ -1394,7 +1377,7 @@
         "comment.line.number-sign.proguard"
       ],
       "settings": {
-        "foreground": "#E8C878",
+        "foreground": "#C7A5F8",
         "fontStyle": "italic"
       }
     },
@@ -1425,7 +1408,7 @@
         "storage.type.annotation.aidl"
       ],
       "settings": {
-        "foreground": "#E8C878",
+        "foreground": "#C7A5F8",
         "fontStyle": "italic"
       }
     },
@@ -1487,7 +1470,7 @@
         "emphasis"
       ],
       "settings": {
-        "foreground": "#E8C878",
+        "foreground": "#C7A5F8",
         "fontStyle": "italic"
       }
     },

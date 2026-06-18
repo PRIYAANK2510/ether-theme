@@ -159,23 +159,6 @@
     "pickerGroup.foreground": "#80A090",
     "debugToolBar.background": "#0C1412",
     "walkThrough.embeddedEditorBackground": "#0E1814",
-    "chat.requestBackground": "#111D19",
-    "chat.requestBorder": "#080E0C40",
-    "chat.slashCommandBackground": "#E4F4EC15",
-    "chat.slashCommandForeground": "#F0FCF6",
-    "chat.avatarBackground": "#40E8B840",
-    "chat.avatarForeground": "#080E0C",
-    "chat.editedFileForeground": "#F8E878",
-    "inlineChat.background": "#121E1A",
-    "inlineChat.border": "#080E0C28",
-    "inlineChat.foreground": "#E4F4EC",
-    "inlineChat.shadow": "#04080655",
-    "inlineChatDiff.inserted": "#40E8B820",
-    "inlineChatDiff.removed": "#F0788020",
-    "inlineChatInput.background": "#121E1A",
-    "inlineChatInput.border": "#080E0C35",
-    "inlineChatInput.focusBorder": "#40E8B8BB",
-    "inlineChatInput.placeholderForeground": "#80A090",
     "descriptionForeground": "#80A090",
     "textLink.foreground": "#40E8B8",
     "textLink.activeForeground": "#58F0C8",
@@ -365,7 +348,7 @@
         "constant.other.email.link.underline.jsdoc"
       ],
       "settings": {
-        "foreground": "#40E8B8",
+        "foreground": "#82C3FF",
         "fontStyle": "italic"
       }
     },
@@ -522,7 +505,7 @@
         "variable.parameter.java"
       ],
       "settings": {
-        "foreground": "#40E8B8"
+        "foreground": "#82C3FF"
       }
     },
     {
@@ -636,7 +619,7 @@
         "variable.other.normal.shell"
       ],
       "settings": {
-        "foreground": "#40E8B8"
+        "foreground": "#82C3FF"
       }
     },
     {
@@ -1347,7 +1330,7 @@
         "variable.string-escape.kotlin"
       ],
       "settings": {
-        "foreground": "#40E8B8",
+        "foreground": "#82C3FF",
         "fontStyle": "italic"
       }
     },
@@ -1465,7 +1448,7 @@
         "entity.name.section.markdown"
       ],
       "settings": {
-        "foreground": "#40E8B8",
+        "foreground": "#82C3FF",
         "fontStyle": "bold"
       }
     },
@@ -1537,7 +1520,7 @@
         "meta.image"
       ],
       "settings": {
-        "foreground": "#40E8B8",
+        "foreground": "#82C3FF",
         "fontStyle": "italic"
       }
     },

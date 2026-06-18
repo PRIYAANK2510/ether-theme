@@ -258,7 +258,7 @@ export function deriveUISemantics(base) {
     ordered[key] = colors[key];
   }
 
-  const extensionColors = deriveWorkbenchExtensionColors(base, accent);
+  const extensionColors = deriveWorkbenchExtensionColors(base);
   for (const key of EXTENSION_WORKBENCH_COLOR_IDS) {
     ordered[key] = extensionColors[key];
   }

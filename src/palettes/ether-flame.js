@@ -62,7 +62,7 @@ export default {
   syntax: {
     default: "#F4E8E4",
     string: "#88E8A8",
-    number: "#F0C050",
+    number: "#FFAC47",
     cyan: "#68D8E0",
     keyword: "#F0A878",
     variable: "#FF7040",

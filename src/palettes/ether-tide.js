@@ -10,7 +10,7 @@ export default {
     accentHover: "#9CE4D8",
     surfaceBorder: "#0C1418",
     surfaceShell: "#0E181C",
-    surfacePanel: "#122024",
+    surfacePanel: "#0E1A1E",
     surfaceEditor: "#101C20",
     surfaceLineHighlight: "#1A2A30",
     surfaceInput: "#142428",
@@ -63,7 +63,7 @@ export default {
   syntax: {
     default: "#D8ECE8",
     string: "#A8E8D0",
-    number: "#F0D8A8",
+    number: "#E8B58B",
     cyan: "#88D4C8",
     keyword: "#D8B8E8",
     variable: "#98C8E8",

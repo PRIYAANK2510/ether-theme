@@ -67,7 +67,7 @@ export default {
     cyan: "#68B8B8",
     keyword: "#8090D0",
     variable: "#C07060",
-    function: "#8898C8",
+    function: "#71A1D3",
     type: "#E0C878",
     red: "#E07868",
     pink: "#D09898",

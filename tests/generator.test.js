@@ -21,8 +21,6 @@ import etherStorm from "../src/palettes/ether-storm.js";
 import { SYNTAX_RULE_COUNT } from "../src/syntax/rules.js";
 import {
   colorAlphaByte,
-  DEPRECATED_THEME_COLOR_IDS,
-  mixColors,
   PALETTE_CONTRAST_TARGETS,
   validatePaletteContrast,
   withAlphaByte,
@@ -179,10 +177,7 @@ describe("theme generator", () => {
     expect(theme).not.toHaveProperty("semanticTokenColors");
   });
 
-  it("uses modern workbench keys without deprecated tokens", () => {
-    for (const key of DEPRECATED_THEME_COLOR_IDS) {
-      expect(theme.colors).not.toHaveProperty(key);
-    }
+  it("uses modern workbench key mappings", () => {
     expect(theme.colors["button.foreground"].toLowerCase()).toBe(
       palette.ui.fgOnButton.toLowerCase(),
     );
@@ -210,6 +205,10 @@ describe("theme generator", () => {
     for (const rule of theme.tokenColors) {
       expect(rule.settings).not.toHaveProperty("background");
     }
+    expect(theme.colors).not.toHaveProperty("chat.requestBackground");
+    expect(theme.colors).not.toHaveProperty("chat.requestBorder");
+    expect(theme.colors).not.toHaveProperty("inlineChat.background");
+    expect(theme.colors).not.toHaveProperty("inlineChatInput.background");
     expect(theme.colors).not.toHaveProperty("chat.requestBubbleBackground");
     expect(theme.colors).not.toHaveProperty(
       "chat.requestBubbleHoverBackground",
@@ -225,7 +224,7 @@ describe("theme generator", () => {
     expect(theme.colors).not.toHaveProperty("editorIndentGuide.background");
   });
 
-  it("maps palette surfaces to sidebar, editor, and agent chat chrome", () => {
+  it("maps palette surfaces to sidebar, editor, and composer input", () => {
     const composerPane = palette.ui.surfaceEditor;
 
     expect(theme.colors["sideBar.background"].toLowerCase()).toBe(
@@ -234,20 +233,11 @@ describe("theme generator", () => {
     expect(theme.colors["editor.background"].toLowerCase()).toBe(
       composerPane.toLowerCase(),
     );
-    expect(theme.colors["inlineChat.background"].toLowerCase()).toBe(
-      composerPane.toLowerCase(),
-    );
-    expect(theme.colors["inlineChatInput.background"].toLowerCase()).toBe(
-      composerPane.toLowerCase(),
-    );
     expect(theme.colors["input.background"].toLowerCase()).toBe(
       composerPane.toLowerCase(),
     );
     expect(theme.colors).not.toHaveProperty("agentsChatInput.background");
     expect(theme.colors).not.toHaveProperty("agentSessionsList.background");
-    expect(theme.colors["chat.requestBackground"].toLowerCase()).toBe(
-      mixColors(composerPane, palette.ui.surfacePanel, 0.22).toLowerCase(),
-    );
     expect(theme.colors["textLink.foreground"].toLowerCase()).toBe(
       palette.ui.accent.toLowerCase(),
     );
@@ -450,12 +440,7 @@ describe("theme generator", () => {
     const graphite = composeTheme(etherGraphite);
     expect(graphite.colors["sideBar.background"].toLowerCase()).toBe("#161618");
     expect(graphite.colors["editor.background"].toLowerCase()).toBe("#1c1c1e");
-    expect(graphite.colors["inlineChat.background"].toLowerCase()).toBe(
-      "#1c1c1e",
-    );
-    expect(graphite.colors["inlineChatInput.background"].toLowerCase()).toBe(
-      "#1c1c1e",
-    );
+    expect(graphite.colors["input.background"].toLowerCase()).toBe("#1c1c1e");
     expect(graphite.colors["input.border"].toLowerCase()).toBe("#0e0e1035");
 
     const storm = composeTheme(etherStorm);

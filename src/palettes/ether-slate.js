@@ -66,7 +66,7 @@ export default {
     number: "#D19A66",
     cyan: "#56B6C2",
     keyword: "#C678DD",
-    variable: "#F08898",
+    variable: "#82CFFF",
     function: "#61AFEF",
     type: "#E5C07B",
     red: "#F08898",

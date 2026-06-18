@@ -1,4 +1,4 @@
-import { mixColors, withAlphaByte } from "../utils/color.js";
+import { withAlphaByte } from "../utils/color.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
 import { deriveDiffEditorColors } from "./derive-diff.js";
 import { deriveInteractiveOverlays } from "./derive-interactive.js";
@@ -34,36 +34,14 @@ function deriveFormInputColors(base) {
 
 /**
  * @param {import("../utils/color.js").PaletteUITokens} base
- * @param {ReturnType<import("./derive-core.js").deriveAccentVariants>} accent
  * @returns {Record<string, string>}
  * @throws {Error} When a required extension workbench key has no derivation
  */
-export function deriveWorkbenchExtensionColors(base, accent) {
-  const composerPane = base.surfaceEditor;
-  const composerInput = deriveComposerInputColors(base, accent);
+export function deriveWorkbenchExtensionColors(base) {
   const formInput = deriveFormInputColors(base);
   const interactive = deriveInteractiveOverlays(base);
 
   const colors = {
-    // Composer pane follows editor.background in Cursor — keep chat chrome flush with the editor
-    "chat.requestBackground": mixColors(composerPane, base.surfacePanel, 0.22),
-    "chat.requestBorder": withAlphaByte(base.surfaceBorder, 0x40),
-    "chat.slashCommandBackground": interactive.subtleBackground,
-    "chat.slashCommandForeground": base.fgListFocus,
-    "chat.avatarBackground": withAlphaByte(base.accent, 0x40),
-    "chat.avatarForeground": base.fgOnAccent,
-    "chat.editedFileForeground": base.findMatch,
-    "inlineChat.background": composerPane,
-    "inlineChat.border": withAlphaByte(base.surfaceBorder, 0x28),
-    "inlineChat.foreground": base.fgPrimary,
-    "inlineChat.shadow": withAlphaByte(base.shadow, 0x55),
-    "inlineChatDiff.inserted": withAlphaByte(base.diffInserted, 0x20),
-    "inlineChatDiff.removed": withAlphaByte(base.diffRemoved, 0x20),
-    "inlineChatInput.background": composerInput.background,
-    "inlineChatInput.border": composerInput.border,
-    "inlineChatInput.focusBorder": composerInput.focusBorder,
-    "inlineChatInput.placeholderForeground": composerInput.placeholder,
-
     descriptionForeground: base.fgMuted,
     "textLink.foreground": base.accent,
     "textLink.activeForeground": base.accentHover,

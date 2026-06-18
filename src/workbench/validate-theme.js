@@ -1,6 +1,5 @@
 import {
   colorAlphaByte,
-  DEPRECATED_THEME_COLOR_IDS,
   isValidColor,
   TRANSPARENT_WORKBENCH_COLOR_IDS,
 } from "../utils/color.js";
@@ -36,12 +35,6 @@ export function validateGeneratedTheme(theme, paletteId) {
   }
 
   for (const [key, value] of Object.entries(theme.colors)) {
-    if (DEPRECATED_THEME_COLOR_IDS.includes(key)) {
-      throw new Error(
-        `Deprecated workbench color "${key}" in theme "${paletteId}"`,
-      );
-    }
-
     if (!isValidColor(value)) {
       throw new Error(
         `Invalid color "${value}" for workbench key "${key}" in theme "${paletteId}"`,

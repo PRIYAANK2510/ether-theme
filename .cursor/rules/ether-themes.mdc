@@ -71,9 +71,8 @@ Workbench mapping: `sideBar.background` = `surfacePanel`, `editor.background` = 
 ## Workbench derivation (required path)
 
 1. **New workbench key** → add to `src/workbench/core-catalog.js` OR `extension-catalog.js`.
-2. **Derive the value** in `derive-core.js` (core) or `derive-extensions.js` (chat/agent, menus, tabs).
-3. Never emit keys from `DEPRECATED_THEME_COLOR_IDS` in `color.js`.
-4. Keys in `TRANSPARENT_WORKBENCH_COLOR_IDS` must use alpha via `withAlphaByte` (not opaque `#RRGGBB`).
+2. **Derive the value** in `derive-core.js` (core) or `derive-extensions.js` (menus, tabs, etc.).
+3. Keys in `TRANSPARENT_WORKBENCH_COLOR_IDS` must use alpha via `withAlphaByte` (not opaque `#RRGGBB`).
 
 Use `mixColors`, `withAlphaByte`, `darken` from `src/utils/color.js` — not ad-hoc hex math.
 

@@ -280,33 +280,6 @@ export function validatePalette(palette) {
   return palette;
 }
 
-/** VS Code removed, renamed, or non-schema keys — never emit in generated themes. */
-export const DEPRECATED_THEME_COLOR_IDS = [
-  "activityBar.dropBackground",
-  "activityBar.activeForeground",
-  "editorGroup.background",
-  "editorIndentGuide.background",
-  "editorIndentGuide.activeBackground",
-  "notification.background",
-  "notification.buttonBackground",
-  "notification.buttonHoverBackground",
-  "notification.infoBackground",
-  "notification.warningBackground",
-  "notification.errorBackground",
-  "chat.requestBubbleBackground",
-  "chat.requestBubbleHoverBackground",
-  "chat.requestCodeBorder",
-  "agentsChatInput.background",
-  "agentsChatInput.border",
-  "agentsChatInput.foreground",
-  "agentsChatInput.placeholderForeground",
-  "agentsChatInput.focusBorder",
-  "agentSessionsList.background",
-  "statusBarItem.activeForeground",
-  "panelTitle.hoverForeground",
-  "button.secondaryHoverForeground",
-];
-
 /** Workbench colors that must include transparency (alpha byte < 0xff). */
 export const TRANSPARENT_WORKBENCH_COLOR_IDS = [
   "editor.hoverHighlightBackground",
