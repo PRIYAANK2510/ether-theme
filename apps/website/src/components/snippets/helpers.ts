@@ -1,11 +1,11 @@
-import type { LanguageSnippet } from "@/lib/snippet-data";
-import type { SnippetIndexEntry } from "@/lib/snippet-search";
 import type { SnippetTableItem } from "@/components/SnippetsTable";
+import { SITE_DATA } from "@/generated/site-data";
+import type { LanguageSnippet } from "@/lib/snippet-data";
 import {
   getCachedLanguageBundle,
   loadLanguageSnippets,
 } from "@/lib/snippet-data";
-import { SITE_DATA } from "@/generated/site-data";
+import type { SnippetIndexEntry } from "@/lib/snippet-search";
 
 export type LanguageMeta = (typeof SITE_DATA.languages)[number];
 

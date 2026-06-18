@@ -1,4 +1,3 @@
-import type { HighlighterCore, LanguageInput } from "shiki/core";
 import { SITE_DATA } from "@/generated/site-data";
 import {
   buildHighlightCacheKey,
@@ -10,6 +9,7 @@ import {
   resolveShikiLanguage,
   wrapSnippetHighlightHtml,
 } from "@shared/snippet-highlight.js";
+import type { HighlighterCore, LanguageInput } from "shiki/core";
 
 const LANG_IMPORTERS: Record<
   string,
