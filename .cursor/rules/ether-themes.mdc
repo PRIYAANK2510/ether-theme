@@ -20,7 +20,7 @@ All palette sources live in `src/palettes/ether-{name}.js`. Examples:
 | `ether-clay` | — | — | Warm rose accent |
 | `ether-aurora` | — | — | Teal aurora accent |
 
-Run `npm run build:extension` after palette edits. Full list: `src/palettes/` (50 files).
+Run `pnpm run build:extension` after palette edits. Full list: `src/palettes/` (50 files).
 
 All palettes are **dark only** (`type: "dark"`, `uiTheme: "vs-dark"`). Each must feel unique via surface temperature and accent — not neon or oversaturated syntax.
 
@@ -54,10 +54,9 @@ Copy an existing palette as a template. All `ui` and `syntax` keys are validated
    - `surfaceLineHighlight` → current line, one step above editor
    - `surfaceInput`, `surfaceHover`, `surfaceWidget`, `surfaceNotification`, `surfaceListFocus` — interpolate between panel and editor or one step lighter
    - `surfacePeek` → usually matches `surfaceShell`
-   - `surfaceAgent` → usually matches `surfacePanel`
 3. **Foreground** — `fgPrimary` (7:1 on editor), `fgMuted` / `fgActivity` (4.5:1 on editor), `fgListFocus`, `fgOnAccent` (4.5:1 on accent).
 4. **Accent** — one muted hue aligned with the surface family (steel blue on cool grays, copper on warm, sage on green, etc.).
-5. **Syntax** — restrained role colors that harmonize with the surface temperature; verify all 11 roles pass contrast on `surfaceEditor`.
+5. **Syntax** — restrained role colors that harmonize with the surface temperature; verify all 10 palette syntax roles pass contrast on `surfaceEditor`. Comment color is derived at build from `fgMuted` (do not author `syntax.comment` in palettes).
 6. **Terminal & git** — match the palette family; reuse accent/modified/added/deleted patterns from a sibling palette if unsure.
 
 Example anchor pairs already in the catalog:
@@ -76,7 +75,7 @@ Workbench mapping: `sideBar.background` = `surfacePanel`, `editor.background` = 
 3. Never emit keys from `DEPRECATED_THEME_COLOR_IDS` in `color.js`.
 4. Keys in `TRANSPARENT_WORKBENCH_COLOR_IDS` must use alpha via `withAlphaByte` (not opaque `#RRGGBB`).
 
-Use `mixColors`, `withAlphaByte`, `lighten`/`darken` from `src/utils/color.js` — not ad-hoc hex math.
+Use `mixColors`, `withAlphaByte`, `darken` from `src/utils/color.js` — not ad-hoc hex math.
 
 ### Interactive states (hover / selection)
 
@@ -97,7 +96,7 @@ List rows sit on `surfacePanel` — do **not** set `list.hoverBackground` to `su
 ## Syntax highlighting
 
 - Rules live in `src/syntax/rules.js` — one shared set across all themes (currently 58 rules).
-- Map scopes to `syntax.{role}` tokens: `default`, `comment`, `string`, `number`, `cyan`, `keyword`, `variable`, `function`, `type`, `red`, `pink`.
+- Map scopes to `syntax.{role}` tokens: `default`, `string`, `number`, `cyan`, `keyword`, `variable`, `function`, `type`, `red`, `pink` (plus derived `comment` at build).
 - `SYNTAX_RULE_COUNT` must equal `EXPECTED_SYNTAX_RULE_COUNT`; tests enforce this.
 - Enable `semanticHighlighting: true` in generated themes (scope-map fallback; no hand-authored `semanticTokenColors`).
 - **Do not** add `semanticTokenColors` or `settings.background` on token rules.
@@ -118,4 +117,4 @@ Tune base tokens in `src/palettes/` — there is no post-build syntax tuning scr
 
 ## Removing a theme
 
-Delete the palette file and run `npm run build` — orphaned JSON and `package.json` entries are cleaned automatically.
+Delete the palette file and run `pnpm run build` — orphaned JSON and `package.json` entries are cleaned automatically.

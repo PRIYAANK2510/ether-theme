@@ -1,11 +1,9 @@
 import { useEffect, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { closeLightbox } from "@/store/uiSlice";
+import { useSiteUi } from "@/context/SiteContext";
 import styles from "./Lightbox.module.scss";
 
 export function Lightbox() {
-  const dispatch = useAppDispatch();
-  const lightbox = useAppSelector((state) => state.ui.lightbox);
+  const { lightbox, closeLightbox } = useSiteUi();
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -17,7 +15,7 @@ export function Lightbox() {
 
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        dispatch(closeLightbox());
+        closeLightbox();
       }
     }
 
@@ -26,7 +24,7 @@ export function Lightbox() {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [dispatch, lightbox]);
+  }, [closeLightbox, lightbox]);
 
   if (!lightbox) return null;
 
@@ -36,14 +34,14 @@ export function Lightbox() {
       role="dialog"
       aria-modal="true"
       aria-label={`${lightbox.label} preview`}
-      onClick={() => dispatch(closeLightbox())}
+      onClick={closeLightbox}
     >
       <button
         ref={closeRef}
         type="button"
         className={styles.close}
         aria-label="Close preview"
-        onClick={() => dispatch(closeLightbox())}
+        onClick={closeLightbox}
       >
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
           <path

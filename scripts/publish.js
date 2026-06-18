@@ -4,6 +4,18 @@ import { join } from "node:path";
 
 const PKG_PATH = "package.json";
 const RELEASES_DIR = "releases";
+const vsceBin = join(
+  process.cwd(),
+  "node_modules",
+  ".bin",
+  process.platform === "win32" ? "vsce.cmd" : "vsce",
+);
+const ovsxBin = join(
+  process.cwd(),
+  "node_modules",
+  ".bin",
+  process.platform === "win32" ? "ovsx.cmd" : "ovsx",
+);
 
 for (const key of ["OVSX_PAT", "VSCE_PAT"]) {
   if (typeof process.env[key] === "string") {
@@ -90,7 +102,8 @@ function latestVsix() {
 }
 
 mkdirSync(RELEASES_DIR, { recursive: true });
-run("npm run package");
+process.env.SKIP_PREPUBLISH = "1";
+run("node scripts/strip-readme-logo.js package");
 
 const vsix = latestVsix();
 if (!vsix) {
@@ -98,8 +111,8 @@ if (!vsix) {
 }
 
 const vsixPath = join(RELEASES_DIR, vsix);
-const vsceOk = tryRun(`npx vsce publish --packagePath "${vsixPath}"`);
-const ovsxOk = tryRun(`npx ovsx publish "${vsixPath}"`);
+const vsceOk = tryRun(`"${vsceBin}" publish --packagePath "${vsixPath}"`);
+const ovsxOk = tryRun(`"${ovsxBin}" publish "${vsixPath}"`);
 
 if (!vsceOk && !ovsxOk) {
   console.error("Publish failed on both VS Code Marketplace and Open VSX.");

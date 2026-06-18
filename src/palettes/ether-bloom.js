@@ -11,7 +11,6 @@ export default {
     surfaceBorder: "#140C14",
     surfaceShell: "#1A101A",
     surfacePanel: "#221622",
-    surfaceAgent: "#221622",
     surfaceEditor: "#2A1C2A",
     surfaceLineHighlight: "#382838",
     surfaceInput: "#241824",
@@ -63,7 +62,6 @@ export default {
 
   syntax: {
     default: "#F4E8F0",
-    comment: "#6B5762",
     string: "#A8F0C0",
     number: "#E8B860",
     cyan: "#78E0E8",

@@ -1,13 +1,11 @@
-import { useMemo } from "react";
+import { useState } from "react";
 import { SearchEmptyState } from "@/components/SearchEmptyState";
 import { SearchInput } from "@/components/SearchInput";
 import { SyntaxPreview } from "@/components/SyntaxPreview";
 import { ThemeCard } from "@/components/ThemeCard";
 import { usePageSeo } from "@/hooks/usePageSeo";
-import { THEMES_SEO } from "../../../../shared/site-seo.js";
+import { THEMES_SEO } from "@shared/site-seo.js";
 import { SITE_DATA } from "@/generated/site-data";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setThemeQuery } from "@/store/searchSlice";
 import { PageIntro } from "@/components/PageIntro";
 import gridStyles from "@/styles/ui/grid.module.scss";
 import pageStyles from "@/styles/ui/page.module.scss";
@@ -18,16 +16,14 @@ export function ThemesPage() {
     ...THEMES_SEO,
     title: `Ether Themes Gallery — ${SITE_DATA.paletteCount} Dark Color Themes`,
   });
-  const dispatch = useAppDispatch();
-  const query = useAppSelector((state) => state.search.themeQuery);
+  const [query, setQuery] = useState("");
 
-  const filtered = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
-    if (!normalized) return SITE_DATA.palettes;
-    return SITE_DATA.palettes.filter((palette) =>
-      [palette.id, palette.label].join(" ").toLowerCase().includes(normalized),
-    );
-  }, [query]);
+  const normalized = query.trim().toLowerCase();
+  const filtered = normalized
+    ? SITE_DATA.palettes.filter((palette) =>
+        [palette.id, palette.label].join(" ").toLowerCase().includes(normalized),
+      )
+    : SITE_DATA.palettes;
 
   const hasQuery = query.trim().length > 0;
 
@@ -50,7 +46,7 @@ export function ThemesPage() {
         <SearchInput
           className={styles.searchCompact}
           value={query}
-          onChange={(value) => dispatch(setThemeQuery(value))}
+          onChange={setQuery}
           placeholder="Search themes by name…"
         />
       </div>
@@ -59,7 +55,7 @@ export function ThemesPage() {
         <SearchEmptyState
           title="No themes match your search"
           hint='Try another name like "Ether Dusk" or "Aurora".'
-          onClear={() => dispatch(setThemeQuery(""))}
+          onClear={() => setQuery("")}
         />
       ) : (
         <>

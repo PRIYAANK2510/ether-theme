@@ -89,9 +89,6 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition:
-    background var(--duration-normal) var(--ease-out),
-    color var(--duration-normal) var(--ease-out);
 }
 
 ::selection {
@@ -148,6 +145,13 @@ pre code {
   background: transparent;
   color: inherit;
   font-size: inherit;
+}
+
+html.ether-theme-switching,
+html.ether-theme-switching *,
+html.ether-theme-switching *::before,
+html.ether-theme-switching *::after {
+  transition: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -382,7 +382,7 @@ Ether Abyss · Ether Amethyst · Ether Aurora · Ether Bloom · Ether Cedar · E
 
 **Stacks covered:** React 19 hooks · Next.js server actions &amp; routes · TanStack Query · Zod validation · Vitest &amp; Testing Library · MSW · Express &amp; Fastify · modern CSS (`:has()`, nesting, `color-mix`)
 
-Regenerate the product site locally: `npm run site:build` (output in `site/`).
+Regenerate the product site locally: `pnpm run site:build` (output in `site/`).
 
 ## Language support
 
@@ -407,15 +407,16 @@ Bundled TextMate grammars and **44 language associations** for modern web and An
 ```bash
 git clone https://github.com/PRIYAANK2510/ether-theme.git
 cd ether-theme
-npm install
-npm run check:fast   # daily: lint + typecheck + tests + extension + site
+corepack enable
+pnpm install
+pnpm run check:fast   # daily: lint → extension build → tests → site prepare → typecheck → site build
 ```
 
 | Task                   | Command            |
 | ---------------------- | ------------------ |
-| Extension rebuild loop | `npm run watch`    |
-| Website dev server     | `npm run site:dev` |
-| Full pre-release check | `npm run check`    |
+| Extension rebuild loop | `pnpm run watch`    |
+| Website dev server     | `pnpm run site:dev` |
+| Full pre-release check | `pnpm run check`    |
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide and [docs/WORKFLOW.md](docs/WORKFLOW.md) for release details.
 

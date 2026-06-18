@@ -12,6 +12,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "strict": true,
+    "allowJs": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -25,13 +26,10 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@shared/*": ["../../shared/*"]
     }
   },
-  "include": [
-    "src",
-    "../../shared/site-seo.d.ts",
-    "../../shared/snippet-search.d.ts"
-  ],
+  "include": ["src", "../../shared/*.js"],
   "exclude": ["src/generated"]
 }

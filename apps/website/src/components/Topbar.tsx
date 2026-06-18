@@ -4,8 +4,7 @@ import { ExternalLink } from "@/components/ExternalLink";
 import { Logo } from "@/components/ui/Logo";
 import { SITE_NAME, VS_MARKETPLACE } from "@/lib/config";
 import { cn } from "@/lib/cn";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setMobileNavOpen, setThemeMenuOpen } from "@/store/uiSlice";
+import { useSiteUi } from "@/context/SiteContext";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import styles from "./Topbar.module.scss";
 
@@ -82,35 +81,38 @@ function NavLinks({
 }
 
 export function Topbar() {
-  const dispatch = useAppDispatch();
-  const mobileOpen = useAppSelector((state) => state.ui.mobileNavOpen);
-  const themeMenuOpen = useAppSelector((state) => state.ui.themeMenuOpen);
+  const {
+    mobileNavOpen,
+    setMobileNavOpen,
+    themeMenuOpen,
+    setThemeMenuOpen,
+  } = useSiteUi();
   const location = useLocation();
 
   useEffect(() => {
-    dispatch(setMobileNavOpen(false));
-  }, [dispatch, location.pathname]);
+    setMobileNavOpen(false);
+  }, [location.pathname, setMobileNavOpen]);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    document.body.style.overflow = mobileNavOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileOpen]);
+  }, [mobileNavOpen]);
 
   function closeMenu() {
-    dispatch(setMobileNavOpen(false));
-    dispatch(setThemeMenuOpen(false));
+    setMobileNavOpen(false);
+    setThemeMenuOpen(false);
   }
 
   function toggleMenu() {
-    dispatch(setMobileNavOpen(!mobileOpen));
+    setMobileNavOpen(!mobileNavOpen);
   }
 
   return (
     <header
       className={cn(styles.topbar, {
-        [styles.topbarMenuOpen]: mobileOpen,
+        [styles.topbarMenuOpen]: mobileNavOpen,
         [styles.topbarThemeOpen]: themeMenuOpen,
       })}
     >
@@ -126,24 +128,24 @@ export function Topbar() {
         <button
           type="button"
           className={styles.menuBtn}
-          aria-expanded={mobileOpen}
+          aria-expanded={mobileNavOpen}
           aria-controls="topbar-mobile-panel"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-label={mobileNavOpen ? "Close menu" : "Open menu"}
           onClick={toggleMenu}
         >
-          <MenuIcon open={mobileOpen} />
+          <MenuIcon open={mobileNavOpen} />
         </button>
 
         <div className={styles.desktopActions}>
           <NavLinks className={styles.nav} linkClassName={styles.navLink} />
-          {!mobileOpen ? <ThemeSwitcher /> : null}
+          {!mobileNavOpen ? <ThemeSwitcher /> : null}
           <ExternalLink className={styles.navCta} href={VS_MARKETPLACE}>
             Install
           </ExternalLink>
         </div>
       </div>
 
-      {mobileOpen ? (
+      {mobileNavOpen ? (
         <>
           <button
             type="button"

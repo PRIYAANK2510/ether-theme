@@ -610,14 +610,13 @@ export const GRAMMAR_INJECTIONS = [
   },
 ];
 
-/** Number of language catalog entries (must match {@link LANGUAGE_CATALOG}.length). */
-export const LANGUAGE_CATALOG_COUNT = 44;
+/** Number of language catalog entries (derived from {@link LANGUAGE_CATALOG}). */
+export const LANGUAGE_CATALOG_COUNT = LANGUAGE_CATALOG.length;
 
-/** Bundled language grammars (must match catalog entries with `grammar`). */
-export const BUNDLED_GRAMMAR_LANGUAGE_COUNT = 8;
-
-/** Total grammar contributions (bundled languages + injections). */
-export const GRAMMAR_CONTRIBUTION_COUNT = 35;
+/** Bundled language grammars (catalog entries with `grammar`). */
+export const BUNDLED_GRAMMAR_LANGUAGE_COUNT = LANGUAGE_CATALOG.filter(
+  (entry) => entry.grammar,
+).length;
 
 /**
  * @param {LanguageDefinition[]} catalog
@@ -707,3 +706,7 @@ export function buildGrammarContributions(catalog) {
     return aKey.localeCompare(bKey);
   });
 }
+
+/** Total grammar contributions (bundled languages + injections). */
+export const GRAMMAR_CONTRIBUTION_COUNT =
+  buildGrammarContributions(LANGUAGE_CATALOG).length;

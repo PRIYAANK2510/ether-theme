@@ -9,9 +9,7 @@ import {
 import { createPortal } from "react-dom";
 import { getThemeList } from "@/lib/theme";
 import { cn } from "@/lib/cn";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setTheme } from "@/store/themeSlice";
-import { setThemeMenuOpen } from "@/store/uiSlice";
+import { useTheme, useSiteUi } from "@/context/SiteContext";
 import { SITE_DATA } from "@/generated/site-data";
 import styles from "./ThemeSwitcher.module.scss";
 
@@ -25,9 +23,8 @@ type ThemeSwitcherProps = {
 };
 
 export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
-  const dispatch = useAppDispatch();
-  const activeId = useAppSelector((state) => state.theme.activeId);
-  const open = useAppSelector((state) => state.ui.themeMenuOpen);
+  const { activeThemeId, setActiveTheme } = useTheme();
+  const { themeMenuOpen, setThemeMenuOpen } = useSiteUi();
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const listId = useId();
@@ -35,11 +32,11 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
   const [blockListStyle, setBlockListStyle] = useState<CSSProperties>();
 
   const active =
-    themes.find((theme) => theme.id === activeId) ??
+    themes.find((theme) => theme.id === activeThemeId) ??
     themes.find((theme) => theme.id === SITE_DATA.defaultThemeId)!;
 
   useLayoutEffect(() => {
-    if (!open || !isBlock) {
+    if (!themeMenuOpen || !isBlock) {
       setBlockListStyle(undefined);
       return;
     }
@@ -71,10 +68,10 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
       window.removeEventListener("resize", updatePosition);
       window.removeEventListener("scroll", updatePosition, true);
     };
-  }, [open, isBlock]);
+  }, [themeMenuOpen, isBlock]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!themeMenuOpen) return;
 
     function onPointerDown(event: MouseEvent) {
       const root = rootRef.current;
@@ -87,10 +84,10 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
       ) {
         return;
       }
-      dispatch(setThemeMenuOpen(false));
+      setThemeMenuOpen(false);
     }
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") dispatch(setThemeMenuOpen(false));
+      if (event.key === "Escape") setThemeMenuOpen(false);
     }
     document.addEventListener("mousedown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
@@ -98,10 +95,10 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
       document.removeEventListener("mousedown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [dispatch, open]);
+  }, [setThemeMenuOpen, themeMenuOpen]);
 
   const list =
-    open && (!isBlock || blockListStyle) ? (
+    themeMenuOpen && (!isBlock || blockListStyle) ? (
       <ul
         className={cn(styles.list, {
           [styles.listBlock]: isBlock,
@@ -117,10 +114,10 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
               type="button"
               className={styles.option}
               role="option"
-              aria-selected={theme.id === activeId}
+              aria-selected={theme.id === activeThemeId}
               onClick={() => {
-                dispatch(setTheme(theme.id));
-                dispatch(setThemeMenuOpen(false));
+                setActiveTheme(theme.id);
+                setThemeMenuOpen(false);
               }}
             >
               <span
@@ -139,7 +136,7 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
     <div
       className={cn(styles.root, {
         [styles.rootBlock]: isBlock,
-        [styles.rootOpen]: open,
+        [styles.rootOpen]: themeMenuOpen,
       })}
       ref={rootRef}
       data-theme-switcher=""
@@ -151,9 +148,9 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
           [styles.buttonBlock]: isBlock,
         })}
         aria-haspopup="listbox"
-        aria-expanded={open}
+        aria-expanded={themeMenuOpen}
         aria-controls={listId}
-        onClick={() => dispatch(setThemeMenuOpen(!open))}
+        onClick={() => setThemeMenuOpen(!themeMenuOpen)}
         onMouseDown={(event) => event.stopPropagation()}
       >
         <span
@@ -163,7 +160,7 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
         />
         <span className={styles.label}>{active.label}</span>
         <span
-          className={cn(styles.chevron, { [styles.chevronOpen]: open })}
+          className={cn(styles.chevron, { [styles.chevronOpen]: themeMenuOpen })}
           aria-hidden="true"
         >
           ▾

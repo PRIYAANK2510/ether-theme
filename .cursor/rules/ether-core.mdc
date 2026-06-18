@@ -7,7 +7,7 @@ alwaysApply: true
 
 ## Navigation (default)
 
-**Graphify first.** Before grepping or reading source for architecture questions, query `.graphify/graph.json` via MCP or `npx graphify query`. After agent edits to `src/`, `shared/`, `apps/website/src/`, or `tests/`, the Cursor hook rebuilds the graph on stop; run `npm run graphify:rebuild` if the session aborted. See `graphify.mdc`.
+**Graphify first.** Before grepping or reading source for architecture questions, query `.graphify/graph.json` via MCP or `pnpm exec graphify query`. After agent edits to `src/`, `shared/`, `apps/website/src/`, or `tests/`, the Cursor hook rebuilds the graph on stop; run `pnpm run graphify:rebuild` if the session aborted. See `graphify.mdc`.
 
 Token-driven **VS Code / Cursor extension**: **50 dark palettes** → generated color themes, **496 snippets** → generated `.code-snippets`. No runtime extension code — everything is build-time generation.
 
@@ -37,7 +37,7 @@ src/build.js               → runs pipelines, syncs package.json contributes
 | `src/generator/`, `src/snippets/generator.js`, tests | `package.json` → `contributes` |
 | `apps/website/src/` | `site/`, `apps/website/src/generated/` |
 
-After source changes: `npm run build:extension` (fast) or `npm run build` (full). Use `npm run check:fast` before claiming work complete; `npm run check` for palette/preview changes.
+After source changes: `pnpm run build:extension` (themes + grammars + snippets) or `pnpm run build` (full, incl. previews + site). `check:fast` runs extension build before site prepare so highlights match generated themes. Use `pnpm run check:fast` before claiming work complete; `pnpm run check` for palette/preview changes.
 
 ## Code style
 

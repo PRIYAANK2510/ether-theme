@@ -1,5 +1,6 @@
-import { readFileSync, mkdirSync } from "node:fs";
+import { mkdirSync } from "node:fs";
 import { writeFileIfChanged } from "../utils/fs.js";
+import { mergePackageContributes } from "../utils/package-json.js";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadSnippetCatalog } from "./catalog/index.js";
@@ -90,16 +91,7 @@ export function writeSnippetFile(language, snippets, outputDir = snippetsDir) {
  * @param {Array<{ language: string, path: string }>} contributions
  */
 export function syncSnippetContributions(contributions) {
-  const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
-  packageJson.contributes = {
-    ...packageJson.contributes,
-    snippets: contributions,
-  };
-  writeFileIfChanged(
-    packageJsonPath,
-    `${JSON.stringify(packageJson, null, 2)}\n`,
-    "utf8",
-  );
+  mergePackageContributes(packageJsonPath, { snippets: contributions });
 }
 
 /**

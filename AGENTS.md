@@ -7,11 +7,10 @@ Single entry point for AI assistants working in this repo.
 This repo uses [Graphify](https://github.com/rhanka/graphify) as the **default** way to understand structure. Prefer graph queries over grepping or reading raw files for architecture, flow, and relationship questions.
 
 ```bash
-npm run graphify          # full AST graph rebuild
-npm run graphify:rebuild  # fast hook rebuild (also runs automatically via Cursor hook)
-npm run graphify:serve    # MCP server for live graph queries
-npx graphify query "..." --graph .graphify/graph.json
-npx graphify explain "generateAllThemes"
+pnpm run graphify          # full AST graph rebuild
+pnpm run graphify:rebuild  # fast hook rebuild (also runs automatically via Cursor hook)
+pnpm exec graphify query "..." --graph .graphify/graph.json
+pnpm exec graphify explain "generateAllThemes"
 ```
 
 - Graph artifacts: `.graphify/graph.json`, `.graphify/GRAPH_REPORT.md`, `.graphify/graph.html`
@@ -37,14 +36,14 @@ Bridge modules for the site live in `shared/` (not `src/shared/`).
 ## Commands
 
 ```bash
-npm run watch          # extension rebuild loop (fast — no previews/site)
-npm run site:dev       # website dev server
-npm run check:fast     # lint + typecheck + fast tests + extension + site build
-npm run check          # full pipeline including PNG previews
-npm run build:extension  # themes + snippets only (F5 prelaunch)
+pnpm run watch            # extension rebuild loop (fast — no previews/site)
+pnpm run site:dev         # website dev server
+pnpm run check:fast       # lint → extension build → tests → site prepare → typecheck → site build
+pnpm run check            # lint → fast tests → full build → typecheck → site artifact test
+pnpm run build:extension  # themes + grammars + snippets (F5 prelaunch / VSIX prepublish)
 ```
 
-Claim work complete only after `npm run check:fast` passes (or `npm run check` for palette/preview changes).
+Claim work complete only after `pnpm run check:fast` passes (or `pnpm run check` for palette/preview changes).
 
 ## Architecture
 

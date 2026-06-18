@@ -17,10 +17,10 @@ This repo maintains a knowledge graph at `.graphify/`. **Use Graphify by default
 Use scoped graph commands first:
 
 ```bash
-npx graphify query "<question>" --graph .graphify/graph.json
-npx graphify path "<symbol A>" "<symbol B>"
-npx graphify explain "<symbol or concept>"
-npx graphify summary --graph .graphify/graph.json
+pnpm exec graphify query "<question>" --graph .graphify/graph.json
+pnpm exec graphify path "<symbol A>" "<symbol B>"
+pnpm exec graphify explain "<symbol or concept>"
+pnpm exec graphify summary --graph .graphify/graph.json
 ```
 
 If `.graphify/wiki/index.md` exists, navigate the wiki instead of ad-hoc file reads.
@@ -32,18 +32,18 @@ If `.graphify/wiki/index.md` exists, navigate the wiki instead of ad-hoc file re
 A **Cursor hook** (`.cursor/hooks.json`) auto-rebuilds the graph when the agent finishes:
 
 1. `afterFileEdit` — queues rebuild when `src/`, `shared/`, `apps/website/src/`, or `tests/` source files change
-2. `stop` — runs `npm run graphify:rebuild` when the agent completes successfully
+2. `stop` — runs `pnpm run graphify:rebuild` when the agent completes successfully
 
-**Agent duty:** if you edited relevant source and the hook may not have run (aborted session, hook disabled), run `npm run graphify:rebuild` before ending. Never answer architecture questions from a stale graph after your own edits.
+**Agent duty:** if you edited relevant source and the hook may not have run (aborted session, hook disabled), run `pnpm run graphify:rebuild` before ending. Never answer architecture questions from a stale graph after your own edits.
 
 ## Stale or missing graph
 
 | Signal | Action |
 |--------|--------|
-| `.graphify/graph.json` missing | `npm run graphify` |
-| `.graphify/needs_update` exists | Warn user; run `npm run graphify` |
-| `.graphify/branch.json` has `stale: true` | Warn user; run `npm run graphify` |
-| Legacy `graphify-out/graph.json` only | `npx graphify migrate-state --dry-run`, then migrate if safe |
+| `.graphify/graph.json` missing | `pnpm run graphify` |
+| `.graphify/needs_update` exists | Warn user; run `pnpm run graphify` |
+| `.graphify/branch.json` has `stale: true` | Warn user; run `pnpm run graphify` |
+| Legacy `graphify-out/graph.json` only | `pnpm exec graphify migrate-state --dry-run`, then migrate if safe |
 
 ## Deep rebuild (docs + semantic edges)
 

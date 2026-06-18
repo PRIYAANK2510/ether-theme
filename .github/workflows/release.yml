@@ -10,6 +10,7 @@ on:
       - "apps/**"
       - "shared/**"
       - "package.json"
+      - "pnpm-lock.yaml"
       - "README.md"
       - "CHANGELOG.md"
       - "scripts/**"
@@ -37,12 +38,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: npm
-      - run: npm ci
-      - run: npm run check
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm rebuild sharp @resvg/resvg-js
+      - run: pnpm run check
       - name: Resolve release version
         id: bump
         run: |
@@ -66,7 +71,7 @@ jobs:
           git commit -m "chore: release v${{ steps.bump.outputs.version }} [skip release]"
           git push origin main
       - name: Publish extension
-        run: npm run publish
+        run: pnpm run publish
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}

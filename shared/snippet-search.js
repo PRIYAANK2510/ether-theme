@@ -99,9 +99,10 @@ export function scoreSnippetSearch(query, fields) {
 
 /**
  * @template T
- * @param {T[]} items
+ * @param {readonly T[]} items
  * @param {string} query
  * @param {(item: T) => { prefix: string, description: string, category: string, haystack: string, extraHaystacks?: string[] }} getFields
+ * @returns {T[]}
  */
 export function filterAndRankSnippets(items, query, getFields) {
   const trimmed = query.trim();

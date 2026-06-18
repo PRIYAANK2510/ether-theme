@@ -157,6 +157,7 @@ export async function prepareWebsiteData() {
     catalogCount: catalog.length,
     categoryCount: categories.length,
     palettes: paletteSummaries,
+    themes,
     defaultTheme,
     languages,
     categories,

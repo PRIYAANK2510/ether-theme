@@ -23,7 +23,7 @@ export function deriveComposerInputColors(base, accent) {
  * @param {import("../utils/color.js").PaletteUITokens} base
  * @returns {{ background: string, border: string, foreground: string, placeholder: string }}
  */
-export function deriveFormInputColors(base) {
+function deriveFormInputColors(base) {
   return {
     background: base.surfaceInput,
     border: withAlphaByte(base.dropdownBorder, 0x72),

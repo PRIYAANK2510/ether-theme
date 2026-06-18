@@ -4,8 +4,7 @@ import {
   withAlphaByte,
   LINE_NUMBER_MIX_INACTIVE,
 } from "../utils/color.js";
-import { WORKBENCH_COLOR_IDS } from "./constants.js";
-import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
+import { EXTENSION_WORKBENCH_COLOR_IDS, WORKBENCH_COLOR_IDS } from "./constants.js";
 import {
   deriveComposerInputColors,
   deriveWorkbenchExtensionColors,
@@ -15,8 +14,6 @@ import {
   deriveAccentVariants,
   deriveInteractiveOverlays,
 } from "./derive-interactive.js";
-
-export { UI_ALPHA, deriveAccentVariants } from "./derive-interactive.js";
 
 function deriveScrollbarVariants(scrollbar) {
   return {

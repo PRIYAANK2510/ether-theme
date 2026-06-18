@@ -1,8 +1,6 @@
 import { memo } from "react";
 import { SITE_BASE } from "@/lib/config";
-import { useAppDispatch } from "@/store/hooks";
-import { setTheme } from "@/store/themeSlice";
-import { openLightbox } from "@/store/uiSlice";
+import { useTheme, useSiteUi } from "@/context/SiteContext";
 import styles from "./ThemeCard.module.scss";
 
 type PaletteSummary = {
@@ -12,20 +10,19 @@ type PaletteSummary = {
 };
 
 function ThemeCardInner({ palette }: { palette: PaletteSummary }) {
-  const dispatch = useAppDispatch();
+  const { setActiveTheme } = useTheme();
+  const { openLightbox } = useSiteUi();
   const previewSrc = `${SITE_BASE}${palette.preview}`;
 
   function openPreview() {
-    dispatch(
-      openLightbox({
-        src: previewSrc,
-        label: palette.label,
-      }),
-    );
+    openLightbox({
+      src: previewSrc,
+      label: palette.label,
+    });
   }
 
   function tryTheme() {
-    dispatch(setTheme(palette.id));
+    setActiveTheme(palette.id);
   }
 
   return (

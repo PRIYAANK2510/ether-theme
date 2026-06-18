@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
@@ -8,10 +8,29 @@ import { writeSeoArtifacts } from "./seo-build.mjs";
 const websiteDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const rootDir = join(websiteDir, "../..");
 const siteDir = join(rootDir, "site");
+const viteBin = join(rootDir, "node_modules", "vite", "bin", "vite.js");
 
-export async function buildWebsite() {
-  const data = await prepareWebsiteData();
-  execSync("npx vite build --config apps/website/vite.config.ts", {
+/** @typedef {{ skipPrepare?: boolean }} BuildWebsiteOptions */
+
+/** @returns {Awaited<ReturnType<typeof prepareWebsiteData>>} */
+function loadPreparedSiteData() {
+  const siteDataPath = join(websiteDir, "src/generated/site-data.ts");
+  const raw = readFileSync(siteDataPath, "utf8");
+  const match = raw.match(/export const SITE_DATA = ([\s\S]+) as const;/);
+  if (!match) {
+    throw new Error(`Could not parse SITE_DATA from ${siteDataPath}`);
+  }
+  return JSON.parse(match[1]);
+}
+
+/** @param {BuildWebsiteOptions} [options] */
+export async function buildWebsite(options = {}) {
+  const skipPrepare =
+    options.skipPrepare ?? process.argv.includes("--skip-prepare");
+  const data = skipPrepare
+    ? loadPreparedSiteData()
+    : await prepareWebsiteData();
+  execSync(`node "${viteBin}" build --config apps/website/vite.config.ts`, {
     cwd: rootDir,
     stdio: "inherit",
   });

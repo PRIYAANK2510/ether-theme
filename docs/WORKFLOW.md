@@ -31,8 +31,8 @@ The website reads palettes and snippets automatically at build time via `apps/we
 ## Before you push
 
 ```bash
-npm run check:fast   # lint + typecheck + fast tests + extension + site (daily)
-npm run check        # full pipeline including PNG previews (pre-release)
+pnpm run check:fast   # lint → extension build → fast tests → site prepare → typecheck → site build
+pnpm run check        # lint → fast tests → full build → typecheck → site artifact test
 ```
 
 Commit generated artifacts when you changed source:
@@ -67,7 +67,7 @@ git commit -m "feat: add snippet"
 git push -u origin my-branch
 ```
 
-Open a PR. CI runs `npm run check` only — no publish. When you merge to `main`, release runs unless the merge commit includes `[skip release]`.
+Open a PR. CI runs `pnpm run check` only — no publish. When you merge to `main`, release runs unless the merge commit includes `[skip release]`.
 
 ### Option 3 — Change files outside release paths
 
@@ -90,15 +90,15 @@ Extension is published to **Open VSX** (Cursor) and the **VS Code Marketplace** 
 **Prerequisites:** GitHub repo secrets `OVSX_PAT` and `VSCE_PAT`.
 
 1. Edit source (`src/palettes/`, `src/snippets/catalog/`, etc.).
-2. Run `npm run check`.
+2. Run `pnpm run check`.
 3. Commit source + generated output (`themes/`, `snippets/`, `package.json`).
 4. Push to `main` **without** `[skip release]`.
 
 **What CI does:**
 
-1. `npm run check`
+1. `pnpm run check`
 2. Bump patch version in `package.json` + add `CHANGELOG.md` entry
-3. `npm run publish` → package VSIX → publish to Open VSX and VS Code Marketplace
+3. `pnpm run publish` → package VSIX → publish to Open VSX and VS Code Marketplace
 4. Commit `chore: release vX.Y.Z [skip release]`, tag `vX.Y.Z`, push to `main` (tag only — not a GitHub Release)
 
 ### Manual publish (local)
@@ -113,8 +113,8 @@ VSCE_PAT=your-vs-code-marketplace-token
 Then:
 
 ```bash
-npm run check
-npm run publish:local   # dotenv -e .env -- npm run publish
+pnpm run check
+pnpm run publish
 ```
 
 This runs `vsce package`, publishes the VSIX to Open VSX, then to the VS Code Marketplace.
@@ -148,41 +148,32 @@ If **Deploy Site** fails with `Get Pages site failed`, enable Pages once:
 Local preview:
 
 ```bash
-npm run site:dev
+pnpm run site:dev
 ```
 
 Open http://localhost:4173/ether-theme/
 
 ---
 
-## Snippet sync (ES7+)
-
-Some catalog modules are regenerated from the ES7+ React snippets extension:
-
-```bash
-npm run snippets:sync
-```
-
-Set `ES7_EXTENSION_ROOT` in `.env` if the extension is not at the default Cursor path. See `.env.example`.
-
 ## Quick reference
 
 | Goal                      | Command / action                                         |
 | ------------------------- | -------------------------------------------------------- |
-| Daily verify              | `npm run check:fast`                                     |
-| Pre-release verify        | `npm run check`                                          |
-| Extension rebuild loop    | `npm run watch`                                          |
-| Build only (full)         | `npm run build`                                          |
-| Extension build (F5)      | `npm run build:extension`                                |
-| Website dev server        | `npm run site:dev`                                       |
-| Typecheck website         | `npm run typecheck`                                      |
-| Fast tests only           | `npm run test:fast`                                      |
-| Package VSIX (no upload)  | `npm run package` → `releases/*.vsix`                    |
+| Daily verify              | `pnpm run check:fast`                                     |
+| Pre-release verify        | `pnpm run check`                                          |
+| Extension rebuild loop    | `pnpm run watch`                                          |
+| Build only (full)         | `pnpm run build`                                          |
+| Extension build (F5)      | `pnpm run build:extension`                                |
+| Website dev server        | `pnpm run site:dev`                                       |
+| Typecheck website         | `pnpm run typecheck` (ensures stale/missing site data, then `tsc`) |
+| Site data only            | `pnpm run site:prepare`                                              |
+| Fast tests only           | `pnpm run test:fast`                                      |
+| Package VSIX (no upload)  | `pnpm run package` → `releases/*.vsix`                    |
 | Install VSIX locally      | `cursor --install-extension releases/ether-theme-*.vsix` |
 | Push to main, no publish  | Commit message includes `[skip release]`                 |
 | Ship a release            | Push to `main` (source/themes/package.json changes)      |
-| Publish from your machine | `npm run publish:local` (see `.env.example`)             |
+| Publish from your machine | `pnpm run publish:local` (loads `.env` via Node; set `VSCE_PAT` / `OVSX_PAT`) |
 | Product site              | https://priyaank2510.github.io/ether-theme/              |
 | Snippet catalog           | https://priyaank2510.github.io/ether-theme/snippets/     |
-| Regenerate site locally   | `npm run site:build`                                     |
+| Regenerate site locally   | `pnpm run site:build`                                     |
 | Open multi-root workspace | `ether.code-workspace` (extension + website TS)          |

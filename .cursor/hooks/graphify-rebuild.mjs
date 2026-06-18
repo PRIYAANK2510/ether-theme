@@ -73,7 +73,7 @@ function markPending(filePath) {
 
 function rebuildGraph() {
   if (!existsSync(GRAPHIFY_CLI)) {
-    process.stderr.write('[graphify hook] CLI not found; run npm install\n');
+    process.stderr.write('[graphify hook] CLI not found; run pnpm install\n');
     return 1;
   }
 

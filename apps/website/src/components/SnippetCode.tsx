@@ -1,7 +1,8 @@
-import { memo, useEffect, useState } from "react";
+import { escapeHtml } from "@shared/html.js";
+import { memo, useDeferredValue, useEffect, useState } from "react";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/cn";
-import { useAppSelector } from "@/store/hooks";
+import { useDefaultThemeId, useTheme } from "@/context/SiteContext";
 import "@/styles/shiki-snippet.scss";
 import styles from "@/styles/ui/snippet.module.scss";
 
@@ -12,23 +13,17 @@ type SnippetCodeProps = {
   className?: string;
 };
 
-function escapeHtml(value: string) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
-}
-
 function SnippetCodeInner({
   code,
   language,
   defaultHtml,
   className,
 }: SnippetCodeProps) {
-  const themeId = useAppSelector((state) => state.theme.activeId);
-  const defaultThemeId = useAppSelector((state) => state.theme.defaultId);
+  const { activeThemeId } = useTheme();
+  const highlightThemeId = useDeferredValue(activeThemeId);
+  const defaultThemeId = useDefaultThemeId();
   const { ref, inView } = useInView<HTMLDivElement>();
-  const onDefaultTheme = themeId === defaultThemeId;
+  const onDefaultTheme = highlightThemeId === defaultThemeId;
   const [html, setHtml] = useState<string | null>(defaultHtml ?? null);
 
   useEffect(() => {
@@ -43,7 +38,7 @@ function SnippetCodeInner({
 
     import("@/lib/shiki")
       .then(({ highlightSnippetCode }) =>
-        highlightSnippetCode(code, language, themeId),
+        highlightSnippetCode(code, language, highlightThemeId),
       )
       .then((result) => {
         if (!cancelled) setHtml(result);
@@ -60,13 +55,13 @@ function SnippetCodeInner({
       cancelled = true;
     };
   }, [
+    highlightThemeId,
     code,
     defaultHtml,
     defaultThemeId,
     inView,
     language,
     onDefaultTheme,
-    themeId,
   ]);
 
   const displayHtml = html ?? defaultHtml ?? null;

@@ -1,5 +1,6 @@
-import { readFileSync, mkdirSync, readdirSync, unlinkSync } from "node:fs";
+import { mkdirSync, readdirSync, unlinkSync } from "node:fs";
 import { writeFileIfChanged } from "../utils/fs.js";
+import { mergePackageContributes } from "../utils/package-json.js";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { deriveUISemantics } from "../workbench/derive-core.js";
@@ -8,8 +9,8 @@ import { buildTokenColors } from "../syntax/rules.js";
 import {
   deriveCommentForeground,
   validatePalette,
-  validateGeneratedTheme,
 } from "../utils/color.js";
+import { validateGeneratedTheme } from "../workbench/validate-theme.js";
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const themesDir = join(rootDir, "themes");
 const palettesDir = join(
@@ -74,16 +75,7 @@ export function writeThemeFile(id, theme) {
  * @param {Array<{ label: string, uiTheme: string, path: string }>} contributions
  */
 export function syncPackageContributions(contributions) {
-  const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
-  packageJson.contributes = {
-    ...packageJson.contributes,
-    themes: contributions,
-  };
-  writeFileIfChanged(
-    packageJsonPath,
-    `${JSON.stringify(packageJson, null, 2)}\n`,
-    "utf8",
-  );
+  mergePackageContributes(packageJsonPath, { themes: contributions });
 }
 
 /**

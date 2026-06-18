@@ -3,7 +3,7 @@ import {
   DEFAULT_OG_IMAGE,
   SITE_NAME,
   canonicalUrl,
-} from "../../../../shared/site-seo.js";
+} from "@shared/site-seo.js";
 
 export interface PageSeo {
   title: string;

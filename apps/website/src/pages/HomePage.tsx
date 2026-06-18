@@ -4,7 +4,7 @@ import { HomeHero } from "@/components/HomeHero";
 import { ThemeCard } from "@/components/ThemeCard";
 import { GITHUB_REPO, OPEN_VSX, VS_MARKETPLACE } from "@/lib/config";
 import { usePageSeo } from "@/hooks/usePageSeo";
-import { HOME_SEO } from "../../../../shared/site-seo.js";
+import { HOME_SEO } from "@shared/site-seo.js";
 import { SITE_DATA } from "@/generated/site-data";
 import gridStyles from "@/styles/ui/grid.module.scss";
 import styles from "./HomePage.module.scss";

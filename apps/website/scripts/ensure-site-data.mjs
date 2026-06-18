@@ -1,20 +1,6 @@
-import { existsSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { prepareWebsiteData } from "./prepare-data.mjs";
+import { needsSitePrepare } from "./site-prepare-needs.mjs";
 
-const websiteDir = join(dirname(fileURLToPath(import.meta.url)), "..");
-const generatedSiteData = join(websiteDir, "src", "generated", "site-data.ts");
-const snippetDataDir = join(websiteDir, "public", "data", "snippets");
-
-const hasGeneratedData = existsSync(generatedSiteData);
-const hasSnippetBundles =
-  existsSync(snippetDataDir) &&
-  existsSync(join(snippetDataDir, "react-jsx.json"));
-
-const snippetIndexPath = join(websiteDir, "public", "data", "snippet-index.json");
-const hasSnippetIndex = existsSync(snippetIndexPath);
-
-if (!hasGeneratedData || !hasSnippetBundles || !hasSnippetIndex) {
+if (needsSitePrepare()) {
   await prepareWebsiteData();
 }

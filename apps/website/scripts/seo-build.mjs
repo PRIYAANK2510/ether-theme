@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { escapeHtml } from "../../../shared/html.js";
 import {
   HOME_SEO,
   SITE_URL,
@@ -63,11 +64,6 @@ function escapeAttr(value) {
     .replace(/&/g, "&amp;")
     .replace(/"/g, "&quot;")
     .replace(/</g, "&lt;");
-}
-
-/** @param {string} value */
-function escapeHtml(value) {
-  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 }
 
 /**

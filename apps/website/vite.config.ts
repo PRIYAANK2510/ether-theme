@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
+      "@shared": resolve(__dirname, "../../shared"),
     },
   },
   root: resolve(__dirname),
@@ -32,13 +33,6 @@ export default defineConfig({
             id.includes("/scheduler/")
           ) {
             return "vendor-react";
-          }
-
-          if (
-            id.includes("/react-redux/") ||
-            id.includes("/@reduxjs/toolkit/")
-          ) {
-            return "vendor-redux";
           }
 
           if (id.includes("/@shikijs/langs/")) {

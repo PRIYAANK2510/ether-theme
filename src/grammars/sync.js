@@ -1,5 +1,4 @@
-import { readFileSync } from "node:fs";
-import { writeFileIfChanged } from "../utils/fs.js";
+import { mergePackageContributes } from "../utils/package-json.js";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -25,17 +24,10 @@ export function composeGrammarContributions() {
  * @param {{ languages: ReturnType<typeof buildLanguageContributions>, grammars: ReturnType<typeof buildGrammarContributions> }} contributions
  */
 export function syncGrammarContributions(contributions) {
-  const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
-  packageJson.contributes = {
-    ...packageJson.contributes,
+  mergePackageContributes(packageJsonPath, {
     languages: contributions.languages,
     grammars: contributions.grammars,
-  };
-  writeFileIfChanged(
-    packageJsonPath,
-    `${JSON.stringify(packageJson, null, 2)}\n`,
-    "utf8",
-  );
+  });
 }
 
 /**

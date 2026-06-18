@@ -10,12 +10,13 @@ export type ThemePayload = {
   vars: Record<string, string>;
 };
 
-const themeCache = new Map<string, ThemePayload>([
-  [SITE_DATA.defaultThemeId, SITE_DATA.defaultTheme],
-]);
+const themeCache = new Map<string, ThemePayload>(
+  Object.entries(SITE_DATA.themes),
+);
 
 function applyThemeVars(themeId: string, theme: ThemePayload) {
   const root = document.documentElement;
+  root.classList.add("ether-theme-switching");
   root.setAttribute("data-ether-theme", themeId);
   for (const [key, value] of Object.entries(theme.vars)) {
     root.style.setProperty(key, String(value));
@@ -23,6 +24,12 @@ function applyThemeVars(themeId: string, theme: ThemePayload) {
 
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute("content", theme.color);
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      root.classList.remove("ether-theme-switching");
+    });
+  });
 }
 
 export function paintTheme(themeId: string, theme?: ThemePayload) {
@@ -32,8 +39,17 @@ export function paintTheme(themeId: string, theme?: ThemePayload) {
   applyThemeVars(themeId, resolved);
 }
 
-export async function ensureThemeLoaded(themeId: string) {
+export function getThemePayload(themeId: string): ThemePayload | undefined {
   const cached = themeCache.get(themeId);
+  if (cached) return cached;
+
+  const themes = SITE_DATA.themes as Record<string, ThemePayload>;
+  return themes[themeId];
+}
+
+/** @deprecated Use getThemePayload — kept for callers that still await theme data */
+export async function ensureThemeLoaded(themeId: string) {
+  const cached = getThemePayload(themeId);
   if (cached) return cached;
 
   const response = await fetch(`${SITE_BASE}/data/themes/${themeId}.json`);
@@ -46,8 +62,9 @@ export async function ensureThemeLoaded(themeId: string) {
   return theme;
 }
 
-export async function applyThemeById(themeId: string) {
-  const theme = await ensureThemeLoaded(themeId);
+export function applyThemeById(themeId: string) {
+  const theme = getThemePayload(themeId);
+  if (!theme) return undefined;
   paintTheme(themeId, theme);
   return theme;
 }
@@ -77,7 +94,6 @@ export function getThemeList() {
   }));
 }
 
-export async function bootstrapTheme() {
-  const themeId = loadSavedThemeId();
-  await applyThemeById(themeId);
+export function bootstrapTheme() {
+  applyThemeById(loadSavedThemeId());
 }

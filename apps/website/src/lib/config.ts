@@ -1,8 +1,15 @@
-export const SITE_BASE = "/ether-theme";
-export const SITE_URL = "https://PRIYAANK2510.github.io/ether-theme/";
-export const SITE_NAME = "Ether Themes";
-export const VS_MARKETPLACE =
-  "https://marketplace.visualstudio.com/items?itemName=Priyaank.ether-theme";
+import { SITE_BASE } from "@shared/site-seo.js";
+
+export {
+  GITHUB_REPO,
+  SITE_BASE,
+  SITE_NAME,
+  SITE_URL,
+  VS_MARKETPLACE,
+} from "@shared/site-seo.js";
+
+/** Open VSX listing (Cursor and other Open VSX clients). */
 export const OPEN_VSX = "https://open-vsx.org/extension/Priyaank/ether-theme";
-export const GITHUB_REPO = "https://github.com/PRIYAANK2510/ether-theme";
+
+/** Public asset path under the GitHub Pages base. */
 export const ASSET_BASE = `${SITE_BASE}/assets`;

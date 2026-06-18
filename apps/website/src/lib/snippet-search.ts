@@ -1,10 +1,5 @@
-import {
-  filterAndRankSnippets,
-  tokenizeSnippetQuery,
-} from "../../../../shared/snippet-search.js";
+import { filterAndRankSnippets } from "@shared/snippet-search.js";
 import type { LanguageSnippet } from "@/lib/snippet-data";
-
-export { tokenizeSnippetQuery };
 
 export type SnippetIndexEntry = {
   key: string;

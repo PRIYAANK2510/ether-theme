@@ -6,6 +6,12 @@ import { fileURLToPath } from "node:url";
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const readmePath = join(rootDir, "README.md");
 const backupPath = join(rootDir, ".readme-github.bak");
+const vsceBin = join(
+  rootDir,
+  "node_modules",
+  ".bin",
+  process.platform === "win32" ? "vsce.cmd" : "vsce",
+);
 
 const START = "<!-- marketplace-omit-start -->";
 const END = "<!-- marketplace-omit-end -->";
@@ -49,7 +55,7 @@ if (mode === "strip") {
 } else if (mode === "package") {
   stripReadmeForMarketplace();
   try {
-    execSync("npx vsce package --out releases/", {
+    execSync(`"${vsceBin}" package --out releases/`, {
       stdio: "inherit",
       shell: true,
       cwd: rootDir,

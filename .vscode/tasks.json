@@ -3,8 +3,8 @@
   "tasks": [
     {
       "label": "build",
-      "type": "npm",
-      "script": "build:extension",
+      "type": "shell",
+      "command": "pnpm run build:extension",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -20,8 +20,8 @@
     },
     {
       "label": "build:full",
-      "type": "npm",
-      "script": "build",
+      "type": "shell",
+      "command": "pnpm run build",
       "group": "build",
       "presentation": {
         "reveal": "always",
@@ -32,8 +32,8 @@
     },
     {
       "label": "watch",
-      "type": "npm",
-      "script": "watch",
+      "type": "shell",
+      "command": "pnpm run watch",
       "isBackground": true,
       "presentation": {
         "reveal": "always",
@@ -44,8 +44,8 @@
     },
     {
       "label": "site:dev",
-      "type": "npm",
-      "script": "site:dev",
+      "type": "shell",
+      "command": "pnpm run site:dev",
       "group": "none",
       "isBackground": true,
       "presentation": {
@@ -70,8 +70,8 @@
     },
     {
       "label": "lint",
-      "type": "npm",
-      "script": "lint",
+      "type": "shell",
+      "command": "pnpm run lint",
       "presentation": {
         "reveal": "always",
         "panel": "shared",
@@ -81,8 +81,8 @@
     },
     {
       "label": "test:fast",
-      "type": "npm",
-      "script": "test:fast",
+      "type": "shell",
+      "command": "pnpm run test:fast",
       "group": {
         "kind": "test",
         "isDefault": true
@@ -96,8 +96,8 @@
     },
     {
       "label": "check:fast",
-      "type": "npm",
-      "script": "check:fast",
+      "type": "shell",
+      "command": "pnpm run check:fast",
       "presentation": {
         "reveal": "always",
         "panel": "dedicated",

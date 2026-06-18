@@ -1,3 +1,8 @@
+/**
+ * Build orchestrator: themes → grammars → previews → snippets → site.
+ * Flags: --skip-previews, --skip-site (see package.json scripts).
+ * Site step runs prepare + Vite compile once (no duplicate prepare in check pipelines).
+ */
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { generateAllThemes, loadPalettes } from "./generator/index.js";

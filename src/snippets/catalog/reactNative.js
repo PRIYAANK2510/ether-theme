@@ -1,4 +1,4 @@
-// Synced from ES7+ React/Redux/React-Native extension — npm run snippets:sync
+// Synced from ES7+ React/Redux/React-Native extension (vendored in-repo)
 
 /** @type {import('../validate.js').SnippetDefinition[]} */
 export default [

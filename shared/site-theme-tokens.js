@@ -1,4 +1,4 @@
-import { withAlpha } from "../src/utils/color.js";
+import { deriveCommentForeground, withAlpha } from "../src/utils/color.js";
 
 /**
  * @param {import("../src/utils/color.js").Palette} palette
@@ -24,7 +24,7 @@ export function paletteToSiteVars(palette) {
     "--hover-row": withAlpha(ui.accent, 0.06),
     "--topbar-bg": withAlpha(ui.surfaceShell, 0.88),
     "--syn-default": syntax.default,
-    "--syn-comment": syntax.comment,
+    "--syn-comment": deriveCommentForeground(ui),
     "--syn-string": syntax.string,
     "--syn-keyword": syntax.keyword,
     "--syn-function": syntax.function,

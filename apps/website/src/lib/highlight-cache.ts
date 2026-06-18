@@ -34,10 +34,6 @@ export function getCachedHighlight(key: string) {
   return cache.get(key);
 }
 
-export function setCachedHighlight(key: string, html: string) {
-  cache.set(key, html);
-}
-
 export function enqueueHighlight(key: string, run: () => Promise<string>) {
   const cached = cache.get(key);
   if (cached) return Promise.resolve(cached);

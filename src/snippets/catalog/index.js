@@ -29,10 +29,7 @@ const CATALOG = [
   { file: "typescript-react.js", label: "TypeScript React", synced: true },
 ];
 
-/** Modules regenerated from the ES7+ extension via `npm run snippets:sync`. */
-export const SYNCED_MODULES = new Set(
-  CATALOG.filter((entry) => entry.synced).map((entry) => entry.file),
-);
+/** Modules originally sourced from the ES7+ extension (`synced: true` in CATALOG). */
 
 /**
  * @returns {Promise<import('../validate.js').SnippetDefinition[]>}
