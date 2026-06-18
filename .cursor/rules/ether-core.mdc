@@ -5,10 +5,6 @@ alwaysApply: true
 
 # Ether Themes — Core
 
-## Navigation (default)
-
-**Graphify first.** Before grepping or reading source for architecture questions, query `.graphify/graph.json` via MCP or `pnpm exec graphify query`. After agent edits to `src/`, `shared/`, `apps/website/src/`, or `tests/`, the Cursor hook rebuilds the graph on stop; run `pnpm run graphify:rebuild` if the session aborted. See `graphify.mdc`.
-
 Token-driven **VS Code / Cursor extension**: **50 dark palettes** → generated color themes, **496 snippets** → generated `.code-snippets`. No runtime extension code — everything is build-time generation.
 
 Palette authoring uses an **anchor-first** workflow (`surfacePanel` + `surfaceEditor` first, then surfaces → foreground → accent → syntax). See `ether-themes.mdc` for conventions.

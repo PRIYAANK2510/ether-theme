@@ -1,20 +1,20 @@
 ---
-description: Graphify-first codebase navigation (mandatory default)
+description: Graphify-first navigation and Sequential Thinking MCP for complex agent work
 alwaysApply: true
 ---
 
-# Graphify-first navigation (DEFAULT)
+# Agent workflow (default)
+
+## Graphify-first navigation
 
 This repo maintains a knowledge graph at `.graphify/`. **Use Graphify by default** for architecture, flow, relationships, and "where/how/why" questions — before SemanticSearch, Grep, or reading raw source files.
 
-## Session start (when `.graphify/graph.json` exists)
+### Session start (when `.graphify/graph.json` exists)
 
 1. Read `.graphify/GRAPH_REPORT.md` for god nodes, communities, and suggested questions.
 2. Prefer the **graphify MCP server** when enabled: `query_graph`, `get_node`, `get_neighbors`, `shortest_path`, and read-only resources (`graphify://report`, `graphify://god-nodes`).
 
-## Before exploring the codebase
-
-Use scoped graph commands first:
+### Before exploring the codebase
 
 ```bash
 pnpm exec graphify query "<question>" --graph .graphify/graph.json
@@ -25,9 +25,9 @@ pnpm exec graphify summary --graph .graphify/graph.json
 
 If `.graphify/wiki/index.md` exists, navigate the wiki instead of ad-hoc file reads.
 
-**Fallback only:** use Grep, SemanticSearch, or file reads when graph output is empty, the task is a precise line edit, or the user names an exact file path.
+**Fallback only:** Grep, SemanticSearch, or file reads when graph output is empty, the task is a precise line edit, or the user names an exact file path.
 
-## After modifying code (mandatory)
+### After modifying code (mandatory)
 
 A **Cursor hook** (`.cursor/hooks.json`) auto-rebuilds the graph when the agent finishes:
 
@@ -36,7 +36,7 @@ A **Cursor hook** (`.cursor/hooks.json`) auto-rebuilds the graph when the agent 
 
 **Agent duty:** if you edited relevant source and the hook may not have run (aborted session, hook disabled), run `pnpm run graphify:rebuild` before ending. Never answer architecture questions from a stale graph after your own edits.
 
-## Stale or missing graph
+### Stale or missing graph
 
 | Signal | Action |
 |--------|--------|
@@ -45,6 +45,21 @@ A **Cursor hook** (`.cursor/hooks.json`) auto-rebuilds the graph when the agent 
 | `.graphify/branch.json` has `stale: true` | Warn user; run `pnpm run graphify` |
 | Legacy `graphify-out/graph.json` only | `pnpm exec graphify migrate-state --dry-run`, then migrate if safe |
 
-## Deep rebuild (docs + semantic edges)
-
 For markdown/docs semantic extraction beyond the AST graph, use `/graphify . --update` in chat.
+
+## Sequential Thinking (complex work)
+
+The **sequential-thinking** MCP server is enabled globally in `~/.cursor/mcp.json`. Call `sequentialthinking` **before** diving into code for:
+
+- Architecture or design decisions with trade-offs
+- Multi-step refactors spanning several files or pipelines
+- Debugging when the root cause is unclear
+- Planning that may need revision mid-flow
+- Tasks where scope or approach is not obvious upfront
+
+Skip it for trivial one-file edits, simple lookups, or questions already answered by Graphify.
+
+1. Invoke via MCP early in the task; set an initial `totalThoughts` estimate and adjust as you learn.
+2. Use `isRevision` / `revisesThought` when earlier assumptions change.
+3. Set `nextThoughtNeeded: false` only when you have a verified, actionable conclusion.
+4. Then execute — Graphify for navigation, edits for implementation.
