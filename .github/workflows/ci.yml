@@ -22,4 +22,4 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm rebuild sharp @resvg/resvg-js
-      - run: pnpm run check:fast
+      - run: pnpm run check

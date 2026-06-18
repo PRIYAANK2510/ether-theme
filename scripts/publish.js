@@ -102,6 +102,11 @@ function latestVsix() {
 }
 
 mkdirSync(RELEASES_DIR, { recursive: true });
+
+if (process.env.SKIP_CHECK !== "1") {
+  run("pnpm run check");
+}
+
 process.env.SKIP_PREPUBLISH = "1";
 run("node scripts/strip-readme-logo.js package");
 

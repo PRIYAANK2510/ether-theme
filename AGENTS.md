@@ -38,12 +38,11 @@ Bridge modules for the site live in `shared/` (not `src/shared/`).
 ```bash
 pnpm run watch            # extension rebuild loop (fast — no previews/site)
 pnpm run site:dev         # website dev server
-pnpm run check:fast       # lint → extension build → tests → site prepare → typecheck → site build
-pnpm run check            # lint → fast tests → full build → typecheck → site artifact test
+pnpm run check            # lint → full build → typecheck → all tests
 pnpm run build:extension  # themes + grammars + snippets (F5 prelaunch / VSIX prepublish)
 ```
 
-Claim work complete only after `pnpm run check:fast` passes (or `pnpm run check` for palette/preview changes).
+Claim work complete only after `pnpm run check` passes.
 
 ## Architecture
 

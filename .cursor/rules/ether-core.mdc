@@ -37,7 +37,7 @@ src/build.js               → runs pipelines, syncs package.json contributes
 | `src/generator/`, `src/snippets/generator.js`, tests | `package.json` → `contributes` |
 | `apps/website/src/` | `site/`, `apps/website/src/generated/` |
 
-After source changes: `pnpm run build:extension` (themes + grammars + snippets) or `pnpm run build` (full, incl. previews + site). `check:fast` runs extension build before site prepare so highlights match generated themes. Use `pnpm run check:fast` before claiming work complete; `pnpm run check` for palette/preview changes.
+After source changes: `pnpm run build:extension` (themes + grammars + snippets) or `pnpm run build` (full, incl. previews + site). Use `pnpm run check` before claiming work complete.
 
 ## Code style
 

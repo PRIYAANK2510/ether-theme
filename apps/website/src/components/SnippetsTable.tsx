@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { PrefixPill } from "@/components/PrefixPill";
 import { SnippetCode } from "@/components/SnippetCode";
 import type { LanguageSnippet } from "@/lib/snippet-data";
@@ -78,7 +78,6 @@ export function SnippetsTable({
     () => [...items].sort((a, b) => a.prefix.localeCompare(b.prefix)),
     [items],
   );
-  const rowIds = useMemo(() => rows.map((row) => row.id).join("|"), [rows]);
 
   useEffect(() => {
     if (selectedId && !rows.some((row) => row.id === selectedId)) {
@@ -86,7 +85,12 @@ export function SnippetsTable({
     }
   }, [rows, selectedId]);
 
+  const prevSearchRef = useRef(searchQuery);
+
   useEffect(() => {
+    if (prevSearchRef.current === searchQuery) return;
+    prevSearchRef.current = searchQuery;
+
     const q = searchQuery.trim();
     if (!q) {
       setSelectedId(null);
@@ -94,7 +98,7 @@ export function SnippetsTable({
     }
     const first = rows[0];
     if (first) setSelectedId(first.id);
-  }, [searchQuery, rowIds, rows]);
+  }, [searchQuery, rows]);
 
   function togglePreview(id: string) {
     const next = selectedId === id ? null : id;

@@ -75,6 +75,7 @@ jobs:
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          SKIP_CHECK: "1"
       - name: Tag release
         run: |
           git tag "v${{ steps.bump.outputs.version }}" 2>/dev/null || true

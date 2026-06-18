@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
+import { needsSitePrepare } from "./ensure-site-data.mjs";
 import { prepareWebsiteData } from "./prepare-data.mjs";
 import { writeSeoArtifacts } from "./seo-build.mjs";
 
@@ -10,7 +11,7 @@ const rootDir = join(websiteDir, "../..");
 const siteDir = join(rootDir, "site");
 const viteBin = join(rootDir, "node_modules", "vite", "bin", "vite.js");
 
-/** @typedef {{ skipPrepare?: boolean }} BuildWebsiteOptions */
+/** @typedef {{ skipPrepare?: boolean; forcePrepare?: boolean }} BuildWebsiteOptions */
 
 /** @returns {Awaited<ReturnType<typeof prepareWebsiteData>>} */
 function loadPreparedSiteData() {
@@ -25,11 +26,15 @@ function loadPreparedSiteData() {
 
 /** @param {BuildWebsiteOptions} [options] */
 export async function buildWebsite(options = {}) {
+  const forcePrepare =
+    options.forcePrepare ?? process.argv.includes("--force-prepare");
   const skipPrepare =
     options.skipPrepare ?? process.argv.includes("--skip-prepare");
-  const data = skipPrepare
-    ? loadPreparedSiteData()
-    : await prepareWebsiteData();
+  const shouldPrepare =
+    forcePrepare || (!skipPrepare && needsSitePrepare());
+  const data = shouldPrepare
+    ? await prepareWebsiteData()
+    : loadPreparedSiteData();
   execSync(`node "${viteBin}" build --config apps/website/vite.config.ts`, {
     cwd: rootDir,
     stdio: "inherit",

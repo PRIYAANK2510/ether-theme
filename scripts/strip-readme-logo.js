@@ -1,5 +1,11 @@
 import { execSync } from "node:child_process";
-import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -48,11 +54,8 @@ function restoreReadmeForGitHub() {
 
 const mode = process.argv[2];
 
-if (mode === "strip") {
-  stripReadmeForMarketplace();
-} else if (mode === "restore") {
-  restoreReadmeForGitHub();
-} else if (mode === "package") {
+if (mode === "package") {
+  mkdirSync(join(rootDir, "releases"), { recursive: true });
   stripReadmeForMarketplace();
   try {
     execSync(`"${vsceBin}" package --out releases/`, {
@@ -64,8 +67,6 @@ if (mode === "strip") {
     restoreReadmeForGitHub();
   }
 } else {
-  console.error(
-    "Usage: node scripts/strip-readme-logo.js <strip|restore|package>",
-  );
+  console.error("Usage: node scripts/strip-readme-logo.js package");
   process.exit(1);
 }

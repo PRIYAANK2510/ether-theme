@@ -80,9 +80,9 @@
       "problemMatcher": ["$eslint-stylish"]
     },
     {
-      "label": "test:fast",
+      "label": "check",
       "type": "shell",
-      "command": "pnpm run test:fast",
+      "command": "pnpm run check",
       "group": {
         "kind": "test",
         "isDefault": true
@@ -90,17 +90,6 @@
       "presentation": {
         "reveal": "always",
         "panel": "shared",
-        "close": true
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "check:fast",
-      "type": "shell",
-      "command": "pnpm run check:fast",
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated",
         "close": true
       },
       "problemMatcher": []
