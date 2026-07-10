@@ -51,12 +51,12 @@ ext install Priyaank.ether-theme
 - **25 dark themes** — Curated distinct palettes: neutral Graphite, cool Storm and Slate, bioluminescent Abyss, matrix Cipher, volcanic Magma, and more
 - **496 snippets** — React 19, Next.js App Router, TanStack Query, Zod, Vitest, Node/Express — type a prefix, press Tab
 - **Bundled grammars** — Astro, Vue, Svelte, MDX, Angular templates, Kotlin, AIDL, ProGuard/R8, and Dotenv — no extra language extensions required
-- **Readable by design** — WCAG contrast checks at build time; comments tuned to match active gutter line numbers
+- **Readable by design** — WCAG contrast checks at build time; comments tuned to match active gutter line numbers; hue-locked sidebar/editor stacks with clear interactive chrome
 - **Works everywhere** — Published on the VS Code Marketplace and Open VSX for Cursor
 
 ## Theme catalog
 
-Ether Abyss · Ether Amethyst · Ether Cipher · Ether Dracula · Ether Dusk · Ether Ember · Ether Graphite · Ether Luna · Ether Magma · Ether Midnight · Ether Moss · Ether Noir · Ether Obsidian · Ether Slate · Ether Stone · Ether Storm
+Ether Abyss · Ether Amethyst · Ether Arctic · Ether Celestial · Ether Cipher · Ether Crimson · Ether Cyber · Ether Dracula · Ether Dusk · Ether Ember · Ether Forest · Ether Graphite · Ether Luna · Ether Magma · Ether Midnight · Ether Moss · Ether Noir · Ether Obsidian · Ether Rust · Ether Sapphire · Ether Sepia · Ether Slate · Ether Stone · Ether Storm · Ether Wine
 
 ## Previews
 

@@ -5,12 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
 
+### Added
 
+- **Daily-driver workbench tokens** — ~95 high-value VS Code color IDs (breadcrumbs, notifications, keybindings, banners, and related chrome) derived from each palette so common UI surfaces are themed consistently
 
+### Changed
 
+- **Raise-the-floor palettes** — all 25 themes get hue-locked surface stacks (panel slightly darker than editor, same hue family), stronger list-focus / line-highlight separation, and clearer syntax role contrast while keeping each palette’s character
+- **Theme quality gate** — `pnpm run audit:themes` is part of `check`; soft audit stays at 0 error / 0 warn after the floor raise
+- **Dependencies** — tooling and site packages updated to latest compatible releases (TypeScript stays on 6.x until `typescript-eslint` supports 7); vulnerability audit clean
 
+### Removed
 
+- One-shot research/migration scripts and reports (`compare-vscode-tokens`, `raise-floor-palettes`, token gap JSON)
+- Unused `lighten` color helper and unused barrel re-exports from `src/utils/color.js`
 
 ## [1.0.20] - 2026-06-18
 

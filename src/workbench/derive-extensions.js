@@ -1,6 +1,7 @@
 import { withAlphaByte } from "../utils/color.js";
 import { EXTENSION_WORKBENCH_COLOR_IDS } from "./extension-catalog.js";
 import { deriveDiffEditorColors } from "./derive-diff.js";
+import { deriveDailyDriverColors } from "./derive-daily.js";
 import { deriveInteractiveOverlays } from "./derive-interactive.js";
 
 /**
@@ -108,6 +109,8 @@ export function deriveWorkbenchExtensionColors(base) {
     "checkbox.background": formInput.background,
     "checkbox.border": formInput.border,
     "checkbox.foreground": base.accent,
+
+    ...deriveDailyDriverColors(base),
   };
 
   for (const key of EXTENSION_WORKBENCH_COLOR_IDS) {

@@ -97,7 +97,6 @@ export {
   withAlphaByte,
   mixColors,
   darken,
-  lighten,
   isValidColor,
   contrastRatio,
   colorAlphaByte,
@@ -105,9 +104,7 @@ export {
 
 export {
   PALETTE_SYNTAX_TOKEN_KEYS,
-  SYNTAX_TOKEN_KEYS,
   LINE_NUMBER_MIX_INACTIVE,
-  LINE_NUMBER_MIX_ACTIVE,
   deriveCommentForeground,
   PALETTE_CONTRAST_TARGETS,
   validatePaletteContrast,

@@ -88,12 +88,3 @@ export function colorAlphaByte(hex) {
   }
   return 0xff;
 }
-
-/** @param {string} color @param {number} amount */
-export function lighten(color, amount) {
-  return normalizeHex(
-    chroma(color)
-      .brighten(amount * 5)
-      .hex(),
-  );
-}

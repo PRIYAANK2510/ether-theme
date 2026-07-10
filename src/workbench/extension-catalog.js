@@ -5,6 +5,8 @@
  * Agent panel frame: Cursor sets --composer-pane-background from editor.background.
  * Composer input uses core input.* tokens (see derive-core.js).
  */
+import { DAILY_DRIVER_WORKBENCH_COLOR_IDS } from "./daily-driver-catalog.js";
+
 export const EXTENSION_WORKBENCH_COLOR_IDS = [
   // ── Global text / links ────────────────────────────────────────────────
   "descriptionForeground",
@@ -99,4 +101,7 @@ export const EXTENSION_WORKBENCH_COLOR_IDS = [
   "checkbox.background",
   "checkbox.border",
   "checkbox.foreground",
+
+  // ── Daily-driver completeness (git, minimap, brackets, terminal, …) ───
+  ...DAILY_DRIVER_WORKBENCH_COLOR_IDS,
 ];

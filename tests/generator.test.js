@@ -438,13 +438,25 @@ describe("theme generator", () => {
 
   it("keeps editor and sidebar independent when palette defines them separately", () => {
     const graphite = composeTheme(etherGraphite);
-    expect(graphite.colors["sideBar.background"].toLowerCase()).toBe("#161618");
-    expect(graphite.colors["editor.background"].toLowerCase()).toBe("#1c1c1e");
-    expect(graphite.colors["input.background"].toLowerCase()).toBe("#1c1c1e");
-    expect(graphite.colors["input.border"].toLowerCase()).toBe("#0e0e1035");
+    expect(graphite.colors["sideBar.background"].toLowerCase()).toBe(
+      etherGraphite.ui.surfacePanel.toLowerCase(),
+    );
+    expect(graphite.colors["editor.background"].toLowerCase()).toBe(
+      etherGraphite.ui.surfaceEditor.toLowerCase(),
+    );
+    expect(graphite.colors["input.background"].toLowerCase()).toBe(
+      etherGraphite.ui.surfaceEditor.toLowerCase(),
+    );
+    expect(graphite.colors["input.border"].toLowerCase()).toBe(
+      withAlphaByte(etherGraphite.ui.surfaceBorder, 0x35).toLowerCase(),
+    );
 
     const storm = composeTheme(etherStorm);
-    expect(storm.colors["sideBar.background"].toLowerCase()).toBe("#0e1a28");
-    expect(storm.colors["editor.background"].toLowerCase()).toBe("#162438");
+    expect(storm.colors["sideBar.background"].toLowerCase()).toBe(
+      etherStorm.ui.surfacePanel.toLowerCase(),
+    );
+    expect(storm.colors["editor.background"].toLowerCase()).toBe(
+      etherStorm.ui.surfaceEditor.toLowerCase(),
+    );
   });
 });
