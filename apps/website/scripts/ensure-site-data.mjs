@@ -47,16 +47,25 @@ export function isSiteDataStale() {
   }
 
   const preparedAt = statSync(generatedSiteData).mtimeMs;
+  const jsOrMjs = (name) => name.endsWith(".js") || name.endsWith(".mjs");
   const inputNewest = Math.max(
-    mtimeOrZero(join(rootDir, "themes", "ether-dusk.color-theme.json")),
     mtimeOrZero(join(rootDir, "icon.png")),
+    newestMtimeInDir(join(rootDir, "themes"), (name) =>
+      name.endsWith(".color-theme.json"),
+    ),
     newestMtimeInDir(join(rootDir, "src", "palettes"), (name) =>
       name.endsWith(".js"),
     ),
+    newestMtimeInDir(join(rootDir, "src", "syntax"), jsOrMjs),
+    newestMtimeInDir(join(rootDir, "src", "workbench"), jsOrMjs),
+    newestMtimeInDir(join(rootDir, "src", "generator"), jsOrMjs),
+    newestMtimeInDir(join(rootDir, "src", "utils"), jsOrMjs),
     newestMtimeInDir(join(rootDir, "src", "snippets", "catalog"), (name) =>
       name.endsWith(".js"),
     ),
-    newestMtimeInDir(join(rootDir, "shared"), (name) => name.endsWith(".js")),
+    newestMtimeInDir(join(rootDir, "shared"), jsOrMjs),
+    mtimeOrZero(join(websiteDir, "scripts", "prepare-data.mjs")),
+    mtimeOrZero(join(websiteDir, "scripts", "highlight-snippet.mjs")),
   );
 
   return inputNewest > preparedAt;

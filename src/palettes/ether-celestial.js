@@ -7,7 +7,7 @@ export default {
 
   ui: {
     accent: "#F8E848",
-    accentHover: "#FFF060",
+    accentHover: "#FCEC6E",
     surfaceBorder: "#060410",
     surfaceShell: "#0A0818",
     surfacePanel: "#0E0C22",
@@ -18,9 +18,9 @@ export default {
     surfacePeek: "#0A0818",
     surfaceWidget: "#0C0A1E",
     surfaceNotification: "#10101E",
-    surfaceListFocus: "#242040",
+    surfaceListFocus: "#2E2C50",
     fgPrimary: "#E8E4F8",
-    fgMuted: "#9088B8",
+    fgMuted: "#9890BD",
     fgActivity: "#706890",
     fgOnAccent: "#06040E",
     fgOnButton: "#06040E",

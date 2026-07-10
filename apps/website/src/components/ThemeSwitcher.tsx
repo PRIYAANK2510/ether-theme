@@ -5,11 +5,12 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type KeyboardEvent,
 } from "react";
 import { createPortal } from "react-dom";
 import { getThemeList } from "@/lib/theme";
 import { cn } from "@/lib/cn";
-import { useTheme, useSiteUi } from "@/context/SiteContext";
+import { useTheme, useChrome } from "@/context/SiteContext";
 import { SITE_DATA } from "@/generated/site-data";
 import styles from "./ThemeSwitcher.module.scss";
 
@@ -24,12 +25,14 @@ type ThemeSwitcherProps = {
 
 export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
   const { activeThemeId, setActiveTheme } = useTheme();
-  const { themeMenuOpen, setThemeMenuOpen } = useSiteUi();
+  const { themeMenuOpen, setThemeMenuOpen } = useChrome();
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const optionRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const listId = useId();
   const isBlock = layout === "block";
   const [blockListStyle, setBlockListStyle] = useState<CSSProperties>();
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const active =
     themes.find((theme) => theme.id === activeThemeId) ??
@@ -73,6 +76,13 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
   useEffect(() => {
     if (!themeMenuOpen) return;
 
+    const selectedIndex = Math.max(
+      0,
+      themes.findIndex((theme) => theme.id === activeThemeId),
+    );
+    setActiveIndex(selectedIndex);
+    queueMicrotask(() => optionRefs.current[selectedIndex]?.focus());
+
     function onPointerDown(event: MouseEvent) {
       const root = rootRef.current;
       if (!root || root.getClientRects().length === 0) return;
@@ -86,8 +96,11 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
       }
       setThemeMenuOpen(false);
     }
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setThemeMenuOpen(false);
+    function onKeyDown(event: globalThis.KeyboardEvent) {
+      if (event.key === "Escape") {
+        setThemeMenuOpen(false);
+        buttonRef.current?.focus();
+      }
     }
     document.addEventListener("mousedown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
@@ -95,7 +108,46 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
       document.removeEventListener("mousedown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [setThemeMenuOpen, themeMenuOpen]);
+  }, [activeThemeId, setThemeMenuOpen, themeMenuOpen]);
+
+  function selectTheme(themeId: string) {
+    setActiveTheme(themeId);
+    setThemeMenuOpen(false);
+    buttonRef.current?.focus();
+  }
+
+  function onListKeyDown(event: KeyboardEvent<HTMLUListElement>) {
+    if (themes.length === 0) return;
+
+    let next: number | undefined;
+    switch (event.key) {
+      case "ArrowDown":
+        next = (activeIndex + 1) % themes.length;
+        break;
+      case "ArrowUp":
+        next = (activeIndex - 1 + themes.length) % themes.length;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = themes.length - 1;
+        break;
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        selectTheme(themes[activeIndex].id);
+        return;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    setActiveIndex(next);
+    optionRefs.current[next]?.focus();
+  }
+
+  const activeOptionId = `${listId}-option-${themes[activeIndex]?.id ?? "none"}`;
 
   const list =
     themeMenuOpen && (!isBlock || blockListStyle) ? (
@@ -105,20 +157,26 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
         })}
         id={listId}
         role="listbox"
+        tabIndex={-1}
+        aria-activedescendant={activeOptionId}
         data-theme-switcher=""
         style={isBlock ? blockListStyle : undefined}
+        onKeyDown={onListKeyDown}
       >
-        {themes.map((theme) => (
+        {themes.map((theme, index) => (
           <li key={theme.id} role="presentation">
             <button
               type="button"
+              id={`${listId}-option-${theme.id}`}
+              ref={(node) => {
+                optionRefs.current[index] = node;
+              }}
               className={styles.option}
               role="option"
               aria-selected={theme.id === activeThemeId}
-              onClick={() => {
-                setActiveTheme(theme.id);
-                setThemeMenuOpen(false);
-              }}
+              tabIndex={index === activeIndex ? 0 : -1}
+              onClick={() => selectTheme(theme.id)}
+              onMouseEnter={() => setActiveIndex(index)}
             >
               <span
                 className={styles.swatch}
@@ -152,6 +210,15 @@ export function ThemeSwitcher({ layout = "inline" }: ThemeSwitcherProps) {
         aria-controls={listId}
         onClick={() => setThemeMenuOpen(!themeMenuOpen)}
         onMouseDown={(event) => event.stopPropagation()}
+        onKeyDown={(event) => {
+          if (
+            (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") &&
+            !themeMenuOpen
+          ) {
+            event.preventDefault();
+            setThemeMenuOpen(true);
+          }
+        }}
       >
         <span
           className={styles.swatch}

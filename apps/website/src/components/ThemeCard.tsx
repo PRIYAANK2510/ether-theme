@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { SITE_BASE } from "@/lib/config";
-import { useTheme, useSiteUi } from "@/context/SiteContext";
+import { useTheme, useLightbox } from "@/context/SiteContext";
 import styles from "./ThemeCard.module.scss";
 
 type PaletteSummary = {
@@ -11,7 +11,7 @@ type PaletteSummary = {
 
 function ThemeCardInner({ palette }: { palette: PaletteSummary }) {
   const { setActiveTheme } = useTheme();
-  const { openLightbox } = useSiteUi();
+  const { openLightbox } = useLightbox();
   const previewSrc = `${SITE_BASE}${palette.preview}`;
 
   function openPreview() {

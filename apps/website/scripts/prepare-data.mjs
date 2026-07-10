@@ -118,8 +118,6 @@ export async function prepareWebsiteData() {
   mkdirSync(assetsDir, { recursive: true });
   const snippetDataDir = join(publicDir, "data", "snippets");
   mkdirSync(snippetDataDir, { recursive: true });
-  const themeDataDir = join(publicDir, "data", "themes");
-  mkdirSync(themeDataDir, { recursive: true });
 
   const snippetIndexPath = join(publicDir, "data", "snippet-index.json");
   writeFileSync(
@@ -127,14 +125,6 @@ export async function prepareWebsiteData() {
     `${JSON.stringify(snippetIndex)}\n`,
     "utf8",
   );
-
-  for (const [themeId, theme] of Object.entries(themes)) {
-    writeFileSync(
-      join(themeDataDir, `${themeId}.json`),
-      `${JSON.stringify(theme)}\n`,
-      "utf8",
-    );
-  }
 
   for (const bundle of snippetsBySlug.values()) {
     writeFileSync(

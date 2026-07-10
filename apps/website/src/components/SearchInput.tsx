@@ -43,7 +43,6 @@ export function SearchInput({
   className,
   compact = false,
   toolbar = false,
-  inactive = false,
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -52,8 +51,6 @@ export function SearchInput({
   compact?: boolean;
   /** Compact sizing tuned for the sticky snippet tab bar. */
   toolbar?: boolean;
-  /** Removes from layout and tab order while keeping the same controlled value. */
-  inactive?: boolean;
 }) {
   const hasValue = value.length > 0;
 
@@ -63,10 +60,8 @@ export function SearchInput({
         styles.wrap,
         compact && styles.wrapCompact,
         toolbar && styles.wrapToolbar,
-        inactive && styles.wrapInactive,
         className,
       )}
-      aria-hidden={inactive || undefined}
     >
       <span className={styles.icon} aria-hidden="true">
         <SearchGlyph />
@@ -76,7 +71,7 @@ export function SearchInput({
         type="search"
         value={value}
         placeholder={placeholder}
-        tabIndex={inactive ? -1 : undefined}
+        aria-label={placeholder}
         onChange={(event) => onChange(event.target.value)}
       />
       {hasValue ? (

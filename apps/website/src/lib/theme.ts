@@ -1,4 +1,3 @@
-import { SITE_BASE } from "@/lib/config";
 import { SITE_DATA } from "@/generated/site-data";
 
 const STORAGE_KEY = "ether-site-theme";
@@ -11,7 +10,7 @@ export type ThemePayload = {
 };
 
 const themeCache = new Map<string, ThemePayload>(
-  Object.entries(SITE_DATA.themes),
+  Object.entries(SITE_DATA.themes as Record<string, ThemePayload>),
 );
 
 function applyThemeVars(themeId: string, theme: ThemePayload) {
@@ -40,26 +39,7 @@ export function paintTheme(themeId: string, theme?: ThemePayload) {
 }
 
 export function getThemePayload(themeId: string): ThemePayload | undefined {
-  const cached = themeCache.get(themeId);
-  if (cached) return cached;
-
-  const themes = SITE_DATA.themes as Record<string, ThemePayload>;
-  return themes[themeId];
-}
-
-/** @deprecated Use getThemePayload — kept for callers that still await theme data */
-export async function ensureThemeLoaded(themeId: string) {
-  const cached = getThemePayload(themeId);
-  if (cached) return cached;
-
-  const response = await fetch(`${SITE_BASE}/data/themes/${themeId}.json`);
-  if (!response.ok) {
-    throw new Error(`Failed to load theme "${themeId}"`);
-  }
-
-  const theme = (await response.json()) as ThemePayload;
-  themeCache.set(themeId, theme);
-  return theme;
+  return themeCache.get(themeId);
 }
 
 export function applyThemeById(themeId: string) {

@@ -6,7 +6,7 @@
 <h1 align="center">Ether Themes</h1>
 
 <p align="center">
-  <strong>16 dark color themes · 496 web-dev snippets · Astro, Vue, Svelte, MDX &amp; Android grammars</strong><br />
+  <strong>25 dark color themes · 496 web-dev snippets · Astro, Vue, Svelte, MDX &amp; Android grammars</strong><br />
   One extension for <strong>VS Code</strong> and <strong>Cursor</strong> — WCAG-validated palettes, zero extra setup.
 </p>
 
@@ -48,7 +48,7 @@ ext install Priyaank.ether-theme
 
 ## Why developers pick Ether
 
-- **16 dark themes** — Curated distinct palettes: neutral Graphite, cool Storm and Slate, bioluminescent Abyss, matrix Cipher, volcanic Magma, and more
+- **25 dark themes** — Curated distinct palettes: neutral Graphite, cool Storm and Slate, bioluminescent Abyss, matrix Cipher, volcanic Magma, and more
 - **496 snippets** — React 19, Next.js App Router, TanStack Query, Zod, Vitest, Node/Express — type a prefix, press Tab
 - **Bundled grammars** — Astro, Vue, Svelte, MDX, Angular templates, Kotlin, AIDL, ProGuard/R8, and Dotenv — no extra language extensions required
 - **Readable by design** — WCAG contrast checks at build time; comments tuned to match active gutter line numbers

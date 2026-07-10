@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { ExternalLink } from "@/components/ExternalLink";
 import { Logo } from "@/components/ui/Logo";
 import { SITE_NAME, VS_MARKETPLACE } from "@/lib/config";
 import { cn } from "@/lib/cn";
-import { useSiteUi } from "@/context/SiteContext";
+import { useChrome } from "@/context/SiteContext";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import styles from "./Topbar.module.scss";
 
@@ -17,6 +17,14 @@ const NAV_ITEMS: Array<{
   { to: "/themes", label: "Themes" },
   { to: "/snippets", label: "Snippets" },
 ];
+
+function getFocusable(root: HTMLElement) {
+  return [
+    ...root.querySelectorAll<HTMLElement>(
+      'a[href], button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+    ),
+  ].filter((el) => !el.hasAttribute("disabled") && el.tabIndex !== -1);
+}
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
@@ -86,8 +94,10 @@ export function Topbar() {
     setMobileNavOpen,
     themeMenuOpen,
     setThemeMenuOpen,
-  } = useSiteUi();
+  } = useChrome();
   const location = useLocation();
+  const menuBtnRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileNavOpen(false);
@@ -99,6 +109,43 @@ export function Topbar() {
       document.body.style.overflow = "";
     };
   }, [mobileNavOpen]);
+
+  useEffect(() => {
+    if (!mobileNavOpen) return;
+
+    const panel = panelRef.current;
+    const firstLink = panel?.querySelector<HTMLElement>("a, button");
+    firstLink?.focus();
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setMobileNavOpen(false);
+        setThemeMenuOpen(false);
+        menuBtnRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab" || !panel) return;
+      const focusable = getFocusable(panel);
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [mobileNavOpen, setMobileNavOpen, setThemeMenuOpen]);
 
   function closeMenu() {
     setMobileNavOpen(false);
@@ -127,6 +174,7 @@ export function Topbar() {
 
         <button
           type="button"
+          ref={menuBtnRef}
           className={styles.menuBtn}
           aria-expanded={mobileNavOpen}
           aria-controls="topbar-mobile-panel"
@@ -154,6 +202,7 @@ export function Topbar() {
             onClick={closeMenu}
           />
           <div
+            ref={panelRef}
             id="topbar-mobile-panel"
             className={styles.mobilePanel}
             role="dialog"

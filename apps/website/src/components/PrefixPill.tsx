@@ -29,6 +29,7 @@ export function PrefixPill({ prefix, showPrefix = true }: PrefixPillProps) {
       })}
       onClick={copy}
       title={`Copy ${prefix} to clipboard`}
+      aria-label={`Copy prefix ${prefix} to clipboard`}
     >
       {showPrefix ? (
         <>

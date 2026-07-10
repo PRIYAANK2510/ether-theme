@@ -6,7 +6,6 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { SITE_DATA } from "@/generated/site-data";
 import {
   applyThemeById,
   loadSavedThemeId,
@@ -23,10 +22,13 @@ type ThemeContextValue = {
   setActiveTheme: (themeId: string) => void;
 };
 
-type SiteUiContextValue = {
+type LightboxContextValue = {
   lightbox: LightboxState;
   openLightbox: (payload: { src: string; label: string }) => void;
   closeLightbox: () => void;
+};
+
+type ChromeContextValue = {
   themeMenuOpen: boolean;
   setThemeMenuOpen: (open: boolean) => void;
   mobileNavOpen: boolean;
@@ -34,7 +36,8 @@ type SiteUiContextValue = {
 };
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
-const SiteUiContext = createContext<SiteUiContextValue | null>(null);
+const LightboxContext = createContext<LightboxContextValue | null>(null);
+const ChromeContext = createContext<ChromeContextValue | null>(null);
 
 export function SiteProvider({ children }: { children: ReactNode }) {
   const [activeThemeId, setActiveThemeId] = useState(loadSavedThemeId);
@@ -72,29 +75,32 @@ export function SiteProvider({ children }: { children: ReactNode }) {
     [activeThemeId, setActiveTheme],
   );
 
-  const uiValue = useMemo<SiteUiContextValue>(
+  const lightboxValue = useMemo<LightboxContextValue>(
     () => ({
       lightbox,
       openLightbox,
       closeLightbox,
+    }),
+    [lightbox, openLightbox, closeLightbox],
+  );
+
+  const chromeValue = useMemo<ChromeContextValue>(
+    () => ({
       themeMenuOpen,
       setThemeMenuOpen,
       mobileNavOpen,
       setMobileNavOpen,
     }),
-    [
-      lightbox,
-      openLightbox,
-      closeLightbox,
-      themeMenuOpen,
-      mobileNavOpen,
-      setMobileNavOpen,
-    ],
+    [themeMenuOpen, mobileNavOpen, setMobileNavOpen],
   );
 
   return (
     <ThemeContext.Provider value={themeValue}>
-      <SiteUiContext.Provider value={uiValue}>{children}</SiteUiContext.Provider>
+      <LightboxContext.Provider value={lightboxValue}>
+        <ChromeContext.Provider value={chromeValue}>
+          {children}
+        </ChromeContext.Provider>
+      </LightboxContext.Provider>
     </ThemeContext.Provider>
   );
 }
@@ -107,14 +113,26 @@ export function useTheme() {
   return context;
 }
 
-export function useSiteUi() {
-  const context = useContext(SiteUiContext);
+export function useLightbox() {
+  const context = useContext(LightboxContext);
   if (!context) {
-    throw new Error("useSiteUi must be used within SiteProvider");
+    throw new Error("useLightbox must be used within SiteProvider");
   }
   return context;
 }
 
-export function useDefaultThemeId() {
-  return SITE_DATA.defaultThemeId;
+/** Topbar / theme-menu chrome — does not include lightbox. */
+export function useChrome() {
+  const context = useContext(ChromeContext);
+  if (!context) {
+    throw new Error("useChrome must be used within SiteProvider");
+  }
+  return context;
+}
+
+/** @deprecated Prefer useChrome or useLightbox */
+export function useSiteUi() {
+  const lightbox = useLightbox();
+  const chrome = useChrome();
+  return { ...lightbox, ...chrome };
 }

@@ -2,7 +2,8 @@ import { escapeHtml } from "@shared/html.js";
 import { memo, useDeferredValue, useEffect, useState } from "react";
 import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/cn";
-import { useDefaultThemeId, useTheme } from "@/context/SiteContext";
+import { useTheme } from "@/context/SiteContext";
+import { SITE_DATA } from "@/generated/site-data";
 import "@/styles/shiki-snippet.scss";
 import styles from "@/styles/ui/snippet.module.scss";
 
@@ -21,7 +22,7 @@ function SnippetCodeInner({
 }: SnippetCodeProps) {
   const { activeThemeId } = useTheme();
   const highlightThemeId = useDeferredValue(activeThemeId);
-  const defaultThemeId = useDefaultThemeId();
+  const defaultThemeId = SITE_DATA.defaultThemeId;
   const { ref, inView } = useInView<HTMLDivElement>();
   const onDefaultTheme = highlightThemeId === defaultThemeId;
   const [html, setHtml] = useState<string | null>(defaultHtml ?? null);

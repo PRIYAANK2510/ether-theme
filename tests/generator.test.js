@@ -444,7 +444,7 @@ describe("theme generator", () => {
     expect(graphite.colors["input.border"].toLowerCase()).toBe("#0e0e1035");
 
     const storm = composeTheme(etherStorm);
-    expect(storm.colors["sideBar.background"].toLowerCase()).toBe("#181c22");
-    expect(storm.colors["editor.background"].toLowerCase()).toBe("#1c2028");
+    expect(storm.colors["sideBar.background"].toLowerCase()).toBe("#0e1a28");
+    expect(storm.colors["editor.background"].toLowerCase()).toBe("#162438");
   });
 });
